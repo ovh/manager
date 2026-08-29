@@ -61,6 +61,17 @@ const setSearchValue = async (input: HTMLElement, value: string) => {
   });
 };
 
+vi.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (translationKey: string) => translationKey,
+    i18n: {
+      changeLanguage: () => new Promise(() => {}),
+      language: 'fr_FR',
+    },
+  }),
+  Trans: ({ i18nKey, children }: any) => children ?? i18nKey,
+}));
+
 vi.mock('react-router-dom', () => ({
   useNavigate: () => navigate,
   useSearchParams: () => [
@@ -248,5 +259,45 @@ describe('CompanyPage', () => {
       `search_not_satisfactory_${mocks.legalForm}`,
     );
     expect(nonSatisfactoryLinkElement).toBeInTheDocument();
+  });
+
+  it('should not let a corporation add its company manually', async () => {
+    renderComponent();
+
+    const searchInputElement = screen.getByTestId('search-input');
+    await setSearchValue(searchInputElement, VALID_SIRET);
+    const searchButtonElement = screen.getByText('search');
+    await act(() => searchButtonElement.click());
+    await screen.findByText('test-company');
+
+    expect(
+      screen.queryByText('search_not_satisfactory_corporation'),
+    ).not.toBeInTheDocument();
+  });
+
+  it('should offer the support contact instead of any skip for an administration', async () => {
+    mocks.legalForm = 'administration';
+    renderComponent();
+
+    expect(
+      screen.queryByText('fallback_administration'),
+    ).not.toBeInTheDocument();
+    expect(screen.queryByText('fallback_button')).not.toBeInTheDocument();
+    expect(
+      screen.getByText('fallback_administration_support'),
+    ).toBeInTheDocument();
+
+    const searchInputElement = screen.getByTestId('search-input');
+    await setSearchValue(searchInputElement, VALID_SIRET);
+    const searchButtonElement = screen.getByText('search');
+    await act(() => searchButtonElement.click());
+    await screen.findByText('test-company');
+
+    expect(
+      screen.queryByText('search_not_satisfactory_administration'),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByText('fallback_administration_support'),
+    ).toBeInTheDocument();
   });
 });
