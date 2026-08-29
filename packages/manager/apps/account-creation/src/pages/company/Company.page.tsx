@@ -44,7 +44,9 @@ import { urls } from '@/routes/routes.constant';
 import ExitGuard from '@/components/exitGuard/ExitGuard.component';
 import InvalidationRedirectGuard from '@/components/invalidationRedirectGuard/InvalidationRedirectGuard.component';
 import { CompanySuggestionErrorClass } from '@/types/suggestion';
+import { isB2GLegalForm } from '@/helpers/flowHelper';
 import { calculateFRVATNumber, getLegalFormFromCode } from './Company.helpers';
+import { SUPPORT_CONTACT_URL } from './company.constants';
 
 type SearchFormData = {
   search: string;
@@ -77,6 +79,11 @@ export default function CompanyPage() {
     country,
     search,
   );
+  const isAdministration = isB2GLegalForm(legalForm);
+  // The step is FR + DROM only (shouldAccessOrganizationSearch), so dropping the
+  // manual-entry escape here is what forces those customers through the SIRET
+  // lookup. Nonprofits keep it: they can legitimately have no SIRET.
+  const canAddCompanyManually = legalForm === 'association';
 
   const {
     control,
@@ -198,6 +205,16 @@ export default function CompanyPage() {
     }
   }, [trackClick]);
 
+  const trackContactSupportClick = useCallback(() => {
+    if (pageTracking) {
+      trackClick(pageTracking, {
+        location: PageLocation.page,
+        buttonType: ButtonType.externalLink,
+        actions: ['administration-contact-support'],
+      });
+    }
+  }, [trackClick]);
+
   // automatically select the first company if we found one
   useEffect(() => {
     if (isFetched && data && data.companies.length === 1) {
@@ -304,7 +321,7 @@ export default function CompanyPage() {
               <OdsSpinner />
             </div>
           )}
-          {!isFetching && !isFetched && (
+          {!isFetching && !isFetched && !isAdministration && (
             <>
               <OdsText preset={ODS_TEXT_PRESET.paragraph}>
                 {t(`fallback_${legalForm}`)}
@@ -379,7 +396,7 @@ export default function CompanyPage() {
               )}
             </>
           )}
-          {!isFetching && isFetched && (
+          {!isFetching && isFetched && canAddCompanyManually && (
             <div>
               <OdsLink
                 href="#/details"
@@ -388,6 +405,24 @@ export default function CompanyPage() {
                 onClick={() => trackNotFoundLinkClick()}
               />
             </div>
+          )}
+          {!isFetching && isAdministration && (
+            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+              <Trans
+                i18nKey="fallback_administration_support"
+                t={t}
+                components={{
+                  anchor: (
+                    <Link
+                      href={SUPPORT_CONTACT_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => trackContactSupportClick()}
+                    />
+                  ),
+                }}
+              />
+            </OdsText>
           )}
         </div>
       </>
