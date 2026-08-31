@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.30.0...@ovh-ux/manager-hub-app@0.31.0) (2026-08-31)
+
+
+### Features
+
+* **hub:** change support widget for Digital Agent API (FR only) + links for fr ([13a3f78](https://github.com/ovh/manager/commit/13a3f78c36e969b723f2e8ed516109926c716bd9)), closes [#MANAGER-22282](https://github.com/ovh/manager/issues/MANAGER-22282)
+
+
+
+
+
 # [0.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.29.10...@ovh-ux/manager-hub-app@0.30.0) (2026-07-10)
 
 

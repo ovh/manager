@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.15.1...@ovh-ux/manager-account-creation-app@0.16.0) (2026-08-31)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1306] ([c0d43ce](https://github.com/ovh/manager/commit/c0d43ce54a4e78a5d4e3d193e8f31745e8f92ffd))
+
+
+### Features
+
+* **account:** account creation for FR customers only - remove Administration without siret skip ([487875c](https://github.com/ovh/manager/commit/487875c1d4fa9a9579b4da5bd90852955966908e)), closes [#MANAGER-22249](https://github.com/ovh/manager/issues/MANAGER-22249)
+
+
+
+
+
 ## [0.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.15.0...@ovh-ux/manager-account-creation-app@0.15.1) (2026-08-12)
 
 
