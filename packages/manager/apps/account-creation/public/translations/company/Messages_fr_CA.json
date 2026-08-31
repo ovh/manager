@@ -11,6 +11,7 @@
   "fallback_corporation": "Vous n’avez pas encore de SIRET ? Créez un compte Particulier que vous basculerez plus tard en compte Entreprise.",
   "fallback_association": "Votre association n’a pas de SIRET ?",
   "fallback_administration": "Votre administration n’a pas de SIRET ?",
+  "fallback_administration_support": "Votre administration n’apparaît pas dans la liste ? <anchor>Contactez notre support</anchor>",
   "fallback_link": "Créer un compte Particulier",
   "fallback_button": "Passer cette étape",
   "search_suggestion": "La recherche contient beaucoup de résultats, veuillez l'affiner s'il vous plait.",
