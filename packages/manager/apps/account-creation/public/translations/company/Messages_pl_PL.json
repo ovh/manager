@@ -30,5 +30,6 @@
   "error_inactive": "Numer SIRET jest nieaktywny.",
   "error_rate_limit_exceeded": "Badania były ograniczone",
   "error_internal_server_error": "Badania nie powiodły się. Proszę spróbować ponownie później lub dodać swoją firmę ręcznie.",
-  "fallback_nd_label": "Poufne"
+  "fallback_nd_label": "Poufne",
+  "fallback_administration_support": "Twoja administracja nie pojawia się na liście? <anchor>Skontaktuj się z naszym wsparciem</anchor>"
 }

@@ -30,5 +30,6 @@
   "error_inactive": "Il numero SIRET è inattivo.",
   "error_rate_limit_exceeded": "La ricerca è stata limitata",
   "error_internal_server_error": "La ricerca è fallita. Si prega di riprovare più tardi o di aggiungere manualmente la propria azienda.",
-  "fallback_nd_label": "Riservato"
+  "fallback_nd_label": "Riservato",
+  "fallback_administration_support": "La tua amministrazione non compare nell'elenco? <anchor>Contatta il nostro supporto</anchor>"
 }
