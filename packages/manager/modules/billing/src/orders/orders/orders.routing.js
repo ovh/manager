@@ -99,6 +99,12 @@ export default /* @ngInject */ ($stateProvider) => {
           });
       },
 
+      goToCommitmentEntry: /* @ngInject */ ($state) => (order, filter) =>
+        $state.go('billing.commitment', {
+          orderId: order.orderId,
+          ordersFilter: filter,
+        }),
+
       updateFilterParam: /* @ngInject */ ($state) => (filter) =>
         $state.go(
           'billing.orders.orders',
