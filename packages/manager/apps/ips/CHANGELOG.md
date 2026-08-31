@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-ips-app@0.9.0...@ovh-ux/manager-ips-app@0.9.1) (2026-08-31)
+
+
+### Bug Fixes
+
+* **ips:** restricting the offers to 24 from 28 blocs for VCFaaS ([70f64e5](https://github.com/ovh/manager/commit/70f64e51836d325176d7ab437038dffcad34ee9e)), closes [#MANAGER-22198](https://github.com/ovh/manager/issues/MANAGER-22198)
+
+
+
+
+
 # [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-ips-app@0.8.3...@ovh-ux/manager-ips-app@0.9.0) (2026-07-29)
 
 
