@@ -26,11 +26,8 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
   const environment = shell.getPlugin('environment').getEnvironment();
   const urls = useURL(environment);
   const trackingPlugin = shell.getPlugin('tracking');
-  const region = environment.getRegion();
-  const isDigitalAgent = isDigitalAgentEnabled(
-    region,
-    environment.getUser()?.ovhSubsidiary,
-  );
+  // const region = environment.getRegion();
+  const isDigitalAgent = false;
 
   const {
     closeNavigationSidebar,
