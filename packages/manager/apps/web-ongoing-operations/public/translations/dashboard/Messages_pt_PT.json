@@ -182,5 +182,15 @@
   "domain_operations_update_nationalidentificationnumber": "Número de identificação fiscal",
   "domain_operations_update_identificationnumber": "Número de identificação",
   "domain_operations_update_nicowner_click_whoiscontactbilling": "Altere as informações do contacto de faturação clicando aqui",
-  "domain_operations_update_nicowner_click_whoiscontacttech": "Altere as informações do contacto técnico clicando aqui"
+  "domain_operations_update_nicowner_click_whoiscontacttech": "Altere as informações do contacto técnico clicando aqui",
+  "domain_operations_update_lastname": "Nome",
+  "domain_operations_foa_cta": "Validar como agente designado",
+  "domain_operations_foa_title": "Validação como agente designado para o nome de domínio {{t0}}",
+  "domain_operations_foa_description": "Esta alteração de titular está a aguardar a validação dos formulários de autorização (FOA) enviados aos titulares. Como agente designado, pode aceitar ou rejeitar esta alteração em nome deles. Apenas os formulários ainda sem resposta serão validados.",
+  "domain_operations_foa_certification": "Certifico que estou devidamente autorizado(a) a agir como agente designado e a responder em nome do titular atual e do novo titular.",
+  "domain_operations_foa_accept": "Aceitar",
+  "domain_operations_foa_reject": "Rejeitar",
+  "domain_operations_foa_accept_success": "A alteração de titular foi aceite como agente designado.",
+  "domain_operations_foa_reject_success": "A alteração de titular foi rejeitada como agente designado.",
+  "domain_operations_foa_error": "Falha na validação como agente designado"
 }
