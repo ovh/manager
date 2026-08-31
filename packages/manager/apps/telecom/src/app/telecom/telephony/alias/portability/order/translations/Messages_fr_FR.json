@@ -14,7 +14,6 @@
   "telephony_alias_portability_order_landline": "Numéro individuel",
   "telephony_alias_portability_order_sda": "Plage de numéros (SDA)",
   "telephony_alias_portability_order_callNumber": "Numéro à porter (format international)",
-  "telephony_alias_portability_order_sda_warning": "Les numéros spéciaux ne pouvant faire l'objet d'une demande de portabilité en numéro isolé, veuillez choisir la portabilité pour une tranche de numéros (SDA)",
   "telephony_alias_portability_order_number_international": "N° au format international",
   "telephony_alias_portability_order_callNumber_pattern_error": "Veuillez saisir un numéro au format international (0033… ou +33…).",
   "telephony_alias_portability_order_desireDate": "Date de portabilité souhaitée :",
