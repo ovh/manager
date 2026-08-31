@@ -30,5 +30,6 @@
   "error_inactive": "O número SIRET está inativo.",
   "error_rate_limit_exceeded": "A pesquisa foi limitada",
   "error_internal_server_error": "A pesquisa falhou. Por favor, tente novamente mais tarde ou adicione a sua empresa manualmente.",
-  "fallback_nd_label": "Confidencial"
+  "fallback_nd_label": "Confidencial",
+  "fallback_administration_support": "A sua administração não aparece na lista? <anchor>Contacte o nosso apoio ao cliente</anchor>"
 }

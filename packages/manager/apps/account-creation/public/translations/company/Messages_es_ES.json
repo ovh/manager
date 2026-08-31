@@ -30,5 +30,6 @@
   "error_inactive": "El número SIRET está inactivo.",
   "error_rate_limit_exceeded": "La investigación ha sido limitada",
   "error_internal_server_error": "La investigación ha fallado. Por favor, intentad de nuevo más tarde o añadid vuestra empresa manualmente.",
-  "fallback_nd_label": "Confidencial"
+  "fallback_nd_label": "Confidencial",
+  "fallback_administration_support": "¿Vuestra administración no aparece en la lista? <anchor>Contactad con nuestro soporte</anchor>"
 }
