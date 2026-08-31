@@ -5,7 +5,6 @@ import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 import useContainer from '@/core/container';
 import { Node } from '../navigation-tree/node';
 import { AssistanceLinkItem } from './AssistanceLinkItem';
-import { isDigitalAgentEnabled } from '@/container/common/digital-agent';
 
 export interface AssistanceProps {
   nodeTree?: Node;
@@ -26,8 +25,6 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
   const environment = shell.getPlugin('environment').getEnvironment();
   const urls = useURL(environment);
   const trackingPlugin = shell.getPlugin('tracking');
-  // const region = environment.getRegion();
-  const isDigitalAgent = false;
 
   const {
     closeNavigationSidebar,
@@ -74,12 +71,8 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
           break;
         case 'livechat':
           node.onClick = () => {
-            // When the Digital Agent is in primary the entry is a plain link
-            // to the Manager V7, the V6 live chat widget is not opened anymore.
-            if (!isDigitalAgent) {
-              shell.getPlugin('ux').openLiveChat();
-              setChatbotReduced(false);
-            }
+            shell.getPlugin('ux').openLiveChat();
+            setChatbotReduced(false);
             trackNode('assistance_live_chat');
             closeNavigationSidebar();
           };
