@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.27.0...@ovh-ux/manager-pci-savings-plan-app@1.28.0) (2026-08-31)
+
+
+### Features
+
+* **pci-savings-plan:** round percentage value ([2d80f66](https://github.com/ovh/manager/commit/2d80f66099cec71888bcb8ed2d2364f3edf18930)), closes [#TAPC-7165](https://github.com/ovh/manager/issues/TAPC-7165)
+
+
+
+
+
 # [1.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.26.2...@ovh-ux/manager-pci-savings-plan-app@1.27.0) (2026-08-14)
 
 
