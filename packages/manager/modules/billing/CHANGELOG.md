@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.69.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.68.1...@ovh-ux/manager-billing@0.69.0) (2026-09-02)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1302] ([d12fa84](https://github.com/ovh/manager/commit/d12fa84eebb0f7896d0ef1c3c16f07499dc0bdce))
+
+
+### Features
+
+* **billing:** split credit note ([564228b](https://github.com/ovh/manager/commit/564228b2e866c34efeabc2d3e7a11070aa392b0c)), closes [#MANAGER-17712](https://github.com/ovh/manager/issues/MANAGER-17712)
+
+
+
+
+
 ## [0.68.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.68.0...@ovh-ux/manager-billing@0.68.1) (2026-07-20)
 
 
