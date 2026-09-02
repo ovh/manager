@@ -50,7 +50,7 @@
     "@tanstack/react-query-devtools": "5.90.2",
     "msw": "2.12.1",
     "typescript": "5.9.3",
-    "vite": "7.2.2",
+    "vite": "7.3.5",
     "vitest": "3.2.4"
   },
   "regions": [
