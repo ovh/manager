@@ -1,4 +1,6 @@
 {
-  "e_invoicing_warning_introduction": "Vous ne pouvez actuellement pas télécharger votre facture. En effet, nous avons besoin d'un numéro SIRET valide associé à votre compte pour générer et télécharger des factures. Une fois votre numéro SIRET mis à jour, vous pourrez télécharger vos factures.",
-  "e_invoicing_warning_action": "Vous pouvez mettre à jour votre numéro SIRET <a href={{href}}>ici.</a>"
+  "e_invoicing_warning_title": "Facture indisponible : SIRET manquant",
+  "e_invoicing_warning_description": "Vous n'avez pas renseigné de SIRET dans votre espace client. Nous ne sommes donc pas en mesure de vous adresser vos factures via une plateforme agréée comme l'exige la réforme de la facturation électronique entrée en vigueur le 1er septembre 2026.",
+  "e_invoicing_warning_compliance": "Afin de vous mettre en conformité, veuillez renseigner votre numéro de SIRET afin de pouvoir télécharger votre facture PDF.",
+  "e_invoicing_warning_cta": "Renseigner mon SIRET"
 }

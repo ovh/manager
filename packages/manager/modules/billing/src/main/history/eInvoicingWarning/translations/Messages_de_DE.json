@@ -1,4 +1,8 @@
 {
   "e_invoicing_warning_introduction": "Sie können Ihre Rechnung derzeit nicht herunterladen. Wir benötigen eine gültige SIRET-Nummer, die mit Ihrem Account verbunden ist, um Rechnungen zu generieren und herunterzuladen. Sobald Ihre SIRET-Nummer aktualisiert ist, können Sie Ihre Rechnungen herunterladen.",
-  "e_invoicing_warning_action": "Sie können Ihre SIRET-Nummer <a href={{href}}>hier</a> aktualisieren."
+  "e_invoicing_warning_action": "Sie können Ihre SIRET-Nummer <a href={{href}}>hier</a> aktualisieren.",
+  "e_invoicing_warning_title": "Rechnung nicht verfügbar: SIRET fehlt",
+  "e_invoicing_warning_description": "Sie haben in Ihrem Kundenbereich keine SIRET-Nummer angegeben. Wir sind daher nicht in der Lage, Ihnen Ihre Rechnungen über eine zugelassene Plattform zuzustellen, wie es die am 1. September 2026 in Kraft getretene Reform der elektronischen Rechnungsstellung vorschreibt.",
+  "e_invoicing_warning_compliance": "Um die Konformität herzustellen, geben Sie bitte Ihre SIRET-Nummer an, damit Sie Ihre PDF-Rechnung herunterladen können.",
+  "e_invoicing_warning_cta": "Meine SIRET-Nummer angeben"
 }
