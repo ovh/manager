@@ -1,4 +1,8 @@
 {
   "e_invoicing_warning_introduction": "Al momento non puoi scaricare la tua fattura. Per generare e scaricare fatture abbiamo infatti bisogno di un numero SIRET valido associato al tuo account. Una volta aggiornato il tuo numero SIRET, potrai scaricare le tue fatture.",
-  "e_invoicing_warning_action": "Puoi aggiornare il tuo numero SIRET <a href={{href}}>qui</a>."
+  "e_invoicing_warning_action": "Puoi aggiornare il tuo numero SIRET <a href={{href}}>qui</a>.",
+  "e_invoicing_warning_title": "Fattura non disponibile: SIRET mancante",
+  "e_invoicing_warning_description": "Non ha inserito un SIRET nel Suo spazio cliente. Non siamo pertanto in grado di inviarLe le fatture tramite una piattaforma accreditata come richiesto dalla riforma della fatturazione elettronica entrata in vigore il 1° settembre 2026.",
+  "e_invoicing_warning_compliance": "Per mettersi in regola, La invitiamo a inserire il Suo numero di SIRET per poter scaricare la Sua fattura PDF.",
+  "e_invoicing_warning_cta": "Inserire il mio SIRET"
 }
