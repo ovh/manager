@@ -5,6 +5,9 @@
   "company_information_modal_action_individual": "I’m an individual",
   "company_information_modal_info_individual": "If your account is not a business, please go to the profile editing form and change the account type to 'Individual'.",
   "company_information_modal_review_title": "ONE CLICK TO CONFIRM YOUR DATA",
-  "company_information_modal_review_description": "Electronic invoicing becomes mandatory in France from 1 September 2026 (<anchor>find out all about electronic invoicing</anchor>). To ensure the compliance of your future invoices, please confirm your billing data by entering your SIRET number. We take care of the rest.",
-  "company_information_modal_review_action_modify": "Verify my SIRET"
+  "company_information_modal_review_description": "Electronic invoicing has been mandatory in France since 1 September 2026 (<anchor>find out everything about electronic invoicing</anchor>). To ensure the compliance of your future invoices, please confirm your billing details by entering your SIRET number. We take care of the rest.",
+  "company_information_modal_review_action_modify": "Verify my SIRET",
+  "company_information_modal_siret_title": "MANDATORY ACTION",
+  "company_information_modal_siret_description": "Electronic invoicing has been mandatory in France since 1 September 2026 (<anchor>find out everything about electronic invoicing</anchor>). To ensure the compliance of your future invoices, please confirm your billing details by entering your SIRET number. We take care of the rest.",
+  "company_information_modal_siret_action_modify": "Enter my details"
 }
