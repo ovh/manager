@@ -10,7 +10,7 @@ import { ODS_THEME_TYPOGRAPHY_SIZE, ODS_THEME_COLOR_INTENT } from "@ovhcloud/ods
 import { useApplication } from "@/context";
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from "@ovhcloud/ods-components";
 import { Trans, useTranslation } from "react-i18next";
-import { isConcernedByAccountToReview, isUserConcernedByBusinessVerification } from "./companyInformationModal.helpers";
+import { getContentKeyPrefix, isOnInvoicesApplication, isUserConcernedByBusinessVerification } from "./companyInformationModal.helpers";
 import { OdsHTMLAnchorElementRel, OdsHTMLAnchorElementTarget } from "@ovhcloud/ods-common-core";
 
 
@@ -21,25 +21,32 @@ const CompanyInformationModal: FC = () => {
   const tracking = shell.getPlugin('tracking');
   const { t } = useTranslation('company-information-modal');
 
-  // Content varies with the certificate: account-to-review gets the new "review"
-  // wording, warning/critical keep the legacy wording.
+  // Content varies with what brought the modal up: account-to-review gets the
+  // "review" wording, warning/critical keep the legacy one, and an account
+  // without any certificate is here for its SIRET only.
   const user = shell.getPlugin('environment').getEnvironment().getUser();
-  const contentKeyPrefix = isConcernedByAccountToReview(user)
-    ? 'company_information_modal_review'
-    : 'company_information_modal';
+  const contentKeyPrefix = getContentKeyPrefix(user);
 
   const preferenceKey = toScreamingSnakeCase(MODAL_NAME);
   const accountEditionLink = useSuggestionTargetUrl();
+  const applications = shell
+    .getPlugin('environment')
+    .getEnvironment()
+    .getApplications();
 
-  const shouldDisplayModal = useCheckModalDisplay(
-    undefined,
-    undefined,
-    undefined,
-    preferenceKey,
-    INTERVAL_BETWEEN_DISPLAY_IN_S,
-    isUserConcernedByBusinessVerification,
-    [accountEditionLink],
-  );
+  // Of the two modals a missing SIRET raises, the billing one is the more
+  // restrictive, so it owns its application: this one keeps quiet in there and
+  // comes back on the next page the customer visits.
+  const shouldDisplayModal =
+    useCheckModalDisplay(
+      undefined,
+      undefined,
+      undefined,
+      preferenceKey,
+      INTERVAL_BETWEEN_DISPLAY_IN_S,
+      isUserConcernedByBusinessVerification,
+      [accountEditionLink],
+    ) && !isOnInvoicesApplication(applications);
 
   const [showModal, setShowModal] = useState(shouldDisplayModal);
   const { data: time } = useTime({ enabled: Boolean(shouldDisplayModal) });

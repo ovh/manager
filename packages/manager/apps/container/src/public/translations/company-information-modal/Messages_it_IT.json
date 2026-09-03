@@ -5,6 +5,9 @@
   "company_information_modal_action_individual": "Sono un privato",
   "company_information_modal_info_individual": "Se il vostro account non è un'azienda, recatevi sul modulo di modifica del vostro profilo e cambiate il tipo di account in « Privato ».",
   "company_information_modal_review_title": "UN CLIC PER CONFERMARE I SUOI DATI",
-  "company_information_modal_review_description": "La fatturazione elettronica diventa obbligatoria in Francia a partire dal 1° settembre 2026 (<anchor>tutto sulla fatturazione elettronica</anchor>). Per garantire la conformità delle Sue prossime fatture, La preghiamo di confermare i Suoi dati di fatturazione inserendo il Suo numero di SIRET. Al resto pensiamo noi.",
-  "company_information_modal_review_action_modify": "Verificare il mio SIRET"
+  "company_information_modal_review_description": "La fatturazione elettronica è obbligatoria in Francia dal 1° settembre 2026 (<anchor>tutto quello che c'è da sapere sulla fatturazione elettronica</anchor>). Per garantire la conformità delle vostre prossime fatture, siete pregati di confermare i vostri dati di fatturazione inserendo il vostro numero SIRET. Al resto pensiamo noi.",
+  "company_information_modal_review_action_modify": "Verificare il mio SIRET",
+  "company_information_modal_siret_title": "AZIONE OBBLIGATORIA",
+  "company_information_modal_siret_description": "La fatturazione elettronica è obbligatoria in Francia dal 1° settembre 2026 (<anchor>tutto quello che c'è da sapere sulla fatturazione elettronica</anchor>). Per garantire la conformità delle vostre prossime fatture, siete pregati di confermare i vostri dati di fatturazione inserendo il vostro numero SIRET. Al resto pensiamo noi.",
+  "company_information_modal_siret_action_modify": "Inserisci i miei dati"
 }

@@ -1,4 +1,8 @@
 {
   "e_invoicing_warning_introduction": "Atualmente, não pode transferir a sua fatura. Necessitamos de um número SIRET válido associado à sua conta para gerar e transferir faturas. Assim que o número SIRET estiver atualizado, poderá descarregar as suas faturas.",
-  "e_invoicing_warning_action": "Pode atualizar o seu número SIRET <a href={{href}}>aqui.</a>"
+  "e_invoicing_warning_action": "Pode atualizar o seu número SIRET <a href={{href}}>aqui.</a>",
+  "e_invoicing_warning_title": "Fatura indisponível: SIRET em falta",
+  "e_invoicing_warning_description": "Não indicou um SIRET na sua área de cliente. Não estamos, portanto, em condições de lhe enviar as suas faturas através de uma plataforma certificada, conforme exigido pela reforma da faturação eletrónica que entrou em vigor a 1 de setembro de 2026.",
+  "e_invoicing_warning_compliance": "Para se colocar em conformidade, por favor indique o seu número de SIRET para poder descarregar a sua fatura em PDF.",
+  "e_invoicing_warning_cta": "Indicar o meu SIRET"
 }

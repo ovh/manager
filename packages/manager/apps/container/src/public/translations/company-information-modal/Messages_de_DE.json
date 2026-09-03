@@ -5,6 +5,9 @@
   "company_information_modal_action_individual": "Ich bin eine Privatperson",
   "company_information_modal_info_individual": "Wenn Ihr Konto kein Unternehmen ist, gehen Sie zum Formular zur Bearbeitung Ihres Profils und ändern Sie den Kontotyp auf „Privatperson“.",
   "company_information_modal_review_title": "EIN KLICK ZUR BESTÄTIGUNG IHRER DATEN",
-  "company_information_modal_review_description": "Die elektronische Rechnungsstellung wird in Frankreich ab dem 1. September 2026 obligatorisch (<anchor>alles über die elektronische Rechnungsstellung erfahren</anchor>). Um die Konformität Ihrer zukünftigen Rechnungen zu gewährleisten, bestätigen Sie bitte Ihre Rechnungsdaten durch Eingabe Ihrer SIRET-Nummer. Wir kümmern uns um den Rest.",
-  "company_information_modal_review_action_modify": "Meine SIRET-Nummer überprüfen"
+  "company_information_modal_review_description": "Die elektronische Rechnungsstellung ist in Frankreich seit dem 1. September 2026 obligatorisch (<anchor>alles Wissenswerte zur elektronischen Rechnungsstellung</anchor>). Um die Konformität Ihrer nächsten Rechnungen zu gewährleisten, bestätigen Sie bitte Ihre Rechnungsdaten durch Angabe Ihrer SIRET-Nummer. Wir kümmern uns um den Rest.",
+  "company_information_modal_review_action_modify": "Meine SIRET-Nummer überprüfen",
+  "company_information_modal_siret_title": "OBLIGATORISCHE AKTION",
+  "company_information_modal_siret_description": "Die elektronische Rechnungsstellung ist in Frankreich seit dem 1. September 2026 obligatorisch (<anchor>alles Wissenswerte zur elektronischen Rechnungsstellung</anchor>). Um die Konformität Ihrer nächsten Rechnungen zu gewährleisten, bestätigen Sie bitte Ihre Rechnungsdaten durch Angabe Ihrer SIRET-Nummer. Wir kümmern uns um den Rest.",
+  "company_information_modal_siret_action_modify": "Meine Daten eingeben"
 }

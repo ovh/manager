@@ -1,4 +1,8 @@
 {
   "e_invoicing_warning_introduction": "You cannot download your bill at this time. A valid SIRET/company registration number associated with your account is required to generate and download invoices. Once your SIRET/company registration number is updated, your bills will be available for download.",
-  "e_invoicing_warning_action": "Update your SIRET/company registration number <a href={{href}}>here.</a>"
+  "e_invoicing_warning_action": "Update your SIRET/company registration number <a href={{href}}>here.</a>",
+  "e_invoicing_warning_title": "Invoice unavailable: Missing SIRET",
+  "e_invoicing_warning_description": "You have not provided a SIRET in your customer area. We are therefore unable to send you your invoices via an approved platform as required by the electronic invoicing reform that came into force on 1 September 2026.",
+  "e_invoicing_warning_compliance": "In order to comply, please provide your SIRET number so that you can download your PDF invoice.",
+  "e_invoicing_warning_cta": "Provide my SIRET"
 }
