@@ -182,5 +182,15 @@
   "domain_operations_update_nationalidentificationnumber": "Codice fiscale",
   "domain_operations_update_identificationnumber": "Numero di identificazione",
   "domain_operations_update_nicowner_click_whoiscontactbilling": "Modifica le informazioni del contatto di fatturazione cliccando qui",
-  "domain_operations_update_nicowner_click_whoiscontacttech": "Modifica le informazioni del contatto tecnico cliccando qui"
+  "domain_operations_update_nicowner_click_whoiscontacttech": "Modifica le informazioni del contatto tecnico cliccando qui",
+  "domain_operations_update_lastname": "Nome",
+  "domain_operations_foa_cta": "Convalida come agente designato",
+  "domain_operations_foa_title": "Convalida come agente designato per il nome di dominio {{t0}}",
+  "domain_operations_foa_description": "Questo cambio di titolare è in attesa della convalida dei moduli di autorizzazione (FOA) inviati ai titolari. In qualità di agente designato, puoi accettare o rifiutare questo cambio per loro conto. Saranno convalidati solo i moduli ancora senza risposta.",
+  "domain_operations_foa_certification": "Certifico di essere debitamente autorizzato ad agire in qualità di agente designato e a rispondere per conto dell'attuale titolare e del nuovo titolare.",
+  "domain_operations_foa_accept": "Accetto",
+  "domain_operations_foa_reject": "Rifiuta",
+  "domain_operations_foa_accept_success": "Il cambio di titolare è stato accettato in qualità di agente designato.",
+  "domain_operations_foa_reject_success": "Il cambio di titolare è stato rifiutato in qualità di agente designato.",
+  "domain_operations_foa_error": "Convalida come agente designato non riuscita"
 }

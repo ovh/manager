@@ -1,43 +1,30 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  ActionMenu,
   DataGridTextCell,
-  useNotifications,
   useFormatDate,
 } from '@ovh-ux/manager-react-components';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { TOngoingOperations } from 'src/types';
 import { FilterCategories } from '@ovh-ux/manager-core-api';
-import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ParentEnum } from '@/enum/parent.enum';
 import { removeQuotes } from '@/utils/utils';
 import OngoingOperationDatagridDomain from '@/components/OngoingOperationDatagrid/OngoingOperationDatagridDomain';
 import OngoingOperationDatagridBadge from '@/components/OngoingOperationDatagrid/OngoingOperationDatagridBadge';
+import OngoingOperationDatagridActions from '@/components/OngoingOperationDatagrid/OngoingOperationDatagridActions';
 import { DNS_OPERATIONS_TABLE_HEADER_DOMAIN } from '@/pages/dashboard/Dashboard';
 import { StatusEnum } from '@/enum/status.enum';
-import {
-  DomainOperations,
-  DNSOperations,
-  DomainOperationsEnum,
-  AlldomOperations,
-} from '@/constants';
-import { useTrackNavigation } from './tracking/useTrackDatagridNavivationLink';
+import { DomainOperations, DNSOperations, AlldomOperations } from '@/constants';
 
 export const useOngoingOperationDatagridColumns = (
   searchableColumnID: string,
   parent: ParentEnum,
 ) => {
-  const { trackPageNavivationTile } = useTrackNavigation();
   const { t } = useTranslation([
     'dashboard',
     NAMESPACES.FORM,
     NAMESPACES.DASHBOARD,
   ]);
-  const { clearNotifications } = useNotifications();
-  const navigate = useNavigate();
-  const location = useLocation();
   const formatDate = useFormatDate();
 
   const getOperationsFilter = (type: ParentEnum) => {
@@ -131,42 +118,7 @@ export const useOngoingOperationDatagridColumns = (
     },
     {
       cell: (props: TOngoingOperations) => (
-        <ActionMenu
-          id={`${props.id}`}
-          isCompact
-          isDisabled={
-            !props.canAccelerate && !props.canRelaunch && !props.canCancel
-          }
-          variant={ODS_BUTTON_VARIANT.ghost}
-          items={[
-            {
-              id: 1,
-              label: t('domain_operations_tab_popover_update'),
-              className: `${!props.canAccelerate &&
-                !props.canRelaunch &&
-                !props.canCancel &&
-                'hidden'} menu-item-button`,
-              onClick: () => {
-                const url = `${location.pathname}/update/${props.id}`;
-                trackPageNavivationTile(url);
-                navigate(url);
-                clearNotifications();
-              },
-            },
-            {
-              id: 2,
-              label: t('domain_operations_tab_popover_progress'),
-              className: `${props.function !==
-                DomainOperationsEnum.DomainIncomingTransfer &&
-                'hidden'} menu-item-button`,
-              onClick: () => {
-                const url = `/tracking/${props.id}`;
-                trackPageNavivationTile(url);
-                navigate(url);
-              },
-            },
-          ]}
-        />
+        <OngoingOperationDatagridActions props={props} />
       ),
       id: 'actions',
       label: '',

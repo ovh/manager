@@ -27,6 +27,12 @@ vi.mock('@/data/api/web-ongoing-operations', () => ({
 
 vi.mock('@/hooks/data/query', () => ({
   useGetDomainInformation: vi.fn(),
+  usePendingFoas: vi.fn(() => ({
+    taskId: null,
+    foas: [],
+    pendingFoas: [],
+    isLoading: false,
+  })),
 }));
 
 vi.mock('@/hooks/iam/iam', () => ({
