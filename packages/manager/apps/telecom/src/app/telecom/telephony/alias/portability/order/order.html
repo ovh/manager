@@ -118,7 +118,7 @@
                     <!-- RIO -->
                     <oui-field
                         class="col-md-6 pr-0"
-                        data-ng-if="PortabilityOrderCtrl.order.callNumber && !PortabilityOrderCtrl.isSDA && PortabilityOrderCtrl.order.country === 'france' && !PortabilityOrderCtrl.isSpecialNumber"
+                        data-ng-if="PortabilityOrderCtrl.order.callNumber && !PortabilityOrderCtrl.isSDA && PortabilityOrderCtrl.order.country === 'france'"
                         data-label="{{:: 'telephony_rio_label' | translate }} - {{:: 'common_field_label_required' | translate }}"
                         data-label-popover="{{:: 'telephony_alias_portability_order_rio_info' | translate }}"
                         data-error-messages="{ 'required': ('telephony_alias_portability_order_contact_required' | translate), 'pattern': ('telephony_alias_portability_order_rio_pattern_error' | translate), 'rioServerError': ('telephony_alias_portability_order_rio_pattern_error' | translate) }"
@@ -159,15 +159,6 @@
                 <div
                     data-ng-if="!PortabilityOrderCtrl.isSpecialNumber || PortabilityOrderCtrl.canOrderSpecialPortability"
                 >
-                    <oui-message
-                        type="warning"
-                        data-ng-if="PortabilityOrderCtrl.isSpecialNumber && !PortabilityOrderCtrl.isSDA"
-                    >
-                        <span
-                            data-translate="telephony_alias_portability_order_sda_warning"
-                        ></span>
-                    </oui-message>
-
                     <div
                         class="form-group"
                         data-ng-if="PortabilityOrderCtrl.isSpecialNumber"
