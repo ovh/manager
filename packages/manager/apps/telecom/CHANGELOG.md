@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.26.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.26.15...@ovh-ux/manager-telecom@16.26.16) (2026-09-07)
+
+
+### Bug Fixes
+
+* **telecom.telephony:** change the portability rule for sva ([9e0de85](https://github.com/ovh/manager/commit/9e0de8502caadd23f7fd0525c9c1ad2637b77ae3)), closes [#DCE-264](https://github.com/ovh/manager/issues/DCE-264)
+
+
+
+
+
 ## [16.26.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.26.14...@ovh-ux/manager-telecom@16.26.15) (2026-07-08)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom
