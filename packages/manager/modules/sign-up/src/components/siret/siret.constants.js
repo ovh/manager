@@ -80,7 +80,7 @@ export const SIRET_RULE_FIELD = {
 // Rule (mirrors account-creation's Company.helpers): 9.* => association,
 // 4.* / 7.* / 8110 => administration, anything else => corporation.
 export const LEGAL_FORM_CODE_ASSOCIATION = /^9\d+$/;
-export const LEGAL_FORM_CODE_ADMINISTRATION = /^(4\d+|7\d+|8110)$/;
+export const LEGAL_FORM_CODE_ADMINISTRATION = /^(4\d+|7\d+|8110|8120|8140|8150|8170)$/;
 
 /** Derives the legal form from a legalFormCode, or null when the code is missing. */
 export function getLegalFormFromCode(code) {
