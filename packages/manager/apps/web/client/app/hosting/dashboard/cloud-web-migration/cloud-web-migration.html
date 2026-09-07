@@ -5,7 +5,7 @@
 ></oui-modal>
 
 <oui-modal
-    data-ng-if="!$ctrl.isLoading && $ctrl.recordedDecision === null"
+    data-ng-if="!$ctrl.isLoading && $ctrl.outcome === null"
     data-heading="{{:: 'hosting_cloud_web_migration_modal_intro_title' | translate }}"
     data-primary-action="$ctrl.onAccept()"
     data-primary-label="{{:: 'hosting_cloud_web_migration_modal_intro_accept' | translate }}"
@@ -30,7 +30,7 @@
 </oui-modal>
 
 <oui-modal
-    data-ng-if="!$ctrl.isLoading && $ctrl.recordedDecision === true"
+    data-ng-if="!$ctrl.isLoading && $ctrl.outcome === 'approved'"
     data-heading="{{:: 'hosting_cloud_web_migration_modal_accepted_title' | translate }}"
     data-primary-action="$ctrl.onClose()"
     data-primary-label="{{:: 'hosting_cloud_web_migration_modal_close' | translate }}"
@@ -43,16 +43,14 @@
 </oui-modal>
 
 <oui-modal
-    data-ng-if="!$ctrl.isLoading && $ctrl.recordedDecision === false"
-    data-heading="{{:: 'hosting_cloud_web_migration_modal_refused_title' | translate }}"
+    data-ng-if="!$ctrl.isLoading && ($ctrl.outcome === 'refused' || $ctrl.outcome === 'blocked')"
+    data-heading="{{ $ctrl.refusedKey('title') | translate }}"
     data-primary-action="$ctrl.onClose()"
     data-primary-label="{{:: 'hosting_cloud_web_migration_modal_close' | translate }}"
     data-on-dismiss="$ctrl.onClose()"
 >
-    <p
-        data-translate="hosting_cloud_web_migration_modal_refused_confirmation"
-    ></p>
-    <p data-translate="hosting_cloud_web_migration_modal_refused_shutdown"></p>
+    <p data-translate="{{ $ctrl.refusedKey('cause') }}"></p>
+    <p data-translate="{{ $ctrl.refusedKey('shutdown') }}"></p>
     <p data-translate="hosting_cloud_web_migration_modal_refused_refund"></p>
     <p
         data-translate="hosting_cloud_web_migration_modal_refused_data_retrieval"

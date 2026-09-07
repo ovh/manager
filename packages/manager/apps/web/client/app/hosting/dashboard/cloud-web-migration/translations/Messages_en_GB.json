@@ -13,6 +13,9 @@
   "hosting_cloud_web_migration_modal_refused_shutdown": "Your Cloud Web service will be shut down at the end of November 2026.",
   "hosting_cloud_web_migration_modal_refused_refund": "If you are eligible for a refund, the corresponding amount will be refunded to you automatically.",
   "hosting_cloud_web_migration_modal_refused_data_retrieval": "Remember to retrieve your files and data before your service is shut down. After that date, any data that has not been retrieved will be permanently deleted.",
+  "hosting_cloud_web_migration_modal_blocked_title": "Automatic migration not possible",
+  "hosting_cloud_web_migration_modal_blocked_cause": "The configuration of your Cloud Web service prevents automatic migration.",
+  "hosting_cloud_web_migration_modal_blocked_shutdown": "Your service will therefore be shut down at the end of November 2026.",
   "hosting_cloud_web_migration_modal_close": "Close",
   "hosting_cloud_web_migration_modal_error": "An error occurred while saving your choice: {{error}}"
 }

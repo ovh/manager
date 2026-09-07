@@ -1434,5 +1434,6 @@
   "hosting_dashboard_spoofing_banner_alert_message": "Hemos detectado correos electrónicos enviados sin autenticación desde su alojamiento. Para evitar que sus envíos sean bloqueados, configure sus envíos de correo electrónico autenticados. <a href=\"{{ href }}\">Más información</a>",
   "hosting_dashboard_cloud_web_migration_status": "Migración",
   "hosting_dashboard_cloud_web_migration_status_approved": "Validada",
-  "hosting_dashboard_cloud_web_migration_status_refused": "Rechazada"
+  "hosting_dashboard_cloud_web_migration_status_refused": "Rechazada o no elegible",
+  "hosting_dashboard_cloud_web_migration_status_refused_help": "La migración automática prevista para octubre de 2026 no se realizará porque usted la ha rechazado o porque su alojamiento no es compatible con ella. Consulte el correo electrónico recibido para obtener más información."
 }
