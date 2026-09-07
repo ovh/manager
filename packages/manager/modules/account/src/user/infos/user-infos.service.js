@@ -84,6 +84,8 @@ export default class UserAccountInfosService {
       )
       .then((response) => {
         if (response.status < 300) {
+          // returned verbatim: callers read `value` and, for the marketing
+          // email campaign, the `pixel` object that rides along with it
           return response.data;
         }
 
@@ -91,7 +93,22 @@ export default class UserAccountInfosService {
       });
   }
 
-  updateConsentDecision(campaignName, value) {
+  /**
+   * `decision` is the request body, built by the caller — see
+   * buildConsentDecisionPayload in the account form's
+   * ./components/newAccountForm/pixel-tracking-consent.js. The pixel-tracking
+   * decision rides on this same campaign route and has to be sent together
+   * with the email one, in a single request: the API applies them in a fixed
+   * order (email first) and the whole request is atomic, so a refused pair
+   * writes nothing at all.
+   *
+   * Shapes: { value: true, pixel: { value: true } }  grants both;
+   *         { value: true, pixel: { value: false } } is the normal state;
+   *         { value: false }                         lets the backend cascade
+   *                                                  pixel to denied;
+   *         { value: false, pixel: { value: true } }  is refused with a 400.
+   */
+  updateConsentDecision(campaignName, decision) {
     return this.$http
       .put(
         [
@@ -100,7 +117,7 @@ export default class UserAccountInfosService {
           campaignName,
           'decision',
         ].join('/'),
-        { value },
+        decision,
       )
       .then((response) => {
         if (response.status < 300) {

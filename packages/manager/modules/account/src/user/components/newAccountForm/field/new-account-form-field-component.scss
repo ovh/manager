@@ -1,0 +1,20 @@
+/**
+ * The ui-kit lays a checkbox label out as a flex row — the icon, then the text
+ * — and leaves the icon shrinkable. A label long enough to overflow the column
+ * therefore has the flex algorithm squeeze the icon's box, in proportion to how
+ * far it overflows: measured against oui.css, the pixel-tracking sentence takes
+ * it from 16px down to 4px, and even the one-line marketing-email label loses 3.
+ *
+ * The square the customer actually sees is an absolutely positioned ::before
+ * that keeps its 1rem whatever happens to its parent, so the text slides under
+ * the square and reads as glued to it — several pixels left of where a shorter
+ * label sits, which is what makes two stacked checkboxes look misaligned.
+ *
+ * Pinning the icon puts every checkbox of this form on the same 16px box plus
+ * the .5rem gap oui.css already gives `__text`, whatever the label length.
+ */
+new-account-form-field {
+  .oui-checkbox .oui-checkbox__icon {
+    flex-shrink: 0;
+  }
+}
