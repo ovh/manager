@@ -121,6 +121,21 @@
                                 data-ng-class="cloudWebMigrationApproval.approved ? 'oui-badge_success' : 'oui-badge_error'"
                                 data-translate="{{ cloudWebMigrationApproval.approved ? 'hosting_dashboard_cloud_web_migration_status_approved' : 'hosting_dashboard_cloud_web_migration_status_refused' }}"
                             ></span>
+                            <!-- The badge covers two situations on purpose —
+                                 refused, or not eligible — so the explanation
+                                 sits next to it. Same tooltip affordance as the
+                                 PHP support hint further down this card. -->
+                            <span
+                                class="help-inside ml-2"
+                                data-ng-if="!cloudWebMigrationApproval.approved"
+                                data-oui-tooltip="{{ 'hosting_dashboard_cloud_web_migration_status_refused_help' | translate }}"
+                                data-oui-tooltip-placement="bottom"
+                            >
+                                <span
+                                    class="fa fa-question-circle"
+                                    aria-hidden="true"
+                                ></span>
+                            </span>
                         </oui-tile-description>
                     </oui-tile-definition>
                     <oui-tile-definition

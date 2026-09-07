@@ -13,6 +13,9 @@
   "hosting_cloud_web_migration_modal_refused_shutdown": "Ihr Cloud Web-Dienst wird Ende November 2026 abgeschaltet.",
   "hosting_cloud_web_migration_modal_refused_refund": "Wenn Sie Anspruch auf eine Rückerstattung haben, wird der entsprechende Betrag automatisch zurückerstattet.",
   "hosting_cloud_web_migration_modal_refused_data_retrieval": "Denken Sie daran, Ihre Dateien und Daten vor der Abschaltung Ihres Dienstes zu sichern. Nach diesem Datum werden nicht gesicherte Daten endgültig gelöscht.",
+  "hosting_cloud_web_migration_modal_blocked_title": "Automatische Migration nicht möglich",
+  "hosting_cloud_web_migration_modal_blocked_cause": "Die Konfiguration Ihres Cloud Web-Dienstes verhindert die automatische Migration.",
+  "hosting_cloud_web_migration_modal_blocked_shutdown": "Ihr Dienst wird daher Ende November 2026 abgeschaltet.",
   "hosting_cloud_web_migration_modal_close": "Schließen",
   "hosting_cloud_web_migration_modal_error": "Beim Speichern Ihrer Auswahl ist ein Fehler aufgetreten: {{error}}"
 }

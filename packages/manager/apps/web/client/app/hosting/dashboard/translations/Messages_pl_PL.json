@@ -1434,5 +1434,6 @@
   "hosting_dashboard_spoofing_banner_alert_message": "Wykryliśmy wiadomości e-mail wysyłane bez uwierzytelnienia z Twojego hostingu. Aby uniknąć blokowania Twoich wysyłek, skonfiguruj uwierzytelnioną wysyłkę wiadomości e-mail. <a href=\"{{ href }}\">Dowiedz się więcej</a>",
   "hosting_dashboard_cloud_web_migration_status": "Migracja",
   "hosting_dashboard_cloud_web_migration_status_approved": "Zatwierdzona",
-  "hosting_dashboard_cloud_web_migration_status_refused": "Odrzucona"
+  "hosting_dashboard_cloud_web_migration_status_refused": "Odrzucona lub niekwalifikująca się",
+  "hosting_dashboard_cloud_web_migration_status_refused_help": "Automatyczna migracja zaplanowana na październik 2026 roku nie zostanie przeprowadzona, ponieważ została odrzucona lub Twój hosting nie jest z nią zgodny. Więcej informacji znajdziesz w otrzymanej wiadomości e-mail."
 }
