@@ -1434,5 +1434,6 @@
   "hosting_dashboard_spoofing_banner_alert_message": "We have detected emails sent without authentication from your hosting. To prevent your emails from being blocked, configure your authenticated email sending. <a href=\"{{ href }}\">Learn more</a>",
   "hosting_dashboard_cloud_web_migration_status": "Migration",
   "hosting_dashboard_cloud_web_migration_status_approved": "Approved",
-  "hosting_dashboard_cloud_web_migration_status_refused": "Refused"
+  "hosting_dashboard_cloud_web_migration_status_refused": "Refused or not eligible",
+  "hosting_dashboard_cloud_web_migration_status_refused_help": "The automatic migration planned for October 2026 will not take place, either because you refused it or because your hosting plan is not compatible with it. See the email you received for more information."
 }

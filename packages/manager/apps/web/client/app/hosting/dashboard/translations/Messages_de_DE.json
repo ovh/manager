@@ -1434,5 +1434,6 @@
   "hosting_dashboard_spoofing_banner_alert_message": "Wir haben E-Mails festgestellt, die ohne Authentifizierung von Ihrem Hosting aus versendet wurden. Um zu verhindern, dass Ihre Sendungen blockiert werden, konfigurieren Sie bitte Ihre authentifizierten E-Mail-Versandoptionen. <a href=\"{{ href }}\">Mehr erfahren</a>",
   "hosting_dashboard_cloud_web_migration_status": "Migration",
   "hosting_dashboard_cloud_web_migration_status_approved": "Bestätigt",
-  "hosting_dashboard_cloud_web_migration_status_refused": "Abgelehnt"
+  "hosting_dashboard_cloud_web_migration_status_refused": "Abgelehnt oder nicht berechtigt",
+  "hosting_dashboard_cloud_web_migration_status_refused_help": "Die für Oktober 2026 geplante automatische Migration wird nicht durchgeführt, da Sie sie abgelehnt haben oder Ihr Hosting nicht damit kompatibel ist. Weitere Informationen finden Sie in der erhaltenen E-Mail."
 }

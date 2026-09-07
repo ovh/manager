@@ -13,6 +13,9 @@
   "hosting_cloud_web_migration_modal_refused_shutdown": "Twoja usługa Cloud Web zostanie wyłączona z końcem listopada 2026 roku.",
   "hosting_cloud_web_migration_modal_refused_refund": "Jeśli kwalifikujesz się do zwrotu, odpowiednia kwota zostanie Ci zwrócona automatycznie.",
   "hosting_cloud_web_migration_modal_refused_data_retrieval": "Pamiętaj o odzyskaniu swoich plików i danych przed wyłączeniem usługi. Po tej dacie dane, które nie zostaną odzyskane, zostaną trwale usunięte.",
+  "hosting_cloud_web_migration_modal_blocked_title": "Automatyczna migracja niemożliwa",
+  "hosting_cloud_web_migration_modal_blocked_cause": "Konfiguracja Twojej usługi Cloud Web uniemożliwia automatyczną migrację.",
+  "hosting_cloud_web_migration_modal_blocked_shutdown": "Twoja usługa zostanie zatem wyłączona z końcem listopada 2026 roku.",
   "hosting_cloud_web_migration_modal_close": "Zamknij",
   "hosting_cloud_web_migration_modal_error": "Podczas zapisywania Twojego wyboru wystąpił błąd: {{error}}"
 }

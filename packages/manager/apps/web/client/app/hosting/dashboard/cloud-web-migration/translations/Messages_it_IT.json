@@ -13,6 +13,9 @@
   "hosting_cloud_web_migration_modal_refused_shutdown": "Il vostro servizio Cloud Web sarà interrotto a fine novembre 2026.",
   "hosting_cloud_web_migration_modal_refused_refund": "Se avete diritto a un rimborso, l’importo corrispondente vi sarà rimborsato automaticamente.",
   "hosting_cloud_web_migration_modal_refused_data_retrieval": "Ricordate di recuperare i vostri file e i vostri dati prima dell’interruzione del servizio. Dopo tale data, i dati non recuperati saranno definitivamente eliminati.",
+  "hosting_cloud_web_migration_modal_blocked_title": "Migrazione automatica impossibile",
+  "hosting_cloud_web_migration_modal_blocked_cause": "La configurazione del vostro servizio Cloud Web impedisce la migrazione automatica.",
+  "hosting_cloud_web_migration_modal_blocked_shutdown": "Il vostro servizio sarà quindi interrotto a fine novembre 2026.",
   "hosting_cloud_web_migration_modal_close": "Chiudere",
   "hosting_cloud_web_migration_modal_error": "Si è verificato un errore durante il salvataggio della vostra scelta: {{error}}"
 }

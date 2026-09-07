@@ -13,6 +13,9 @@
   "hosting_cloud_web_migration_modal_refused_shutdown": "Su servicio Cloud Web se detendrá a finales de noviembre de 2026.",
   "hosting_cloud_web_migration_modal_refused_refund": "Si tiene derecho a un reembolso, el importe correspondiente se le reembolsará automáticamente.",
   "hosting_cloud_web_migration_modal_refused_data_retrieval": "No olvide recuperar sus archivos y sus datos antes de la interrupción de su servicio. Después de esa fecha, los datos que no se hayan recuperado se eliminarán definitivamente.",
+  "hosting_cloud_web_migration_modal_blocked_title": "Migración automática imposible",
+  "hosting_cloud_web_migration_modal_blocked_cause": "La configuración de su servicio Cloud Web impide la migración automática.",
+  "hosting_cloud_web_migration_modal_blocked_shutdown": "Por lo tanto, su servicio se detendrá a finales de noviembre de 2026.",
   "hosting_cloud_web_migration_modal_close": "Cerrar",
   "hosting_cloud_web_migration_modal_error": "Se ha producido un error al guardar su elección: {{error}}"
 }
