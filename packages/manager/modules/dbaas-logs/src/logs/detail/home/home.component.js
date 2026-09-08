@@ -14,6 +14,8 @@ export default {
     aliasIds: '<',
     encryptionKeysIds: '<',
     goToResiliate: '<',
+    legacyAccess: '<',
+    trackClick: '<',
   },
   controller,
   controllerAs: 'ctrl',

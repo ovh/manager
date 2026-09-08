@@ -15,6 +15,26 @@ export default /* @ngInject */ ($stateProvider) => {
           type: 'action',
         });
       },
+      // The single place the decommission flag is read and its polarity
+      // inverted. `answered` records that the request actually succeeded, so
+      // the notice never asserts a date state the application does not know.
+      legacyAccess: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability([
+            LogConstants.FEATURE.LEGACY_ACCESS_DECOMMISSIONED,
+          ])
+          .then((result) => ({
+            answered: true,
+            // isFeatureAvailable returns the raw value, undefined for an
+            // absent key: only an explicit true means decommissioned.
+            isDecommissioned:
+              result.isFeatureAvailable(
+                LogConstants.FEATURE.LEGACY_ACCESS_DECOMMISSIONED,
+              ) === true,
+          }))
+          // Fail closed: a failed request, an unpublished key and the loading
+          // window all keep the legacy write controls available.
+          .catch(() => ({ answered: false, isDecommissioned: false })),
       logs: /* @ngInject */ (OvhApiDbaas) =>
         OvhApiDbaas.Logs()
           .v6()

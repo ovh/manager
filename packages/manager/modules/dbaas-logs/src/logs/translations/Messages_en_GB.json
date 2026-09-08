@@ -803,5 +803,13 @@
   "streams_subscriptions_resource_products_account-audit": "OVHcloud Logs Audit",
   "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes Service",
   "logs_roles_enable_iam": "Enable OVHcloud IAM",
-  "logs_iam_policies_get_error": "An error occurred while loading IAM policies."
+  "logs_iam_policies_get_error": "An error occurred while loading IAM policies.",
+  "logs_legacy_access_before_title": "Legacy access management is being replaced by OVHcloud IAM",
+  "logs_legacy_access_before_description": "The roles, tokens and password authentication for this service will be removed. Enable OVHcloud IAM on this service to continue managing its access.",
+  "logs_legacy_access_after_title": "Access management is now provided by OVHcloud IAM",
+  "logs_legacy_access_after_description": "You can no longer create or modify a role, token or password for this service. Existing items remain visible and can still be revoked. Enable OVHcloud IAM on this service to manage its access.",
+  "logs_legacy_access_enable_iam": "Switch to OVHcloud IAM",
+  "logs_legacy_access_guide": "Consult the Logs Data Platform documentation",
+  "logs_roles_description_decommissioned": "Role management is being replaced by OVHcloud IAM. Existing roles remain visible and can still be deleted, but they can no longer be created or modified.",
+  "logs_tokens_description_decommissioned": "Token management is being replaced by OVHcloud IAM. Existing tokens remain visible and can still be revoked, but it is no longer possible to create new ones."
 }

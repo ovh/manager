@@ -803,5 +803,13 @@
   "streams_subscriptions_resource_products_account-audit": "Auditoria Logs OVHcloud",
   "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes",
   "logs_roles_enable_iam": "Ativar o IAM OVHcloud",
-  "logs_iam_policies_get_error": "Ocorreu um erro aquando do carregamento das políticas IAM."
+  "logs_iam_policies_get_error": "Ocorreu um erro aquando do carregamento das políticas IAM.",
+  "logs_legacy_access_before_title": "A gestão de acessos histórica é substituída pelo IAM OVHcloud",
+  "logs_legacy_access_before_description": "As funções, os tokens e a autenticação por palavra-passe deste serviço vão ser retirados. Ative o IAM OVHcloud neste serviço para continuar a gerir os seus acessos.",
+  "logs_legacy_access_after_title": "A gestão de acessos é agora assegurada pelo IAM OVHcloud",
+  "logs_legacy_access_after_description": "Já não pode criar nem modificar funções, tokens ou palavras-passe para este serviço. Os elementos existentes permanecem visíveis e podem sempre ser revogados. Ative o IAM OVHcloud neste serviço para gerir os seus acessos.",
+  "logs_legacy_access_enable_iam": "Passar para o IAM OVHcloud",
+  "logs_legacy_access_guide": "Consultar a documentação Logs Data Platform",
+  "logs_roles_description_decommissioned": "A gestão de funções é substituída pelo IAM OVHcloud. As funções existentes permanecem visíveis e podem sempre ser eliminadas, mas já não podem ser criadas nem modificadas.",
+  "logs_tokens_description_decommissioned": "A gestão de tokens é substituída pelo IAM OVHcloud. Os tokens existentes permanecem visíveis e podem sempre ser revogados, mas já não é possível criar novos."
 }

@@ -309,4 +309,17 @@
       color: @oui-dual-list-empty-label-color;
     }
   }
+
+  /* Revoke-only: the attached pane is the whole widget. It keeps its
+     flex-basis of 100%, so it fills the row on its own; but it must also stop
+     behaving like the collapsed half of an accordion on narrow screens. */
+  &_revoke-only {
+    .oui-dual-list__target > .oui-dual-list__content {
+      .flexbox();
+    }
+
+    .oui-dual-list__header_toggle {
+      display: none;
+    }
+  }
 }

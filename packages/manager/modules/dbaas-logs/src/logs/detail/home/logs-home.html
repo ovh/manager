@@ -17,6 +17,12 @@
             data-translate-values="{ disabledDate: ctrl.lastUpdatedDate }"
         ></span>
     </div>
+    <dbaas-logs-legacy-access-notice
+        class="d-block m-3"
+        data-ng-if="!ctrl.service.isIamEnabled"
+        data-legacy-access="ctrl.legacyAccess"
+        data-track-click="ctrl.trackClick"
+    ></dbaas-logs-legacy-access-notice>
     <div class="row d-lg-flex mb-3">
         <div class="col-xm-12 col-md-4" data-ng-if="!ctrl.isAccountDisabled">
             <oui-tile
@@ -258,7 +264,11 @@
                     data-term="{{::'logs_home_password'|translate}}"
                     data-description="******"
                 >
-                    <oui-action-menu data-compact data-placement="end">
+                    <oui-action-menu
+                        data-compact
+                        data-placement="end"
+                        data-ng-if="!ctrl.legacyAccess.isDecommissioned"
+                    >
                         <oui-action-menu-item
                             aria-label="{{::'logs_edit'|translate}}"
                             data-on-click="ctrl.editPassword()"

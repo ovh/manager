@@ -7,6 +7,12 @@
         data-translate="logs_roles_permissions_subtitle"
         data-translate-values="{role:ctrl.roleDetails.data.name}"
     ></p>
+
+    <dbaas-logs-legacy-access-notice
+        data-ng-if="!ctrl.service.isIamEnabled"
+        data-legacy-access="ctrl.legacyAccess"
+        data-track-click="ctrl.trackClick"
+    ></dbaas-logs-legacy-access-notice>
     <oui-tabs>
         <oui-tabs-item
             data-heading="{{ ::'logs_roles_permissions_read_only' | translate }}"
@@ -29,6 +35,7 @@
                         on-remove="ctrl.removePermission(items, 'streamId')"
                         bulk-action-enabled="false"
                         height="300px"
+                        revoke-only="ctrl.legacyAccess.isDecommissioned"
                     >
                     </cui-dual-list>
                 </div>
@@ -50,6 +57,7 @@
                         on-remove="ctrl.removePermission(items, 'dashboardId')"
                         bulk-action-enabled="false"
                         height="300px"
+                        revoke-only="ctrl.legacyAccess.isDecommissioned"
                     >
                     </cui-dual-list>
                 </div>
@@ -71,6 +79,7 @@
                         on-remove="ctrl.removePermission(items, 'indexId')"
                         bulk-action-enabled="false"
                         height="300px"
+                        revoke-only="ctrl.legacyAccess.isDecommissioned"
                     >
                     </cui-dual-list>
                 </div>
@@ -92,6 +101,7 @@
                         on-remove="ctrl.removePermission(items, 'aliasId')"
                         bulk-action-enabled="false"
                         height="300px"
+                        revoke-only="ctrl.legacyAccess.isDecommissioned"
                     >
                     </cui-dual-list>
                 </div>
@@ -113,6 +123,7 @@
                         on-remove="ctrl.removePermission(items, 'osdId')"
                         bulk-action-enabled="false"
                         height="300px"
+                        revoke-only="ctrl.legacyAccess.isDecommissioned"
                     >
                     </cui-dual-list>
                 </div>
@@ -138,6 +149,7 @@
                     on-remove="ctrl.removePermission(items, 'dashboardId')"
                     bulk-action-enabled="false"
                     height="300px"
+                    revoke-only="ctrl.legacyAccess.isDecommissioned"
                 >
                 </cui-dual-list>
             </div>
@@ -158,6 +170,7 @@
                     on-remove="ctrl.removePermission(items, 'indexId')"
                     bulk-action-enabled="false"
                     height="300px"
+                    revoke-only="ctrl.legacyAccess.isDecommissioned"
                 >
                 </cui-dual-list>
             </div>
@@ -178,6 +191,7 @@
                     on-remove="ctrl.removePermission(items, 'osdId')"
                     bulk-action-enabled="false"
                     height="300px"
+                    revoke-only="ctrl.legacyAccess.isDecommissioned"
                 >
                 </cui-dual-list>
             </div>

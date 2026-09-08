@@ -803,5 +803,13 @@
   "streams_subscriptions_resource_products_account-audit": "OVHcloud Audit-Logs",
   "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes Service",
   "logs_roles_enable_iam": "OVHcloud IAM aktivieren",
-  "logs_iam_policies_get_error": "Beim Laden der IAM-Richtlinien ist ein Fehler aufgetreten."
+  "logs_iam_policies_get_error": "Beim Laden der IAM-Richtlinien ist ein Fehler aufgetreten.",
+  "logs_legacy_access_before_title": "Die historische Zugriffsverwaltung wird durch OVHcloud IAM ersetzt.",
+  "logs_legacy_access_before_description": "Die Rollen, Token und die Passwort-Authentifizierung für diesen Dienst werden entfernt. Aktivieren Sie OVHcloud IAM für diesen Dienst, um dessen Zugriffe weiterhin zu verwalten.",
+  "logs_legacy_access_after_title": "Die Zugriffsverwaltung erfolgt nun über OVHcloud IAM.",
+  "logs_legacy_access_after_description": "Sie können für diesen Dienst keine Rollen, Token oder Passwörter mehr erstellen oder bearbeiten. Bestehende Elemente bleiben sichtbar und können weiterhin widerrufen werden. Aktivieren Sie OVHcloud IAM für diesen Dienst, um dessen Zugriffe zu verwalten.",
+  "logs_legacy_access_enable_iam": "Zu OVHcloud IAM wechseln",
+  "logs_legacy_access_guide": "Dokumentation zu Logs Data Platform aufrufen",
+  "logs_roles_description_decommissioned": "Die Rollenverwaltung wird durch OVHcloud IAM ersetzt. Bestehende Rollen bleiben sichtbar und können weiterhin gelöscht werden, sie können jedoch nicht mehr erstellt oder bearbeitet werden.",
+  "logs_tokens_description_decommissioned": "Die Token-Verwaltung wird durch OVHcloud IAM ersetzt. Bestehende Token bleiben sichtbar und können weiterhin widerrufen werden, es ist jedoch nicht mehr möglich, neue zu erstellen."
 }

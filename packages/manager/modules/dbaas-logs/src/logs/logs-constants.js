@@ -1,6 +1,10 @@
 export default {
   SERVICE_TYPE: 'DBAAS_LOGS',
   TRACKING_PREFIX: 'DedicatedServers::dbaas::ldp',
+  FEATURE: {
+    LEGACY_ACCESS_DECOMMISSIONED:
+      'logs-data-platform:legacy-access-decommissioned',
+  },
   LDP_PLAN_CODE: 'logs-account',
   LDP_PLAN_CODE_ENTERPRISE: 'logs-enterprise',
   COLDSTORAGE: 'COLDSTORAGE',

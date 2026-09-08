@@ -1,0 +1,32 @@
+<oui-message
+    data-type="info"
+    class="mb-3"
+    data-ng-if="$ctrl.legacyAccess.answered"
+>
+    <p class="font-weight-bold" data-translate="{{:: $ctrl.titleKey }}"></p>
+    <p data-translate="{{:: $ctrl.descriptionKey }}"></p>
+    <a
+        data-ng-if="!$ctrl.hideEnableIam && $ctrl.hasEnableIamAction"
+        class="d-block"
+        href=""
+        data-ng-click="$ctrl.enableIam()"
+        data-translate="logs_legacy_access_enable_iam"
+    ></a>
+    <a
+        data-ng-if="!$ctrl.hideEnableIam && !$ctrl.hasEnableIamAction"
+        class="d-block"
+        data-ui-sref="dbaas-logs.detail.roles"
+        data-ng-click="$ctrl.goToRoles()"
+        data-translate="logs_legacy_access_enable_iam"
+    ></a>
+    <a
+        class="d-block"
+        data-ng-href="{{:: $ctrl.guideUrl }}"
+        target="_blank"
+        rel="noopener"
+        data-ng-click="$ctrl.goToGuide()"
+    >
+        <span data-translate="logs_legacy_access_guide"></span>
+        <i class="oui-icon oui-icon-external-link" aria-hidden="true"></i>
+    </a>
+</oui-message>

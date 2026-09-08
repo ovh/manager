@@ -9,13 +9,22 @@
     ></p>
     <p data-translate="logs_roles_members_description"></p>
 
+    <dbaas-logs-legacy-access-notice
+        data-ng-if="!ctrl.service.isIamEnabled"
+        data-legacy-access="ctrl.legacyAccess"
+        data-track-click="ctrl.trackClick"
+    ></dbaas-logs-legacy-access-notice>
+
     <oui-datagrid rows="ctrl.availableMembers.data">
         <oui-datagrid-topbar>
             <button
                 type="button"
                 class="oui-button oui-button_secondary"
                 data-ng-click="ctrl.add()"
-                data-ng-if="!ctrl.delete.loading"
+                data-ng-if="
+                    !ctrl.delete.loading &&
+                    !ctrl.legacyAccess.isDecommissioned
+                "
             >
                 <i class="oui-icon oui-icon-add pr-1" aria-hidden="true"></i> {{
                 ::'logs_roles_members_add' | translate }}
