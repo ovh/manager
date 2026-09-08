@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.204.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.203.0...@ovh-ux/manager-container-app@0.204.0) (2026-09-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1307] ([7a79562](https://github.com/ovh/manager/commit/7a79562d391d57a38d5eee07b5bde0486e2e5bcc))
+
+
+### Features
+
+* **account:** show the company information modal on an invalid SIRET ([6aa1100](https://github.com/ovh/manager/commit/6aa110027078622401f698ccf50c990dff7f163c)), closes [#MANAGER-22233](https://github.com/ovh/manager/issues/MANAGER-22233)
+
+
+
+
+
 # [0.203.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.202.0...@ovh-ux/manager-container-app@0.203.0) (2026-08-31)
 
 
