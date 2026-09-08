@@ -8,6 +8,8 @@ export default {
     service: '<',
     goBack: '<',
     goToDetail: '<',
+    legacyAccess: '<',
+    trackClick: '<',
   },
   template,
 };

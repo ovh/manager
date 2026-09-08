@@ -1,5 +1,8 @@
-<div class="oui-dual-list">
-    <div class="oui-dual-list__source">
+<div
+    class="oui-dual-list"
+    data-ng-class="{ 'oui-dual-list_revoke-only': $ctrl.revokeOnly }"
+>
+    <div class="oui-dual-list__source" data-ng-if="!$ctrl.revokeOnly">
         <div class="oui-dual-list__header">
             <span>{{$ctrl.sourceListLabel}}</span>
             <span data-ng-if="!$ctrl.sourceListLoading"

@@ -44,6 +44,13 @@ export default class LogsAccountSetupCtrl {
         value: ACCOUNT_MODES.PASSWORD,
       },
     ];
+    if (this.legacyAccess?.isDecommissioned) {
+      // Password setup is retired: OVHcloud IAM is the only setup path left,
+      // so the choice is not offered and setupAccount() can only enable IAM.
+      this.accountModes = this.accountModes.filter(
+        ({ value }) => value === ACCOUNT_MODES.IAM,
+      );
+    }
     [this.accountMode] = this.accountModes;
   }
 

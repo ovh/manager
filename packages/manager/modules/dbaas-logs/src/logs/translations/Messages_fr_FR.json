@@ -803,5 +803,13 @@
   "streams_subscriptions_resource_products_webhosting": "Web Hosting",
   "streams_subscriptions_resource_products_account-api": "Espace client OVHcloud & OVHcloud API",
   "streams_subscriptions_resource_products_account-audit": "Audit Logs OVHcloud",
-  "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes Service"
+  "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes Service",
+  "logs_legacy_access_before_title": "La gestion des accès historique est remplacée par l'IAM OVHcloud",
+  "logs_legacy_access_before_description": "Les rôles, les jetons et l'authentification par mot de passe de ce service vont être retirés. Activez l'IAM OVHcloud sur ce service pour continuer à gérer ses accès.",
+  "logs_legacy_access_after_title": "La gestion des accès est désormais assurée par l'IAM OVHcloud",
+  "logs_legacy_access_after_description": "Vous ne pouvez plus créer ni modifier de rôle, de jeton ou de mot de passe pour ce service. Les éléments existants restent visibles et peuvent toujours être révoqués. Activez l'IAM OVHcloud sur ce service pour gérer ses accès.",
+  "logs_legacy_access_enable_iam": "Passer à l'IAM OVHcloud",
+  "logs_legacy_access_guide": "Consulter la documentation Logs Data Platform",
+  "logs_roles_description_decommissioned": "La gestion des rôles est remplacée par l'IAM OVHcloud. Les rôles existants restent visibles et peuvent toujours être supprimés, mais ils ne peuvent plus être créés ni modifiés.",
+  "logs_tokens_description_decommissioned": "La gestion des jetons est remplacée par l'IAM OVHcloud. Les jetons existants restent visibles et peuvent toujours être révoqués, mais il n'est plus possible d'en créer de nouveaux."
 }
