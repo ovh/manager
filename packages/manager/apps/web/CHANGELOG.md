@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.49.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.48.0...@ovh-ux/manager-web@19.49.0) (2026-09-08)
+
+
+### Features
+
+* **web-hosting:** cloud web migration fix modal and wording v6 ([e07899c](https://github.com/ovh/manager/commit/e07899c5733bac9d7cbbd0fc7d0d35a94f258075)), closes [#PUWEBPT-464](https://github.com/ovh/manager/issues/PUWEBPT-464)
+
+
+
+
+
 # [19.48.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.47.0...@ovh-ux/manager-web@19.48.0) (2026-08-27)
 
 
