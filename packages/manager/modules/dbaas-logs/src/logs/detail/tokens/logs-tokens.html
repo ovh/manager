@@ -3,7 +3,20 @@
         ><span data-translate="logs_tokens_title"></span
     ></oui-back-button>
 
-    <p data-translate="logs_tokens_description"></p>
+    <p
+        data-ng-if="!ctrl.legacyAccess.isDecommissioned"
+        data-translate="logs_tokens_description"
+    ></p>
+    <p
+        data-ng-if="ctrl.legacyAccess.isDecommissioned"
+        data-translate="logs_tokens_description_decommissioned"
+    ></p>
+
+    <dbaas-logs-legacy-access-notice
+        data-ng-if="!ctrl.service.isIamEnabled"
+        data-legacy-access="ctrl.legacyAccess"
+        data-track-click="ctrl.trackClick"
+    ></dbaas-logs-legacy-access-notice>
 
     <oui-datagrid
         id="tokens-datagrid"
@@ -15,6 +28,7 @@
                 class="oui-button oui-button_secondary"
                 data-ui-sref="dbaas-logs.detail.tokens.add"
                 data-ng-disabled="ctrl.delete.loading"
+                data-ng-if="!ctrl.legacyAccess.isDecommissioned"
             >
                 <span
                     class="oui-icon oui-icon-add pr-1"

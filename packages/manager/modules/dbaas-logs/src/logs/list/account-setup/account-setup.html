@@ -9,7 +9,15 @@
     data-loading="$ctrl.loading"
 >
     <form novalidate name="$ctrl.form">
+        <dbaas-logs-legacy-access-notice
+            class="d-block mb-3"
+            data-ng-if="$ctrl.legacyAccess.isDecommissioned"
+            data-legacy-access="$ctrl.legacyAccess"
+            data-track-click="$ctrl.trackClick"
+            data-hide-enable-iam="true"
+        ></dbaas-logs-legacy-access-notice>
         <oui-field
+            data-ng-if="!$ctrl.legacyAccess.isDecommissioned"
             data-label="{{:: 'dbaas_logs_account_setup_auth_mode' | translate }}"
         >
             <oui-select

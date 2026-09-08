@@ -19,5 +19,8 @@ export default {
     onAdd: '&',
     onRemove: '&',
     bulkActionEnabled: '<',
+    // Renders the attached (target) pane alone, with its per-item remove
+    // affordance: the source pane and every add control disappear.
+    revokeOnly: '<?',
   },
 };

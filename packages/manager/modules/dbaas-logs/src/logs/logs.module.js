@@ -5,6 +5,7 @@ import '@uirouter/angularjs';
 import '@ovh-ux/manager-at-internet-configuration';
 import '@ovh-ux/manager-core';
 import '@ovh-ux/ng-ovh-cloud-universe-components';
+import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import 'ovh-api-services';
 import '@ovh-ux/ui-kit';
 import 'angular-ui-bootstrap';
@@ -23,6 +24,7 @@ import logsOnboarding from './onboarding';
 import logsOrder from './order/order.module';
 import routing from './logs.routing';
 import cuiDualList from '../components/dual-list';
+import legacyAccessNotice from '../components/legacy-access-notice';
 
 const moduleName = 'ovhManagerDbaasLogsDashboard';
 
@@ -38,6 +40,8 @@ angular
     'ovhManagerAtInternetConfiguration',
     cuiDualList,
     empty,
+    legacyAccessNotice,
+    ngOvhFeatureFlipping,
     logsOrder,
     logsDetail,
     logsList,
