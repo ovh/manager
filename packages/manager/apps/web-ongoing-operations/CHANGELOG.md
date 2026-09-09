@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.24.0...@ovh-ux/manager-web-ongoing-operations-app@1.25.0) (2026-09-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1309] ([7be765c](https://github.com/ovh/manager/commit/7be765c8185e1b0010a3d2771f43d09cd35d07d2))
+
+
+### Features
+
+* **web-ongoing-operations:** add designated agent foa validation ([aba6de6](https://github.com/ovh/manager/commit/aba6de68d8f590879c1102d4e4fae7366cfc07c3)), closes [#D2I-6259](https://github.com/ovh/manager/issues/D2I-6259)
+
+
+
+
+
 # [1.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.23.1...@ovh-ux/manager-web-ongoing-operations-app@1.24.0) (2026-07-29)
 
 
