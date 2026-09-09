@@ -155,17 +155,6 @@ const Sidebar = (): JSX.Element => {
         mxPlanNode.routing.hash = '#/email_mxplan';
       }
 
-      // Digital Agent in primary: the assistance entry points no longer target
-      // the Help Center but the Manager V7 Digital Agent.
-      if (isDigitalAgentEnabled(region, ovhSubsidiary)) {
-        ['createTicket', 'livechat'].forEach((nodeId) => {
-          const node = findNodeById(tree, nodeId);
-          if (!node) return;
-          node.url = DIGITAL_AGENT_URL;
-          node.isExternal = false;
-          delete node.routing;
-        });
-      }
 
       if (results['web-hosting:managed-cms-ga']) {
         const managedWordpressNode = findNodeById(tree, 'managed-wordpress');
