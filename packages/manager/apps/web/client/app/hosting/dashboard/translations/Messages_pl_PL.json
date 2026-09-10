@@ -1203,6 +1203,7 @@
   "hosting_tab_AUTOMATED_EMAILS_today_sent": "Wiadomości e-mail wysłane dzisiaj:",
   "hosting_tab_AUTOMATED_EMAILS_purge_info": "Aby usunąć wiadomości e-mail z kolejki, należy najpierw zablokować wysyłkę.",
   "hosting_tab_AUTOMATED_EMAILS_total_bounce": "Łączna liczba zwróconych wiadomości e-mail:",
+  "hosting_tab_AUTOMATED_EMAILS_total_spoofing": "Łączna liczba sfałszowanych wiadomości e-mail:",
   "hosting_tab_AUTOMATED_EMAILS_error": "Wystąpił błąd podczas pobierania informacji:",
   "hosting_tab_AUTOMATED_EMAILS_block_title": "Zablokuj wysyłkę e-maili",
   "hosting_tab_AUTOMATED_EMAILS_unblock_title": "Odblokuj wysyłkę e-maili",

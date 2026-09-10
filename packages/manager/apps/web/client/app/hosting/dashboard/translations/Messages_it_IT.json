@@ -1203,6 +1203,7 @@
   "hosting_tab_AUTOMATED_EMAILS_today_sent": "Email inviate oggi:",
   "hosting_tab_AUTOMATED_EMAILS_purge_info": "Per eliminare le email, è necessario richiederne il blocco",
   "hosting_tab_AUTOMATED_EMAILS_total_bounce": "Totale email in errore:",
+  "hosting_tab_AUTOMATED_EMAILS_total_spoofing": "Totale email contraffatte:",
   "hosting_tab_AUTOMATED_EMAILS_error": "Si è verificato un errore durante il recupero delle informazioni:",
   "hosting_tab_AUTOMATED_EMAILS_block_title": "Blocca l'invio delle email",
   "hosting_tab_AUTOMATED_EMAILS_unblock_title": "Sblocca l'invio delle email",
