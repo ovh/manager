@@ -1193,6 +1193,7 @@
   "hosting_tab_AUTOMATED_EMAILS_today_sent": "E-mails enviados hoje:",
   "hosting_tab_AUTOMATED_EMAILS_purge_info": "Para purgar os e-mails deve pedir em primeiro lugar o bloqueio do envio.",
   "hosting_tab_AUTOMATED_EMAILS_total_bounce": "Total dos e-mails em erro:",
+  "hosting_tab_AUTOMATED_EMAILS_total_spoofing": "Usurpações detetadas:",
   "hosting_tab_AUTOMATED_EMAILS_error": "Erro ao carregar informação:",
   "hosting_tab_AUTOMATED_EMAILS_block_title": "Bloquear o envio dos e-mails",
   "hosting_tab_AUTOMATED_EMAILS_unblock_title": "Desbloquear o envio dos e-mails",
