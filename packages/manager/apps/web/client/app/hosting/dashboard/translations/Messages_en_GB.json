@@ -1203,7 +1203,7 @@
   "hosting_tab_AUTOMATED_EMAILS_today_sent": "Emails sent today:",
   "hosting_tab_AUTOMATED_EMAILS_purge_info": "Firstly, you need to block the sending of emails before you can purge them.",
   "hosting_tab_AUTOMATED_EMAILS_total_bounce": "Total number of unsent emails:",
-  "hosting_tab_AUTOMATED_EMAILS_total_spoofing": "Total of spoofed emails:",
+  "hosting_tab_AUTOMATED_EMAILS_total_spoofing": "Detected impersonations:",
   "hosting_tab_AUTOMATED_EMAILS_error": "An error has occurred retrieving the information:",
   "hosting_tab_AUTOMATED_EMAILS_block_title": "Block the sending of emails",
   "hosting_tab_AUTOMATED_EMAILS_unblock_title": "Unblock the sending of emails",

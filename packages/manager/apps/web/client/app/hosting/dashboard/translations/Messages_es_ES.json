@@ -1193,7 +1193,7 @@
   "hosting_tab_AUTOMATED_EMAILS_today_sent": "Mensajes enviados hoy:",
   "hosting_tab_AUTOMATED_EMAILS_purge_info": "Para eliminar los mensajes, es necesario solicitar primero el bloqueo.",
   "hosting_tab_AUTOMATED_EMAILS_total_bounce": "Total de mensajes en error:",
-  "hosting_tab_AUTOMATED_EMAILS_total_spoofing": "Total de correos suplantados:",
+  "hosting_tab_AUTOMATED_EMAILS_total_spoofing": "Suplantaciones detectadas:",
   "hosting_tab_AUTOMATED_EMAILS_error": "Se ha producido un error al cargar la información:",
   "hosting_tab_AUTOMATED_EMAILS_block_title": "Bloquear el envío de correo",
   "hosting_tab_AUTOMATED_EMAILS_unblock_title": "Desbloquear el envío de correo",
