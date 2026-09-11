@@ -792,5 +792,6 @@
   "signup_legalform_other_switch_company": "Sie haben Ihre Kategorie geändert. Bitte aktualisieren Sie die Daten Ihrer {{ category }}, bevor Sie speichern.",
   "signup_legalform_other_switch_company_cta": "Meine Unternehmensdaten aktualisieren",
   "signup_account_info_siret_lookup_hint": "Ihre Unternehmensinformationen sind möglicherweise veraltet.",
-  "signup_account_info_siret_lookup_cta": "Aktualisieren Sie diese mit meiner SIRET-Nummer"
+  "signup_account_info_siret_lookup_cta": "Aktualisieren Sie diese mit meiner SIRET-Nummer",
+  "signup_field_pixelTrackingConsent": "Ich gestatte OVHcloud, Tracking-Pixel in den E-Mails zu verwenden, die an {{ email }} gesendet werden, und zwar auf allen Geräten, die ich zu deren Abruf verwende, um deren Öffnungsrate zu messen, Statistiken zur Verbreitung zu erstellen und bei Bedarf die Häufigkeit dieser Sendungen anzupassen."
 }
