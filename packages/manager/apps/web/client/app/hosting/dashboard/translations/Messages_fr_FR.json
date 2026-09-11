@@ -1223,7 +1223,7 @@
   "hosting_tab_AUTOMATED_EMAILS_today_sent": "E-mails envoyés aujourd'hui :",
   "hosting_tab_AUTOMATED_EMAILS_purge_info": "Pour purger les e-mails, vous devez d'abord en demander le blocage.",
   "hosting_tab_AUTOMATED_EMAILS_total_bounce": "Total des e-mails en erreur :",
-  "hosting_tab_AUTOMATED_EMAILS_total_spoofing": "Total des e-mails spoofés :",
+  "hosting_tab_AUTOMATED_EMAILS_total_spoofing": "Usurpations détectées :",
   "hosting_tab_AUTOMATED_EMAILS_error": "Une erreur est survenue lors de la récupération des informations :",
   "hosting_tab_AUTOMATED_EMAILS_block_title": "Bloquer l'envoi d'e-mails",
   "hosting_tab_AUTOMATED_EMAILS_unblock_title": "Débloquer l'envoi d'e-mails",
