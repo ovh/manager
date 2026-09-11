@@ -1203,7 +1203,7 @@
   "hosting_tab_AUTOMATED_EMAILS_today_sent": "Heute versandte E-Mails:",
   "hosting_tab_AUTOMATED_EMAILS_purge_info": "Um E-Mails zu bereinigen, müssen Sie zuerst die Blockierung der E-Mails beantragen.",
   "hosting_tab_AUTOMATED_EMAILS_total_bounce": "E-Mail-Fehler gesamt:",
-  "hosting_tab_AUTOMATED_EMAILS_total_spoofing": "Gespoofte E-Mails gesamt:",
+  "hosting_tab_AUTOMATED_EMAILS_total_spoofing": "Erkannte Identitätsfälschungen:",
   "hosting_tab_AUTOMATED_EMAILS_error": "Beim Abruf der Informationen ist ein Fehler aufgetreten:",
   "hosting_tab_AUTOMATED_EMAILS_block_title": "Versand von E-Mails blockieren",
   "hosting_tab_AUTOMATED_EMAILS_unblock_title": "Versand von E-Mails entsperren",
