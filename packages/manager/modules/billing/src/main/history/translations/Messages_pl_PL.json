@@ -32,5 +32,8 @@
   "billing_main_history_table_export_success": "Otrzymasz e-mail z linkiem do pobrania wyeksportowanych faktur. Czas pobierania będzie zależał od liczby faktur.",
   "billing_main_history_table_export_error": "Wystąpił błąd podczas zlecania eksportu faktur. {{message}} ",
   "billing_main_history": "Faktury",
-  "billing_main_history_table_balance_status_WRITE_OFF": "Strata"
+  "billing_main_history_table_balance_status_WRITE_OFF": "Strata",
+  "billing_main_history_invoice_delay": "Wystawienie faktur może wyjątkowo potrwać do 7 dni. Jeśli dotyczy to Państwa, termin ten ma również zastosowanie do ich przesłania na platformę fakturowania elektronicznego.",
+  "billing_main_history_invoice_delay_no_action": "Prosimy pamiętać, że z Państwa strony nie są wymagane żadne działania: faktury będą dostępne po zakończeniu przetwarzania.",
+  "billing_main_history_invoice_delay_thanks": "Dziękujemy za wyrozumiałość."
 }
