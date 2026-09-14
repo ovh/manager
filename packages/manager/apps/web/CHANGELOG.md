@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.50.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.49.0...@ovh-ux/manager-web@19.50.0) (2026-09-14)
+
+
+### Features
+
+* **web-hosting:** correct wording ([39a2b3e](https://github.com/ovh/manager/commit/39a2b3e6548985a8691ea8558e0217a9ad7104c6)), closes [#PUWEBPT-447](https://github.com/ovh/manager/issues/PUWEBPT-447)
+* **web-hosting:** spoofing v6 add quota ([d35a58a](https://github.com/ovh/manager/commit/d35a58a14ab2562e6bc0c9dbedf66617d652148f)), closes [#PUWEBPT-447](https://github.com/ovh/manager/issues/PUWEBPT-447)
+
+
+
+
+
 # [19.49.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.48.0...@ovh-ux/manager-web@19.49.0) (2026-09-08)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.39.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.39.1...@ovh-ux/manager-billing-components@4.39.2) (2026-09-14)
+
+
+### Bug Fixes
+
+* **billing:** add hosting, wordpress and video center plan codes for cancelation form root ([7847171](https://github.com/ovh/manager/commit/7847171a3496f987cc6cacd31d98334218c61ff3)), closes [#DCE-273](https://github.com/ovh/manager/issues/DCE-273)
+
+
+
+
+
 ## [4.39.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.39.0...@ovh-ux/manager-billing-components@4.39.1) (2026-08-05)
 
 
