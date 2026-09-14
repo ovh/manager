@@ -9,6 +9,7 @@ import ColdArchiveList from './ColdArchiveList.component';
 import FileStorageList from './FileStorageList.component';
 import FileStorageSnapshotList from './FileStorageSnapshotList.component';
 import InstanceList from './InstanceList.component';
+import LocalStorageList from './LocalStorageList.component';
 import ObjectStorageList from './ObjectStorageList.component';
 import OutgoingTrafficList from './OutgoingTrafficList.component';
 import ResourceUsageList from './ResourceUsageList.component';
@@ -27,6 +28,7 @@ type HourlyConsumptionProps = {
   isTrustedZone: boolean;
   hasHiddenProducts?: boolean;
   isUsRegion?: boolean;
+  hasRepricingInstances?: boolean;
 };
 
 export default function HourlyConsumption({
@@ -34,6 +36,7 @@ export default function HourlyConsumption({
   isTrustedZone,
   hasHiddenProducts,
   isUsRegion,
+  hasRepricingInstances,
 }: Readonly<HourlyConsumptionProps>) {
   const { t } = useTranslation('consumption/hourly-instance');
   const { getTextPrice } = useCatalogPrice(2);
@@ -62,6 +65,12 @@ export default function HourlyConsumption({
       title: t('cpbc_volume_detail_title'),
       component: <VolumeList volumes={consumption.volumes} />,
       condition: true,
+    },
+    {
+      key: ResourceType.LOCAL_STORAGE,
+      title: t('cpbc_local_storage_detail_title'),
+      component: <LocalStorageList localStorages={consumption.localStorages} />,
+      condition: !!hasRepricingInstances,
     },
     {
       key: ResourceType.OBJECT_STORAGE,

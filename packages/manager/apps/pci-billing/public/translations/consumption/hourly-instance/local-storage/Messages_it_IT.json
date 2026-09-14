@@ -1,0 +1,8 @@
+{
+  "cpbc_no_consumption_data": "Nessun consumo per il periodo selezionato.",
+  "cpbc_local_storage_col_name": "Nome",
+  "cpbc_local_storage_col_instance": "Istanza",
+  "cpbc_local_storage_col_consumption": "Consumo",
+  "cpbc_local_storage_col_region": "Region",
+  "cpbc_local_storage_col_price": "Prezzo"
+}

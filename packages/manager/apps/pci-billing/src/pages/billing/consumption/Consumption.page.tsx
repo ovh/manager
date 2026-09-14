@@ -29,6 +29,7 @@ import HourlyConsumption from '@/components/consumption/HourlyConsumption.compon
 import { useCurrentUsage } from '@/api/hook/useConsumption';
 import SavingsPlanConsumption from '@/components/consumption/SavingsPlanConsumption.component';
 import { useHiddenProducts } from '@/hooks/useHiddenProducts';
+import { useRepricingInstances } from '@/hooks/useRepricingInstances';
 
 export default function Consumption() {
   const { t } = useTranslation('consumption');
@@ -41,6 +42,8 @@ export default function Consumption() {
   ]);
 
   const { hasHiddenProducts } = useHiddenProducts();
+
+  const { hasRepricingInstances } = useRepricingInstances();
 
   const { environment } = useContext(ShellContext);
   const isUsRegion = environment.getRegion() === 'US';
@@ -144,6 +147,7 @@ export default function Consumption() {
                     isTrustedZone={isTrustedZone}
                     hasHiddenProducts={!!hasHiddenProducts}
                     isUsRegion={isUsRegion}
+                    hasRepricingInstances={!!hasRepricingInstances}
                   />
                 )}
               </div>

@@ -43,16 +43,20 @@ export type THourlyConsumption = {
   details: ConsumptionItemDetailPrice[];
 };
 
+export type TInstanceUsage = {
+  details: ({
+    instanceId: string;
+    resourceId?: string;
+  } & ConsumptionItemDetail)[];
+  reference: string;
+  region: string;
+  deploymentMode?: string;
+} & ConsumptionItemDetail;
+
 export type THourlyCurrentUsage = {
   rancher: THourlyConsumption[];
   quantum: { notebook: THourlyConsumption[] };
-  instance: ({
-    details: ({
-      instanceId: string;
-    } & ConsumptionItemDetail)[];
-    reference: string;
-    region: string;
-  } & ConsumptionItemDetail)[];
+  instance: TInstanceUsage[];
   instanceBandwidth: {
     incomingBandwidth: ConsumptionItemDetail;
     outgoingBandwidth: ConsumptionItemDetail;
@@ -95,13 +99,7 @@ export type TCurrentUsage = {
   lastUpdate: string;
   monthlyUsage: {
     certification: [];
-    instance: ({
-      details: ({
-        instanceId: string;
-      } & ConsumptionItemDetail)[];
-      reference: string;
-      region: string;
-    } & ConsumptionItemDetail)[];
+    instance: TInstanceUsage[];
     savingsPlan: {
       flavor: string;
       details: [
