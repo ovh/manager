@@ -4,6 +4,7 @@ import {
   ResourceType,
   getResourceDisplayKey,
   ConsumptionKey,
+  LOCAL_DISK_REFERENCE,
   RESOURCE_DISPLAY_NAMES,
 } from '@/constants';
 import queryClient from '@/queryClient';
@@ -12,11 +13,21 @@ import {
   getCurrentUsage,
   TCurrentUsage,
   THourlyConsumption,
+  TInstanceUsage,
   TQuantity,
 } from '../data/consumption';
 
 const roundPrice = (num: number, fractionDigits = 2) =>
   Number(num.toFixed(fractionDigits));
+
+const isLocalDisk = ({ reference }: TInstanceUsage) =>
+  reference?.includes(LOCAL_DISK_REFERENCE) ?? false;
+
+const selectServers = (instances: TInstanceUsage[] = []) =>
+  instances.filter((instance) => !isLocalDisk(instance));
+
+const selectLocalDisks = (instances: TInstanceUsage[] = []) =>
+  instances.filter(isLocalDisk);
 
 const initMonthlyInstanceList = (data: TCurrentUsage['monthlyUsage']) => {
   if (!data) {
@@ -26,7 +37,9 @@ const initMonthlyInstanceList = (data: TCurrentUsage['monthlyUsage']) => {
     };
   }
 
-  const monthlyInstanceList = data.instance.flatMap((instance) =>
+  const servers = selectServers(data.instance);
+
+  const monthlyInstanceList = servers.flatMap((instance) =>
     instance.details.map((detail) => ({
       ...detail,
       totalPrice: roundPrice(detail.totalPrice),
@@ -36,10 +49,7 @@ const initMonthlyInstanceList = (data: TCurrentUsage['monthlyUsage']) => {
   ) as TInstance[];
 
   const monthlyInstanceTotalPrice = roundPrice(
-    data.instance.reduce(
-      (sum, instance) => sum + roundPrice(instance.totalPrice),
-      0,
-    ),
+    servers.reduce((sum, instance) => sum + roundPrice(instance.totalPrice), 0),
   );
 
   return {
@@ -84,12 +94,12 @@ const initMonthlySavingsPlanList = (
 };
 
 const initHourlyInstanceList = (data: TCurrentUsage) => {
-  const { instance: instanceData } = data.hourlyUsage;
-  if (!instanceData.length) {
+  const servers = selectServers(data.hourlyUsage.instance);
+  if (!servers.length) {
     return { hourlyInstanceList: [], hourlyInstanceTotalPrice: 0 };
   }
 
-  const hourlyInstanceList = instanceData.flatMap((instance) =>
+  const hourlyInstanceList = servers.flatMap((instance) =>
     instance.details.map((detail) => ({
       ...detail,
       totalPrice: roundPrice(detail.totalPrice),
@@ -99,10 +109,7 @@ const initHourlyInstanceList = (data: TCurrentUsage) => {
   ) as TInstance[];
 
   const hourlyInstanceTotalPrice = roundPrice(
-    data.hourlyUsage.instance.reduce(
-      (sum, instance) => sum + roundPrice(instance.totalPrice),
-      0,
-    ),
+    servers.reduce((sum, instance) => sum + roundPrice(instance.totalPrice), 0),
   );
 
   return {
@@ -257,6 +264,39 @@ const initVolumeList = (data: TCurrentUsage) => {
   };
 };
 
+const initLocalStorageList = (data: TCurrentUsage) => {
+  const localDisks = selectLocalDisks(data.hourlyUsage.instance);
+
+  if (!localDisks.length) {
+    return {
+      localStorageList: [],
+      localStorageTotalPrice: 0,
+    };
+  }
+
+  const localStorageList = localDisks.flatMap((localDisk) =>
+    localDisk.details.map((detail) => ({
+      ...detail,
+      totalPrice: roundPrice(detail.totalPrice),
+      reference: localDisk.reference,
+      region: localDisk.region,
+      deploymentMode: localDisk.deploymentMode,
+    })),
+  );
+
+  const localStorageTotalPrice = roundPrice(
+    localDisks.reduce(
+      (sum, localDisk) => sum + roundPrice(localDisk.totalPrice),
+      0,
+    ),
+  );
+
+  return {
+    localStorageList,
+    localStorageTotalPrice,
+  };
+};
+
 const initInstanceBandwidth = (data: TCurrentUsage) => {
   const { instanceBandwidth } = data.hourlyUsage;
   if (!instanceBandwidth.length) {
@@ -392,6 +432,16 @@ export type TVolume = {
   volumeId: string;
 };
 
+export type TLocalStorage = {
+  instanceId: string;
+  resourceId?: string;
+  quantity: TQuantity;
+  reference: string;
+  region: string;
+  deploymentMode?: string;
+  totalPrice: number;
+};
+
 export type TInstanceBandWith = {
   incomingBandwidth: {
     quantity: TQuantity;
@@ -458,6 +508,7 @@ export type TConsumptionDetail = {
   shareSnapshots: TResourceUsage[];
   snapshots: TSnapshot[];
   volumes: TVolume[];
+  localStorages: TLocalStorage[];
   bandwidthByRegions: TInstanceBandWith[];
   privateRegistry: TResourceUsage[];
   rancher: TResourceUsage[];
@@ -502,6 +553,7 @@ export const initializeTConsumptionDetail = (): TConsumptionDetail => ({
   shareSnapshots: [],
   snapshots: [],
   volumes: [],
+  localStorages: [],
   bandwidthByRegions: [],
   privateRegistry: [],
   rancher: [],
@@ -596,6 +648,9 @@ export const getConsumptionDetails = (
   } = initArchiveStorageList(usage);
   const { snapshotList, snapshotsTotalPrice } = initSnapshotList(usage);
   const { volumeList, volumesTotalPrice } = initVolumeList(usage);
+  const { localStorageList, localStorageTotalPrice } = initLocalStorageList(
+    usage,
+  );
   const { bandwidthList, bandwidthTotalPrice } = initInstanceBandwidth(usage);
   const {
     list: rancherList,
@@ -619,6 +674,7 @@ export const getConsumptionDetails = (
       [ResourceType.ARCHIVE_STORAGE]: archiveStorageTotalPrice,
       [ResourceType.SNAPSHOT]: snapshotsTotalPrice,
       [ResourceType.VOLUME]: volumesTotalPrice,
+      [ResourceType.LOCAL_STORAGE]: localStorageTotalPrice,
       [ResourceType.BANDWIDTH]: bandwidthTotalPrice,
       [ResourceType.RANCHER]: rancherTotalPrice,
       [ResourceType.MANAGED_KUBERNETES_SERVICE]: managedKubernetesServiceTotalPrice,
@@ -653,6 +709,7 @@ export const getConsumptionDetails = (
     managedKubernetesService: managedKubernetesServiceList,
     quantum: quantumList,
     volumes: volumeList,
+    localStorages: localStorageList,
     bandwidthByRegions: bandwidthList,
     privateRegistry: resources.privateRegistry,
     kubernetesLoadBalancer: resources.kubernetesLoadBalancer,
