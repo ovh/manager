@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.37.5...@ovh-ux/manager-dbaas-logs@1.38.0) (2026-09-14)
+
+
+### Features
+
+* **dedicated.dbaas:** retire legacy access management behind a flag ([b2e8c71](https://github.com/ovh/manager/commit/b2e8c719732ec284ec6c11dad44913d1b5c5a5b3)), closes [#MAOBS-629](https://github.com/ovh/manager/issues/MAOBS-629)
+
+
+
+
+
 ## [1.37.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.37.4...@ovh-ux/manager-dbaas-logs@1.37.5) (2026-03-03)
 
 
