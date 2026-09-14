@@ -24,5 +24,6 @@
   "cpbc_hourly_public_ip_title": "Public IP",
   "cpbc_hourly_managed_kubernetes_service_title": "Managed Kubernetes Service",
   "cpbc_file_storage_detail_title": "Stockage fichier",
-  "cpbc_file_storage_snapshot_detail_title": "Stockage des sauvegardes fichier"
+  "cpbc_file_storage_snapshot_detail_title": "Stockage des sauvegardes fichier",
+  "cpbc_local_storage_detail_title": "Stockage local"
 }

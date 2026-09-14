@@ -65,6 +65,8 @@ export const CLOUD_UNIT_CONVERSION = {
   GIBIBYTE_TO_BYTE: 1073741824,
 };
 
+export const LOCAL_DISK_REFERENCE = 'local-disk';
+
 export const COLD_ARCHIVE_FEE_TYPES = ['archive', 'restore', 'archive-fees'];
 
 export const PRODUCTS = {
@@ -103,6 +105,8 @@ export const TRUSTED_ZONE = 'public-cloud:trusted-zone';
 export const PCI_FEATURES_BILLING_OLD_BILLING_BANNER =
   'pci-billing:old-billing-banner';
 export const PCI_FEATURES_HIDDEN_PRODUCTS = 'pci-billing:hidden-products';
+export const PCI_FEATURES_REPRICING_INSTANCES =
+  'pci-billing:repricing-instances';
 
 // New US billing system go-live: history before this month is only available
 // via the legacy system (OldBillingBanner > "View past usage").
@@ -127,6 +131,7 @@ export enum ResourceType {
   INSTANCE = 'instance',
   SNAPSHOT = 'snapshot',
   VOLUME = 'volume',
+  LOCAL_STORAGE = 'localDisk',
   OBJECT_STORAGE = 'objectStorage',
   ARCHIVE_STORAGE = 'archiveStorage',
   SHARE = 'share',

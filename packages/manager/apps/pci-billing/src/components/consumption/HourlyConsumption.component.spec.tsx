@@ -13,6 +13,7 @@ describe('HourlyConsumption', () => {
     hourlyInstances: [],
     snapshots: [],
     volumes: [],
+    localStorages: [],
     objectStorages: [],
     archiveStorages: [],
     shares: [],
@@ -119,6 +120,34 @@ describe('HourlyConsumption', () => {
 
     expect(
       queryByText(/cpbc_file_storage_detail_title/),
+    ).not.toBeInTheDocument();
+  });
+
+  it('shows the local storage section when instances repricing is enabled', () => {
+    const { queryByText } = render(
+      <HourlyConsumption
+        consumption={mockConsumption}
+        isTrustedZone={false}
+        hasRepricingInstances
+      />,
+      { wrapper },
+    );
+
+    expect(queryByText(/cpbc_local_storage_detail_title/)).toBeInTheDocument();
+  });
+
+  it('hides the local storage section when instances repricing is disabled', () => {
+    const { queryByText } = render(
+      <HourlyConsumption
+        consumption={mockConsumption}
+        isTrustedZone={false}
+        hasRepricingInstances={false}
+      />,
+      { wrapper },
+    );
+
+    expect(
+      queryByText(/cpbc_local_storage_detail_title/),
     ).not.toBeInTheDocument();
   });
 
