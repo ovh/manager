@@ -95,10 +95,12 @@ module.exports = (env = {}) => {
           ? `'${process.env.NODE_ENV}'`
           : '"development"',
         __NG_APP_INJECTIONS__: getNgAppInjections(['EU', 'CA', 'US']),
-        __WP_LABEU_ENTRY_POINT__:
-          process.env.VITE_WP_LABEU_ENTRY_POINT != null
-            ? JSON.stringify(process.env.VITE_WP_LABEU_ENTRY_POINT)
-            : '',
+        // DefinePlugin substitutes the value as raw code, so an empty string
+        // would erase every occurrence of the identifier and leave the module
+        // unparsable: always hand it a string literal.
+        __WP_LABEU_ENTRY_POINT__: JSON.stringify(
+          process.env.VITE_WP_LABEU_ENTRY_POINT ?? '',
+        ),
       }),
     ],
   });

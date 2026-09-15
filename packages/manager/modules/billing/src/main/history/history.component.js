@@ -13,6 +13,7 @@ export default {
     hasDefaultPaymentMethod: '<',
     invoicesByPostalMail: '<',
     isHtmlInvoiceAvailable: '<',
+    showInvoiceDelayBanner: '<',
     payDebt: '<',
     seeDebt: '<',
     ...ListLayoutHelper.componentBindings,
