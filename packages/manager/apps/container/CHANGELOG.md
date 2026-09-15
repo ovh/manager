@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.205.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.204.0...@ovh-ux/manager-container-app@0.205.0) (2026-09-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1313] ([97abf06](https://github.com/ovh/manager/commit/97abf0679c0d8e59d4a240c72ece6a5681d1f0d7))
+
+
+### Features
+
+* **container:** restyle the beta manager button ([c29bb27](https://github.com/ovh/manager/commit/c29bb27a3be849e39dd385579af6dc87b4afba5e)), closes [#MANAGER-21229](https://github.com/ovh/manager/issues/MANAGER-21229)
+
+
+
+
+
 # [0.204.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.203.0...@ovh-ux/manager-container-app@0.204.0) (2026-09-08)
 
 
