@@ -25,6 +25,7 @@ import {
   SNOW_CHAT_QUEUE_STORAGE_KEY,
   CHAT_STATE_STORAGE_KEY,
   CHAT_TYPE_STORAGE_KEY,
+  ADRIELLY_LABEU_CHAT_URL,
 } from './liveChat.constants';
 import { generateSnowChatUrl, generateAdriellyChatUrl } from './liveChat.helpers';
 import ChatDialog from './ChatDialog.component';
@@ -131,8 +132,8 @@ export default function LiveChat({
       ev: MessageEvent<{ event: string; queue: string }>,
     ) => {
 
-      if (ev.origin !== ADRIELLY_CHAT_ORIGIN) return;
-      ev.stopPropagation();
+      // if (ev.origin !== ADRIELLY_CHAT_ORIGIN) return;
+      // ev.stopPropagation();
 
       if (typeof ev.data !== 'object' || ev.data.event !== 'open_agent_chat')
         return;
@@ -175,10 +176,17 @@ export default function LiveChat({
 
 
   if (!chatbotOpen) return null;
+
+  let url = 'https://chat.ovh.com/system/templates/pre-prod/prepa_prod/STD/FR_fr/docs/index2.html';
+
+  if (window.location.hostname.includes('labeu')) {
+    url = ADRIELLY_LABEU_CHAT_URL;
+  }
+  
   return (
     <div
       data-testid="live-chat-wrapper"
-      className="absolute w-full h-full xl:h-fit xl:w-auto bottom-0 xl:bottom-2 right-0 xl:right-2 z-[960] flex flex-col justify-end pointer-events-none"
+      className="pointer-events-none absolute bottom-0 right-0 z-[960] flex size-full flex-col justify-end xl:bottom-2 xl:right-2 xl:h-fit xl:w-auto"
     >
       {/* We don't check for chatState here, otherwise the sessions would be reset instead of shown again */}
       {chatType === 'Adrielly' && (
@@ -186,7 +194,7 @@ export default function LiveChat({
           title="OVHcloud Chat"
           chatIFrame={chatIFrame}
           visible={!chatbotReduced}
-          url={generateAdriellyChatUrl(supportLevel, ovhSubsidiary, language)}
+          url={url}
           key={chatType}
           onClose={handleCloseChat}
           onReduce={() => handleReduceChat(true)}
@@ -211,7 +219,7 @@ export default function LiveChat({
         */}
       <div
         data-testid="live-chat-pta-wrapper"
-        className={`order-first xl:order-last relative py-2 px-3 bg-[#000e9c] xl:bg-transparent ${!chatbotReduced ? 'hidden xl:flex' : 'flex'} flex-row items-center justify-between xl:justify-end pointer-events-auto`}
+        className={`relative order-first bg-[#000e9c] px-3 py-2 xl:order-last xl:bg-transparent ${!chatbotReduced ? 'hidden xl:flex' : 'flex'} pointer-events-auto flex-row items-center justify-between xl:justify-end`}
       >
         {!chatbotReduced && (
           <>
@@ -284,7 +292,7 @@ export default function LiveChat({
               data-testid="live-chat-desktop-close-button"
               circle
               contrasted
-              className="hidden xl:flex absolute top-0 right-0 p-2 z-10"
+              className="absolute right-0 top-0 z-10 hidden p-2 xl:flex"
               onClick={handleCloseChat}
             >
               <OsdsIcon
