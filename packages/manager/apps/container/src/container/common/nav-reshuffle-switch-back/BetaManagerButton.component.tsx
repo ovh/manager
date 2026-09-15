@@ -1,9 +1,7 @@
-import { OsdsButton } from '@ovhcloud/ods-components/react';
-import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { BETA_MANAGER_FEATURE, BETA_MANAGER_URL } from './BetaManagerButton.constants';
+import style from './BetaManagerButton.module.scss';
 
 export default function BetaManagerButton(): JSX.Element {
   const { t } = useTranslation('beta-modal');
@@ -16,14 +14,9 @@ export default function BetaManagerButton(): JSX.Element {
   }
 
   return (
-    <OsdsButton
-    size={ODS_BUTTON_SIZE.sm}
-    variant={ODS_BUTTON_VARIANT.flat}
-    color={ODS_THEME_COLOR_INTENT.primary}
-    href={BETA_MANAGER_URL}
-    className="ml-3"
-  >
-    {t('manager_beta_button')}
-  </OsdsButton>
+    <a href={BETA_MANAGER_URL} className={`ml-3 ${style.betaManagerButton}`}>
+      {t('manager_beta_button')}
+      <span className={style.betaTag}>&gt;BETA_</span>
+    </a>
   );
 }
