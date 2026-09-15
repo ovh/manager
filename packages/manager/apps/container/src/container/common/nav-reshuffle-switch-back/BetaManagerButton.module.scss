@@ -1,0 +1,56 @@
+// Values sampled from the design mock-up.
+$beta-base: #0d359b;
+$beta-base-hover: #07176e;
+$beta-sheen: #1551d0;
+$beta-glow: #bef1fe;
+
+// Diagonal highlight sweeping from the bottom-left to the top-right of the pill.
+@mixin beta-sheen($base) {
+  background-image: linear-gradient(
+    147deg,
+    $base 0%,
+    $base 45%,
+    $beta-sheen 62%,
+    $base 80%,
+    $base 100%
+  );
+}
+
+// The class is repeated on purpose: the navbar styles anchors through
+// `.oui-navbar-list a`, which would otherwise win on specificity.
+.betaManagerButton.betaManagerButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 1.25rem;
+  border: none;
+  border-radius: 9999px;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+  transition: background-image 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+  @include beta-sheen($beta-base);
+
+  &:hover,
+  &:focus-visible {
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 0 0 0.25rem $beta-glow;
+
+    @include beta-sheen($beta-base-hover);
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.betaTag {
+  font-weight: 700;
+}
