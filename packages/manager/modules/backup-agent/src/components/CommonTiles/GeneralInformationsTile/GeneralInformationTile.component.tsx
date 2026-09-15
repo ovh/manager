@@ -41,7 +41,11 @@ export function GeneralInformationTile<T extends { name: string }>({
       <ManagerTile.Item>
         <ManagerTile.Item.Label>{t(`${NAMESPACES.DASHBOARD}:name`)}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          {isLoading ? <OdsSkeleton /> : <OdsText>{resourceDetails!.currentState.name}</OdsText>}
+          {isLoading ? (
+            <OdsSkeleton />
+          ) : (
+            <OdsText>{resourceDetails?.currentState.name ?? '-'}</OdsText>
+          )}
         </ManagerTile.Item.Description>
       </ManagerTile.Item>
       <ManagerTile.Divider />
@@ -50,8 +54,10 @@ export function GeneralInformationTile<T extends { name: string }>({
         <ManagerTile.Item.Description>
           {isLoading ? (
             <OdsSkeleton />
+          ) : resourceDetails ? (
+            <ResourceStatusBadge resourceStatus={resourceDetails.resourceStatus} />
           ) : (
-            <ResourceStatusBadge resourceStatus={resourceDetails!.resourceStatus} />
+            <OdsText>-</OdsText>
           )}
         </ManagerTile.Item.Description>
       </ManagerTile.Item>
@@ -62,7 +68,9 @@ export function GeneralInformationTile<T extends { name: string }>({
           {isLoading || isLocationLoading ? (
             <OdsSkeleton />
           ) : (
-            <OdsText>{locationData?.location ?? resourceDetails!.currentState.region}</OdsText>
+            <OdsText>
+              {locationData?.location ?? resourceDetails?.currentState.region ?? '-'}
+            </OdsText>
           )}
         </ManagerTile.Item.Description>
       </ManagerTile.Item>
@@ -73,7 +81,9 @@ export function GeneralInformationTile<T extends { name: string }>({
           {isLoading || isLocationLoading ? (
             <OdsSkeleton />
           ) : (
-            <OdsText>{locationData?.name ?? resourceDetails!.currentState.region}</OdsText>
+            <OdsText>
+              {locationData?.name ?? resourceDetails?.currentState.region ?? '-'}
+            </OdsText>
           )}
         </ManagerTile.Item.Description>
       </ManagerTile.Item>
