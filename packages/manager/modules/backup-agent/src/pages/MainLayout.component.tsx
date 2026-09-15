@@ -19,6 +19,7 @@ import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { BackupAgentContext } from '@/BackupAgent.context';
 import { NoAgentEnabledMessage } from '@/components/NoAgentEnabledMessage/NoAgentEnabledMessage.component';
+import { tenantsQueries } from '@/data/queries/tenants.queries';
 import { vaultsQueries } from '@/data/queries/vaults.queries';
 import { selectHasVaultReady } from '@/data/selectors/vaults.selectors';
 import { useMainGuideItem } from '@/hooks/useMainGuideItem';
@@ -43,7 +44,7 @@ export default function MainLayout() {
   );
 
   const {
-    isPending,
+    isPending: isVaultPending,
     data: isBackupAgentReady,
     isError: isVaultError,
   } = useQuery({
@@ -52,13 +53,24 @@ export default function MainLayout() {
     select: selectHasVaultReady,
   });
 
+  const {
+    isPending: isTenantPending,
+    data: backupAgentTenants,
+    isError: isTenantError,
+  } = useQuery({
+    ...tenantsQueries.withClient(queryClient).vspcAll(),
+    retry: false,
+  });
+
+  const hasBackupAgentTenant = (backupAgentTenants?.length ?? 0) > 0;
+
   const guideItems = useMainGuideItem();
 
   return (
     <RedirectionGuard
       route={urls.onboarding}
-      isLoading={isPending}
-      condition={!isBackupAgentReady || isVaultError}
+      isLoading={isVaultPending || isTenantPending}
+      condition={!isBackupAgentReady || isVaultError || !hasBackupAgentTenant || isTenantError}
     >
       <BaseLayout
         header={{ title: LABELS.BACKUP_AGENT, headerButton: <GuideButton items={guideItems} /> }}
