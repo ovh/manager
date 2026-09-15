@@ -14,7 +14,7 @@ vi.mock('react-i18next', () => ({
       const translations: Record<string, string> = {
         beta_modal_old: 'Classic',
         beta_modal_new: 'New',
-        manager_beta_button: 'Découvrez notre nouveau manager',
+        manager_beta_button: 'Découvrir la console',
       };
       return translations[key] || key;
     },
@@ -114,11 +114,10 @@ describe('NavReshuffleSwitchBack.component', () => {
     const { container } = render(wrapper(<NavReshuffleSwitchBack />));
 
     await waitFor(() => {
-      const button = container.querySelector(`osds-button[href="${BETA_MANAGER_URL}"]`);
+      const button = container.querySelector(`a[href="${BETA_MANAGER_URL}"]`);
       expect(button).toBeTruthy();
-      expect(button?.textContent).toContain(
-        'Découvrez notre nouveau manager',
-      );
+      expect(button?.textContent).toContain('Découvrir la console');
+      expect(button?.textContent).toContain('>BETA_');
     });
   });
 
