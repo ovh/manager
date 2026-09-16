@@ -7,7 +7,7 @@
         >
             <!-- nationalIdentificationNumber -->
             <oui-field
-                data-label="{{ 'sign_up_activity_field_nationalIdentificationNumber' | translate}}"
+                data-label="{{ $ctrl.getNationalIdentificationNumberFieldLabel() }}"
                 data-ng-class="{ 'required-field': $ctrl.signUpFormCtrl.rules.nationalIdentificationNumber.mandatory }"
             >
                 <input
@@ -108,7 +108,7 @@
         >
             <!-- companyNationalIdentificationNumber -->
             <oui-field
-                data-label="{{ 'sign_up_activity_field_companyNationalIdentificationNumber_' + $ctrl.signUpFormCtrl.me.ovhSubsidiary.toLowerCase() | translateDefault:'sign_up_activity_field_companyNationalIdentificationNumber'}}"
+                data-label="{{ $ctrl.getCompanyNationalIdentificationNumberFieldLabel() }}"
                 data-label-popover="{{ 'sign_up_activity_field_companyNationalIdentificationNumber_' + $ctrl.signUpFormCtrl.me.ovhSubsidiary.toLowerCase() + '_tooltip' | translate}}"
                 data-ng-class="{ 'required-field': $ctrl.signUpFormCtrl.rules.companyNationalIdentificationNumber.mandatory }"
             >

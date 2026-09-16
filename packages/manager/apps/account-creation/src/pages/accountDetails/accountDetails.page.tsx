@@ -74,6 +74,8 @@ import {
   useTrackBackButtonClick,
 } from '@/hooks/tracking/useTracking';
 import {
+  COUNTRIES_CNIN_LABEL,
+  COUNTRIES_NIN_LABEL,
   COUNTRIES_VAT_LABEL,
   TRACKING_GOAL_TYPE,
 } from './accountDetails.constants';
@@ -223,6 +225,21 @@ function AccountDetailsForm({
   const separateSIRENAndSIRET = useMemo(() => {
     return country === 'FR' && rules?.companyNationalIdentificationNumber;
   }, [country, rules?.companyNationalIdentificationNumber]);
+
+  // Countries that know these identifiers under a local name get it, the
+  // others keep the generic label.
+  const cninLabel = useMemo(
+    () =>
+      (country && COUNTRIES_CNIN_LABEL[country]) ||
+      t('account_details_field_companyNationalIdentificationNumber'),
+    [country, t],
+  );
+  const ninLabel = useMemo(
+    () =>
+      (country && COUNTRIES_NIN_LABEL[country]) ||
+      t('account_details_field_nationalIdentificationNumber'),
+    [country, t],
+  );
 
   // FR + DROM (FR_COUNTRIES) B2B/B2G: VAT + e-invoicing address grouped in a
   // "Facturation" section
@@ -556,17 +573,9 @@ function AccountDetailsForm({
                 name="nationalIdentificationNumber"
                 render={({ field: { name, value, onChange, onBlur } }) => (
                   <OdsFormField>
-                    <label
-                      htmlFor={name}
-                      slot="label"
-                      aria-label={t(
-                        'account_details_field_nationalIdentificationNumber',
-                      )}
-                    >
+                    <label htmlFor={name} slot="label" aria-label={ninLabel}>
                       <OdsText preset="caption">
-                        {t(
-                          'account_details_field_nationalIdentificationNumber',
-                        )}
+                        {ninLabel}
                         {rules?.firstname?.mandatory && ' *'}
                       </OdsText>
                     </label>
@@ -807,17 +816,13 @@ function AccountDetailsForm({
                         aria-label={
                           separateSIRENAndSIRET
                             ? t('account_details_field_siret')
-                            : t(
-                                'account_details_field_companyNationalIdentificationNumber',
-                              )
+                            : cninLabel
                         }
                       >
                         <OdsText preset="caption">
                           {separateSIRENAndSIRET
                             ? t('account_details_field_siret')
-                            : t(
-                                'account_details_field_companyNationalIdentificationNumber',
-                              )}
+                            : cninLabel}
                           {rules?.companyNationalIdentificationNumber
                             ?.mandatory && ' *'}
                         </OdsText>

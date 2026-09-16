@@ -404,6 +404,15 @@ export default class NewAccountFormFieldController {
     return result;
   }
 
+  // returns the field label, which the customer's country may rename
+  // (see COUNTRIES_FIELD_LABEL)
+  getTranslatedLabel() {
+    return (
+      this.rule.displayLabel ||
+      this.$translate.instant(`signup_field_${this.rule.displayFieldName}`)
+    );
+  }
+
   // handle special area translation cases
   getTranslatedArea() {
     if (

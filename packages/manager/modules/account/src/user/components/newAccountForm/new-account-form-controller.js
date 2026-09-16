@@ -22,6 +22,7 @@ import {
   USER_TYPE_INDIVIDUAL,
   USER_TYPE_OTHER,
   SUBSIDIARIES_VAT_FIELD_OVERRIDE,
+  COUNTRIES_FIELD_LABEL,
 } from './new-account-form-component.constants';
 import { KYC_STATUS } from '../../../identity-documents/user-identity-documents.constant';
 import { SUPPORT_URLS } from '../../user.constants';
@@ -286,6 +287,12 @@ export default class NewAccountFormController {
           this.formatSiretRules(rules);
         }
 
+        const country = (
+          this.model.country ||
+          this.user.country ||
+          ''
+        ).toUpperCase();
+
         const displayRules = rules
           .map((rule) => {
             let displayFieldName = rule.fieldName;
@@ -298,6 +305,9 @@ export default class NewAccountFormController {
             return {
               ...rule,
               displayFieldName,
+              // local name given to the identifier by the customer's country,
+              // when there is one (see COUNTRIES_FIELD_LABEL)
+              displayLabel: COUNTRIES_FIELD_LABEL[rule.fieldName]?.[country],
             };
           })
           .sort((a, b) => {
