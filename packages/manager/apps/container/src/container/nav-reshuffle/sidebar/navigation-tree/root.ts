@@ -7,7 +7,6 @@ import sunrise from './services/sunrise';
 import telecom from './services/telecom';
 import webCloud from './services/webCloud';
 import securityIdentityOperation from './services/securityIdentityOperation';
-import observability from './services/observability';
 import { assistanceTree } from './assistance';
 
 const root: Node = {
@@ -29,7 +28,6 @@ const root: Node = {
         publicCloud,
         sunrise,
         securityIdentityOperation,
-        observability,
         telecom,
         webCloud,
       ],
