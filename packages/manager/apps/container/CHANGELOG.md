@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.205.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.205.0...@ovh-ux/manager-container-app@0.205.1) (2026-09-16)
+
+
+### Bug Fixes
+
+* **container:** remove observability menu entries ([fa47b43](https://github.com/ovh/manager/commit/fa47b4371adc88cacb4f81132dd16fa81a8b6b16)), closes [#MAOBS-675](https://github.com/ovh/manager/issues/MAOBS-675)
+
+
+
+
+
 # [0.205.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.204.0...@ovh-ux/manager-container-app@0.205.0) (2026-09-15)
 
 
