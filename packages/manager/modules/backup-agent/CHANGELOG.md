@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.20.2](https://github.com/ovh/manager/compare/@ovh-ux/backup-agent@1.20.1...@ovh-ux/backup-agent@1.20.2) (2026-09-16)
+
+
+### Bug Fixes
+
+* **backup-agent:** handle when user has backup licence but no backup agent ([8fb86ea](https://github.com/ovh/manager/commit/8fb86ea2f7fa6dadbfe1d8d4a715fe390bcc849d)), closes [#bkp-1161](https://github.com/ovh/manager/issues/bkp-1161)
+
+
+
+
+
 ## [1.20.1](https://github.com/ovh/manager/compare/@ovh-ux/backup-agent@1.20.0...@ovh-ux/backup-agent@1.20.1) (2026-08-19)
 
 
