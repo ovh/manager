@@ -31,6 +31,16 @@
       "import": "./dist/src/data/queries/vaults.queries",
       "require": "./dist/src/data/queries/vaults.queries.js"
     },
+    "./data/queries/tenants.queries": {
+      "types": "./dist/types/src/data/queries/tenants.queries.d.ts",
+      "import": "./dist/src/data/queries/tenants.queries",
+      "require": "./dist/src/data/queries/tenants.queries.js"
+    },
+    "./data/selectors/vaults.selectors": {
+      "types": "./dist/types/src/data/selectors/vaults.selectors.d.ts",
+      "import": "./dist/src/data/selectors/vaults.selectors",
+      "require": "./dist/src/data/selectors/vaults.selectors.js"
+    },
     "./data/queries/queryKeys": {
       "types": "./dist/types/src/data/queries/queryKeys.d.ts",
       "import": "./dist/src/data/queries/queryKeys",
