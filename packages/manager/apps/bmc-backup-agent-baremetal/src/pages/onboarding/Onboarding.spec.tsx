@@ -59,6 +59,10 @@ vi.mock('@ovh-ux/backup-agent/data/queries/vaults.queries', () => ({
   vaultsQueries: { withClient: vi.fn().mockReturnValue({ list: vi.fn() }) },
 }));
 
+vi.mock('@ovh-ux/backup-agent/data/queries/tenants.queries', () => ({
+  tenantsQueries: { withClient: vi.fn().mockReturnValue({ vspcAll: vi.fn() }) },
+}));
+
 // --- Mock manager-react-components ---
 interface OnboardingLayoutProps {
   title: string;

@@ -8,7 +8,12 @@ import { Trans, useTranslation } from 'react-i18next';
 import { OdsMessage } from '@ovhcloud/ods-components/react';
 
 import { baremetalsQueries } from '@ovh-ux/backup-agent/data/queries/baremetals.queries';
+import { tenantsQueries } from '@ovh-ux/backup-agent/data/queries/tenants.queries';
 import { vaultsQueries } from '@ovh-ux/backup-agent/data/queries/vaults.queries';
+import {
+  selectBackupAgentVaults,
+  selectHasVaultReady,
+} from '@ovh-ux/backup-agent/data/selectors/vaults.selectors';
 import { useGuideUtils } from '@ovh-ux/backup-agent/hooks/useGuideUtils.ts';
 import { urls as backupAgentUrls } from '@ovh-ux/backup-agent/routes/routes.constants';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
@@ -39,9 +44,19 @@ export default function OnboardingPage() {
   } = useQuery({
     ...vaultsQueries.withClient(queryClient).list(),
     retry: false,
-    select: (vaults) =>
-      vaults.filter(({ currentState: { status } }) => status === 'READY').length >= 1,
+    select: (vaults) => selectHasVaultReady(selectBackupAgentVaults(vaults)),
   });
+
+  const {
+    data: backupAgentTenants,
+    isPending: isTenantPending,
+    isError: isTenantError,
+  } = useQuery({
+    ...tenantsQueries.withClient(queryClient).vspcAll(),
+    retry: false,
+  });
+
+  const hasBackupAgentTenant = (backupAgentTenants?.length ?? 0) > 0;
 
   // Build hero image object with fallback alt text.
   const img = useOnboardingHeroImage();
@@ -80,8 +95,8 @@ export default function OnboardingPage() {
 
   return (
     <RedirectionGuard
-      condition={!!isBackupAgentReady}
-      isLoading={isVaultPending}
+      condition={!!isBackupAgentReady && !isVaultError && hasBackupAgentTenant && !isTenantError}
+      isLoading={isVaultPending || isTenantPending}
       route={backupAgentUrls.dashboardTenant}
     >
       <OnboardingLayout
