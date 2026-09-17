@@ -1,6 +1,6 @@
 {
   "hosting_dashboard_spoofing_modal_title": "Wymagane działanie dotyczące wysyłania wiadomości e-mail",
-  "hosting_dashboard_spoofing_modal_intro": "Wykryto wiadomości e-mail wysyłane bez uwierzytelniania SMTP z Twojego hostingu.<br/>Aby lepiej chronić wysyłkę wiadomości e-mail przed nieuczciwym wykorzystaniem, ten tryb wysyłki zostanie wkrótce zablokowany.<br/>Twój hosting korzysta obecnie z tymczasowego wyjątku, aby dać Ci czas na zmianę konfiguracji.<br/>Jeśli nic nie zrobisz, objęte wiadomości e-mail nie będą mogły być już wysyłane z Twojego hostingu.",
+  "hosting_dashboard_spoofing_modal_intro": "Aby lepiej chronić wysyłkę wiadomości e-mail przed nieuczciwym wykorzystaniem, wiadomości wysyłane z domeny, którą nie zarządzasz, zostaną wkrótce zablokowane.<br/>Twój hosting korzysta obecnie z tymczasowego wyjątku, aby dać Ci czas na zmianę konfiguracji.",
   "hosting_dashboard_spoofing_modal_todo_title": "Co musisz zrobić:",
   "hosting_dashboard_spoofing_modal_todo_first": "Zapoznaj się z naszym przewodnikiem i zastosuj rozwiązanie odpowiednie do Twojej konfiguracji.",
   "hosting_dashboard_spoofing_modal_todo_guide": "Przewodnik dotyczący konfiguracji wysyłania wiadomości e-mail",

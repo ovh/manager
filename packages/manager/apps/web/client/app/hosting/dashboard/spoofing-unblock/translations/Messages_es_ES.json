@@ -1,6 +1,6 @@
 {
   "hosting_dashboard_spoofing_modal_title": "Acción necesaria para el envío de sus correos electrónicos",
-  "hosting_dashboard_spoofing_modal_intro": "Se han detectado correos electrónicos enviados sin autenticación SMTP desde su alojamiento.<br/>Para proteger mejor sus envíos de correos contra usos fraudulentos, este modo de envío se bloqueará próximamente.<br/>Su alojamiento se beneficia actualmente de una excepción temporal para darle tiempo a modificar su configuración.<br/>Si no hace nada, los correos afectados ya no podrán enviarse desde su alojamiento.",
+  "hosting_dashboard_spoofing_modal_intro": "Para proteger mejor sus envíos de correos contra usos fraudulentos, los envíos realizados con un dominio que usted no gestiona se bloquearán próximamente.<br/>Su alojamiento se beneficia actualmente de una excepción temporal para darle tiempo a modificar su configuración.",
   "hosting_dashboard_spoofing_modal_todo_title": "Lo que debe hacer:",
   "hosting_dashboard_spoofing_modal_todo_first": "Consulte nuestra guía y aplique la solución adaptada a su configuración.",
   "hosting_dashboard_spoofing_modal_todo_guide": "Guía para configurar el envío de sus correos electrónicos",

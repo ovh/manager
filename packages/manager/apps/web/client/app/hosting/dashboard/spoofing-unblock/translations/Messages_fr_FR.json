@@ -1,6 +1,6 @@
 {
   "hosting_dashboard_spoofing_modal_title": "Action requise pour l'envoi de vos e-mails",
-  "hosting_dashboard_spoofing_modal_intro": "Des e-mails sans authentification SMTP ont été détectés depuis votre hébergement.<br/>Afin de mieux protéger vos envois d'e-mails contre les usages frauduleux, ce mode d'envoi sera prochainement bloqué.<br/>Votre hébergement bénéficie actuellement d'une exception temporaire afin de vous laisser le temps de modifier votre configuration.<br/>Si vous ne faites rien, les e-mails concernés ne pourront plus être envoyés depuis votre hébergement.",
+  "hosting_dashboard_spoofing_modal_intro": "Afin de mieux protéger vos envois d'e-mails contre les usages frauduleux, les envois réalisés avec un domaine que vous ne gérez pas seront prochainement bloqués.<br/>Votre hébergement bénéficie actuellement d'une exception temporaire afin de vous laisser le temps de modifier votre configuration.",
   "hosting_dashboard_spoofing_modal_todo_title": "Ce que vous devez faire :",
   "hosting_dashboard_spoofing_modal_todo_first": "Consultez notre guide et appliquez la solution adaptée à votre configuration.",
   "hosting_dashboard_spoofing_modal_todo_guide": "Guide pour configurer vos envois d'e-mails",

@@ -1,6 +1,6 @@
 {
   "hosting_dashboard_spoofing_modal_title": "Erforderliche Aktion für den Versand Ihrer E-Mails",
-  "hosting_dashboard_spoofing_modal_intro": "Es wurden E-Mails ohne SMTP-Authentifizierung von Ihrem Webhosting festgestellt.<br/>Um Ihren E-Mail-Versand besser vor betrügerischer Nutzung zu schützen, wird dieser Versandmodus in Kürze blockiert.<br/>Ihr Webhosting profitiert derzeit von einer vorübergehenden Ausnahme, um Ihnen Zeit zu geben, Ihre Konfiguration zu ändern.<br/>Wenn Sie nichts unternehmen, können die betroffenen E-Mails nicht mehr von Ihrem Webhosting gesendet werden.",
+  "hosting_dashboard_spoofing_modal_intro": "Um Ihren E-Mail-Versand besser vor betrügerischer Nutzung zu schützen, wird der Versand über eine Domain, die Sie nicht verwalten, in Kürze blockiert.<br/>Ihr Webhosting profitiert derzeit von einer vorübergehenden Ausnahme, um Ihnen Zeit zu geben, Ihre Konfiguration zu ändern.",
   "hosting_dashboard_spoofing_modal_todo_title": "Was Sie tun müssen:",
   "hosting_dashboard_spoofing_modal_todo_first": "Konsultieren Sie unseren Leitfaden und wenden Sie die für Ihre Konfiguration passende Lösung an.",
   "hosting_dashboard_spoofing_modal_todo_guide": "Leitfaden zur Konfiguration Ihres E-Mail-Versands",
