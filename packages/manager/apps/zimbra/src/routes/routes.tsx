@@ -40,13 +40,11 @@ import {
   EMAIL_ACCOUNT,
   EMAIL_ACCOUNT_ADD_ALIAS,
   EMAIL_ACCOUNT_ADD_AUTO_REPLY,
-  EMAIL_ACCOUNT_ADD_REDIRECTION,
   EMAIL_ACCOUNT_ALIAS,
   EMAIL_ACCOUNT_AUTO_REPLY,
   EMAIL_ACCOUNT_DELETE_ALIAS,
   EMAIL_ACCOUNT_DELETE_AUTO_REPLY,
   EMAIL_ACCOUNT_DELETE_REDIRECTION,
-  EMAIL_ACCOUNT_REDIRECTION,
   GENERAL_INFORMATIONS,
   MAILING_LIST,
   ONBOARDING,
@@ -532,60 +530,6 @@ export default (
                 },
                 breadcrumb: {
                   label: 'common:delete_alias',
-                },
-              }}
-            />
-          </Route>
-          <Route
-            path={'redirections'}
-            Component={RedirectionPage}
-            handle={{
-              isOverridePage: true,
-              tracking: {
-                pageName: EMAIL_ACCOUNT_REDIRECTION,
-                pageType: PageType.listing,
-              },
-              breadcrumb: {
-                label: 'common:redirection',
-              },
-            }}
-          >
-            <Route
-              path={'redirectionId/delete'}
-              Component={DeleteRedirectionPage}
-              handle={{
-                tracking: {
-                  pageName: EMAIL_ACCOUNT_DELETE_REDIRECTION,
-                  pageType: PageType.popup,
-                },
-                breadcrumb: {
-                  label: 'common:delete_redirection',
-                },
-              }}
-            />
-            <Route
-              path={'delete_all'}
-              Component={DeleteRedirectionPage}
-              handle={{
-                tracking: {
-                  pageName: EMAIL_ACCOUNT_DELETE_REDIRECTION,
-                  pageType: PageType.popup,
-                },
-                breadcrumb: {
-                  label: 'common:delete_redirections',
-                },
-              }}
-            />
-            <Route
-              path={'add'}
-              Component={EditRedirectionPage}
-              handle={{
-                tracking: {
-                  pageName: EMAIL_ACCOUNT_ADD_REDIRECTION,
-                  pageType: PageType.popup,
-                },
-                breadcrumb: {
-                  label: 'common:add_redirection',
                 },
               }}
             />
