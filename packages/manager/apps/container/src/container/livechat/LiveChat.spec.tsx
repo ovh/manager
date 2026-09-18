@@ -5,7 +5,6 @@ import { getCustomerLevel } from './liveChat.helpers';
 import { CHAT_TYPE_STORAGE_KEY } from './liveChat.constants';
 import useContainer from '@/core/container';
 import { ContainerContextType } from '@/core/container/container.context';
-import { format } from 'date-fns';
 
 vi.mock('@/context', () => ({
   useShell: () => ({
@@ -109,10 +108,11 @@ describe('LiveChat.component', {}, () => {
     const { getByTestId } = render(<LiveChat closeLiveChat={closeLiveChat} />);
     const liveChatIFrame = getByTestId('live-chat-iframe');
 
-    // TODO: Change url after the livechat is ready
+    // TODO: #MANAGER-15587 restore generateAdriellyChatUrl once the livechat is
+    // ready, the url is temporarily pinned to the pre-prod chat
     expect(liveChatIFrame).toHaveAttribute(
       'src',
-      `https://chatbot.ovhcloud.com/livechat-manager/STD/FR_fr/docs/index2.html?v=${format(new Date(), 'yy-MM-dd')}`,
+      'https://chat.ovh.com/system/templates/pre-prod/prepa_prod/STD/FR_fr/docs/index2.html',
     );
   });
 
@@ -123,7 +123,7 @@ describe('LiveChat.component', {}, () => {
     vi.mocked(useContainer).mockReturnValue(context as ContainerContextType);
     const { getByTestId } = render(<LiveChat closeLiveChat={closeLiveChat} />);
     expect(getByTestId('live-chat-wrapper')).toHaveClass(
-      'h-full xl:h-fit w-full xl:w-auto',
+      'size-full xl:h-fit xl:w-auto',
     );
 
     expect(getByTestId('live-chat-pta-wrapper')).toHaveClass(
