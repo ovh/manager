@@ -32,5 +32,8 @@
   "billing_main_history_table_export_success": "Riceverai un’email con il link da cui sarà possibile scaricare le fatture esportate. In base al numero di fatture, l’operazione potrebbe richiedere alcuni minuti.",
   "billing_main_history_table_export_error": "Si è verificato un errore durante la richiesta di esportazione delle fatture: {{ message }}",
   "billing_main_history": "Le tue fatture",
-  "billing_main_history_table_balance_status_WRITE_OFF": "Stornato"
+  "billing_main_history_table_balance_status_WRITE_OFF": "Stornato",
+  "billing_main_history_invoice_delay": "L'emissione delle vostre fatture può eccezionalmente richiedere fino a 7 giorni. Se siete interessati, questo termine si applica anche al loro deposito sulla piattaforma di fatturazione elettronica.",
+  "billing_main_history_invoice_delay_no_action": "Si prega di notare che non è richiesta alcuna azione da parte vostra: le vostre fatture saranno disponibili al termine dell'elaborazione.",
+  "billing_main_history_invoice_delay_thanks": "Grazie per la vostra comprensione."
 }

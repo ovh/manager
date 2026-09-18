@@ -21,6 +21,7 @@ import BillingSummary from '@/pages/dashboard/BillingSummary.component';
 import Catalog from '@/pages/dashboard/Catalog.component';
 import CriticalInfoBanner from '@/pages/dashboard/CriticalInfoBanner.component';
 import EnterpriseBillingSummary from '@/pages/dashboard/EnterpriseBillingSummary.component';
+import InvoiceDelayBanner from '@/pages/dashboard/InvoiceDelayBanner.component';
 import KycFraudBanner from '@/pages/dashboard/KycFraudBanner.component';
 import KycIndiaBanner from '@/pages/dashboard/KycIndiaBanner.component';
 import NotificationsCarousel from '@/pages/dashboard/NotificationsCarousel.component';
@@ -97,12 +98,14 @@ const mocks = vi.hoisted(() => ({
       'billing:management': false,
       'hub:banner-critical-info': false,
       'hub:banner-hub-invite-customer-siret': true,
+      'billing:invoiceDelayBanner': false,
       'identity-documents': true,
       'procedures:fraud': true,
     },
   },
   isLastOrderLoading: true,
   isAccountSidebarVisible: false,
+  isWithinInvoiceDelayPeriod: true,
   lastOrder: {
     data: null,
     status: 'OK',
@@ -123,6 +126,7 @@ const mocks = vi.hoisted(() => ({
         companyNationalIdentificationNumber: null,
         legalform: 'corporation',
         country: 'FR',
+        ovhSubsidiary: 'FR',
         certificates: ['email-unreachable'],
       } as User,
       getUser: vi.fn(() => ({
@@ -288,6 +292,11 @@ vi.mock('@/data/hooks/catalog/useCatalog', () => ({
     data: Record<string, CatalogItem[]>;
     isLoading: boolean;
   } => mocks.catalog,
+}));
+
+// The window itself is covered by invoiceDelayBanner.helpers.spec.ts.
+vi.mock('@/pages/dashboard/invoiceDelayBanner.helpers', () => ({
+  isWithinInvoiceDelayPeriod: () => mocks.isWithinInvoiceDelayPeriod,
 }));
 
 vi.mock('@/pages/dashboard/context', async (importOriginal) => {
@@ -812,6 +821,62 @@ describe('Layout.page', () => {
       const { container } = renderComponent(
         <CriticalInfoBanner translationKey="manager_hub_dashboard_banner_critical_info_vps" />,
       );
+      const html = container.innerHTML;
+
+      void expect(html).toBeValidHtml();
+    });
+  });
+
+  describe('InvoiceDelayBanner component', () => {
+    const setUp = ({
+      isFeatureAvailable = true,
+      ovhSubsidiary = 'FR',
+      isWithinPeriod = true,
+    } = {}) => {
+      mocks.hubContext.availability['billing:invoiceDelayBanner'] = isFeatureAvailable;
+      mocks.shellContext.environment.user.ovhSubsidiary = ovhSubsidiary as User['ovhSubsidiary'];
+      mocks.isWithinInvoiceDelayPeriod = isWithinPeriod;
+    };
+
+    it('should render the banner for a FR customer when the feature is available', () => {
+      trackPageMock.mockReset();
+      setUp();
+      const { getByTestId, getByText } = renderComponent(<InvoiceDelayBanner />);
+
+      expect(getByTestId('invoice_delay_banner')).not.toBeNull();
+      expect(getByText('manager_hub_dashboard_banner_invoice_delay')).not.toBeNull();
+      expect(getByText('manager_hub_dashboard_banner_invoice_delay_no_action')).not.toBeNull();
+      expect(getByText('manager_hub_dashboard_banner_invoice_delay_thanks')).not.toBeNull();
+      expect(trackPageMock).toHaveBeenCalledWith({
+        pageType: 'banner-info',
+        pageName: 'invoice-delay',
+      });
+    });
+
+    it('should render nothing if the feature is not available', () => {
+      setUp({ isFeatureAvailable: false });
+      const { queryByTestId } = renderComponent(<InvoiceDelayBanner />);
+
+      expect(queryByTestId('invoice_delay_banner')).not.toBeInTheDocument();
+    });
+
+    it('should render nothing for a customer of another subsidiary', () => {
+      setUp({ ovhSubsidiary: 'GB' });
+      const { queryByTestId } = renderComponent(<InvoiceDelayBanner />);
+
+      expect(queryByTestId('invoice_delay_banner')).not.toBeInTheDocument();
+    });
+
+    it('should render nothing outside of the 28th to 7th window', () => {
+      setUp({ isWithinPeriod: false });
+      const { queryByTestId } = renderComponent(<InvoiceDelayBanner />);
+
+      expect(queryByTestId('invoice_delay_banner')).not.toBeInTheDocument();
+    });
+
+    it('should have a valid html', () => {
+      setUp();
+      const { container } = renderComponent(<InvoiceDelayBanner />);
       const html = container.innerHTML;
 
       void expect(html).toBeValidHtml();

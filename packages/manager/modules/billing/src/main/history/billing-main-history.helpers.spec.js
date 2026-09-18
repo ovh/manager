@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest';
 import {
   isSiretMissingOrInvalid,
   isSiretValid,
+  isWithinInvoiceDelayPeriod,
 } from './billing-main-history.helpers';
 
 // 14 digits whose Luhn checksum adds up, and one that does not
@@ -114,5 +115,29 @@ describe('isSiretMissingOrInvalid', () => {
 
   it('lets a valid SIRET through', () => {
     expect(isSiretMissingOrInvalid(buildUser({}))).toBe(false);
+  });
+});
+
+describe('isWithinInvoiceDelayPeriod', () => {
+  it.each([28, 29, 30, 31])(
+    'opens the window on the %ith of a month',
+    (day) => {
+      expect(isWithinInvoiceDelayPeriod(new Date(2026, 0, day))).toBe(true);
+    },
+  );
+
+  it.each([1, 2, 3, 4, 5, 6, 7])(
+    'keeps the window open on the %ith of the next month',
+    (day) => {
+      expect(isWithinInvoiceDelayPeriod(new Date(2026, 1, day))).toBe(true);
+    },
+  );
+
+  it.each([8, 15, 27])('keeps the window shut on the %ith', (day) => {
+    expect(isWithinInvoiceDelayPeriod(new Date(2026, 1, day))).toBe(false);
+  });
+
+  it('still opens on the 28th of a 28 day month', () => {
+    expect(isWithinInvoiceDelayPeriod(new Date(2026, 1, 28))).toBe(true);
   });
 });

@@ -32,5 +32,8 @@
   "billing_main_history_table_export_success": "We will send you an email containing a download link, which you can use to retrieve your exported bills. Depending on the number of bills you want to retrieve, this may take a few minutes.",
   "billing_main_history_table_export_error": "An error has occurred requesting an export of your bills. {{ message }}",
   "billing_main_history": "My bills",
-  "billing_main_history_table_balance_status_WRITE_OFF": "Loss"
+  "billing_main_history_table_balance_status_WRITE_OFF": "Loss",
+  "billing_main_history_invoice_delay": "The issuing of your invoices may exceptionally take up to 7 days. If you are affected, this timeframe also applies to their submission on the electronic invoicing platform.",
+  "billing_main_history_invoice_delay_no_action": "Please note that no action is required on your part: your invoices will be available as soon as processing is complete.",
+  "billing_main_history_invoice_delay_thanks": "Thank you for your understanding."
 }
