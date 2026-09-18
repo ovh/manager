@@ -21,12 +21,6 @@ export const urls = {
   email_accounts_alias: '/:platformId/email_accounts/:accountId/aliases',
   email_accounts_alias_add: '/:platformId/email_accounts/:accountId/aliases/add',
   email_accounts_alias_delete: '/:platformId/email_accounts/:accountId/aliases/:aliasId/delete',
-  email_accounts_redirections: '/:platformId/email_accounts/:accountId/redirections',
-  email_accounts_redirections_add: '/:platformId/email_accounts/:accountId/redirections/add',
-  email_accounts_redirections_edit:
-    '/:platformId/email_accounts/:accountId/redirections/:redirectionId/edit',
-  email_accounts_redirections_delete:
-    '/:platformId/email_accounts/:accountId/redirections/:redirectionId/delete',
   email_accounts_auto_replies: '/:platformId/email_accounts/:accountId/auto_replies',
   email_accounts_auto_replies_add: '/:platformId/email_accounts/:accountId/auto_replies/add',
   email_accounts_auto_replies_delete:
