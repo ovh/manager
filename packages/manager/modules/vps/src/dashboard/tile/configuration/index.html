@@ -33,7 +33,7 @@
             </p>
             <oui-message
                 type="info"
-                data-ng-if="$ctrl.serviceInfos.contactAdmin !== $ctrl.nichandle"
+                data-ng-if="$ctrl.serviceInfos.contactAdmin !== $ctrl.nichandle.toLowerCase()"
             >
                 <p
                     class="mb-0"
@@ -101,7 +101,7 @@
             </p>
             <oui-message
                 type="info"
-                data-ng-if="$ctrl.serviceInfos.contactAdmin !== $ctrl.nichandle"
+                data-ng-if="$ctrl.serviceInfos.contactAdmin !== $ctrl.nichandle.toLowerCase()"
             >
                 <p
                     class="mb-0"
@@ -169,7 +169,7 @@
             </p>
             <oui-message
                 type="info"
-                data-ng-if="$ctrl.serviceInfos.contactAdmin !== $ctrl.nichandle"
+                data-ng-if="$ctrl.serviceInfos.contactAdmin !== $ctrl.nichandle.toLowerCase()"
             >
                 <p
                     class="mb-0"

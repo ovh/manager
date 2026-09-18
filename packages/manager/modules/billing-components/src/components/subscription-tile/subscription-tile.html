@@ -116,7 +116,7 @@
                 <a
                     class="oui-link_icon"
                     data-ng-href="{{ $ctrl.cancelResiliationLink }}"
-                    data-ng-if="$ctrl.serviceInfos.serviceType !== $ctrl.SERVICE_TYPE.VRACK && $ctrl.cancelResiliationLink && ($ctrl.serviceInfos.canBeUnresiliated($ctrl.user.nichandle) || $ctrl.serviceInfos.canCancelResiliationByEndRule())"
+                    data-ng-if="$ctrl.serviceInfos.serviceType !== $ctrl.SERVICE_TYPE.VRACK && $ctrl.cancelResiliationLink && ($ctrl.serviceInfos.canBeUnresiliated($ctrl.user.nichandle.toLowerCase()) || $ctrl.serviceInfos.canCancelResiliationByEndRule())"
                     data-ng-click="$ctrl.trackClick('go-to-cancel-resiliation')"
                     target="_top"
                 >
@@ -181,14 +181,14 @@
                 <p data-ng-bind="$ctrl.service.nextBillingDate"></p>
                 <a
                     class="oui-link_icon"
-                    data-ng-href="{{ $ctrl.autorenewLink && !$ctrl.service.hasBillingRights($ctrl.user.nichandle) ? $ctrl.warningLink : $ctrl.billingLink }}"
+                    data-ng-href="{{ $ctrl.autorenewLink && !$ctrl.service.hasBillingRights($ctrl.user.nichandle.toLowerCase()) ? $ctrl.warningLink : $ctrl.billingLink }}"
                     data-ng-if="$ctrl.serviceInfos.hasDebt()"
                     data-ng-click="$ctrl.trackAction('go-to-pay-bill')"
                     target="_top"
                 >
                     <p>
                         <span
-                            data-translate="{{ $ctrl.autorenewLink && !$ctrl.service.hasBillingRights($ctrl.user.nichandle) ? 'manager_billing_subscription_pay_bill_renew': 'manager_billing_subscription_pay_bill' }}"
+                            data-translate="{{ $ctrl.autorenewLink && !$ctrl.service.hasBillingRights($ctrl.user.nichandle.toLowerCase()) ? 'manager_billing_subscription_pay_bill_renew': 'manager_billing_subscription_pay_bill' }}"
                         >
                         </span>
                         <span
@@ -211,7 +211,7 @@
             >
                 <a
                     class="oui-link_icon"
-                    data-ng-if="($ctrl.resiliateLink || $ctrl.isCustomResiliationHandled) && ($ctrl.serviceInfos.hasAdminRights($ctrl.user.auth.account) || $ctrl.serviceInfos.hasAdminRights($ctrl.user.nichandle))"
+                    data-ng-if="($ctrl.resiliateLink || $ctrl.isCustomResiliationHandled) && ($ctrl.serviceInfos.hasAdminRights($ctrl.user.auth.account) || $ctrl.serviceInfos.hasAdminRights($ctrl.user.nichandle.toLowerCase()))"
                     data-ng-href="{{:: !$ctrl.isCustomResiliationHandled && $ctrl.resiliateLink }}"
                     data-ng-click="$ctrl.handleClickResiliate($event)"
                     target="_top"
@@ -239,7 +239,7 @@
             >
                 <a
                     class="oui-link_icon"
-                    data-ng-if="$ctrl.resiliateLink && ($ctrl.serviceInfos.hasAdminRights($ctrl.user.auth.account) || $ctrl.serviceInfos.hasAdminRights($ctrl.user.nichandle))"
+                    data-ng-if="$ctrl.resiliateLink && ($ctrl.serviceInfos.hasAdminRights($ctrl.user.auth.account) || $ctrl.serviceInfos.hasAdminRights($ctrl.user.nichandle.toLowerCase()))"
                     data-ng-href="{{ $ctrl.resiliateLink }}"
                     data-ng-click="$ctrl.trackAction('stop', true)"
                     target="_top"
