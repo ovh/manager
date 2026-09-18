@@ -18,7 +18,6 @@ import {
   EDIT_EMAIL_ACCOUNT,
   EMAIL_ACCOUNT_ALIAS,
   EMAIL_ACCOUNT_AUTO_REPLY,
-  EMAIL_ACCOUNT_REDIRECTION,
 } from '@/tracking.constants';
 import { FEATURE_FLAGS } from '@/utils';
 
@@ -50,12 +49,6 @@ export const EmailAccountSettingsLayout = () => {
     urls.email_accounts_alias_delete,
   ]);
 
-  const pathMatcherRedirectionsTabs = useComputePathMatchers([
-    urls.email_accounts_redirections,
-    urls.email_accounts_redirections_add,
-    urls.email_accounts_redirections_delete,
-  ]);
-
   const pathMatcherAutoRepliesTabs = useComputePathMatchers([
     urls.email_accounts_auto_replies,
     urls.email_accounts_auto_replies_add,
@@ -64,7 +57,6 @@ export const EmailAccountSettingsLayout = () => {
 
   const hrefSettings = useGenerateUrl('./settings', 'path');
   const hrefAlias = useGenerateUrl('./aliases', 'path');
-  const hrefRedirections = useGenerateUrl('./redirections', 'path');
   const hrefAutoReplies = useGenerateUrl('./auto_replies', 'path');
 
   const tabsList: TabItemProps[] = [
@@ -81,13 +73,6 @@ export const EmailAccountSettingsLayout = () => {
       title: t('common:alias'),
       to: hrefAlias,
       pathMatchers: pathMatcherAliasTabs,
-    },
-    {
-      name: 'redirection',
-      trackingName: EMAIL_ACCOUNT_REDIRECTION,
-      title: t('common:redirection'),
-      to: hrefRedirections,
-      pathMatchers: pathMatcherRedirectionsTabs,
     },
     {
       name: 'auto_reply',

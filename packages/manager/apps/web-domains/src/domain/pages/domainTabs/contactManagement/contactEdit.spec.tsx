@@ -315,4 +315,41 @@ describe('ContactEdit Page', () => {
       expect(getSubmitButton()).not.toBeDisabled();
     });
   });
+
+  describe('submit body', () => {
+    it('should not submit a field that is not filled', () => {
+      // nationality is not applicable on every extension (e.g. .eu): the field
+      // is not displayed and its value is null. Submitting it as '' made the
+      // API answer: [owner.nationality] "" does not match the enum
+      (useGetConfigurationRule as Mock).mockReturnValue({
+        rules: {
+          ...mockRules,
+          fields: {
+            and: [
+              ...mockRules.fields.and,
+              {
+                label: 'nationality',
+                constraints: [{ operator: 'contains', values: ['FR', 'BE'] }],
+              } as TConfigurationRuleField,
+            ],
+          },
+        },
+        isRulesLoading: false,
+      });
+      (useGetDomainContact as Mock).mockReturnValue({
+        domainContact: { ...mockDomainContact, nationality: null },
+        isFetchingDomainContact: false,
+      });
+
+      render(<ContactEdit />);
+      fireEvent.click(screen.getByTestId('change-firstName'));
+      fireEvent.click(
+        screen
+          .getByText('domain_tab_CONTACT_edit_form_submit_btn')
+          .closest('button'),
+      );
+
+      expect(mockUpdateContact.mock.calls[0][0].nationality).toBeNull();
+    });
+  });
 });

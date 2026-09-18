@@ -173,6 +173,8 @@ export default function ContactEdit() {
     Object.entries(formValues).forEach(([key, value]) => {
       const resolvedValue = resolveFormValue(value);
 
+      if (!resolvedValue) return;
+
       if (key.includes('.')) {
         const [parent, child] = key.split('.');
         if (!contactData[parent] || typeof contactData[parent] !== 'object') {
