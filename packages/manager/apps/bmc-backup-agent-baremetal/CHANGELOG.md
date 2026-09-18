@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-bmc-backup-agent-baremetal-app@0.6.5...@ovh-ux/manager-bmc-backup-agent-baremetal-app@0.6.6) (2026-09-18)
+
+
+### Bug Fixes
+
+* **backup-agent:** handle onboarding vs services redirections ([3f5156a](https://github.com/ovh/manager/commit/3f5156a33b9d9aab34259c78d5b561ae32d16ec8)), closes [#bkp-1161](https://github.com/ovh/manager/issues/bkp-1161)
+
+
+
+
+
 ## [0.6.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-bmc-backup-agent-baremetal-app@0.6.4...@ovh-ux/manager-bmc-backup-agent-baremetal-app@0.6.5) (2026-09-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-bmc-backup-agent-baremetal-app

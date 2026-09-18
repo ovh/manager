@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.20.3](https://github.com/ovh/manager/compare/@ovh-ux/backup-agent@1.20.2...@ovh-ux/backup-agent@1.20.3) (2026-09-18)
+
+
+### Bug Fixes
+
+* **backup-agent:** handle onboarding vs services redirections ([3f5156a](https://github.com/ovh/manager/commit/3f5156a33b9d9aab34259c78d5b561ae32d16ec8)), closes [#bkp-1161](https://github.com/ovh/manager/issues/bkp-1161)
+
+
+
+
+
 ## [1.20.2](https://github.com/ovh/manager/compare/@ovh-ux/backup-agent@1.20.1...@ovh-ux/backup-agent@1.20.2) (2026-09-16)
 
 
