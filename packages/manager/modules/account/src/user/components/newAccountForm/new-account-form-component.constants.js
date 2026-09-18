@@ -137,6 +137,21 @@ export const SUBSIDIARIES_VAT_FIELD_OVERRIDE = {
   MA: FIELD_NAME_LIST.iceNumber,
 };
 
+// Local names of the national identification numbers, per country of the
+// customer. Countries missing from these maps keep the generic label.
+export const COUNTRIES_CNIN_LABEL = {
+  TR: 'MERSIS No',
+};
+
+export const COUNTRIES_NIN_LABEL = {
+  TR: 'VKN',
+};
+
+export const COUNTRIES_FIELD_LABEL = {
+  [FIELD_NAME_LIST.companyNationalIdentificationNumber]: COUNTRIES_CNIN_LABEL,
+  [FIELD_NAME_LIST.nationalIdentificationNumber]: COUNTRIES_NIN_LABEL,
+};
+
 export const PHONE_PREFIX = {
   AC: '247',
   AD: '376',

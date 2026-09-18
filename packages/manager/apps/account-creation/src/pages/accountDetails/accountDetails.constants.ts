@@ -69,3 +69,13 @@ export const COUNTRIES_VAT_LABEL: Record<string, string> = {
   VE: 'RIF',
   MA: 'ICE',
 };
+
+// Local names of the national identification numbers, per country of the
+// customer. Countries missing from these maps keep the generic label.
+export const COUNTRIES_CNIN_LABEL: Record<string, string> = {
+  TR: 'MERSIS No',
+};
+
+export const COUNTRIES_NIN_LABEL: Record<string, string> = {
+  TR: 'VKN',
+};

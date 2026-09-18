@@ -1,6 +1,8 @@
 import get from 'lodash/get';
 
 import {
+  COUNTRIES_CNIN_LABEL,
+  COUNTRIES_NIN_LABEL,
   COUNTRIES_VAT_LABEL,
   COMPANY_CREATED_PREFIX,
   COMPANY_NOT_CREATED_PREFIX,
@@ -55,6 +57,40 @@ export default class OvhSignUpActivityCtrl {
       undefined,
       false,
       'escapeParameters',
+    );
+  }
+
+  /**
+   * Get the local name given to an identification number by the selected
+   * country, from one of the COUNTRIES_*_LABEL maps.
+   * Countries that are not covered yet return undefined, so that the caller
+   * falls back to the generic field label.
+   */
+  getCountryIdentificationLabel(countryLabels) {
+    return get(countryLabels, this.signUpFormCtrl.model.country?.toUpperCase());
+  }
+
+  getNationalIdentificationNumberFieldLabel() {
+    return (
+      this.getCountryIdentificationLabel(COUNTRIES_NIN_LABEL) ||
+      this.$translate.instant(
+        'sign_up_activity_field_nationalIdentificationNumber',
+      )
+    );
+  }
+
+  /**
+   * As a fallback, the subsidiary may name the field too (SIRET in France),
+   * before the generic label is used.
+   */
+  getCompanyNationalIdentificationNumberFieldLabel() {
+    const subsidiary = this.signUpFormCtrl.me?.ovhSubsidiary?.toLowerCase();
+    return (
+      this.getCountryIdentificationLabel(COUNTRIES_CNIN_LABEL) ||
+      this.$filter('translateDefault')(
+        `sign_up_activity_field_companyNationalIdentificationNumber_${subsidiary}`,
+        'sign_up_activity_field_companyNationalIdentificationNumber',
+      )
     );
   }
 

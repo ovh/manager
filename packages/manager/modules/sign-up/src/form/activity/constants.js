@@ -67,6 +67,16 @@ export const COUNTRIES_VAT_LABEL = {
   MA: 'ICE',
 };
 
+// Local names of the national identification numbers, per country of the
+// customer. Countries missing from these maps keep the generic label.
+export const COUNTRIES_CNIN_LABEL = {
+  TR: 'MERSIS No',
+};
+
+export const COUNTRIES_NIN_LABEL = {
+  TR: 'VKN',
+};
+
 const SIRET_TRACKING_PREFIX = 'accountcreation::company-search';
 export const COMPANY_CREATED_PREFIX = `${SIRET_TRACKING_PREFIX}::company-created`;
 export const COMPANY_NOT_CREATED_PREFIX = `${SIRET_TRACKING_PREFIX}::company-not-created`;
@@ -74,5 +84,7 @@ export const COMPANY_NOT_CREATED_PREFIX = `${SIRET_TRACKING_PREFIX}::company-not
 export default {
   COMPANY_CREATED_PREFIX,
   COMPANY_NOT_CREATED_PREFIX,
+  COUNTRIES_CNIN_LABEL,
+  COUNTRIES_NIN_LABEL,
   COUNTRIES_VAT_LABEL,
 };
