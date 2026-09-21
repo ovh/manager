@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.44.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.44.5...@ovh-ux/manager-zimbra-app@0.44.6) (2026-09-21)
+
+
+### Bug Fixes
+
+* **zimbra:** remove redirection tab under email accounts ([87afe7e](https://github.com/ovh/manager/commit/87afe7e57a914e0f12225eab33f3582c3913ae43)), closes [#DCE-346](https://github.com/ovh/manager/issues/DCE-346)
+
+
+
+
+
 ## [0.44.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.44.4...@ovh-ux/manager-zimbra-app@0.44.5) (2026-08-21)
 
 

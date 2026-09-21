@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.17.0...@ovh-ux/manager-web-domains-app@1.17.1) (2026-09-21)
+
+
+### Bug Fixes
+
+* **web-domains:** do not submit empty contact fields ([d45e205](https://github.com/ovh/manager/commit/d45e205a06f20dfc445daaef974f735619d06864)), closes [#INC0254501](https://github.com/ovh/manager/issues/INC0254501)
+* **web-domains:** pin @tanstack/react-query ([4bd4ef0](https://github.com/ovh/manager/commit/4bd4ef0088eb70a1b34daca57d26bd1c45fb2813))
+
+
+
+
+
 # [1.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.16.6...@ovh-ux/manager-web-domains-app@1.17.0) (2026-07-29)
 
 
