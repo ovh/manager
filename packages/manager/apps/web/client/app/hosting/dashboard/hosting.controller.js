@@ -66,7 +66,6 @@ export default class {
     indyLink,
     logs,
     moduleLink,
-    multisiteLink,
     pendingTasks,
     PrivateDatabase,
     privateDatabasesDetachable,
@@ -77,7 +76,6 @@ export default class {
     userStatisticsLink,
     userLogsLink,
     isChangeOfferFeatureAvailable,
-    isWebsiteFeatureAvailable,
     isOslToLdpFeatureAvailable,
     HOSTING_STATUS,
     DOMAIN_ORDER_URL,
@@ -166,14 +164,14 @@ export default class {
       '#/:serviceName/localSeo',
       { serviceName },
     );
-    this.multisiteLink = isWebsiteFeatureAvailable
-      ? coreURLBuilder.buildURL('web-hosting', '#/:serviceName/multisite', {
-          serviceName,
-        })
-      : multisiteLink;
-    this.multisiteLabel = isWebsiteFeatureAvailable
-      ? 'hosting_tab_WEBSITE'
-      : 'hosting_tab_MULTISITE';
+    this.multisiteLink = coreURLBuilder.buildURL(
+      'web-hosting',
+      '#/:serviceName/multisite',
+      {
+        serviceName,
+      },
+    );
+    this.multisiteLabel = 'hosting_tab_WEBSITE';
     this.renewUrl = `${RENEW_URL[this.user.ovhSubsidiary]}${this.serviceName}`;
   }
 
