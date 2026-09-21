@@ -1,6 +1,7 @@
 export const queryKeys = {
   backupServices: {
     all: ['backupServices'],
+    vspc: (backupServicesId: string) => [...queryKeys.backupServices.all, backupServicesId, 'vspc'],
   },
   tenants: {
     all: ['backup', 'tenants'],

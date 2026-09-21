@@ -31,8 +31,17 @@ describe('selectBackupAgentVspcTenants', () => {
       'the type disagrees with the add-on',
       { vspcType: 'ADVANCED', enabledAddons: ['BACKUP_AGENT'] },
     ],
-    ['neither discriminant is declared', { vspcType: undefined, enabledAddons: undefined }],
+    [
+      'neither discriminant is declared and no agent proves the tenant',
+      { vspcType: undefined, enabledAddons: undefined, backupAgents: [] },
+    ],
   ])('discards a tenant when %s', (_, state) => {
     expect(selectBackupAgentVspcTenants([withState('t', state)])).toEqual([]);
+  });
+
+  it('keeps a tenant carrying agents on a schema without discriminants', () => {
+    const undeclared = withState('undeclared', { vspcType: undefined, enabledAddons: undefined });
+
+    expect(selectBackupAgentVspcTenants([undeclared])).toEqual([undeclared]);
   });
 });

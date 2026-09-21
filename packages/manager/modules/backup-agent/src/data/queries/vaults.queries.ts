@@ -13,7 +13,7 @@ const list = (queryClient: QueryClient) => () =>
     queryKey: queryKeys.vaults.all,
     queryFn: async () => {
       const backupServicesId = await servicesQueries.withClient(queryClient).backupServicesId();
-      return getVaults(backupServicesId!);
+      return getVaults(backupServicesId);
     },
     select: selectBackupAgentVaults,
   });
@@ -23,7 +23,7 @@ const detail = (queryClient: QueryClient) => (vaultId: string) =>
     queryKey: queryKeys.vaults.detail(vaultId),
     queryFn: async () => {
       const backupServicesId = await servicesQueries.withClient(queryClient).backupServicesId();
-      return getVaultDetails(backupServicesId!, vaultId);
+      return getVaultDetails(backupServicesId, vaultId);
     },
     enabled: !!vaultId,
   });

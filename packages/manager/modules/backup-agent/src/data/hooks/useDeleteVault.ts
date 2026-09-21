@@ -15,7 +15,7 @@ export const useDeleteVault = ({
   return useMutation({
     mutationFn: async (vaultId: string) => {
       const backupServicesId = await servicesQueries.withClient(queryClient).backupServicesId();
-      return deleteVault(backupServicesId!, vaultId);
+      return deleteVault(backupServicesId, vaultId);
     },
     onSuccess: async (...params) => {
       await queryClient.invalidateQueries({ queryKey: queryKeys.vaults.all });

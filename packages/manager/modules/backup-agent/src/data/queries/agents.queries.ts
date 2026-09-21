@@ -18,7 +18,7 @@ const list = (queryClient: QueryClient) => () =>
     queryFn: async () => {
       const backupServicesId = await servicesQueries.withClient(queryClient).backupServicesId();
       const vspcTenantId = await tenantsQueries.withClient(queryClient).vspcTenantId();
-      return getBackupAgents(backupServicesId!, vspcTenantId);
+      return getBackupAgents(backupServicesId, vspcTenantId);
     },
   });
 
@@ -29,7 +29,7 @@ const detail = (queryClient: QueryClient) => (agentId: string) =>
       const backupServicesId = await servicesQueries.withClient(queryClient).backupServicesId();
       const vspcTenantId = await tenantsQueries.withClient(queryClient).vspcTenantId();
       return getBackupAgentsDetails({
-        backupServicesId: backupServicesId!,
+        backupServicesId: backupServicesId,
         vspcTenantId,
         backupAgentId: agentId,
       });
@@ -43,7 +43,7 @@ const downloadLink = (queryClient: QueryClient) => () =>
     queryFn: async () => {
       const backupServicesId = await servicesQueries.withClient(queryClient).backupServicesId();
       const vspcTenantId = await tenantsQueries.withClient(queryClient).vspcTenantId();
-      return downloadLinkBackupAgent(backupServicesId!, vspcTenantId);
+      return downloadLinkBackupAgent(backupServicesId, vspcTenantId);
     },
   });
 

@@ -25,7 +25,7 @@ export const useDeleteTenantAgent = ({
       const backupServicesId = await servicesQueries.withClient(queryClient).backupServicesId();
       const vspcTenantId = await tenantsQueries.withClient(queryClient).vspcTenantId();
       return deleteBackupAgent({
-        backupServicesId: backupServicesId!,
+        backupServicesId: backupServicesId,
         vspcTenantId,
         backupAgentId: agentId,
       });

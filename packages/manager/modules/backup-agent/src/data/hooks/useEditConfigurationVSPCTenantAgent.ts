@@ -23,7 +23,7 @@ export const useEditConfigurationVSPCTenantAgent = ({
       const backupServicesId = await servicesQueries.withClient(queryClient).backupServicesId();
       const vspcTenantId = await tenantsQueries.withClient(queryClient).vspcTenantId();
       return editConfigurationBackupAgents({
-        backupServicesId: backupServicesId!,
+        backupServicesId: backupServicesId,
         vspcTenantId,
         ...payload,
       });
