@@ -50,8 +50,8 @@ export const getLocalDiskHourlyPrice = (
   return (
     catalog.flavors
       .find((flavor) => flavor.name === flavorName)
-      ?.pricings.filter(({ regions }) => pricesRegion(regions, region))
+      ?.pricings?.filter(({ regions }) => pricesRegion(regions, region))
       .flatMap(({ prices }) => prices)
-      .find((price) => price.type === 'localDisk')?.price.priceInUcents ?? null
+      .find((price) => price.type === 'localDisk')?.price?.priceInUcents ?? null
   );
 };

@@ -60,14 +60,14 @@ export function FlavorSelector({ projectId, region, onSelect }: Readonly<FlavorS
                     flavorSpecs={{
                       ram: flavor.ram,
                       vcores: flavor.vCPUs,
-                      frequency: flavor.blobs.technical.cpu.frequency,
+                      frequency: flavor.blobs?.technical?.cpu?.frequency,
                       ...(!hasRepricing && {
-                        disk: flavor.blobs.technical.storage?.disks,
-                        nvme: flavor.blobs.technical.nvme?.disks,
+                        disk: flavor.blobs?.technical?.storage?.disks,
+                        nvme: flavor.blobs?.technical?.nvme?.disks,
                       }),
-                      bandwidth: flavor.blobs.technical.bandwidth?.level,
-                      gpuNumber: flavor.blobs.technical.gpu?.number,
-                      gpuModel: flavor.blobs.technical.gpu?.model,
+                      bandwidth: flavor.blobs?.technical?.bandwidth?.level,
+                      gpuNumber: flavor.blobs?.technical?.gpu?.number,
+                      gpuModel: flavor.blobs?.technical?.gpu?.model,
                     }}
                     flavorCompatibility={{
                       ...flavor.compatibility,

@@ -47,7 +47,9 @@ export const getPublicIpHourlyPrice = (
 
   const pricing = catalog.ipModels
     .find((ipModel) => matches(ipModel.type, type))
-    ?.pricings.find(({ regions }) => regions.some((pricedRegion) => matches(pricedRegion, region)));
+    ?.pricings?.find(({ regions }) =>
+      regions.some((pricedRegion) => matches(pricedRegion, region)),
+    );
 
-  return pricing?.price.priceInUcents ?? null;
+  return pricing?.price?.priceInUcents ?? null;
 };
