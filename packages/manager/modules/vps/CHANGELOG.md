@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.50.21](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.50.20...@ovh-ux/manager-vps@2.50.21) (2026-09-21)
+
+
+### Bug Fixes
+
+* **dedicated.vps:** resolve vps tile with uppercase nichandle ([771b1fd](https://github.com/ovh/manager/commit/771b1fd685b85052d06ed6bed0de84a09d0cafc4)), closes [#INC0298894](https://github.com/ovh/manager/issues/INC0298894)
+
+
+
+
+
 ## [2.50.20](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.50.19...@ovh-ux/manager-vps@2.50.20) (2026-08-27)
 
 

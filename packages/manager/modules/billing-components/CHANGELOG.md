@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.39.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.39.2...@ovh-ux/manager-billing-components@4.39.3) (2026-09-21)
+
+
+### Bug Fixes
+
+* **dedicated.vps:** resolve vps tile with uppercase nichandle ([771b1fd](https://github.com/ovh/manager/commit/771b1fd685b85052d06ed6bed0de84a09d0cafc4)), closes [#INC0298894](https://github.com/ovh/manager/issues/INC0298894)
+
+
+
+
+
 ## [4.39.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.39.1...@ovh-ux/manager-billing-components@4.39.2) (2026-09-14)
 
 
