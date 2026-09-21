@@ -17,7 +17,7 @@ export const useDeleteVSPCTenant = ({
     mutationFn: async () => {
       const backupServicesId = await servicesQueries.withClient(queryClient).backupServicesId();
       const vspcTenantId = await tenantsQueries.withClient(queryClient).vspcTenantId();
-      return deleteVSPCTenant(backupServicesId!, vspcTenantId);
+      return deleteVSPCTenant(backupServicesId, vspcTenantId);
     },
     onSuccess: async (...params) => {
       await queryClient.invalidateQueries({

@@ -30,7 +30,7 @@ const details = (queryClient: QueryClient) => () =>
     queryKey: queryKeys.tenants.detail(),
     queryFn: async () => {
       const backupServicesId = await servicesQueries.withClient(queryClient).backupServicesId();
-      return getTenantDetails(backupServicesId!);
+      return getTenantDetails(backupServicesId);
     },
     select: (data): Resource<WithRegion<Tenant>> =>
       mapTenantResourceToTenantResourceWithRegion(data),
@@ -41,7 +41,7 @@ const vspcAll = (queryClient: QueryClient) => () =>
     queryKey: queryKeys.tenants.vspc.all(),
     queryFn: async () => {
       const backupServicesId = await servicesQueries.withClient(queryClient).backupServicesId();
-      return getVSPCTenants({ backupServicesId: backupServicesId! });
+      return getVSPCTenants({ backupServicesId: backupServicesId });
     },
     select: selectBackupAgentVspcTenants,
   });
@@ -52,7 +52,7 @@ const vspcDetail = (queryClient: QueryClient) => () =>
     queryFn: async () => {
       const backupServicesId = await servicesQueries.withClient(queryClient).backupServicesId();
       const vspcTenantId = await resolveVspcTenantId(queryClient);
-      return getVSPCTenantDetails(backupServicesId!, vspcTenantId);
+      return getVSPCTenantDetails(backupServicesId, vspcTenantId);
     },
   });
 
@@ -62,7 +62,7 @@ const vspcPolicies = (queryClient: QueryClient) => () =>
     queryFn: async () => {
       const backupServicesId = await servicesQueries.withClient(queryClient).backupServicesId();
       const vspcTenantId = await resolveVspcTenantId(queryClient);
-      return getBackupPolicies(backupServicesId!, vspcTenantId);
+      return getBackupPolicies(backupServicesId, vspcTenantId);
     },
   });
 

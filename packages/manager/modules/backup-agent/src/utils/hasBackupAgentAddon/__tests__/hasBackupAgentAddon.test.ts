@@ -31,8 +31,19 @@ describe('hasBackupAgentAddon', () => {
     ],
     ['the add-on is the sibling one', { vspcType: 'BASIC', enabledAddons: ['BACKUP_LICENSES'] }],
     ['no add-on is declared', { vspcType: 'BASIC', enabledAddons: [] }],
-    ['neither field is declared', { vspcType: undefined, enabledAddons: undefined }],
-  ])('is false when %s', (_, state) => {
+  ])('is false when %s, whatever agents the tenant carries', (_, state) => {
     expect(hasBackupAgentAddon(withState(state))).toBe(false);
+  });
+
+  describe('on a schema that declares neither discriminant', () => {
+    const undeclared = { vspcType: undefined, enabledAddons: undefined };
+
+    it('falls back on the agents, which a Backup Licenses tenant never carries', () => {
+      expect(hasBackupAgentAddon(withState(undeclared))).toBe(true);
+    });
+
+    it('is false when the tenant carries no agent', () => {
+      expect(hasBackupAgentAddon(withState({ ...undeclared, backupAgents: [] }))).toBe(false);
+    });
   });
 });

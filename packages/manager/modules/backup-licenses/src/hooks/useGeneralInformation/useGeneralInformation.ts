@@ -4,6 +4,7 @@ import { useServiceDetailsQueryOption } from '@ovh-ux/manager-module-common-api'
 
 import { backupLicenseQueries } from '@/data/queries/backupLicense.queries';
 import { tenantsQueries } from '@/data/queries/tenants.queries';
+import { toAbsoluteUrl } from '@/utils/toAbsoluteUrl/toAbsoluteUrl';
 
 /**
  * Compose la chaîne ①②③④ de la spec BKP-1226 (§3) : `backupServicesId`/`vspcTenantId` sont
@@ -48,7 +49,7 @@ export const useGeneralInformation = () => {
     reference: backupServicesId,
     resourceName,
     serviceName: serviceDetails?.resource.displayName,
-    accessUrl: vspcTenant?.currentState.accessUrl,
+    accessUrl: toAbsoluteUrl(vspcTenant?.currentState.accessUrl),
     isProvisioning: vspcTenant?.resourceStatus === 'CREATING',
     creationDate: serviceDetails?.billing.lifecycle.current.creationDate,
     nextBillingDate: serviceDetails?.billing.nextBillingDate,
