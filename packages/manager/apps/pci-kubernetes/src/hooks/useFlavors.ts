@@ -144,8 +144,8 @@ export const useMergedKubeFlavors = (projectId: string, region: string | null) =
         // - If no such entry exists, we fallback to the first element of `pricings` (if available).
         const priceMonthly =
           addonMonthly &&
-          (addonMonthly.pricings.find((p) => p.capacities.includes('renew')) ||
-            addonMonthly.pricings[0]);
+          (addonMonthly.pricings?.find((p) => p.capacities?.includes('renew')) ||
+            addonMonthly.pricings?.[0]);
 
         return {
           ...flavor,
@@ -157,7 +157,7 @@ export const useMergedKubeFlavors = (projectId: string, region: string | null) =
 
           pricingsHourly: addon?.pricings?.[0],
           pricingsMonthly: priceMonthly,
-          isNew: addon?.blobs.tags.includes('is_new'),
+          isNew: addon?.blobs?.tags?.includes('is_new'),
           flavorCategory: FLAVOR_CATEGORIES.find((cat) => cat.pattern.test(flavor.type ?? ''))
             ?.category,
           isFlex: /flex$/.test(flavor.name ?? ''),

@@ -168,7 +168,7 @@ const useCreateNodePools = ({ name, isLocked }: { name?: string; isLocked: boole
     nodePoolState,
   );
 
-  const isPricingComingSoon = selectedFlavor?.blobs?.tags.includes(TAGS_BLOB.COMING_SOON);
+  const isPricingComingSoon = selectedFlavor?.blobs?.tags?.includes(TAGS_BLOB.COMING_SOON);
 
   const isStepUnlocked = !isLocked;
 
