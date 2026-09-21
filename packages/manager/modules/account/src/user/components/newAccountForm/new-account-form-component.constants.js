@@ -10,6 +10,8 @@ export const READY_ONLY_RULES_PARAMS = [
   'smsConsent',
   // model-only field for the e-invoicing picker; /newAccount/rules rejects it
   'einvoicingBillingAddress',
+  // model-only field gating the VAT number; /newAccount/rules rejects it
+  'hasVatNumber',
 ];
 
 export const READY_ONLY_PARAMS = [
@@ -85,6 +87,7 @@ export const SECTIONS = {
     'organisation',
     'corporationType',
     'companyNationalIdentificationNumber',
+    'hasVatNumber',
     'vat',
   ],
   other: [
@@ -126,6 +129,7 @@ export const FIELD_NAME_LIST = {
   organisation: 'organisation',
   corporationType: 'corporationType',
   companyNationalIdentificationNumber: 'companyNationalIdentificationNumber',
+  hasVatNumber: 'hasVatNumber',
   vat: 'vat',
   gst: 'gst',
   iceNumber: 'iceNumber',
@@ -150,6 +154,23 @@ export const COUNTRIES_NIN_LABEL = {
 export const COUNTRIES_FIELD_LABEL = {
   [FIELD_NAME_LIST.companyNationalIdentificationNumber]: COUNTRIES_CNIN_LABEL,
   [FIELD_NAME_LIST.nationalIdentificationNumber]: COUNTRIES_NIN_LABEL,
+};
+
+// TR: the MERSİS No is 16 digits, of which the first 10 are the company's VAT
+// number (VKN, labelled "KDV" on the form).
+const MERSIS_NO_PATTERN = /^\d{16}$/;
+const MERSIS_NO_VAT_LENGTH = 10;
+
+const getVatFromMersisNo = (mersisNo) =>
+  MERSIS_NO_PATTERN.test(mersisNo)
+    ? mersisNo.slice(0, MERSIS_NO_VAT_LENGTH)
+    : null;
+
+// Countries whose VAT number is contained in the company national
+// identification number. Countries missing from this map keep a free VAT
+// field: nothing is derived and nothing is checked.
+export const COUNTRIES_VAT_FROM_CNIN = {
+  TR: getVatFromMersisNo,
 };
 
 export const PHONE_PREFIX = {

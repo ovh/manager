@@ -79,3 +79,8 @@ export const COUNTRIES_CNIN_LABEL: Record<string, string> = {
 export const COUNTRIES_NIN_LABEL: Record<string, string> = {
   TR: 'VKN',
 };
+
+// zod issue raised on the VAT field when it contradicts the company national
+// identification number it is derived from (see isVatConsistentWithCnin).
+// Not a /newAccount/rules error: it carries its own message.
+export const VAT_CNIN_MISMATCH_ERROR = 'vat_cnin_mismatch';

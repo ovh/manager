@@ -98,6 +98,15 @@ export default class NewAccountFormFieldController {
       };
     });
 
+    // the VAT number is derived from the company identifier for some countries
+    // (see the parent's syncDerivedVat): the parent owns the model, this keeps
+    // the displayed value with it
+    this.$scope.$on('vat:derived', (event, { vat } = {}) => {
+      if (this.rule.fieldName === FIELD_NAME_LIST.vat) {
+        this.value = vat;
+      }
+    });
+
     this.$scope.$on('siret:autocompleteActive', (event, { active } = {}) => {
       if (
         [

@@ -23,6 +23,7 @@ import {
   USER_TYPE_OTHER,
   SUBSIDIARIES_VAT_FIELD_OVERRIDE,
   COUNTRIES_FIELD_LABEL,
+  COUNTRIES_VAT_FROM_CNIN,
 } from './new-account-form-component.constants';
 import { KYC_STATUS } from '../../../identity-documents/user-identity-documents.constant';
 import { SUPPORT_URLS } from '../../user.constants';
@@ -36,6 +37,10 @@ const EINVOICING_FIELD_NAME = 'einvoicingBillingAddress';
 const INFO_ERRORS_CONTAINER = 'InfoErrors';
 // Broadcast by the siret component once the customer validated a company.
 const COMPANY_SELECTED_EVENT = 'siret:companySelected';
+// Broadcast to the VAT field when its value is derived from the company
+// national identification number: each field keeps its own copy of the value,
+// writing the model alone would not refresh the input.
+const VAT_DERIVED_EVENT = 'vat:derived';
 
 export default class NewAccountFormController {
   /* @ngInject */
@@ -293,6 +298,30 @@ export default class NewAccountFormController {
           ''
         ).toUpperCase();
 
+        // Countries that carry the VAT number inside the company identifier
+        // ask the customer whether they have one at all, and prefill the field
+        // from the identifier rather than let them type it.
+        const hasVatRule = rules.some(
+          (rule) => rule.fieldName === FIELD_NAME_LIST.vat,
+        );
+        if (this.derivesVatFromCnin() && hasVatRule) {
+          // a checkbox never reports its initial value back to the model:
+          // seed it from the VAT number the account already has
+          if (this.model[FIELD_NAME_LIST.hasVatNumber] === undefined) {
+            this.model[FIELD_NAME_LIST.hasVatNumber] = Boolean(
+              this.model[FIELD_NAME_LIST.vat],
+            );
+          }
+          rules.push({
+            fieldName: FIELD_NAME_LIST.hasVatNumber,
+            fieldType: 'checkbox',
+            mandatory: false,
+            initialValue: this.model[FIELD_NAME_LIST.hasVatNumber],
+            hasBottomMargin: true,
+            disabled: () => false,
+          });
+        }
+
         const displayRules = rules
           .map((rule) => {
             let displayFieldName = rule.fieldName;
@@ -302,12 +331,26 @@ export default class NewAccountFormController {
                   this.user.country.toUpperCase()
                 ] || displayFieldName;
             }
+            // Once derived, the VAT number is the only value the field
+            // accepts: an edit that contradicts the identifier is rejected.
+            // initialValue carries it to a field the customer just brought
+            // back by ticking the checkbox again — it is created from the
+            // rule, past the broadcast syncDerivedVat sends to live fields.
+            const derivedVat =
+              rule.fieldName === FIELD_NAME_LIST.vat
+                ? this.getDerivedVat()
+                : null;
+
             return {
               ...rule,
               displayFieldName,
               // local name given to the identifier by the customer's country,
               // when there is one (see COUNTRIES_FIELD_LABEL)
               displayLabel: COUNTRIES_FIELD_LABEL[rule.fieldName]?.[country],
+              ...(derivedVat && {
+                regularExpression: `^${derivedVat}$`,
+                initialValue: derivedVat,
+              }),
             };
           })
           .sort((a, b) => {
@@ -570,7 +613,20 @@ export default class NewAccountFormController {
       fields.push(FIELD_NAME_LIST.displayName);
     }
     return sectionRules.filter(
-      (rule) => fields.includes(rule.fieldName) && !rule.readonly,
+      (rule) =>
+        fields.includes(rule.fieldName) &&
+        !rule.readonly &&
+        !this.isVatFieldHidden(rule),
+    );
+  }
+
+  // where the customer is asked whether they have a VAT number at all, the
+  // field itself only shows once they say they have (see syncDerivedVat)
+  isVatFieldHidden(rule) {
+    return (
+      rule.fieldName === FIELD_NAME_LIST.vat &&
+      this.derivesVatFromCnin() &&
+      !this.model[FIELD_NAME_LIST.hasVatNumber]
     );
   }
 
@@ -611,6 +667,52 @@ export default class NewAccountFormController {
     return (this.rules || []).find(
       (rule) => rule.fieldName === EINVOICING_FIELD_NAME,
     );
+  }
+
+  /**
+   * Countries that carry the VAT number inside the company national
+   * identification number (TR: the first 10 digits of the MERSİS No) prefill
+   * the VAT field instead of letting the customer type it.
+   */
+  getCountryVatDerivation() {
+    return COUNTRIES_VAT_FROM_CNIN[
+      (this.model.country || this.user.country || '').toUpperCase()
+    ];
+  }
+
+  derivesVatFromCnin() {
+    return Boolean(this.getCountryVatDerivation());
+  }
+
+  /**
+   * The VAT number derived from the company identifier, or null while the
+   * identifier is too short to derive from — the customer is still typing it.
+   */
+  getDerivedVat() {
+    const derive = this.getCountryVatDerivation();
+    const cnin = this.model[
+      FIELD_NAME_LIST.companyNationalIdentificationNumber
+    ];
+    return derive && cnin ? derive(String(cnin).replace(/\s/g, '')) : null;
+  }
+
+  /**
+   * Keeps the VAT field in sync with the identifier it is derived from, and
+   * with the customer stating whether they have a VAT number at all.
+   */
+  syncDerivedVat() {
+    if (!this.derivesVatFromCnin()) {
+      return;
+    }
+    const vat = this.model[FIELD_NAME_LIST.hasVatNumber]
+      ? this.getDerivedVat()
+      : '';
+    // while the identifier is too short to derive from, leave the field be
+    if (vat === null) {
+      return;
+    }
+    this.model[FIELD_NAME_LIST.vat] = vat;
+    this.$scope.$broadcast(VAT_DERIVED_EVENT, { vat });
   }
 
   getSiretRegularExpression() {
@@ -715,6 +817,13 @@ export default class NewAccountFormController {
       ) {
         this.isSiretAvailable = this.siretFieldIsAvailable();
         this.syncAddressAutocompleteState();
+      }
+
+      if (
+        rule.fieldName === FIELD_NAME_LIST.hasVatNumber ||
+        rule.fieldName === FIELD_NAME_LIST.companyNationalIdentificationNumber
+      ) {
+        this.syncDerivedVat();
       }
 
       return this.updateRules();
