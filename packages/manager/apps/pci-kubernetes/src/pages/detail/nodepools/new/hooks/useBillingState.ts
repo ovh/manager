@@ -63,7 +63,7 @@ export function useBillingState({
     if (flavor && !isCatalogPending) {
       const monthlyBillingState = (() => {
         if (flavor) {
-          const addon = catalog?.addons.find((add) => add.planCode === flavor?.planCodes?.hourly);
+          const addon = catalog?.addons?.find((add) => add.planCode === flavor?.planCodes?.hourly);
           return addon?.blobs?.tags?.includes('coming_soon') ? 'coming_soon' : 'not_available';
         }
         return 'available';

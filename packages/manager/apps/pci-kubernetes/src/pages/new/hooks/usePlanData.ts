@@ -15,7 +15,7 @@ const usePlanData = (
       if (catalog) {
         const getAddon = catalog.addons.find((add) => add.planCode === code);
 
-        return getAddon?.pricings[0]?.price ?? null;
+        return getAddon?.pricings?.[0]?.price ?? null;
       }
       return null;
     },
