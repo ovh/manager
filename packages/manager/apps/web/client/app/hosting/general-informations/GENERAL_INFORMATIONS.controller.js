@@ -98,7 +98,7 @@ export default class HostingGeneralInformationsCtrl {
 
     this.videoCenterStatus = 'inactive';
     this.videoCenterOffer = null;
-    this.videoCenterLink = `/beta/#/web-cloud/hosting/general/${this.serviceName}/general`;
+    this.videoCenterLink = '/beta/#/web-cloud/video-center';
     this.showVideoCenterTile = false;
 
     const VIDEO_CENTER_INELIGIBLE_OFFERS = [
@@ -264,16 +264,32 @@ export default class HostingGeneralInformationsCtrl {
                       detail.currentState &&
                       detail.currentState.offerName;
                     if (!offerName) {
-                      return { status: 'freemium', plan: null };
+                      return {
+                        status: 'freemium',
+                        plan: null,
+                        resourceId: resource.id,
+                      };
                     }
                     const lower = offerName.toLowerCase();
                     if (lower.indexOf('pro') !== -1) {
-                      return { status: 'freemium_paid', plan: 'pro' };
+                      return {
+                        status: 'freemium_paid',
+                        plan: 'pro',
+                        resourceId: resource.id,
+                      };
                     }
                     if (lower.indexOf('plus') !== -1) {
-                      return { status: 'freemium_paid', plan: 'plus' };
+                      return {
+                        status: 'freemium_paid',
+                        plan: 'plus',
+                        resourceId: resource.id,
+                      };
                     }
-                    return { status: 'freemium', plan: null };
+                    return {
+                      status: 'freemium',
+                      plan: null,
+                      resourceId: resource.id,
+                    };
                   });
               });
           });
@@ -286,6 +302,9 @@ export default class HostingGeneralInformationsCtrl {
         }
         this.videoCenterStatus = result.status;
         this.videoCenterPlan = result.plan;
+        if (result.resourceId) {
+          this.videoCenterLink = `/beta/#/web-cloud/video-center/${result.resourceId}`;
+        }
       })
       .catch(() => {
         this.videoCenterStatus = 'inactive';
