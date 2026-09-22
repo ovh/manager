@@ -47,6 +47,7 @@ export const GUIDE_GETTING_STARTED = 'getting-started-guide';
 export const GUIDE_PUBLISHING = 'publishing-guide';
 export const MULTISITE = 'multisite';
 export const EDIT_NAME = 'edit-name';
+export const EDIT_SITE = 'edit-site';
 
 // domain
 export const ADD_DOMAIN = 'add-domain';

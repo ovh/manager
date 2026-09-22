@@ -15,6 +15,7 @@
   "add_domain": "Ajouter un domaine",
   "detache_domain": "Détacher un domaine",
   "modify_domain": "Modifier un domaine",
+  "edit_site": "Modifier le site",
   "associate_git": "Associer Git",
   "configure_git": "Configurer Git",
   "delete_git": "Supprimer Git",
