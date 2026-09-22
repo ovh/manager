@@ -1,4 +1,6 @@
 import { useMemo } from 'react';
+import { useInstancesCatalogWithSelect } from '@/data/hooks/catalog/useInstancesCatalogWithSelect';
+import { selectFlavorDisks } from '../view-models/selectFlavorDisks';
 import { useProjectUrl } from '@ovh-ux/manager-react-components';
 import { useInstance } from '@/data/hooks/instance/useInstance';
 import { selectInstanceDashboard } from '../view-models/selectInstanceDashboard';
@@ -9,6 +11,7 @@ import { useNetworkCatalog } from '@/data/hooks/catalog/useNetworkCatalog';
 import { usePrivateNetworks } from '@/data/hooks/configuration/usePrivateNetworks';
 import {
   selectPublicIpPrices,
+  selectSmallGatewayConfig,
   selectSubnetIdsWithGateway,
 } from '@/pages/instances/create/view-models/networksViewModel';
 
@@ -39,8 +42,21 @@ export const useDashboard = ({ region, instanceId }: TUseDashboardArgs) => {
     select: selectPublicIpPrices(region),
   });
 
+  const { data: gatewayConfiguration } = useNetworkCatalog({
+    select: selectSmallGatewayConfig(region),
+  });
+
   const { data: subnetIdsWithGateway = [] } = usePrivateNetworks({
     select: selectSubnetIdsWithGateway,
+  });
+
+  const flavorDisksSelect = useMemo(
+    () => selectFlavorDisks(instance?.flavor?.name ?? null),
+    [instance?.flavor?.name],
+  );
+
+  const { data: catalogDisks = null } = useInstancesCatalogWithSelect({
+    select: flavorDisksSelect,
   });
 
   return useMemo(
@@ -48,7 +64,13 @@ export const useDashboard = ({ region, instanceId }: TUseDashboardArgs) => {
       instance: selectInstanceDashboard(
         { projectUrl, dedicatedUrl },
         locale,
-        { hasRepricing, publicIpPrices, subnetIdsWithGateway },
+        {
+          hasRepricing,
+          publicIpPrices,
+          gatewayPrice: gatewayConfiguration?.price ?? null,
+          subnetIdsWithGateway,
+          catalogDisks,
+        },
         instance,
       ),
       pendingTasks,
@@ -61,7 +83,9 @@ export const useDashboard = ({ region, instanceId }: TUseDashboardArgs) => {
       locale,
       hasRepricing,
       publicIpPrices,
+      gatewayConfiguration,
       subnetIdsWithGateway,
+      catalogDisks,
       instance,
       pendingTasks,
       isPending,

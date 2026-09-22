@@ -1,6 +1,11 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { selectInstanceDashboard } from '../selectInstanceDashboard';
-import { TInstance, TInstancePrice } from '@/types/instance/entity.type';
+import {
+  TInstance,
+  TInstanceDisk,
+  TInstanceFlavor,
+  TInstancePrice,
+} from '@/types/instance/entity.type';
 import { TPriceType } from '@/types/instance/common.type';
 
 const urls = { projectUrl: 'project-url', dedicatedUrl: 'dedicated-url' };
@@ -90,7 +95,9 @@ describe.each`
           {
             hasRepricing: isStoragePriceDisplayed,
             publicIpPrices: null,
+            gatewayPrice: null,
             subnetIdsWithGateway: [],
+            catalogDisks: null,
           },
           instanceBilledOn(pricings),
         )?.pricings;
@@ -104,6 +111,7 @@ describe.each`
 );
 
 const PUBLIC_IP_PRICES = { basicPublicIp: 200, floatingIp: 300 };
+const GATEWAY_PRICE = 700;
 
 const addressOn = (subnetId?: string) => ({
   ip: '10.0.0.1',
@@ -131,8 +139,20 @@ const publicIpRow = (value: number) => ({
   value,
 });
 
-const gatewayIpRow = (value: number) => ({
-  label: 'gateway_ip',
+const floatingIpRow = (value: number) => ({
+  label: 'floating_ip',
+  type: 'hour',
+  value,
+});
+
+const gatewayPublicIpRow = (value: number) => ({
+  label: 'gateway_public_ip',
+  type: 'hour',
+  value,
+});
+
+const gatewayRow = (value: number) => ({
+  label: 'gateway',
   type: 'hour',
   value,
 });
@@ -141,13 +161,13 @@ describe.each`
   given                                        | addresses                                 | hasRepricing | publicIpPrices      | subnetIdsWithGateway | expectedRows
   ${'no address at all'}                       | ${[]}                                     | ${true}      | ${PUBLIC_IP_PRICES} | ${[]}                | ${[]}
   ${'a basic public IP'}                       | ${[['public', [addressOn()]]]}            | ${true}      | ${PUBLIC_IP_PRICES} | ${[]}                | ${[publicIpRow(200)]}
-  ${'a floating IP'}                           | ${[['floating', [addressOn()]]]}          | ${true}      | ${PUBLIC_IP_PRICES} | ${[]}                | ${[publicIpRow(300)]}
-  ${'a private network behind a gateway'}      | ${[['private', [addressOn('subnet-1')]]]} | ${true}      | ${PUBLIC_IP_PRICES} | ${['subnet-1']}      | ${[gatewayIpRow(200)]}
+  ${'a floating IP'}                           | ${[['floating', [addressOn()]]]}          | ${true}      | ${PUBLIC_IP_PRICES} | ${[]}                | ${[floatingIpRow(300)]}
+  ${'a private network behind a gateway'}      | ${[['private', [addressOn('subnet-1')]]]} | ${true}      | ${PUBLIC_IP_PRICES} | ${['subnet-1']}      | ${[gatewayRow(700), gatewayPublicIpRow(200)]}
   ${'a private network free of gateway'}       | ${[['private', [addressOn('subnet-1')]]]} | ${true}      | ${PUBLIC_IP_PRICES} | ${['subnet-2']}      | ${[]}
   ${'a public IP and a gateway'} | ${[
   ['public', [addressOn()]],
   ['private', [addressOn('subnet-1')]],
-]} | ${true} | ${PUBLIC_IP_PRICES} | ${['subnet-1']} | ${[publicIpRow(200), gatewayIpRow(200)]}
+]} | ${true} | ${PUBLIC_IP_PRICES} | ${['subnet-1']} | ${[publicIpRow(200), gatewayRow(700), gatewayPublicIpRow(200)]}
   ${'a public IP, repricing unavailable'}      | ${[['public', [addressOn()]]]}            | ${false}     | ${PUBLIC_IP_PRICES} | ${[]}                | ${[]}
   ${'a public IP, catalog prices unavailable'} | ${[['public', [addressOn()]]]}            | ${true}      | ${null}             | ${[]}                | ${[]}
 `(
@@ -172,13 +192,104 @@ describe.each`
         rows = selectInstanceDashboard(
           urls,
           'en-GB',
-          { hasRepricing, publicIpPrices, subnetIdsWithGateway },
+          {
+            hasRepricing,
+            publicIpPrices,
+            gatewayPrice: GATEWAY_PRICE,
+            subnetIdsWithGateway,
+            catalogDisks: null,
+          },
           instanceReachableThrough(addresses),
         )?.pricings;
       });
 
-      it('prices the public IP it holds and the IP of the gateway it sits behind', () => {
+      it('prices the public IP it holds and the gateway it sits behind', () => {
         expect(rows).toStrictEqual(expectedRows);
+      });
+    });
+  },
+);
+
+const specsHolding = (disks: TInstanceDisk[]): TInstanceFlavor['specs'] => ({
+  cpu: { value: 8, unit: 'vCore' },
+  ram: { value: 32, unit: 'GB' },
+  disks,
+  bandwidth: {
+    public: { value: 1000, unit: 'Mbit/s' },
+    private: { value: 2000, unit: 'Mbit/s' },
+  },
+});
+
+const instanceRunningOn = (specs: TInstanceFlavor['specs']): TInstance => ({
+  ...instanceBilledOn([]),
+  flavor: { id: 'flavor-id', name: 'b3-8', specs },
+});
+
+const nvmeDisk = { capacity: { value: 100, unit: 'GB' }, number: 1 };
+
+const nvmeDiskViewModel = {
+  id: '1_100_GB_no-interface_0',
+  number: 1,
+  capacityValue: 100,
+  capacityUnit: 'gb',
+  interface: null,
+};
+
+const catalogDiskViewModel = {
+  id: '2_500_GB_NVMe_0',
+  number: 2,
+  capacityValue: 500,
+  capacityUnit: 'gb',
+  interface: 'NVMe',
+};
+
+const noDiskViewModel = {
+  id: 'no-disk',
+  display: '-',
+  number: 0,
+  capacityValue: 0,
+  capacityUnit: 'gb',
+  interface: null,
+};
+
+describe.each`
+  given                                                 | specs                       | catalogDisks              | expectedDisks
+  ${'disks in its payload'}                             | ${specsHolding([nvmeDisk])} | ${null}                   | ${[nvmeDiskViewModel]}
+  ${'disks in its payload and disks in the catalog'}    | ${specsHolding([nvmeDisk])} | ${[catalogDiskViewModel]} | ${[nvmeDiskViewModel]}
+  ${'no disk in its payload, the catalog knowing them'} | ${specsHolding([])}         | ${[catalogDiskViewModel]} | ${[catalogDiskViewModel]}
+  ${'no disk in its payload nor in the catalog'}        | ${specsHolding([])}         | ${null}                   | ${[noDiskViewModel]}
+  ${'no specs at all, the catalog knowing the disks'}   | ${null}                     | ${[catalogDiskViewModel]} | ${[catalogDiskViewModel]}
+`(
+  'given an instance with $given',
+  ({
+    specs,
+    catalogDisks,
+    expectedDisks,
+  }: {
+    specs: TInstanceFlavor['specs'];
+    catalogDisks: unknown[] | null;
+    expectedDisks: unknown[];
+  }) => {
+    describe('when selecting its dashboard view model', () => {
+      let disks: unknown;
+
+      beforeEach(() => {
+        disks = selectInstanceDashboard(
+          urls,
+          'en-GB',
+          {
+            hasRepricing: true,
+            publicIpPrices: null,
+            gatewayPrice: null,
+            subnetIdsWithGateway: [],
+            catalogDisks: catalogDisks as never,
+          },
+          instanceRunningOn(specs),
+        )?.flavor?.disks;
+      });
+
+      it('falls back to the catalog disks only when the payload carries none', () => {
+        expect(disks).toStrictEqual(expectedDisks);
       });
     });
   },

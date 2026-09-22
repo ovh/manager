@@ -9,12 +9,12 @@ const IpAddress: FC<{
   value: string;
   actions?: TAction[];
 }> = ({ label, value, actions }) => (
-  <div className="my-4 flex items-end w-full">
-    <FormField className="flex-grow">
+  <div className="my-4 flex w-full items-end">
+    <FormField className="grow">
       <FormFieldLabel>{label}</FormFieldLabel>
       <Clipboard value={value} />
     </FormField>
-    <div className="w-[40px] flex-shrink-0">
+    <div className="w-[40px] shrink-0">
       {actions && (
         <ActionsMenu
           actionButton={{ variant: 'ghost' }}
