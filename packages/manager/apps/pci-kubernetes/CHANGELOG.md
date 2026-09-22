@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.44.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.44.0...@ovh-ux/manager-pci-kubernetes-app@0.44.1) (2026-09-22)
+
+
+### Bug Fixes
+
+* **pci-kubernetes:** guard optional catalog fields ([04973e7](https://github.com/ovh/manager/commit/04973e783a37d6b44950adb0cbcacc0c2f5f0be0)), closes [#TAPC-7268](https://github.com/ovh/manager/issues/TAPC-7268)
+
+
+
+
+
 # [0.44.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.43.0...@ovh-ux/manager-pci-kubernetes-app@0.44.0) (2026-08-27)
 
 
