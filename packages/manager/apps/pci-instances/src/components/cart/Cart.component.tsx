@@ -10,91 +10,14 @@ import {
   CartActions,
 } from '@/components/cart/components';
 import { CartContent } from './components/CartContent.component';
-import {
-  TCartItem,
-  TCartItemDetail,
-} from '@/pages/instances/create/hooks/useCartItems';
+import { TCartItem } from '@/pages/instances/create/hooks/useCartItems';
 import { BILLING_TYPE } from '@/types/instance/common.type';
-import { convertHourlyPriceToMonthly } from '@/utils';
+import { calculateTotals } from '@/pages/instances/create/view-models/cartTotalsViewModel';
 
 export type TCartProps = {
   items: TCartItem[];
   actionsButtons: JSX.Element;
   billingType: BILLING_TYPE;
-};
-
-type TCartTotals = {
-  hourlyTotal: number | null;
-  monthlyTotal: number | null;
-};
-
-export const STRICTLY_HOURLY_ITEMS = [
-  'volume',
-  'gateway',
-  'network',
-  'publicNetwork',
-];
-
-export const getItemDetailsTotalPrice = (
-  detailsWithoutBackups: TCartItemDetail[],
-  billingType: BILLING_TYPE,
-) =>
-  detailsWithoutBackups
-    .filter((detail) =>
-      billingType === BILLING_TYPE.Hourly
-        ? STRICTLY_HOURLY_ITEMS.includes(detail.id)
-        : !STRICTLY_HOURLY_ITEMS.includes(detail.id),
-    )
-    .reduce((sum, detail) => sum + (detail.price ?? 0), 0);
-
-/**
- * Rules:
- * - Backups are always excluded from totals.
- * - Volume, gateway, and network are always hourly.
- * - Flavor and image follow the billing type.
- */
-
-const calculateTotals = (
-  items: TCartItem[],
-  billingType: BILLING_TYPE,
-): TCartTotals => {
-  const detailsWithoutBackups = items.flatMap((item) =>
-    item.details.filter((detail) => detail.id !== 'backup'),
-  );
-
-  switch (billingType) {
-    case BILLING_TYPE.Hourly: {
-      const hourlyTotal = detailsWithoutBackups.reduce(
-        (sum, detail) => sum + (detail.price ?? 0),
-        0,
-      );
-
-      return {
-        hourlyTotal,
-        monthlyTotal: convertHourlyPriceToMonthly(hourlyTotal),
-      };
-    }
-
-    case BILLING_TYPE.Monthly: {
-      const strictlyHourlyItemsTotal = getItemDetailsTotalPrice(
-        detailsWithoutBackups,
-        BILLING_TYPE.Hourly,
-      );
-      const monthlyItemsTotal = getItemDetailsTotalPrice(
-        detailsWithoutBackups,
-        BILLING_TYPE.Monthly,
-      );
-
-      const monthlyTotal =
-        monthlyItemsTotal +
-        convertHourlyPriceToMonthly(strictlyHourlyItemsTotal);
-
-      return { hourlyTotal: null, monthlyTotal };
-    }
-
-    default:
-      return { hourlyTotal: null, monthlyTotal: null };
-  }
 };
 
 export const Cart = ({ items, actionsButtons, billingType }: TCartProps) => {

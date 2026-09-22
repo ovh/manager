@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { beforeEach, describe, it, expect } from 'vitest';
 import {
   mockedPrivateNetworkEntity,
   mockedPrivateNetworkEntityWithMetal,
@@ -6,12 +6,17 @@ import {
 import {
   applyMetalConstraints,
   findFirstVlan0Network,
+  getGatewayAvailability,
+  getPrivateNetworkCartItem,
   isMetalCategory,
   METAL_FLAVOR_CATEGORY,
   selectPrivateNetworks,
   selectOvhPrivateNetwork,
+  TPrivateNetworkCartItem,
+  TPrivateNetworkCustomData,
   TPrivateNetworkData,
 } from '../networksViewModel';
+import { TDeploymentModeID } from '@/domain/entities/instancesCatalog';
 
 describe('selectPrivateNetworks ViewModel', () => {
   it('should return empty array when privateNetworks is undefined', () => {
@@ -170,3 +175,95 @@ describe('findFirstVlan0Network', () => {
     expect(result).toBeUndefined();
   });
 });
+
+const GATEWAY_CONFIGURATION = { size: 'S', price: 700 };
+const PUBLIC_IP_PRICES = { basicPublicIp: 200, floatingIp: 300 };
+
+const networkNamed = (
+  name: string,
+  {
+    hasGateway = false,
+    capabilities = ['PublicIP', 'FloatingIP'],
+  }: Partial<TPrivateNetworkCustomData> = {},
+): TPrivateNetworkData => ({
+  label: name,
+  value: `subnet-of-${name}`,
+  customRendererData: {
+    networkId: `network-of-${name}`,
+    hasGateway,
+    capabilities,
+    vlanId: 100,
+  },
+});
+
+const gatewaylessNetwork = networkNamed('my-network');
+const networkWithGateway = networkNamed('network-with-gateway', {
+  hasGateway: true,
+});
+const networkWithBasicIp = networkNamed('network-with-basic-ip', {
+  capabilities: ['PublicIP'],
+});
+
+const cartItem = (
+  name: string,
+  willGatewayBeAttached: boolean,
+  gatewayPrice: number | null,
+  gatewayIpPrice: number | null,
+): TPrivateNetworkCartItem => ({
+  name,
+  willGatewayBeAttached,
+  gatewayPrice,
+  gatewayIpPrice,
+});
+
+describe.each`
+  given                                             | privateNetworks         | subnetId                    | newPrivateNetworkName | willGatewayBeAttached | deploymentMode | expectedCartItem
+  ${'no network selected nor created'}              | ${[]}                   | ${null}                     | ${null}               | ${false}              | ${'region'}    | ${null}
+  ${'a network free of gateway, gateway not asked'} | ${[gatewaylessNetwork]} | ${gatewaylessNetwork.value} | ${null}               | ${false}              | ${'region'}    | ${cartItem('my-network', false, null, null)}
+  ${'a network free of gateway, gateway asked'}     | ${[gatewaylessNetwork]} | ${gatewaylessNetwork.value} | ${null}               | ${true}               | ${'region'}    | ${cartItem('my-network', true, 700, 200)}
+  ${'a network already carrying a gateway'}         | ${[networkWithGateway]} | ${networkWithGateway.value} | ${null}               | ${true}               | ${'region'}    | ${cartItem('network-with-gateway', true, null, null)}
+  ${'a network carrying a basic public IP'}         | ${[networkWithBasicIp]} | ${networkWithBasicIp.value} | ${null}               | ${true}               | ${'region'}    | ${cartItem('network-with-basic-ip', true, null, null)}
+  ${'a network in a local zone'}                    | ${[gatewaylessNetwork]} | ${gatewaylessNetwork.value} | ${null}               | ${true}               | ${'localzone'} | ${cartItem('my-network', true, null, null)}
+  ${'a network about to be created, gateway asked'} | ${[]}                   | ${null}                     | ${'pn-BHS5-20260101'} | ${true}               | ${'region'}    | ${cartItem('pn-BHS5-20260101', true, 700, 200)}
+`(
+  'given $given',
+  ({
+    privateNetworks,
+    subnetId,
+    newPrivateNetworkName,
+    willGatewayBeAttached,
+    deploymentMode,
+    expectedCartItem,
+  }: {
+    privateNetworks: TPrivateNetworkData[];
+    subnetId: string | null;
+    newPrivateNetworkName: string | null;
+    willGatewayBeAttached: boolean;
+    deploymentMode: TDeploymentModeID;
+    expectedCartItem: TPrivateNetworkCartItem | null;
+  }) => {
+    describe('when building the private network cart item', () => {
+      let privateNetworkCartItem: TPrivateNetworkCartItem | null;
+
+      beforeEach(() => {
+        privateNetworkCartItem = getPrivateNetworkCartItem({
+          privateNetworks,
+          subnetId,
+          newPrivateNetworkName,
+          willGatewayBeAttached,
+          gatewayAvailability: getGatewayAvailability({
+            deploymentMode,
+            privateNetworks,
+            subnetId,
+          }),
+          gatewayConfiguration: GATEWAY_CONFIGURATION,
+          publicIpPrices: PUBLIC_IP_PRICES,
+        });
+      });
+
+      it('prices the gateway and its public IP only when a new gateway is ordered', () => {
+        expect(privateNetworkCartItem).toStrictEqual(expectedCartItem);
+      });
+    });
+  },
+);

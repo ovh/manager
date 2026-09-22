@@ -1,7 +1,7 @@
 {
   "pci_instances_dashboard_edit_name_error_message": "Le renommage de l'instance a échoué, merci de recommencer dans quelques instants",
   "pci_instances_dashboard_tab_info_title": "Informations générales",
-  "pci_instances_dashboard_tab_observability_title": "Observabilité",  
+  "pci_instances_dashboard_tab_observability_title": "Observabilité",
   "pci_instances_dashboard_tab_vnc_title": "Console VNC",
   "pci_instances_dashboard_info_title": "Informations",
   "pci_instances_dashboard_upgrade_model": "Modifier le modèle",
@@ -26,6 +26,8 @@
   "pci_instances_dashboard_instance_price_label": "Prix de l'instance : ",
   "pci_instances_dashboard_licence_price_label": "Prix de la licence : ",
   "pci_instances_dashboard_local_storage_price_label": "Prix du stockage local : ",
+  "pci_instances_dashboard_public_ip_price_label": "Prix de l'IP publique : ",
+  "pci_instances_dashboard_gateway_ip_price_label": "Prix de l'IP de la Gateway : ",
   "pci_instances_dashboard_public_network_title": "Réseaux publics",
   "pci_instances_dashboard_network_floating_title": "Floating IP",
   "pci_instances_dashboard_network_name_label": "Nom du réseau : ",
