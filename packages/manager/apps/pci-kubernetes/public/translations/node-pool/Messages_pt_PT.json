@@ -46,6 +46,7 @@
   "kube_common_node_pool_deploy_description_explanation_multiple_zone_repartition": "Repartição AZ",
   "kube_common_node_pool_public_connetivity_title": "Ligação pública",
   "kube_common_node_pool_public_connetivity_toggle": "Associar Floating IP aos nós",
+  "kube_common_node_pool_public_connetivity_public_ip": "Um endereço IP público é atribuído a cada nó",
   "kube_common_node_pool_public_connectivity_warning_title": "Aviso relativo à atualização do cluster:",
   "kube_common_node_pool_public_connectivity_warning_description_rolling": "Atualmente, a estratégia de atualização (upgrade e patch) dos clusters consiste no <strong>«Rolling Upgrade»</strong>: os nós são <strong>substituídos</strong> um por um, bem como <strong>os Floating IP associados</strong>.",
   "kube_common_node_pool_public_connectivity_warning_description_in_place": "Uma futura estratégia de atualização (<strong>«In Place»</strong>) permitirá <strong>conservar estes IP no momento das atualizações</strong>. ",
