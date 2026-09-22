@@ -144,6 +144,7 @@
   "add_domain": "Add a domain",
   "detache_domain": "Detach a domain",
   "modify_domain": "Edit a domain",
+  "edit_site": "Edit website",
   "associate_git": "Associate Git",
   "configure_git": "Configure Git",
   "delete_git": "Delete Git",

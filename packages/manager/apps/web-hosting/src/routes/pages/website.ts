@@ -11,3 +11,7 @@ export const UpdateDisplayNameModalComponent = React.lazy(
 export const DeleteSiteModal = React.lazy(
   () => import('@/pages/dashboard/multisite/DeleteSite.modal'),
 );
+
+export const EditSiteModalComponent = React.lazy(
+  () => import('@/pages/dashboard/multisite/component/edit-site/EditSite.modal'),
+);

@@ -211,10 +211,38 @@ export type WebHostingWebsiteDomainType = {
   };
 };
 
+export type WebHostingDatabaseType = {
+  name: string;
+  user: string;
+  server: string;
+  port: number;
+  type?: string;
+  version?: string;
+  state?: string;
+};
+
+export type WebHostingWebsiteAdminConfiguration = {
+  adminLogin?: string;
+  adminPassword?: string;
+  domain?: string;
+  language?: string;
+  path?: string;
+};
+
+export type WebHostingWebsiteDatabaseConfiguration = {
+  databaseName?: string;
+  password?: string;
+  port?: number;
+  server?: string;
+  user?: string;
+};
+
 export type PostWebHostingWebsitePayload = {
   targetSpec: {
+    adminConfiguration?: WebHostingWebsiteAdminConfiguration;
     bypassDNSConfiguration?: boolean;
     cdn?: { status?: ServiceStatus };
+    databaseConfiguration?: WebHostingWebsiteDatabaseConfiguration;
     module?: { name?: CmsType };
     firewall?: { status?: ServiceStatus };
     fqdn?: string;
@@ -241,6 +269,7 @@ export type PostWebHostingAttachedDomainPayload = {
 export type PutWebHostingWebsitePayload = {
   targetSpec: {
     name: string;
+    path?: string;
   };
 };
 

@@ -30,6 +30,7 @@ import {
   DETACHE_DOMAIN,
   DISABLE_SSL,
   EDIT_NAME,
+  EDIT_SITE,
   GENERAL_INFORMATION,
   IMPORT,
   IMPORT_SSL,
@@ -105,7 +106,12 @@ import {
   VideoCenterOrderPage,
   VideoCenterPage,
 } from './pages/videoCenter';
-import { AddWebsitePage, DeleteSiteModal, UpdateDisplayNameModalComponent } from './pages/website';
+import {
+  AddWebsitePage,
+  DeleteSiteModal,
+  EditSiteModalComponent,
+  UpdateDisplayNameModalComponent,
+} from './pages/website';
 import { urls } from './routes.constants';
 
 export type RouteHandle = {
@@ -486,6 +492,17 @@ export default (
             },
             breadcrumb: {
               label: 'common:edit-displayname',
+            },
+          }}
+        />
+        <Route
+          id={EDIT_SITE}
+          path={urls.editSite}
+          Component={EditSiteModalComponent}
+          handle={{
+            tracking: {
+              pageName: EDIT_SITE,
+              pageType: PageType.popup,
             },
           }}
         />

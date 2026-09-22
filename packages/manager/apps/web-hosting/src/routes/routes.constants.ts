@@ -53,6 +53,7 @@ export const urls = {
   addWebSite: `/${subRoutes.serviceName}/multisite/add-website`,
   multisite: `/${subRoutes.serviceName}/multisite`,
   editName: `/${subRoutes.serviceName}/multisite/edit-name`,
+  editSite: `/${subRoutes.serviceName}/multisite/edit-site`,
   deleteSite: `/${subRoutes.serviceName}/multisite/${subRoutes.path}/delete-site`,
 
   // GIT
