@@ -140,10 +140,12 @@ export const useCartItems = (): TCartItems => {
             description: (
               <CartOptionDetailItem label={distributionImageVersionName} />
             ),
-            price: windowsImageLicensePrice
-              ? windowsImageLicensePrice * quantity
-              : null,
-            priceUnit: windowsImageLicensePrice ? priceUnit : undefined,
+            price:
+              windowsImageLicensePrice === null
+                ? null
+                : windowsImageLicensePrice * quantity,
+            priceUnit:
+              windowsImageLicensePrice === null ? undefined : priceUnit,
           },
         ]
       : [];
@@ -224,7 +226,7 @@ export const useCartItems = (): TCartItems => {
                   label={t(
                     'creation:pci_instance_creation_network_gateway_title',
                   )}
-                  {...(privateNetwork.gatewayPrice && {
+                  {...(privateNetwork.gatewayPrice !== null && {
                     price: `${getTextPrice(privateNetwork.gatewayPrice)}`,
                     unit: hourlyPriceUnit,
                   })}
@@ -265,7 +267,10 @@ export const useCartItems = (): TCartItems => {
               />
             </div>
           ),
-          price: publicNetwork.price ? publicNetwork.price * quantity : null,
+          price:
+            publicNetwork.price === null
+              ? null
+              : publicNetwork.price * quantity,
           priceUnit: hourlyPriceUnit,
         },
       ]

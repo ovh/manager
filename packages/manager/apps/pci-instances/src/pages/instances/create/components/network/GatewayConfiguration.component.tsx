@@ -11,6 +11,7 @@ import { useCatalogPrice } from '@ovh-ux/muk';
 import {
   getGatewayAvailability,
   isNewGatewayOrdered,
+  selectPublicIpPrices,
   selectSmallGatewayConfig,
 } from '../../view-models/networksViewModel';
 import Banner from '@/components/banner/Banner.component';
@@ -42,6 +43,10 @@ const GatewayConfiguration: FC<{ privateNetworks: TPrivateNetworkData[] }> = ({
 
   const { data: configurations, isPending } = useNetworkCatalog({
     select: selectSmallGatewayConfig(microRegion),
+  });
+
+  const { data: publicIpPrices } = useNetworkCatalog({
+    select: selectPublicIpPrices(microRegion),
   });
 
   const { data: deploymentMode } = useInstancesCatalogWithSelect({
@@ -143,15 +148,21 @@ const GatewayConfiguration: FC<{ privateNetworks: TPrivateNetworkData[] }> = ({
           </Toggle>
         )}
       />
-      {isNewGatewayOrdered(gatewayAvailability, willGatewayBeAttached) && (
-        <Banner className="mt-4" color="warning">
-          <Text>
-            {t(
-              'creation:pci_instance_creation_network_gateway_public_ip_notice',
-            )}
-          </Text>
-        </Banner>
-      )}
+      {isNewGatewayOrdered(gatewayAvailability, willGatewayBeAttached) &&
+        publicIpPrices && (
+          <Banner className="mt-4" color="warning">
+            <Text>
+              {t(
+                'creation:pci_instance_creation_network_gateway_public_ip_notice',
+                {
+                  price: getFormattedHourlyCatalogPrice(
+                    publicIpPrices.basicPublicIp,
+                  ),
+                },
+              )}
+            </Text>
+          </Banner>
+        )}
     </div>
   );
 };

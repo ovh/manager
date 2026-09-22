@@ -130,7 +130,7 @@
   "pci_instance_creation_network_gateway_title": "Gateway",
   "pci_instance_creation_network_gateway_toggle_label": "Attribuer une gateway",
   "pci_instance_creation_network_gateway_price_label": "Taille {{ size }} - {{ price }}",
-  "pci_instance_creation_network_gateway_public_ip_notice": "Votre Gateway nécessite une adresse IP publique pour accéder à internet. Cette adresse IP est créée avec votre Gateway et facturée en supplément.",
+  "pci_instance_creation_network_gateway_public_ip_notice": "Votre Gateway nécessite une adresse IP publique pour accéder à internet. Cette adresse IP est créée avec votre Gateway et facturée en supplément au tarif de {{ price }}.",
   "pci_instance_creation_network_gateway_unavailable_LZ_tooltip": "La Gateway n'est pas disponible dans les localZones.",
   "pci_instance_creation_network_gateway_already_assigned_tooltip": "Un Gateway est déjà attribuée au réseau privé sélectionné.",
   "pci_instance_creation_network_gateway_basic_public_ip_on_private_network_tooltip": "Une Basic Public IP a été détectée sur votre Private Network, veuillez créer ou sélectionner un autre Private Network pour créer une gateway",
