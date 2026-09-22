@@ -276,21 +276,7 @@ describe('BillingStep', () => {
       expect(queryByTestId('monthly_local_storage')).not.toBeInTheDocument();
     });
 
-    it('should state public IPs at zero when the catalog does not price them', () => {
-      const props = {
-        ...defaultProps,
-        price: 100,
-        monthlyPrice: 15,
-        numberOfNodes: 4,
-        pricePublicIp: { hour: 0, month: 0 },
-      };
-      const { getByTestId } = render(<BillingStep {...props} />, { wrapper });
-
-      expect(getByTestId('hourly_public_ip').innerHTML).toContain('0 /Hour');
-      expect(getByTestId('monthly_public_ip')).toBeInTheDocument();
-    });
-
-    it('should show the public IP total for every node in both tiles', () => {
+    it('should state that both tile prices include the public IPs', () => {
       const props = {
         ...defaultProps,
         price: 100,
@@ -300,8 +286,12 @@ describe('BillingStep', () => {
       };
       const { getByTestId } = render(<BillingStep {...props} />, { wrapper });
 
-      expect(getByTestId('hourly_public_ip').innerHTML).toContain('12 /Hour');
-      expect(getByTestId('monthly_public_ip')).toBeInTheDocument();
+      expect(getByTestId('hourly_public_ip').innerHTML).toContain(
+        'pci_projects_project_instances_configure_billing_type_public_ip_cost',
+      );
+      expect(getByTestId('monthly_public_ip').innerHTML).toContain(
+        'pci_projects_project_instances_configure_billing_type_public_ip_cost',
+      );
     });
 
     it('should not show a public IP line when nodes get no public IP', () => {

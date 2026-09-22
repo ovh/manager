@@ -12,5 +12,6 @@
   "pci_project_flavors_billing_addons_price_hourly": "{{price}} ex. VAT/hour",
   "pci_projects_project_instances_configure_billing_type": "Set billing type",
   "pci_projects_project_instances_configure_billing_type_description": "You can switch from hourly billing to monthly billing for each node in the node pool edit view.",
-  "pci_projects_project_instances_configure_billing_type_floating_ip_cost": "The price includes the cost of Floating IPs"
+  "pci_projects_project_instances_configure_billing_type_floating_ip_cost": "The price includes the cost of Floating IPs",
+  "pci_projects_project_instances_configure_billing_type_public_ip_cost": "The price includes the cost of public IPs"
 }
