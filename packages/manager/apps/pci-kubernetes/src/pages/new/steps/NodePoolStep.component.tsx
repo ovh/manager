@@ -31,6 +31,7 @@ import NodePoolSize from './node-pool/NodePoolSize.component';
 import NodePoolToggle from './node-pool/NodePoolToggle.component';
 import NodePoolType from './node-pool/NodePoolType.component';
 import PublicConnectivity from './node-pool/PublicConnectivity.component';
+import PublicIpConnectivity from './node-pool/PublicIpConnectivity.component';
 import { getDatagridColumns } from './node-pool/getDataGridColumns';
 
 const NodePoolStep = ({
@@ -127,6 +128,9 @@ const NodePoolStep = ({
                 }));
               }}
             />
+          )}
+          {nodesUsePublicIp && publicIpPrice?.hourFormatted && (
+            <PublicIpConnectivity price={publicIpPrice.hourFormatted} />
           )}
           <div className="mb-6">
             <NodePoolSize

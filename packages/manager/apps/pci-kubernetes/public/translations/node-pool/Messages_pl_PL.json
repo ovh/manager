@@ -46,6 +46,7 @@
   "kube_common_node_pool_deploy_description_explanation_multiple_zone_repartition": "Rozmieszczenie pul węzłów w AZ",
   "kube_common_node_pool_public_connetivity_title": "Połączenie z siecią publiczną",
   "kube_common_node_pool_public_connetivity_toggle": "Przypisanie adresów Floating IP do węzłów",
+  "kube_common_node_pool_public_connetivity_public_ip": "Do każdego węzła przypisywany jest publiczny adres IP",
   "kube_common_node_pool_public_connectivity_warning_title": "Ostrzeżenie dotyczące aktualizacji klastra:",
   "kube_common_node_pool_public_connectivity_warning_description_rolling": "Aktualną strategią aktualizacji klastrów (upgrade i patch) jest <strong>„Rolling Upgrade”</strong>: węzły są <strong>zastępowane</strong> jeden po drugim, podobnie jak <strong>przypisane Floating IP.</strong>",
   "kube_common_node_pool_public_connectivity_warning_description_in_place": "Kolejna strategia (<strong>„In Place”</strong>) umożliwi <strong>zachowanie tych adresów IP podczas aktualizacji.</strong> ",

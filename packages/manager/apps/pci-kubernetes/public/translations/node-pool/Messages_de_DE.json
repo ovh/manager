@@ -46,6 +46,7 @@
   "kube_common_node_pool_deploy_description_explanation_multiple_zone_repartition": "AZ-Aufteilung",
   "kube_common_node_pool_public_connetivity_title": "Öffentliche Konnektivität",
   "kube_common_node_pool_public_connetivity_toggle": "Floating IPs mit Nodes verbinden",
+  "kube_common_node_pool_public_connetivity_public_ip": "Jedem Node wird eine öffentliche IP-Adresse zugewiesen",
   "kube_common_node_pool_public_connectivity_warning_title": "Warnung bezüglich der Aktualisierung des Clusters",
   "kube_common_node_pool_public_connectivity_warning_description_rolling": "Die Strategie für Cluster-Updates (Upgrade und Pach) ist derzeit <strong>„Rolling Upgrade“</strong>: Die Nodes werden nacheinander <strong>ersetzt</strong>, ebenso wie <strong>die zugehörigen Floating IPs.</strong>",
   "kube_common_node_pool_public_connectivity_warning_description_in_place": "Eine zukünftige Update-Strategie (<strong>„In Place“</strong>) wird es ermöglichen, <strong>diese IPs zum Zeitpunkt der Updates beizubehalten.</strong> ",

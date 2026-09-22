@@ -42,6 +42,7 @@
   "kube_common_node_pool_deploy_title": "Choix de la zone de disponibilité",
   "kube_common_node_pool_public_connetivity_title": "Connectivité publique",
   "kube_common_node_pool_public_connetivity_toggle": "Attacher des Floating IPs aux nœuds",
+  "kube_common_node_pool_public_connetivity_public_ip": "Une adresse IP publique est attribuée à chaque nœud",
   "kube_common_node_pool_public_connectivity_warning_title": "Avertissement lié à la mise à jour du cluster :",
   "kube_common_node_pool_public_connectivity_warning_description_rolling": "La stratégie de mise à jour (upgrade et pach) des clusters est actuellement <strong>\"Rolling Upgrade\"</strong>: les noeuds sont ainsi <strong>remplacés</strong> un par un ainsi que <strong>les Floating IP associées</strong>.",
   "kube_common_node_pool_public_connectivity_warning_description_in_place": "Une future stratégie de mise à jour (<strong>\"In Place\"</strong>) permettra de <strong>conserver ces IPs au moment des mises à jour</strong>. ",
