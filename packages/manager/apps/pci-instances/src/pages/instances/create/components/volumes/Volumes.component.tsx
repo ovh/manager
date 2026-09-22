@@ -54,13 +54,13 @@ export const Volumes: FC<TVolumesProps> = ({ disks, hourlyPrice }) => {
         {t('pci_instance_creation_volumes_title')}
       </Text>
 
-      <div className="flex flex-col gap-4">
+      <div className="flex w-1/2 flex-col gap-4">
         {localDisks.map((disk) => (
           <div
             key={disk.id}
             className="flex items-center justify-between gap-6 rounded-md border border-solid border-[--ods-color-neutral-200] px-6 py-5"
           >
-            <div>
+            <div className="flex flex-col gap-4">
               <div className="flex flex-wrap items-center gap-3">
                 <Text className="font-bold">
                   {t('pci_instance_creation_volumes_local_name')}

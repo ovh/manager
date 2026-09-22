@@ -161,7 +161,7 @@
   "pci_instance_creation_network_gateway_title": "Gateway",
   "pci_instance_creation_network_gateway_toggle_label": "Przypisz bramkę",
   "pci_instance_creation_network_gateway_price_label": "Rozmiar {{ size }} - {{ price }}",
-  "pci_instance_creation_network_gateway_public_ip_notice": "Twój Gateway wymaga publicznego adresu IP, aby uzyskać dostęp do internetu. Ten adres IP jest tworzony razem z Gateway i rozliczany dodatkowo.",
+  "pci_instance_creation_network_gateway_public_ip_notice": "Twój Gateway wymaga publicznego adresu IP, aby uzyskać dostęp do internetu. Ten adres IP jest tworzony razem z Gateway i rozliczany dodatkowo w cenie {{ price }}.",
   "pci_instance_creation_network_public_connectivity_help_title": "Zrozumienie łączności publicznej",
   "pci_instance_creation_network_public_connectivity_help_description": "Łączność publiczna oferuje 2 poziomy usług:",
   "pci_instance_creation_network_public_connectivity_help_floating_ip": "<h6>Floating IP</h6><p>Dodanie Floating IP do możliwości bramy umożliwia dostęp do instancji z zewnątrz. Floating IP jest trwała i może być zachowana tak długo, jak to konieczne, oraz ponownie przypisana do innej instancji.</p>",

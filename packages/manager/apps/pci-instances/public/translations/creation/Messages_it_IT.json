@@ -161,7 +161,7 @@
   "pci_instance_creation_network_gateway_title": "Gateway",
   "pci_instance_creation_network_gateway_toggle_label": "Assegna un gateway",
   "pci_instance_creation_network_gateway_price_label": "Dimensione {{ size }} - {{ price }}",
-  "pci_instance_creation_network_gateway_public_ip_notice": "Il tuo Gateway necessita di un indirizzo IP pubblico per accedere a internet. Questo indirizzo IP viene creato con il tuo Gateway e fatturato in aggiunta.",
+  "pci_instance_creation_network_gateway_public_ip_notice": "Il tuo Gateway necessita di un indirizzo IP pubblico per accedere a internet. Questo indirizzo IP viene creato con il tuo Gateway e fatturato in aggiunta a {{ price }}.",
   "pci_instance_creation_network_public_connectivity_help_title": "Comprendere la connettività pubblica",
   "pci_instance_creation_network_public_connectivity_help_description": "La connettività pubblica offre 2 livelli di servizio:",
   "pci_instance_creation_network_public_connectivity_help_floating_ip": "<h6>Floating IP</h6><p>Aggiungere una Floating IP alle capacità della Gateway consente all'istanza di essere accessibile dall'esterno. La Floating IP è persistente e può essere conservata quanto necessario e riassegnata a un'altra istanza.</p>",
