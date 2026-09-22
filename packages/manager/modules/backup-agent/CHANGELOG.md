@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.20.4](https://github.com/ovh/manager/compare/@ovh-ux/backup-agent@1.20.3...@ovh-ux/backup-agent@1.20.4) (2026-09-22)
+
+
+### Bug Fixes
+
+* **backup-licenses:** prefix vspc accessUrl with https:// when scheme is missing ([afe203e](https://github.com/ovh/manager/commit/afe203ec1a932deb858d874aa2ed86c0594c53b9))
+
+
+
+
+
 ## [1.20.3](https://github.com/ovh/manager/compare/@ovh-ux/backup-agent@1.20.2...@ovh-ux/backup-agent@1.20.3) (2026-09-18)
 
 
