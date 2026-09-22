@@ -12,5 +12,6 @@
   "pci_project_flavors_billing_addons_price_hourly": "{{price}} + IVA/ora",
   "pci_projects_project_instances_configure_billing_type": "Configura il tipo di fatturazione",
   "pci_projects_project_instances_configure_billing_type_description": "Nella sezione di modifica del pool di nodi, puoi passare dalla fatturazione oraria al forfait mensile per ogni nodo.",
-  "pci_projects_project_instances_configure_billing_type_floating_ip_cost": "Il prezzo include il costo dei Floating IP"
+  "pci_projects_project_instances_configure_billing_type_floating_ip_cost": "Il prezzo include il costo dei Floating IP",
+  "pci_projects_project_instances_configure_billing_type_public_ip_cost": "Il prezzo include il costo delle IP pubbliche"
 }
