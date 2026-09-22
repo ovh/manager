@@ -5,6 +5,7 @@ import {
   PostWebHostingAttachedDomainPayload,
   PostWebHostingWebsitePayload,
   PutWebHostingWebsitePayload,
+  WebHostingDatabaseType,
   WebHostingWebsiteDomainType,
   WebHostingWebsiteType,
 } from '../types/product/webHosting';
@@ -102,7 +103,7 @@ export const postWebHostingWebsites = async (
 
 export const putWebHostingWebsite = async (
   serviceName: string,
-  id: number,
+  id: string | number,
   payload: PutWebHostingWebsitePayload,
 ) => {
   const { data } = await v2.put<PutWebHostingWebsitePayload>(
@@ -186,4 +187,29 @@ export const getAttachedDomainDetails = async (
     `/hosting/web/${serviceName}/attachedDomain/${domain}`,
   );
   return data;
+};
+
+export const getWebHostingDatabasesQueryKey = (serviceName: string) => [
+  'get',
+  'hosting',
+  'web',
+  serviceName,
+  'database',
+];
+
+export const getWebHostingDatabaseNames = async (serviceName: string) => {
+  const { data } = await v6.get<string[]>(`/hosting/web/${serviceName}/database`);
+  return data;
+};
+
+export const getWebHostingDatabase = async (serviceName: string, databaseName: string) => {
+  const { data } = await v6.get<WebHostingDatabaseType>(
+    `/hosting/web/${serviceName}/database/${databaseName}`,
+  );
+  return data;
+};
+
+export const getWebHostingDatabases = async (serviceName: string) => {
+  const names = await getWebHostingDatabaseNames(serviceName);
+  return Promise.all(names.map((name) => getWebHostingDatabase(serviceName, name)));
 };

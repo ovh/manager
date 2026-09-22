@@ -1,32 +1,45 @@
-import { Control, Controller } from 'react-hook-form';
+import { Control, Controller, UseFormSetValue } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
 
 import {
   CARD_COLOR,
   Card,
+  Checkbox,
+  CheckboxControl,
+  CheckboxLabel,
+  ICON_NAME,
+  Icon,
   Medium,
   Radio,
   RadioControl,
   RadioGroup,
   RadioLabel,
+  RadioValueChangeDetail,
   TEXT_PRESET,
   Text,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
 } from '@ovhcloud/ods-react';
 
 import { CmsType } from '@/data/types/product/managedWordpress/cms';
 import { websiteFormSchema } from '@/utils/formSchemas.utils';
+
+import { AdvancedModuleInstallation } from './AdvancedModuleInstallation';
 
 type FormData = z.infer<typeof websiteFormSchema>;
 
 interface DomainCmsModuleProps {
   control: Control<FormData, unknown, FormData>;
   controlValues: FormData;
+  setValue: UseFormSetValue<FormData>;
 }
 
 export const DomainCmsModule: React.FC<DomainCmsModuleProps> = ({
   control,
   controlValues,
+  setValue,
 }: DomainCmsModuleProps) => {
   const { t } = useTranslation(['common', 'multisite', 'dashboard']);
 
@@ -40,7 +53,15 @@ export const DomainCmsModule: React.FC<DomainCmsModuleProps> = ({
         name="module"
         control={control}
         render={({ field }) => (
-          <RadioGroup value={field.value} onChange={field.onChange}>
+          <RadioGroup
+            value={field.value}
+            onChange={field.onChange}
+            onValueChange={(detail: RadioValueChangeDetail) => {
+              if ((detail.value as CmsType) === CmsType.NONE) {
+                setValue('advancedInstall', false);
+              }
+            }}
+          >
             <div className="flex flex-row space-x-4">
               <Card
                 className="w-1/3 p-4"
@@ -154,6 +175,60 @@ export const DomainCmsModule: React.FC<DomainCmsModuleProps> = ({
           </RadioGroup>
         )}
       />
+      {controlValues.module && controlValues.module !== CmsType.NONE && (
+        <>
+          <div className="flex flex-row items-center space-x-4">
+            <Controller
+              name="advancedInstall"
+              control={control}
+              render={({ field }) => (
+                <Checkbox
+                  name="advanced-install"
+                  checked={field.value}
+                  onCheckedChange={() => field.onChange(!field.value)}
+                >
+                  <CheckboxControl />
+                  <CheckboxLabel>
+                    <Text preset={TEXT_PRESET.heading6}>
+                      {t('multisite:multisite_add_website_module_advanced_install_title')}
+                    </Text>
+                  </CheckboxLabel>
+                </Checkbox>
+              )}
+            />
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Icon
+                  id="advanced-install-tooltip"
+                  name={ICON_NAME.circleInfo}
+                  className="cursor-pointer"
+                />
+              </TooltipTrigger>
+              <TooltipContent>
+                <Text preset={TEXT_PRESET.span}>
+                  {t('multisite:multisite_add_website_module_advanced_install_tooltip')}
+                </Text>
+                <ul className="mt-1 pr-1">
+                  <li>{t('multisite:multisite_add_website_module_advanced_install_tooltip_db')}</li>
+                  <li>
+                    {t('multisite:multisite_add_website_module_advanced_install_tooltip_admin')}
+                  </li>
+                  <li>
+                    {t('multisite:multisite_add_website_module_advanced_install_tooltip_lang_path')}
+                  </li>
+                </ul>
+              </TooltipContent>
+            </Tooltip>
+          </div>
+          {controlValues.advancedInstall && (
+            <AdvancedModuleInstallation
+              control={control}
+              controlValues={controlValues}
+              setValue={setValue}
+            />
+          )}
+        </>
+      )}
     </div>
   );
 };

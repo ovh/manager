@@ -26,7 +26,13 @@ import { CmsType } from '@/data/types/product/managedWordpress/cms';
 import { AssociationType } from '@/data/types/product/website';
 import { ServiceStatus } from '@/data/types/status';
 import { websiteFormSchema } from '@/utils/formSchemas.utils';
+import {
+  moduleAdminNameSchema,
+  moduleAdminPasswordSchema,
+  moduleDbPasswordSchema,
+} from '@/utils/moduleInstall.utils';
 
+import { DEFAULT_DATABASE_PORT } from '../constants';
 import { DomainAssociation } from './component/DomainAssociation';
 import { DomainCmsModule } from './component/DomainCmsModule';
 import { DomainConfiguration } from './component/DomainConfiguration';
@@ -41,10 +47,11 @@ export default function AddWebsitePage() {
 
   type FormData = z.infer<typeof websiteFormSchema>;
 
-  const { control, handleSubmit, watch, reset } = useForm<FormData>({
+  const { control, handleSubmit, watch, reset, setValue } = useForm<FormData>({
     defaultValues: {
       path: 'public_html',
       autoConfigureDns: true,
+      databasePort: DEFAULT_DATABASE_PORT,
     },
     resolver: zodResolver(websiteFormSchema),
   });
@@ -74,16 +81,50 @@ export default function AddWebsitePage() {
     },
   );
 
+  const buildModuleConfiguration = (data: FormData, fqdn: string) => {
+    const hasModule = !!data.module && data.module !== CmsType.NONE;
+
+    if (!hasModule || !data.advancedInstall) {
+      return {};
+    }
+
+    // Full install path = website path + install path (matches the prefix displayed to the user)
+    const fullInstallPath = [data.path, data.installPath].filter(Boolean).join('/');
+
+    return {
+      adminConfiguration: {
+        domain: fqdn,
+        adminLogin: data.adminName,
+        adminPassword: data.adminPassword,
+        ...(data.adminLanguage ? { language: data.adminLanguage } : {}),
+        ...(fullInstallPath ? { installPath: fullInstallPath } : {}),
+      },
+      ...(data.databaseName
+        ? {
+            databaseConfiguration: {
+              databaseName: data.databaseName,
+              ...(data.databaseServer ? { server: data.databaseServer } : {}),
+              ...(data.databasePort ? { port: Number(data.databasePort) } : {}),
+              ...(data.databaseUser ? { user: data.databaseUser } : {}),
+              ...(data.databasePassword ? { password: data.databasePassword } : {}),
+            },
+          }
+        : {}),
+    };
+  };
+
   const onSubmit = (data: FormData) => {
     clearNotifications();
     if (data.associationType === AssociationType.EXISTING) {
+      const fqdn = data.hasSubdomain ? `${data.subdomain}.${data.fqdn}` : data.fqdn;
       const payload = {
         targetSpec: {
           name: data.name,
-          fqdn: data.hasSubdomain ? `${data.subdomain}.${data.fqdn}` : data.fqdn,
+          fqdn,
           ...(data.module && data.module !== CmsType.NONE
             ? { module: { name: data.module as CmsType } }
             : {}),
+          ...buildModuleConfiguration(data, fqdn),
           bypassDNSConfiguration: !data.autoConfigureDns,
           ...(data.advancedConfiguration
             ? {
@@ -109,12 +150,32 @@ export default function AddWebsitePage() {
           ...(data.module && data.module !== CmsType.NONE
             ? { module: { name: data.module as CmsType } }
             : {}),
+          ...buildModuleConfiguration(data, data.fqdn),
         },
       };
       postWebHostingWebsites([payload, data.wwwNeeded ?? false]);
     }
     navigate(-1);
   };
+
+  const isAdvancedInstallValid = (() => {
+    if (!controlValues.advancedInstall || controlValues.module === CmsType.NONE) {
+      return true;
+    }
+    const isDatabaseValid =
+      !!controlValues.databaseSelected &&
+      !!controlValues.databaseServer &&
+      !!controlValues.databaseName &&
+      !!controlValues.databasePort &&
+      !!controlValues.databaseUser &&
+      moduleDbPasswordSchema.safeParse(controlValues.databasePassword ?? '').success;
+    const isAdminValid =
+      moduleAdminNameSchema.safeParse(controlValues.adminName ?? '').success &&
+      moduleAdminPasswordSchema.safeParse(controlValues.adminPassword ?? '').success &&
+      !!controlValues.adminLanguage;
+
+    return isDatabaseValid && isAdminValid;
+  })();
 
   return (
     <form className="flex flex-col space-y-6">
@@ -159,10 +220,10 @@ export default function AddWebsitePage() {
       {step === 4 && (
         <div>
           <Divider />
-          <DomainCmsModule control={control} controlValues={controlValues} />
+          <DomainCmsModule control={control} controlValues={controlValues} setValue={setValue} />
           <Button
             onClick={() => void handleSubmit(onSubmit)()}
-            disabled={!controlValues.fqdn}
+            disabled={!controlValues.fqdn || !isAdvancedInstallValid}
             className="mt-4"
           >
             {t('common:web_hosting_common_action_continue')}

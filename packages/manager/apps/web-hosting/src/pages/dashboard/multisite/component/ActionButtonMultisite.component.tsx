@@ -178,6 +178,18 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
             ),
           label: t('delete_git'),
         }),
+        actionCondition(canAddDomain, {
+          id: 12,
+          onClick: () =>
+            navigate(urls.editSite.replace(subRoutes.serviceName, serviceName), {
+              state: {
+                siteId,
+                siteName: website?.currentState?.name ?? site,
+                path: website?.currentState?.path ?? path,
+              },
+            }),
+          label: t('edit_site'),
+        }),
         {
           id: 11,
           onClick: () =>
