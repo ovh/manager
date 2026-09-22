@@ -4,6 +4,7 @@
   "kubernetes_add_node_pool_node_type": "Rodzaj węzła",
   "kube_common_node_pool_model_type_selector": "Wybierz model",
   "kube_common_node_pool_volumes_title": "Przestrzeń dyskowa",
+  "kube_common_node_pool_volumes_column_storage": "Przestrzeń dyskowa",
   "kube_common_node_pool_volumes_system_badge": "System",
   "kube_common_node_pool_volumes_local_name": "Local Storage — Low Latency",
   "kube_common_node_pool_volumes_local_capacity": "{{size}} {{technology}}",

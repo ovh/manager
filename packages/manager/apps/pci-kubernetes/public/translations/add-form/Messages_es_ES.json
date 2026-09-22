@@ -4,6 +4,7 @@
   "kubernetes_add_node_pool_node_type": "Tipo de nodos",
   "kube_common_node_pool_model_type_selector": "Seleccione un modelo",
   "kube_common_node_pool_volumes_title": "Almacenamiento",
+  "kube_common_node_pool_volumes_column_storage": "Almacenamiento",
   "kube_common_node_pool_volumes_system_badge": "Sistema",
   "kube_common_node_pool_volumes_local_name": "Local Storage — Low Latency",
   "kube_common_node_pool_volumes_local_capacity": "{{size}} {{technology}}",
