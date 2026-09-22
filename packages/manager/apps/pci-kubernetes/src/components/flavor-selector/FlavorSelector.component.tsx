@@ -91,11 +91,7 @@ export function FlavorSelector({ projectId, region, onSelect }: Readonly<FlavorS
         )}
       />
       {hasRepricing && selectedFlavor && (
-        <LocalStorage
-          flavorName={selectedFlavor.name.toUpperCase()}
-          disks={localStorage.disks}
-          price={localStorage.price}
-        />
+        <LocalStorage disks={localStorage.disks} price={localStorage.price} />
       )}
     </>
   );
