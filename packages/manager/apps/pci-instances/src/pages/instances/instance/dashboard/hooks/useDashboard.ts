@@ -5,6 +5,12 @@ import { selectInstanceDashboard } from '../view-models/selectInstanceDashboard'
 import { useDedicatedUrl } from '@/hooks/url/useDedicatedUrl';
 import { useTranslation } from 'react-i18next';
 import { useRepricingInstancesAvailable } from '@/hooks/repricing/useRepricingInstancesAvailable';
+import { useNetworkCatalog } from '@/data/hooks/catalog/useNetworkCatalog';
+import { usePrivateNetworks } from '@/data/hooks/configuration/usePrivateNetworks';
+import {
+  selectPublicIpPrices,
+  selectSubnetIdsWithGateway,
+} from '@/pages/instances/create/view-models/networksViewModel';
 
 type TUseDashboardArgs = {
   region: string | null;
@@ -15,7 +21,7 @@ export const useDashboard = ({ region, instanceId }: TUseDashboardArgs) => {
   const projectUrl = useProjectUrl('public-cloud');
   const dedicatedUrl = useDedicatedUrl();
   const { i18n } = useTranslation();
-  const isStoragePriceDisplayed = useRepricingInstancesAvailable();
+  const hasRepricing = useRepricingInstancesAvailable();
 
   const locale = i18n.language.replace('_', '-');
 
@@ -29,12 +35,20 @@ export const useDashboard = ({ region, instanceId }: TUseDashboardArgs) => {
     },
   });
 
+  const { data: publicIpPrices = null } = useNetworkCatalog({
+    select: selectPublicIpPrices(region),
+  });
+
+  const { data: subnetIdsWithGateway = [] } = usePrivateNetworks({
+    select: selectSubnetIdsWithGateway,
+  });
+
   return useMemo(
     () => ({
       instance: selectInstanceDashboard(
         { projectUrl, dedicatedUrl },
         locale,
-        isStoragePriceDisplayed,
+        { hasRepricing, publicIpPrices, subnetIdsWithGateway },
         instance,
       ),
       pendingTasks,
@@ -45,7 +59,9 @@ export const useDashboard = ({ region, instanceId }: TUseDashboardArgs) => {
       projectUrl,
       dedicatedUrl,
       locale,
-      isStoragePriceDisplayed,
+      hasRepricing,
+      publicIpPrices,
+      subnetIdsWithGateway,
       instance,
       pendingTasks,
       isPending,

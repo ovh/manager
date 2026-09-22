@@ -87,12 +87,97 @@ describe.each`
         rows = selectInstanceDashboard(
           urls,
           'en-GB',
-          isStoragePriceDisplayed,
+          {
+            hasRepricing: isStoragePriceDisplayed,
+            publicIpPrices: null,
+            subnetIdsWithGateway: [],
+          },
           instanceBilledOn(pricings),
         )?.pricings;
       });
 
       it('lists one labelled row per price it is billed on', () => {
+        expect(rows).toStrictEqual(expectedRows);
+      });
+    });
+  },
+);
+
+const PUBLIC_IP_PRICES = { basicPublicIp: 200, floatingIp: 300 };
+
+const addressOn = (subnetId?: string) => ({
+  ip: '10.0.0.1',
+  version: 4,
+  subnet: subnetId
+    ? {
+        id: subnetId,
+        name: 'subnet',
+        gatewayIP: '10.0.0.254',
+        network: { id: 'network-id', name: 'network' },
+      }
+    : null,
+});
+
+const instanceReachableThrough = (
+  addresses: [string, ReturnType<typeof addressOn>[]][],
+): TInstance => ({
+  ...instanceBilledOn([]),
+  addresses: new Map(addresses) as TInstance['addresses'],
+});
+
+const publicIpRow = (value: number) => ({
+  label: 'public_ip',
+  type: 'hour',
+  value,
+});
+
+const gatewayIpRow = (value: number) => ({
+  label: 'gateway_ip',
+  type: 'hour',
+  value,
+});
+
+describe.each`
+  given                                        | addresses                                 | hasRepricing | publicIpPrices      | subnetIdsWithGateway | expectedRows
+  ${'no address at all'}                       | ${[]}                                     | ${true}      | ${PUBLIC_IP_PRICES} | ${[]}                | ${[]}
+  ${'a basic public IP'}                       | ${[['public', [addressOn()]]]}            | ${true}      | ${PUBLIC_IP_PRICES} | ${[]}                | ${[publicIpRow(200)]}
+  ${'a floating IP'}                           | ${[['floating', [addressOn()]]]}          | ${true}      | ${PUBLIC_IP_PRICES} | ${[]}                | ${[publicIpRow(300)]}
+  ${'a private network behind a gateway'}      | ${[['private', [addressOn('subnet-1')]]]} | ${true}      | ${PUBLIC_IP_PRICES} | ${['subnet-1']}      | ${[gatewayIpRow(200)]}
+  ${'a private network free of gateway'}       | ${[['private', [addressOn('subnet-1')]]]} | ${true}      | ${PUBLIC_IP_PRICES} | ${['subnet-2']}      | ${[]}
+  ${'a public IP and a gateway'} | ${[
+  ['public', [addressOn()]],
+  ['private', [addressOn('subnet-1')]],
+]} | ${true} | ${PUBLIC_IP_PRICES} | ${['subnet-1']} | ${[publicIpRow(200), gatewayIpRow(200)]}
+  ${'a public IP, repricing unavailable'}      | ${[['public', [addressOn()]]]}            | ${false}     | ${PUBLIC_IP_PRICES} | ${[]}                | ${[]}
+  ${'a public IP, catalog prices unavailable'} | ${[['public', [addressOn()]]]}            | ${true}      | ${null}             | ${[]}                | ${[]}
+`(
+  'given an instance reachable through $given',
+  ({
+    addresses,
+    hasRepricing,
+    publicIpPrices,
+    subnetIdsWithGateway,
+    expectedRows,
+  }: {
+    addresses: [string, ReturnType<typeof addressOn>[]][];
+    hasRepricing: boolean;
+    publicIpPrices: { basicPublicIp: number; floatingIp: number } | null;
+    subnetIdsWithGateway: string[];
+    expectedRows: unknown[];
+  }) => {
+    describe('when selecting its dashboard view model', () => {
+      let rows: unknown;
+
+      beforeEach(() => {
+        rows = selectInstanceDashboard(
+          urls,
+          'en-GB',
+          { hasRepricing, publicIpPrices, subnetIdsWithGateway },
+          instanceReachableThrough(addresses),
+        )?.pricings;
+      });
+
+      it('prices the public IP it holds and the IP of the gateway it sits behind', () => {
         expect(rows).toStrictEqual(expectedRows);
       });
     });

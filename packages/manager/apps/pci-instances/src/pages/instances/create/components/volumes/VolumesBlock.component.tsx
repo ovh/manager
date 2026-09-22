@@ -11,7 +11,6 @@ const VolumesBlock: FC = () => {
 
   return (
     <Volumes
-      flavorName={instanceData.flavorDetails.name}
       disks={instanceData.flavorDetails.disks}
       hourlyPrice={instanceData.flavorDetails.localDiskPrice}
     />
