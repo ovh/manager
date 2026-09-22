@@ -46,6 +46,13 @@ export const selectPrivateNetworks = (region: string | null) => (
   });
 };
 
+export const selectSubnetIdsWithGateway = (
+  privateNetworks?: TPrivateNetwork,
+): string[] =>
+  privateNetworks?.subnets.allIds.filter(
+    (subnetId) => privateNetworks.subnets.byId.get(subnetId)?.hasGateway,
+  ) ?? [];
+
 type TOvhPrivateNetwork = {
   ovhPrivateNetwork: ReturnType<typeof getOvhPrivateNetwork>;
   allocatedVlanIds: number[];
@@ -157,6 +164,16 @@ export const getGatewayAvailability = ({
   };
 };
 
+type TGatewayAvailability = ReturnType<typeof getGatewayAvailability>;
+
+export const isNewGatewayOrdered = (
+  gatewayAvailability: TGatewayAvailability,
+  willGatewayBeAttached: boolean,
+): boolean =>
+  willGatewayBeAttached &&
+  !!gatewayAvailability &&
+  !gatewayAvailability.isDisabled;
+
 export const selectPublicIpPrices = (microRegion: string | null) => (
   networkCatalog?: TNetworkCatalog,
 ) => {
@@ -210,6 +227,66 @@ export const getPublicIpAvailability = ({
     },
   };
 };
+
+export type TPrivateNetworkCartItem = {
+  name: string;
+  willGatewayBeAttached: boolean;
+  gatewayPrice: number | null;
+  gatewayIpPrice: number | null;
+};
+
+type TPrivateNetworkCartItemArgs = {
+  privateNetworks?: TPrivateNetworkData[];
+  subnetId: string | null;
+  newPrivateNetworkName: string | null;
+  willGatewayBeAttached: boolean;
+  gatewayAvailability: TGatewayAvailability;
+  gatewayConfiguration?: ReturnType<
+    ReturnType<typeof selectSmallGatewayConfig>
+  >;
+  publicIpPrices?: ReturnType<ReturnType<typeof selectPublicIpPrices>>;
+};
+
+export const getPrivateNetworkCartItem = ({
+  privateNetworks = [],
+  subnetId,
+  newPrivateNetworkName,
+  willGatewayBeAttached,
+  gatewayAvailability,
+  gatewayConfiguration,
+  publicIpPrices,
+}: TPrivateNetworkCartItemArgs): TPrivateNetworkCartItem | null => {
+  const name =
+    newPrivateNetworkName ??
+    privateNetworks.find(({ value }) => value === subnetId)?.label ??
+    null;
+
+  if (!name) return null;
+
+  const isGatewayBilledWithThisInstance = isNewGatewayOrdered(
+    gatewayAvailability,
+    willGatewayBeAttached,
+  );
+
+  return {
+    name,
+    willGatewayBeAttached,
+    gatewayPrice: isGatewayBilledWithThisInstance
+      ? gatewayConfiguration?.price ?? null
+      : null,
+    gatewayIpPrice: isGatewayBilledWithThisInstance
+      ? publicIpPrices?.basicPublicIp ?? null
+      : null,
+  };
+};
+
+export const getGatewayWithPublicIpPrice = ({
+  gatewayPrice,
+  gatewayIpPrice,
+}: TPrivateNetworkCartItem): number | null =>
+  gatewayPrice === null && gatewayIpPrice === null
+    ? null
+    : (gatewayPrice ?? 0) + (gatewayIpPrice ?? 0);
 
 export const METAL_FLAVOR_CATEGORY = 'Metal Instances';
 

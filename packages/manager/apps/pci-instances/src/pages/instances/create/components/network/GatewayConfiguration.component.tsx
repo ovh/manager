@@ -10,8 +10,10 @@ import {
 import { useCatalogPrice } from '@ovh-ux/muk';
 import {
   getGatewayAvailability,
+  isNewGatewayOrdered,
   selectSmallGatewayConfig,
 } from '../../view-models/networksViewModel';
+import Banner from '@/components/banner/Banner.component';
 import { TooltipWrapper } from '@/components/form/TooltipWrapper.component';
 import {
   Controller,
@@ -141,6 +143,15 @@ const GatewayConfiguration: FC<{ privateNetworks: TPrivateNetworkData[] }> = ({
           </Toggle>
         )}
       />
+      {isNewGatewayOrdered(gatewayAvailability, willGatewayBeAttached) && (
+        <Banner className="mt-4" color="warning">
+          <Text>
+            {t(
+              'creation:pci_instance_creation_network_gateway_public_ip_notice',
+            )}
+          </Text>
+        </Banner>
+      )}
     </div>
   );
 };

@@ -27,9 +27,12 @@ import { BILLING_TYPE } from '@/types/instance/common.type';
 import { usePrivateNetworks } from '@/data/hooks/configuration/usePrivateNetworks';
 import {
   getGatewayAvailability,
+  getPrivateNetworkCartItem,
+  isNewGatewayOrdered,
   selectSmallGatewayConfig,
   selectPrivateNetworks,
   selectPublicIpPrices,
+  TPrivateNetworkCartItem,
 } from '../view-models/networksViewModel';
 import { useNetworkCatalog } from '@/data/hooks/catalog/useNetworkCatalog';
 import { selectMicroRegionDeploymentMode } from '../view-models/microRegionsViewModel';
@@ -42,12 +45,6 @@ import {
 type TBackupConfigurationPrices = {
   localBackupPrice: number;
   distantBackupPrice: number | null;
-};
-
-type TPrivateNetwork = {
-  name: string;
-  willGatewayBeAttached: boolean;
-  gatewayPrice: number | null;
 };
 
 type TPublicNetwork = {
@@ -66,7 +63,7 @@ type TInstanceData = {
   windowsImageLicensePrice: number | null;
   backupConfigurationPrices: TBackupConfigurationPrices | null;
   billingType: BILLING_TYPE;
-  privateNetwork: TPrivateNetwork | null;
+  privateNetwork: TPrivateNetworkCartItem | null;
   publicNetwork: TPublicNetwork | null;
 };
 
@@ -270,29 +267,32 @@ export const useInstanceCreation = (): TInstanceCreation => {
     [deploymentMode, subnetId, privateNetworks],
   );
 
-  const privateNetwork = useMemo(() => {
-    const network = privateNetworks?.find(({ value }) => subnetId === value);
-
-    const gatewayPrice =
-      !gatewayAvailability?.isDisabled &&
-      gatewayConfigurations &&
-      willGatewayBeAttached
-        ? gatewayConfigurations.price
-        : null;
-
-    const name = newPrivateNetwork?.name ?? network?.label ?? null;
-
-    if (!name) return null;
-
-    return { name, willGatewayBeAttached, gatewayPrice };
-  }, [
+  const willNewGatewayBeCreated = isNewGatewayOrdered(
+    gatewayAvailability,
     willGatewayBeAttached,
-    gatewayAvailability?.isDisabled,
-    gatewayConfigurations,
-    newPrivateNetwork?.name,
-    subnetId,
-    privateNetworks,
-  ]);
+  );
+
+  const privateNetwork = useMemo(
+    () =>
+      getPrivateNetworkCartItem({
+        privateNetworks,
+        subnetId,
+        newPrivateNetworkName: newPrivateNetwork?.name ?? null,
+        willGatewayBeAttached,
+        gatewayAvailability,
+        gatewayConfiguration: gatewayConfigurations,
+        publicIpPrices,
+      }),
+    [
+      willGatewayBeAttached,
+      gatewayAvailability,
+      gatewayConfigurations,
+      publicIpPrices,
+      newPrivateNetwork?.name,
+      subnetId,
+      privateNetworks,
+    ],
+  );
 
   const publicNetwork = useMemo(
     () =>
@@ -396,8 +396,7 @@ export const useInstanceCreation = (): TInstanceCreation => {
       postInstallScript,
       existingFloatingIpId,
       floatingIpAssignment,
-      assignNewGateway:
-        willGatewayBeAttached && !gatewayAvailability?.isDisabled,
+      assignNewGateway: willNewGatewayBeCreated,
       networkId,
       subnetId,
       newPrivateNetwork,

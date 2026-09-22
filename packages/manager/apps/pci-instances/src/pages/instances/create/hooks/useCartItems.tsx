@@ -14,6 +14,7 @@ import {
 import { useInstancesCatalogWithSelect } from '@/data/hooks/catalog/useInstancesCatalogWithSelect';
 import { useCatalogPrice } from '@ovh-ux/muk';
 import { useRepricingInstancesAvailable } from '@/hooks/repricing/useRepricingInstancesAvailable';
+import { getGatewayWithPublicIpPrice } from '../view-models/networksViewModel';
 
 export type TCartItem = {
   id: string;
@@ -87,6 +88,10 @@ export const useCartItems = (): TCartItems => {
 
   const priceUnit = t(
     `creation:pci_instance_creation_table_header_price_${billingType}_unit`,
+  );
+
+  const hourlyPriceUnit = t(
+    'creation:pci_instance_creation_table_header_price_hourly_unit',
   );
 
   const region: TCartItemDetail[] = localizationDetails
@@ -198,9 +203,7 @@ export const useCartItems = (): TCartItems => {
               flavorDetails.localDiskPrice === null
                 ? null
                 : flavorDetails.localDiskPrice * quantity,
-            priceUnit: t(
-              'creation:pci_instance_creation_table_header_price_hourly_unit',
-            ),
+            priceUnit: hourlyPriceUnit,
           },
         ]
       : [];
@@ -223,18 +226,24 @@ export const useCartItems = (): TCartItems => {
                   )}
                   {...(privateNetwork.gatewayPrice && {
                     price: `${getTextPrice(privateNetwork.gatewayPrice)}`,
-                    unit: t(
-                      'creation:pci_instance_creation_table_header_price_hourly_unit',
-                    ),
+                    unit: hourlyPriceUnit,
                   })}
+                />
+              )}
+              {privateNetwork.gatewayIpPrice !== null && (
+                <CartOptionDetailItem
+                  className="mt-2"
+                  label={t(
+                    'creation:pci_instance_creation_cart_public_ip_basic',
+                  )}
+                  price={`${getTextPrice(privateNetwork.gatewayIpPrice)}`}
+                  unit={hourlyPriceUnit}
                 />
               )}
             </div>
           ),
-          price: privateNetwork.gatewayPrice ?? null,
-          priceUnit: t(
-            'creation:pci_instance_creation_table_header_price_hourly_unit',
-          ),
+          price: getGatewayWithPublicIpPrice(privateNetwork),
+          priceUnit: hourlyPriceUnit,
           displayPrice: false,
         },
       ]
@@ -257,9 +266,7 @@ export const useCartItems = (): TCartItems => {
             </div>
           ),
           price: publicNetwork.price ? publicNetwork.price * quantity : null,
-          priceUnit: t(
-            'creation:pci_instance_creation_table_header_price_hourly_unit',
-          ),
+          priceUnit: hourlyPriceUnit,
         },
       ]
     : [];

@@ -20,12 +20,23 @@ import {
   TDiskViewModel,
 } from '@/pages/instances/create/view-models/mappers/diskMapper';
 
-type TPriceRowLabel = 'instance' | 'licence' | 'local_storage';
+type TPriceRowLabel =
+  | 'instance'
+  | 'licence'
+  | 'local_storage'
+  | 'public_ip'
+  | 'gateway_ip';
 
 type TPrice = {
   label: TPriceRowLabel;
   type: TPriceType;
   value: number | null;
+};
+
+export type TInstancePricingContext = {
+  hasRepricing: boolean;
+  publicIpPrices: { basicPublicIp: number; floatingIp: number } | null;
+  subnetIdsWithGateway: string[];
 };
 
 type TFlavor = {
@@ -133,6 +144,51 @@ const mapPricings = (
 
       return [{ label, type: pricing.type, value: pricing.priceInUcents }];
     });
+
+const isBehindGateway = (
+  addresses: TInstanceAddresses,
+  subnetIdsWithGateway: string[],
+) =>
+  (addresses.get('private') ?? []).some(
+    ({ subnet }) => !!subnet && subnetIdsWithGateway.includes(subnet.id),
+  );
+
+const mapNetworkPricings = (
+  addresses: TInstanceAddresses,
+  {
+    hasRepricing,
+    publicIpPrices,
+    subnetIdsWithGateway,
+  }: TInstancePricingContext,
+): TPrice[] => {
+  if (!hasRepricing || !publicIpPrices) return [];
+
+  const isFloatingIp = !!addresses.get('floating');
+  const hasPublicIp = isFloatingIp || !!addresses.get('public');
+
+  return [
+    ...(hasPublicIp
+      ? [
+          {
+            label: 'public_ip' as const,
+            type: 'hour' as const,
+            value: isFloatingIp
+              ? publicIpPrices.floatingIp
+              : publicIpPrices.basicPublicIp,
+          },
+        ]
+      : []),
+    ...(isBehindGateway(addresses, subnetIdsWithGateway)
+      ? [
+          {
+            label: 'gateway_ip' as const,
+            type: 'hour' as const,
+            value: publicIpPrices.basicPublicIp,
+          },
+        ]
+      : []),
+  ];
+};
 
 const canActivateMonthlyBilling = (actions: TInstanceAction[]) =>
   actions.some(({ name }) => name === 'activate_monthly_billing');
@@ -313,7 +369,7 @@ const getBackupsInfo = (backups: TInstanceBackup[], locale: string) => ({
 export const selectInstanceDashboard = (
   { projectUrl, dedicatedUrl }: TUrlBuilderParams,
   locale: string,
-  isStoragePriceDisplayed: boolean,
+  pricingContext: TInstancePricingContext,
   instance?: TInstance,
 ): TInstanceDashboardViewModel => {
   if (!instance) return null;
@@ -325,7 +381,10 @@ export const selectInstanceDashboard = (
     region: instance.region,
     publicNetwork: mapPublicNetwork(dedicatedUrl, instance.addresses),
     privateNetwork: mapPrivateNetwork(instance.addresses),
-    pricings: mapPricings(instance.pricings || [], isStoragePriceDisplayed),
+    pricings: [
+      ...mapPricings(instance.pricings || [], pricingContext.hasRepricing),
+      ...mapNetworkPricings(instance.addresses, pricingContext),
+    ],
     task: instance.task,
     status: getInstanceStatus(instance.status),
     image: instance.image?.name ?? '',

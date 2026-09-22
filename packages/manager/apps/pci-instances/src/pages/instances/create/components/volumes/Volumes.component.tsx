@@ -1,16 +1,6 @@
-import { FC, Fragment } from 'react';
-import { Trans, useTranslation } from 'react-i18next';
-import {
-  Badge,
-  BADGE_COLOR,
-  BADGE_SIZE,
-  Icon,
-  ICON_NAME,
-  Message,
-  MessageBody,
-  MessageIcon,
-  Text,
-} from '@ovhcloud/ods-react';
+import { FC } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Badge, BADGE_COLOR, BADGE_SIZE, Text } from '@ovhcloud/ods-react';
 import { useBytes } from '@ovh-ux/manager-pci-common';
 import { useCatalogPrice } from '@ovh-ux/muk';
 import { convertHourlyPriceToMonthly } from '@/utils';
@@ -21,21 +11,14 @@ import {
   toDiskCount,
 } from '../../view-models/volumesViewModel';
 
-const columnHeaderClass =
-  'text-xs font-bold uppercase tracking-wider text-[--ods-color-neutral-600]';
 const mutedTextClass = 'text-[--ods-color-neutral-500]';
 
 type TVolumesProps = {
-  flavorName: string;
   disks: TDiskViewModel[];
   hourlyPrice: number | null;
 };
 
-export const Volumes: FC<TVolumesProps> = ({
-  flavorName,
-  disks,
-  hourlyPrice,
-}) => {
+export const Volumes: FC<TVolumesProps> = ({ disks, hourlyPrice }) => {
   const { t } = useTranslation('creation');
   const { formatBytes } = useBytes();
   const { getTextPrice: getHourlyTextPrice } = useCatalogPrice(4, {
@@ -46,12 +29,21 @@ export const Volumes: FC<TVolumesProps> = ({
   });
 
   const localDisks = selectLocalDisks(disks);
-  const [systemDisk] = localDisks;
 
-  if (!systemDisk) return null;
+  if (localDisks.length === 0) return null;
 
-  const formatCapacity = (disk: TDiskViewModel) =>
-    formatBytes(diskCapacityInBytes(disk), 0, 1000);
+  const capacityLabel = (disk: TDiskViewModel) => {
+    const diskCount = toDiskCount(disk.number);
+    const capacity = formatBytes(diskCapacityInBytes(disk), 0, 1000);
+    const size = diskCount > 1 ? `${diskCount}x ${capacity}` : capacity;
+
+    return disk.interface
+      ? t('pci_instance_creation_volumes_local_capacity', {
+          size,
+          technology: disk.interface,
+        })
+      : size;
+  };
 
   const monthlyPrice =
     hourlyPrice === null ? null : convertHourlyPriceToMonthly(hourlyPrice);
@@ -62,69 +54,22 @@ export const Volumes: FC<TVolumesProps> = ({
         {t('pci_instance_creation_volumes_title')}
       </Text>
 
-      <Text className="mb-6 block">
-        {t('pci_instance_creation_volumes_description')}
-      </Text>
-
-      <Message className="mb-6" color="information" dismissible={false}>
-        <MessageIcon name={ICON_NAME.circleInfo} />
-        <MessageBody>
-          <Trans
-            ns="creation"
-            i18nKey="pci_instance_creation_volumes_system_notice"
-            values={{ size: formatCapacity(systemDisk) }}
-            components={{ strong: <strong /> }}
-          />
-        </MessageBody>
-      </Message>
-
-      <div className="grid grid-cols-[1fr_max-content_max-content] items-center gap-x-10">
-        <span className={columnHeaderClass}>
-          {t('pci_instance_creation_volumes_column_storage')}
-        </span>
-        <span className={columnHeaderClass}>
-          {t('pci_instance_creation_volumes_column_size')}
-        </span>
-        <span />
-
-        <hr className="col-span-3 my-4 h-px border-0 bg-[--ods-color-neutral-200]" />
-
+      <div className="flex flex-col gap-4">
         {localDisks.map((disk) => (
-          <Fragment key={disk.id}>
-            <div className="flex items-center gap-4">
-              <span className="flex size-12 shrink-0 items-center justify-center rounded-lg bg-[--ods-color-primary-050] text-[--ods-color-primary-600]">
-                <Icon aria-hidden="true" name={ICON_NAME.disk} />
-              </span>
-              <div>
-                <div className="flex flex-wrap items-center gap-3">
-                  <Text className="font-bold">
-                    {t('pci_instance_creation_volumes_local_name')}
-                  </Text>
-                  <Badge color={BADGE_COLOR.information} size={BADGE_SIZE.sm}>
-                    {t('pci_instance_creation_volumes_system_badge')}
-                  </Badge>
-                </div>
-                <Text className="block">{flavorName}</Text>
-                {disk.interface && (
-                  <Text className={`block ${mutedTextClass}`}>
-                    {t('pci_instance_creation_volumes_local_spec', {
-                      technology: disk.interface,
-                    })}
-                  </Text>
-                )}
+          <div
+            key={disk.id}
+            className="flex items-center justify-between gap-6 rounded-md border border-solid border-[--ods-color-neutral-200] px-6 py-5"
+          >
+            <div>
+              <div className="flex flex-wrap items-center gap-3">
+                <Text className="font-bold">
+                  {t('pci_instance_creation_volumes_local_name')}
+                </Text>
+                <Badge color={BADGE_COLOR.information} size={BADGE_SIZE.sm}>
+                  {t('pci_instance_creation_volumes_system_badge')}
+                </Badge>
               </div>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <Text className="font-bold">
-                {toDiskCount(disk.number) > 1
-                  ? `${toDiskCount(disk.number)}x ${formatCapacity(disk)}`
-                  : formatCapacity(disk)}
-              </Text>
-              <Icon
-                aria-label={t('pci_instance_creation_volumes_size_locked')}
-                name={ICON_NAME.lockClose}
-              />
+              <Text className="block">{capacityLabel(disk)}</Text>
             </div>
 
             <div className="text-right">
@@ -144,7 +89,7 @@ export const Volumes: FC<TVolumesProps> = ({
                 </>
               )}
             </div>
-          </Fragment>
+          </div>
         ))}
       </div>
     </section>

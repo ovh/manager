@@ -161,6 +161,7 @@
   "pci_instance_creation_network_gateway_title": "Gateway",
   "pci_instance_creation_network_gateway_toggle_label": "Asignar un servicio Gateway",
   "pci_instance_creation_network_gateway_price_label": "Tamaño {{ size }} - {{ price }}",
+  "pci_instance_creation_network_gateway_public_ip_notice": "Su Gateway necesita una dirección IP pública para acceder a internet. Esta dirección IP se crea junto con su Gateway y se factura de forma adicional.",
   "pci_instance_creation_network_public_connectivity_help_title": "Comprender la conectividad pública",
   "pci_instance_creation_network_public_connectivity_help_description": "La conectividad pública ofrece 2 niveles de servicio:",
   "pci_instance_creation_network_public_connectivity_help_floating_ip": "<h6>Floating IP</h6><p>Añadir una Floating IP a las capacidades de la Gateway permite que la instancia sea accesible desde el exterior. La Floating IP es persistente y puede conservarse todo lo que sea necesario y reasignarse a otra instancia.</p>",
@@ -210,16 +211,11 @@
   "pci_instance_creation_availabilityZone_help_link": "Saber más sobre las multi-AZ y las buenas prácticas →",
   "pci_instance_creation_network_gateway_basic_public_ip_on_private_network_tooltip": "Se ha detectado una Basic Public IP en su Private Network. Por favor, cree o seleccione otra Private Network para crear una puerta de enlace (gateway)",
   "pci_instance_creation_region_unavailable": "Región no disponible",
-  "pci_instance_creation_volumes_title": "Añadir volúmenes",
-  "pci_instance_creation_volumes_description": "Los volúmenes son el almacenamiento asociado a su instancia. Cada instancia necesita al menos un volumen de bloque para su disco de sistema, y puede asociar hasta 16 volúmenes de bloque en total.",
-  "pci_instance_creation_volumes_system_notice": "<strong>V0 - un volumen fijo.</strong> El volumen de sistema de {{size}} es obligatorio y no puede redimensionarse ni eliminarse. El almacenamiento es ahora una línea de facturación independiente.",
-  "pci_instance_creation_volumes_column_storage": "Almacenamiento",
-  "pci_instance_creation_volumes_column_size": "Tamaño",
+  "pci_instance_creation_volumes_title": "Almacenamiento",
   "pci_instance_creation_volumes_system_badge": "Sistema",
-  "pci_instance_creation_volumes_local_name": "Block Storage — Low Latency (local)",
-  "pci_instance_creation_volumes_local_spec": "{{technology}} local · low latency",
-  "pci_instance_creation_volumes_size_locked": "Este tamaño es fijo y no puede modificarse",
+  "pci_instance_creation_volumes_local_name": "Local Storage — Low Latency",
+  "pci_instance_creation_volumes_local_capacity": "{{size}} {{technology}}",
   "pci_instance_creation_volumes_price_per_hour": "/ hora",
   "pci_instance_creation_volumes_price_per_month": "/ mes",
-  "pci_instance_creation_cart_volumes_title": "Volúmenes"
+  "pci_instance_creation_cart_volumes_title": "Almacenamiento"
 }
