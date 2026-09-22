@@ -12,5 +12,6 @@
   "pci_project_flavors_billing_addons_price_hourly": "{{price}} netto/godz.",
   "pci_projects_project_instances_configure_billing_type": "Skonfiguruj typ płatności",
   "pci_projects_project_instances_configure_billing_type_description": "Możesz zmienić model rozliczenia dla każdego węzła z płatności za godzinę na abonament miesięczny, przechodząc do widoku „edycja puli węzłów”.",
-  "pci_projects_project_instances_configure_billing_type_floating_ip_cost": "Cena zawierająca koszt adresów Floating IP"
+  "pci_projects_project_instances_configure_billing_type_floating_ip_cost": "Cena zawierająca koszt adresów Floating IP",
+  "pci_projects_project_instances_configure_billing_type_public_ip_cost": "Cena zawierająca koszt publicznych adresów IP"
 }

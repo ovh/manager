@@ -12,5 +12,6 @@
   "pci_project_flavors_billing_addons_price_hourly": "{{price}} / Stunde (zzgl. MwSt)",
   "pci_projects_project_instances_configure_billing_type": "Abrechnungstyp konfigurieren",
   "pci_projects_project_instances_configure_billing_type_description": "In der Node-Pool-Bearbeitungsansicht können Sie für jeden Node von der stündlichen zur monatlichen Abrechnung wechseln.",
-  "pci_projects_project_instances_configure_billing_type_floating_ip_cost": "Preis inklusive der Kosten für Floating IPs"
+  "pci_projects_project_instances_configure_billing_type_floating_ip_cost": "Preis inklusive der Kosten für Floating IPs",
+  "pci_projects_project_instances_configure_billing_type_public_ip_cost": "Preis inklusive der Kosten für öffentliche IPs"
 }

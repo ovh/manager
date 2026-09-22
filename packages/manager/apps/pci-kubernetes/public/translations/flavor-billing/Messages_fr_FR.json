@@ -12,5 +12,6 @@
   "pci_projects_project_instances_add_total_price_label": "Total: ",
   "pci_projects_project_instances_configure_billing_type": "Configurez le type de facturation",
   "pci_projects_project_instances_configure_billing_type_description": "Vous pouvez passer de la facturation horaire au forfait mensuel pour chaque nœud, dans la vue édition du pool de nœuds.",
-  "pci_projects_project_instances_configure_billing_type_floating_ip_cost": "Prix incluant le coût des Floating IPs"
+  "pci_projects_project_instances_configure_billing_type_floating_ip_cost": "Prix incluant le coût des Floating IPs",
+  "pci_projects_project_instances_configure_billing_type_public_ip_cost": "Prix incluant le coût des IPs publiques"
 }
