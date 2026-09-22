@@ -25,7 +25,9 @@ type TPriceRowLabel =
   | 'licence'
   | 'local_storage'
   | 'public_ip'
-  | 'gateway_ip';
+  | 'floating_ip'
+  | 'gateway'
+  | 'gateway_public_ip';
 
 type TPrice = {
   label: TPriceRowLabel;
@@ -33,10 +35,12 @@ type TPrice = {
   value: number | null;
 };
 
-export type TInstancePricingContext = {
+export type TInstanceDashboardContext = {
   hasRepricing: boolean;
   publicIpPrices: { basicPublicIp: number; floatingIp: number } | null;
+  gatewayPrice: number | null;
   subnetIdsWithGateway: string[];
+  catalogDisks: TDiskViewModel[] | null;
 };
 
 type TFlavor = {
@@ -108,14 +112,17 @@ const emptyDisks: TDiskViewModel[] = [
   },
 ];
 
-const mapFlavor = ({ name, specs }: TInstanceFlavor) => ({
+const mapFlavor = (
+  { name, specs }: TInstanceFlavor,
+  catalogDisks: TDiskViewModel[] | null,
+) => ({
   name,
   ram: specs ? `${specs.ram.value} ${specs.ram.unit}` : '-',
   cpu: specs ? `${specs.cpu.value} ${specs.cpu.unit}` : '-',
   disks:
     specs?.disks && specs.disks.length > 0
       ? mapDisksToViewModel(specs.disks)
-      : emptyDisks,
+      : catalogDisks ?? emptyDisks,
   publicBandwidth: specs
     ? `${specs.bandwidth.public.value} ${specs.bandwidth.public.unit}`
     : '-',
@@ -158,19 +165,23 @@ const mapNetworkPricings = (
   {
     hasRepricing,
     publicIpPrices,
+    gatewayPrice,
     subnetIdsWithGateway,
-  }: TInstancePricingContext,
+  }: TInstanceDashboardContext,
 ): TPrice[] => {
   if (!hasRepricing || !publicIpPrices) return [];
 
   const isFloatingIp = !!addresses.get('floating');
   const hasPublicIp = isFloatingIp || !!addresses.get('public');
+  const publicIpLabel: TPriceRowLabel = isFloatingIp
+    ? 'floating_ip'
+    : 'public_ip';
 
   return [
     ...(hasPublicIp
       ? [
           {
-            label: 'public_ip' as const,
+            label: publicIpLabel,
             type: 'hour' as const,
             value: isFloatingIp
               ? publicIpPrices.floatingIp
@@ -178,10 +189,16 @@ const mapNetworkPricings = (
           },
         ]
       : []),
-    ...(isBehindGateway(addresses, subnetIdsWithGateway)
+    ...(gatewayPrice !== null &&
+    isBehindGateway(addresses, subnetIdsWithGateway)
       ? [
           {
-            label: 'gateway_ip' as const,
+            label: 'gateway' as const,
+            type: 'hour' as const,
+            value: gatewayPrice,
+          },
+          {
+            label: 'gateway_public_ip' as const,
             type: 'hour' as const,
             value: publicIpPrices.basicPublicIp,
           },
@@ -369,7 +386,7 @@ const getBackupsInfo = (backups: TInstanceBackup[], locale: string) => ({
 export const selectInstanceDashboard = (
   { projectUrl, dedicatedUrl }: TUrlBuilderParams,
   locale: string,
-  pricingContext: TInstancePricingContext,
+  context: TInstanceDashboardContext,
   instance?: TInstance,
 ): TInstanceDashboardViewModel => {
   if (!instance) return null;
@@ -377,13 +394,15 @@ export const selectInstanceDashboard = (
   return {
     id: instance.id,
     name: instance.name,
-    flavor: instance.flavor ? mapFlavor(instance.flavor) : null,
+    flavor: instance.flavor
+      ? mapFlavor(instance.flavor, context.catalogDisks)
+      : null,
     region: instance.region,
     publicNetwork: mapPublicNetwork(dedicatedUrl, instance.addresses),
     privateNetwork: mapPrivateNetwork(instance.addresses),
     pricings: [
-      ...mapPricings(instance.pricings || [], pricingContext.hasRepricing),
-      ...mapNetworkPricings(instance.addresses, pricingContext),
+      ...mapPricings(instance.pricings || [], context.hasRepricing),
+      ...mapNetworkPricings(instance.addresses, context),
     ],
     task: instance.task,
     status: getInstanceStatus(instance.status),
