@@ -88,6 +88,8 @@ export const AdvancedModuleInstallation: React.FC<AdvancedModuleInstallationProp
     [controlValues.adminName, t],
   );
 
+  const isDatabaseSelected = !!controlValues.databaseSelected;
+
   return (
     <div className="mt-2 flex flex-col space-y-4 rounded-lg border border-solid border-[var(--ods-color-neutral-200)] p-5">
       <Text>{t('multisite:multisite_add_website_module_advanced_install_description')}</Text>
@@ -150,6 +152,7 @@ export const AdvancedModuleInstallation: React.FC<AdvancedModuleInstallationProp
               name={field.name}
               data-testid="database-server"
               value={field.value ?? ''}
+              disabled={isDatabaseSelected}
               onChange={(e) => field.onChange(e.target.value)}
             />
           </FormField>
@@ -170,6 +173,7 @@ export const AdvancedModuleInstallation: React.FC<AdvancedModuleInstallationProp
               name={field.name}
               data-testid="database-name"
               value={field.value ?? ''}
+              disabled={isDatabaseSelected}
               onChange={(e) => field.onChange(e.target.value)}
             />
           </FormField>
@@ -190,6 +194,7 @@ export const AdvancedModuleInstallation: React.FC<AdvancedModuleInstallationProp
               name={field.name}
               data-testid="database-port"
               value={field.value ?? ''}
+              disabled={isDatabaseSelected}
               onChange={(e) => field.onChange(e.target.value)}
             />
           </FormField>
@@ -210,6 +215,7 @@ export const AdvancedModuleInstallation: React.FC<AdvancedModuleInstallationProp
               name={field.name}
               data-testid="database-user"
               value={field.value ?? ''}
+              disabled={isDatabaseSelected}
               onChange={(e) => field.onChange(e.target.value)}
             />
           </FormField>
