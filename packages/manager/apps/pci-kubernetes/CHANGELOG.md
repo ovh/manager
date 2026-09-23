@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.45.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.44.1...@ovh-ux/manager-pci-kubernetes-app@0.45.0) (2026-09-23)
+
+
+### Bug Fixes
+
+* **pci-kubernetes:** keep the node pool storage column header key ([9dfac33](https://github.com/ovh/manager/commit/9dfac33a5b2b6f9e4966f34221a951d9b971602f)), closes [#TAPC-7203](https://github.com/ovh/manager/issues/TAPC-7203)
+
+
+### Features
+
+* **pci-kubernetes:** align public ip billing tile with floating ip ([f9963b4](https://github.com/ovh/manager/commit/f9963b4774cd67a4fc6cdd43574c1ade4fbe3b22)), closes [#TAPC-7203](https://github.com/ovh/manager/issues/TAPC-7203)
+* **pci-kubernetes:** reuse public connectivity view for public ip price ([71de857](https://github.com/ovh/manager/commit/71de857d7e68ebf6898ac396416d7f51cb310ca6)), closes [#TAPC-7203](https://github.com/ovh/manager/issues/TAPC-7203)
+* **pci-kubernetes:** rework the local storage block presentation ([f510d57](https://github.com/ovh/manager/commit/f510d57287bfe84fb9e3ec39d35e7ac6c225a170)), closes [#TAPC-7203](https://github.com/ovh/manager/issues/TAPC-7203)
+
+
+
+
+
 ## [0.44.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.44.0...@ovh-ux/manager-pci-kubernetes-app@0.44.1) (2026-09-22)
 
 

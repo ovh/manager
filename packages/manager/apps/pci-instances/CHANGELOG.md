@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.20.0...@ovh-ux/manager-pci-instances-app@0.21.0) (2026-09-23)
+
+
+### Bug Fixes
+
+* **pci-instances:** show every option price in the creation funnel ([96c482a](https://github.com/ovh/manager/commit/96c482af3c9c4cd098a683f2c26c3e5460ef9896)), closes [#TAPC-7203](https://github.com/ovh/manager/issues/TAPC-7203)
+
+
+### Features
+
+* **pci-instances:** price the gateway public IP and rework the storage block ([1cc3052](https://github.com/ovh/manager/commit/1cc3052b7448b3db0cb352ca4d9baa7ee04008f9)), closes [#TAPC-7203](https://github.com/ovh/manager/issues/TAPC-7203)
+* **pci-instances:** price the network options and list the disks on the dashboard ([d9f0f29](https://github.com/ovh/manager/commit/d9f0f291a5c3aca0d98a8675d0f5c0f89976659d)), closes [#TAPC-7203](https://github.com/ovh/manager/issues/TAPC-7203)
+
+
+
+
+
 # [0.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.19.1...@ovh-ux/manager-pci-instances-app@0.20.0) (2026-08-27)
 
 
