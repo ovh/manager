@@ -119,6 +119,7 @@ export const Aliases = () => {
         hasNextPage={hasNextPage}
         onFetchNextPage={fetchNextPage}
         onFetchAllPages={fetchAllPages}
+        containerHeight={400}
       />
     </div>
   );
