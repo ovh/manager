@@ -17,7 +17,7 @@ export default /* @ngInject */ ($stateProvider) => {
           .get(`/billing/services`, {
             serviceType: 'aapi',
           })
-          .then(({ data }) => (!(data?.count > 0))),
+          .then(({ data }) => !(data?.count > 0)),
       hasIamAuthotizationToCreateErasureRequest: /* @ngInject */ (
         iamAuthorizations,
       ) =>

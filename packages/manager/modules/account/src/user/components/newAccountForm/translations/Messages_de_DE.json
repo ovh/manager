@@ -26,6 +26,7 @@
   "signup_field_organisation": "Organisation",
   "signup_field_companyNationalIdentificationNumber": "Steuer-IdNr. des Unternehmens",
   "signup_field_sex": "Geschlecht",
+  "signup_field_hasVatNumber": "Ich habe eine USt-IdNr.",
   "signup_field_vat": "USt-IdNr.",
   "signup_field_gst": "Nummer der Steuer auf Waren und Dienstleistungen (GST)",
   "signup_field_address": "Adresse",

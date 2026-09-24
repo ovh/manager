@@ -64,8 +64,11 @@ import { useTrackingContext } from '@/context/tracking/useTracking';
 import {
   FR_COUNTRIES,
   getSirenFromSiret,
+  getVatFromCnin,
   isIndividualLegalForm,
+  isVatConsistentWithCnin,
   shouldAccessOrganizationSearch,
+  shouldDeriveVatFromCnin,
   shouldEnableSIRENDisplay,
 } from '@/helpers/flowHelper';
 import { useDetailsRedirection } from '@/hooks/redirection/useDetailsRedirection';
@@ -74,8 +77,11 @@ import {
   useTrackBackButtonClick,
 } from '@/hooks/tracking/useTracking';
 import {
+  COUNTRIES_CNIN_LABEL,
+  COUNTRIES_NIN_LABEL,
   COUNTRIES_VAT_LABEL,
   TRACKING_GOAL_TYPE,
+  VAT_CNIN_MISMATCH_ERROR,
 } from './accountDetails.constants';
 import {
   FormGroupSkeleton,
@@ -131,17 +137,38 @@ function AccountDetailsForm({
     confirmSend?: boolean;
     phoneType?: string;
     smsConsent?: boolean;
+    hasVatNumber?: boolean;
     einvoicingBillingAddress?: string;
   };
 
   const zodSchema = useMemo(() => {
     const baseSchema = getZodSchemaFromRule(rules);
-    return baseSchema.extend({
-      confirmSend: z.literal(true),
-      smsConsent: z.boolean().optional(),
-      // requiredness is enforced by isEinvoicingSelectionMissing, not the schema
-      einvoicingBillingAddress: z.string().optional(),
-    });
+    return baseSchema
+      .extend({
+        confirmSend: z.literal(true),
+        smsConsent: z.boolean().optional(),
+        // model-only: gates the VAT field, never sent to PUT /me
+        hasVatNumber: z.boolean().optional(),
+        // requiredness is enforced by isEinvoicingSelectionMissing, not the schema
+        einvoicingBillingAddress: z.string().optional(),
+      })
+      .superRefine((values, ctx) => {
+        // the VAT number of a country that derives it from the company
+        // identifier is prefilled: reject an edit that contradicts it
+        if (
+          !isVatConsistentWithCnin(
+            values.country,
+            values.vat,
+            values.companyNationalIdentificationNumber,
+          )
+        ) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            path: ['vat'],
+            message: VAT_CNIN_MISMATCH_ERROR,
+          });
+        }
+      });
   }, [rules]);
 
   function renderTranslatedZodError(message: string | undefined, rule: Rule) {
@@ -168,6 +195,7 @@ function AccountDetailsForm({
       companyNationalIdentificationNumber: companyDetails?.secondaryCNIN,
       nationalIdentificationNumber: companyDetails?.primaryCNIN,
       vat: companyDetails?.vatID,
+      hasVatNumber: Boolean(companyDetails?.vatID),
       address: companyDetails?.address || currentUser.address || '',
       zip: companyDetails?.zipCode || currentUser.zip || '',
       city: companyDetails?.city || currentUser.city || '',
@@ -223,6 +251,48 @@ function AccountDetailsForm({
   const separateSIRENAndSIRET = useMemo(() => {
     return country === 'FR' && rules?.companyNationalIdentificationNumber;
   }, [country, rules?.companyNationalIdentificationNumber]);
+
+  // Countries that know these identifiers under a local name get it, the
+  // others keep the generic label.
+  const cninLabel = useMemo(
+    () =>
+      (country && COUNTRIES_CNIN_LABEL[country]) ||
+      t('account_details_field_companyNationalIdentificationNumber'),
+    [country, t],
+  );
+  const ninLabel = useMemo(
+    () =>
+      (country && COUNTRIES_NIN_LABEL[country]) ||
+      t('account_details_field_nationalIdentificationNumber'),
+    [country, t],
+  );
+
+  // Countries that carry the VAT number inside the company identifier (TR:
+  // the first 10 digits of the MERSİS No) ask the customer whether they have
+  // one, and prefill the field from the identifier rather than let them type
+  // it. Elsewhere the VAT field stays free and always displayed.
+  const derivesVatFromCnin = shouldDeriveVatFromCnin(country);
+  const hasVatNumber = watch('hasVatNumber');
+  const derivedVat = useMemo(
+    () => getVatFromCnin(country, corporationIdValue),
+    [country, corporationIdValue],
+  );
+
+  useEffect(() => {
+    if (!derivesVatFromCnin) {
+      return;
+    }
+    if (!hasVatNumber) {
+      // the field is hidden: clear it without raising its errors
+      setValue('vat', '');
+      return;
+    }
+    // while the identifier is too short to derive from, leave the field be:
+    // the customer is still typing it
+    if (derivedVat) {
+      setValue('vat', derivedVat, { shouldValidate: true });
+    }
+  }, [derivesVatFromCnin, hasVatNumber, derivedVat]);
 
   // FR + DROM (FR_COUNTRIES) B2B/B2G: VAT + e-invoicing address grouped in a
   // "Facturation" section
@@ -292,7 +362,13 @@ function AccountDetailsForm({
                   className="text-critical leading-[0.8]"
                   preset="caption"
                 >
-                  {renderTranslatedZodError(errors.vat.message, rules?.vat)}
+                  {errors.vat.message === VAT_CNIN_MISMATCH_ERROR
+                    ? t('account_details_error_vat_cnin_mismatch', {
+                        vatLabel,
+                        cninLabel,
+                        interpolation: { escapeValue: false },
+                      })
+                    : renderTranslatedZodError(errors.vat.message, rules?.vat)}
                 </OdsText>
               )}
             </>
@@ -300,6 +376,45 @@ function AccountDetailsForm({
         </OdsFormField>
       )}
     />
+  );
+
+  // "I have a {{vatLabel}} number": only the countries that derive the VAT
+  // number from the company identifier offer the choice. Everywhere else the
+  // field is simply always displayed.
+  const vatBlock = !derivesVatFromCnin ? (
+    vatField
+  ) : (
+    <>
+      <Controller
+        control={control}
+        name="hasVatNumber"
+        render={({ field: { name, value, onChange, onBlur } }) => (
+          <OdsFormField>
+            <div className="w-full flex flex-row gap-4 items-center cursor-pointer ">
+              <OdsCheckbox
+                inputId={name}
+                id={name}
+                name={name}
+                onBlur={onBlur}
+                isChecked={Boolean(value)}
+                value={(value as unknown) as string}
+                onClick={() => onChange(!value)}
+                class="flex-[0]"
+              ></OdsCheckbox>
+              <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                <label htmlFor={name}>
+                  {t('account_details_field_has_vat_number', {
+                    vatLabel,
+                    interpolation: { escapeValue: false },
+                  })}
+                </label>
+              </OdsText>
+            </div>
+          </OdsFormField>
+        )}
+      />
+      {hasVatNumber && vatField}
+    </>
   );
 
   useEffect(() => {
@@ -333,6 +448,8 @@ function AccountDetailsForm({
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         confirmSend,
         smsConsent,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        hasVatNumber: hasVat,
         einvoicingBillingAddress,
         ...updatedUser
       } = payload;
@@ -556,17 +673,9 @@ function AccountDetailsForm({
                 name="nationalIdentificationNumber"
                 render={({ field: { name, value, onChange, onBlur } }) => (
                   <OdsFormField>
-                    <label
-                      htmlFor={name}
-                      slot="label"
-                      aria-label={t(
-                        'account_details_field_nationalIdentificationNumber',
-                      )}
-                    >
+                    <label htmlFor={name} slot="label" aria-label={ninLabel}>
                       <OdsText preset="caption">
-                        {t(
-                          'account_details_field_nationalIdentificationNumber',
-                        )}
+                        {ninLabel}
                         {rules?.firstname?.mandatory && ' *'}
                       </OdsText>
                     </label>
@@ -807,17 +916,13 @@ function AccountDetailsForm({
                         aria-label={
                           separateSIRENAndSIRET
                             ? t('account_details_field_siret')
-                            : t(
-                                'account_details_field_companyNationalIdentificationNumber',
-                              )
+                            : cninLabel
                         }
                       >
                         <OdsText preset="caption">
                           {separateSIRENAndSIRET
                             ? t('account_details_field_siret')
-                            : t(
-                                'account_details_field_companyNationalIdentificationNumber',
-                              )}
+                            : cninLabel}
                           {rules?.companyNationalIdentificationNumber
                             ?.mandatory && ' *'}
                         </OdsText>
@@ -917,7 +1022,7 @@ function AccountDetailsForm({
                 )}
               />
             )}
-            {!showEinvoicingSection && vatField}
+            {!showEinvoicingSection && vatBlock}
             {rules?.purposeOfPurchase && (
               <Controller
                 control={control}
@@ -970,7 +1075,7 @@ function AccountDetailsForm({
               {t('account_details_einvoicing_section_title')}
             </OdsText>
 
-            {vatField}
+            {vatBlock}
 
             {einvoicingRule && (
               <Controller

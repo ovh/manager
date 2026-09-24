@@ -67,6 +67,33 @@ export const COUNTRIES_VAT_LABEL = {
   MA: 'ICE',
 };
 
+// Local names of the national identification numbers, per country of the
+// customer. Countries missing from these maps keep the generic label.
+export const COUNTRIES_CNIN_LABEL = {
+  TR: 'MERSIS No',
+};
+
+export const COUNTRIES_NIN_LABEL = {
+  TR: 'VKN',
+};
+
+// TR: the MERSİS No is 16 digits, of which the first 10 are the company's VAT
+// number (VKN, labelled "KDV" on the form).
+const MERSIS_NO_PATTERN = /^\d{16}$/;
+const MERSIS_NO_VAT_LENGTH = 10;
+
+const getVatFromMersisNo = (mersisNo) =>
+  MERSIS_NO_PATTERN.test(mersisNo)
+    ? mersisNo.slice(0, MERSIS_NO_VAT_LENGTH)
+    : null;
+
+// Countries whose VAT number is contained in the company national
+// identification number. Countries missing from this map keep a free VAT
+// field: nothing is derived and nothing is checked.
+export const COUNTRIES_VAT_FROM_CNIN = {
+  TR: getVatFromMersisNo,
+};
+
 const SIRET_TRACKING_PREFIX = 'accountcreation::company-search';
 export const COMPANY_CREATED_PREFIX = `${SIRET_TRACKING_PREFIX}::company-created`;
 export const COMPANY_NOT_CREATED_PREFIX = `${SIRET_TRACKING_PREFIX}::company-not-created`;
@@ -74,5 +101,8 @@ export const COMPANY_NOT_CREATED_PREFIX = `${SIRET_TRACKING_PREFIX}::company-not
 export default {
   COMPANY_CREATED_PREFIX,
   COMPANY_NOT_CREATED_PREFIX,
+  COUNTRIES_CNIN_LABEL,
+  COUNTRIES_NIN_LABEL,
+  COUNTRIES_VAT_FROM_CNIN,
   COUNTRIES_VAT_LABEL,
 };
