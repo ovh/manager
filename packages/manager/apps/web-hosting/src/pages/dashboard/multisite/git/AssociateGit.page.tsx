@@ -43,6 +43,7 @@ import {
   GITHUB_VCS,
   GIT_ASSOCIATION_GUIDE_LINK,
   GIT_WEBHOOK_GUIDE_LINK,
+  REGEX_GIT_REPO,
   REPOSITORY_PLACEHOLDER,
 } from '@/constants';
 import {
@@ -86,6 +87,7 @@ export default function AssociateGitPage() {
     control,
     handleSubmit,
     reset,
+    watch,
     formState: { isValid, errors, isDirty },
   } = useForm({
     defaultValues: {
@@ -94,6 +96,10 @@ export default function AssociateGitPage() {
     },
     resolver: zodResolver(zForm(t).GIT_ASSOCIATION_FORM_SCHEMA),
   });
+
+  const repositoryUrl = watch('repositoryUrl');
+  const isSshRepositoryUrl =
+    !!repositoryUrl && REGEX_GIT_REPO.test(repositoryUrl) && !repositoryUrl.startsWith('https://');
 
   useEffect(() => {
     if (!flattenData || !isConfiguration) return;
@@ -251,7 +257,7 @@ export default function AssociateGitPage() {
           })}
         </Text>
       </div>
-      {isConfiguration && !(flattenData?.[0]?.vcsUrl as string)?.startsWith('https://') && (
+      {isSshRepositoryUrl && (
         <>
           <Text preset={TEXT_PRESET.heading2}>{t('multisite_git_association_ssh_key')}</Text>
           <Text>{t('multisite_git_association_ssh_key_description')}</Text>
