@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.22.0...@ovh-ux/manager-web-hosting-app@0.22.1) (2026-09-24)
+
+
+### Bug Fixes
+
+* **hosting:** disable some fields when adding site after selecting database on my site ([53f409e](https://github.com/ovh/manager/commit/53f409eb1bf0ba9de3053bfe94455130b35daf6b)), closes [#DCE-392](https://github.com/ovh/manager/issues/DCE-392)
+* **web-hosting:** change root folder and add cms advanced configuration on multisite ([75fa825](https://github.com/ovh/manager/commit/75fa825b8d115248c97f07497bc7d5d8a1f30051)), closes [#DCE-392](https://github.com/ovh/manager/issues/DCE-392)
+
+
+
+
+
 # [0.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.21.0...@ovh-ux/manager-web-hosting-app@0.22.0) (2026-08-27)
 
 

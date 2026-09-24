@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.50.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.50.0...@ovh-ux/manager-web@19.50.1) (2026-09-24)
+
+
+### Bug Fixes
+
+* **hosting:** update spoofing wording ([7948080](https://github.com/ovh/manager/commit/7948080eeaf6dbcd71d3fce3545ec2c857970d4c)), closes [#PUWEBPT-465](https://github.com/ovh/manager/issues/PUWEBPT-465)
+* **web-hosting:** fix url for video center managment ([5162020](https://github.com/ovh/manager/commit/51620205f2a34796a80d3aa8515d10524eb90488)), closes [#DCE-393](https://github.com/ovh/manager/issues/DCE-393)
+
+
+
+
+
 # [19.50.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.49.0...@ovh-ux/manager-web@19.50.0) (2026-09-14)
 
 
