@@ -170,5 +170,6 @@
   "activate_cdn": "Aktywuj CDN",
   "multisite_delete_site_modal_description_part1": "Aby usunąć tę stronę, musisz najpierw odłączyć wszystkie powiązane z nią domeny.",
   "multisite_delete_site_modal_description_part2": "Strona zostanie wówczas automatycznie wyłączona.",
-  "multisite_delete_site_modal_description_part3": "Katalogi i pliki nie zostaną usunięte."
+  "multisite_delete_site_modal_description_part3": "Katalogi i pliki nie zostaną usunięte.",
+  "access_logs": "Dostęp do logów"
 }
