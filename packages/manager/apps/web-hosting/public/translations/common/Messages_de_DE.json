@@ -170,5 +170,6 @@
   "activate_cdn": "CDN aktivieren",
   "multisite_delete_site_modal_description_part1": "Um diese Website zu löschen, müssen zuerst alle mit ihr verbundenen Domains getrennt werden.",
   "multisite_delete_site_modal_description_part2": "Ihre Website wird dann automatisch deaktiviert.",
-  "multisite_delete_site_modal_description_part3": "Verzeichnisse und Dateien werden nicht gelöscht."
+  "multisite_delete_site_modal_description_part3": "Verzeichnisse und Dateien werden nicht gelöscht.",
+  "access_logs": "Zugang zu den Logs"
 }

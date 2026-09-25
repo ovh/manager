@@ -170,5 +170,6 @@
   "activate_cdn": "Activate the CDN",
   "multisite_delete_site_modal_description_part1": "To delete this site, you must first unlink all the domains associated with it.",
   "multisite_delete_site_modal_description_part2": "Your website will then be automatically disabled.",
-  "multisite_delete_site_modal_description_part3": "Directories and files will not be deleted."
+  "multisite_delete_site_modal_description_part3": "Directories and files will not be deleted.",
+  "access_logs": "Access the logs"
 }

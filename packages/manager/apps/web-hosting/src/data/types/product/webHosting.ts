@@ -286,3 +286,9 @@ export type AttachedDomainProps = {
   ipLocation?: HostingCountries;
   ownLog?: string | null;
 };
+
+export type WebHostingOwnLogsType = {
+  fqdn?: string;
+  logs?: string;
+  stats?: string;
+};

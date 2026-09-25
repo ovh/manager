@@ -12,6 +12,7 @@ import { ApiError, IcebergFetchResultV2 } from '@ovh-ux/manager-core-api';
 import {
   deleteAttachedDomains,
   getAttachedDomainDetails,
+  getAttachedDomainLogUrl,
   getWebHostingAttachedDomain,
   getWebHostingAttachedDomainQueryKey,
 } from '@/data/api/webHosting';
@@ -110,5 +111,14 @@ export const useGetAttachedDomainDetails = (serviceName: string, domain: string)
     queryKey: ['hosting', 'web', serviceName, 'attachedDomain', domain],
     queryFn: () => getAttachedDomainDetails(serviceName, domain),
     enabled: Boolean(serviceName && domain),
+  });
+};
+
+export const useGetAttachedDomainLogUrl = (serviceName: string, domain: string, ownLog: string) => {
+  return useQuery({
+    queryKey: ['hosting', 'web', serviceName, 'attachedDomain', domain, 'logUrl', ownLog],
+    queryFn: () => getAttachedDomainLogUrl(serviceName, domain, ownLog),
+    enabled: Boolean(serviceName && domain && ownLog),
+    retry: false,
   });
 };

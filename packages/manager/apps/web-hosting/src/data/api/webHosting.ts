@@ -6,6 +6,7 @@ import {
   PostWebHostingWebsitePayload,
   PutWebHostingWebsitePayload,
   WebHostingDatabaseType,
+  WebHostingOwnLogsType,
   WebHostingWebsiteDomainType,
   WebHostingWebsiteType,
 } from '../types/product/webHosting';
@@ -187,6 +188,42 @@ export const getAttachedDomainDetails = async (
     `/hosting/web/${serviceName}/attachedDomain/${domain}`,
   );
   return data;
+};
+
+export const getWebHostingOwnLogs = async (
+  serviceName: string,
+  fqdn: string,
+): Promise<WebHostingOwnLogsType> => {
+  const { data: ids } = await v6.get<number[]>(`/hosting/web/${serviceName}/ownLogs`, {
+    params: { fqdn },
+  });
+  if (!ids.length) return {};
+  const { data } = await v6.get<WebHostingOwnLogsType>(
+    `/hosting/web/${serviceName}/ownLogs/${ids[0]}`,
+  );
+  return data;
+};
+
+export const getWebHostingUserLogsToken = async (
+  serviceName: string,
+  attachedDomain: string,
+): Promise<string> => {
+  const { data } = await v6.get<string>(`/hosting/web/${serviceName}/userLogsToken`, {
+    params: { attachedDomain, remoteCheck: true },
+  });
+  return data;
+};
+
+export const getAttachedDomainLogUrl = async (
+  serviceName: string,
+  domain: string,
+  ownLog: string,
+): Promise<string | null> => {
+  const [ownLogs, userLogsToken] = await Promise.all([
+    getWebHostingOwnLogs(serviceName, ownLog),
+    getWebHostingUserLogsToken(serviceName, domain),
+  ]);
+  return ownLogs.logs ? `${ownLogs.logs}?token=${userLogsToken}` : null;
 };
 
 export const getWebHostingDatabasesQueryKey = (serviceName: string) => [
