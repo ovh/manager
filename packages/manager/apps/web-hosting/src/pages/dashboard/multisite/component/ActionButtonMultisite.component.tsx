@@ -9,6 +9,10 @@ import { BUTTON_VARIANT } from '@ovhcloud/ods-react';
 
 import { ActionMenu, ActionMenuItemProps } from '@ovh-ux/muk';
 
+import {
+  useGetAttachedDomainDetails,
+  useGetAttachedDomainLogUrl,
+} from '@/data/hooks/webHosting/webHostingAttachedDomain/useWebHostingAttachedDomain';
 import { useWebHostingWebsite } from '@/data/hooks/webHosting/webHostingWebsite/useWebHostingWebsite';
 import { useGetHostingService } from '@/data/hooks/webHostingDashboard/useWebHostingDashboard';
 import {
@@ -48,6 +52,17 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
     isLoading: boolean;
   };
   const { data: service } = useGetHostingService(serviceName);
+  const { data: attachedDomainDetails } = useGetAttachedDomainDetails(
+    serviceName,
+    context === 'domain' ? domain : undefined,
+  );
+  const ownLog = attachedDomainDetails?.ownLog;
+  const canAccessLogs = context === 'domain' && !!ownLog;
+  const { data: logUrl, isLoading: isLogUrlLoading } = useGetAttachedDomainLogUrl(
+    serviceName,
+    domain,
+    canAccessLogs ? ownLog : undefined,
+  );
   const actionCondition = (
     condition: boolean,
     action: Omit<ActionMenuItemProps, 'id'> & { id: number },
@@ -232,6 +247,13 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
 
           label: t('modify_domain'),
         },
+        actionCondition(canAccessLogs, {
+          id: 16,
+          isDisabled: isLogUrlLoading || !logUrl,
+          isLoading: isLogUrlLoading,
+          onClick: () => window.open(logUrl, '_blank', 'noopener'),
+          label: t('access_logs'),
+        }),
         {
           id: 12,
           onClick: () =>
@@ -292,6 +314,9 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
     domainId,
     domain,
     service,
+    canAccessLogs,
+    logUrl,
+    isLogUrlLoading,
   ]);
 
   return (

@@ -170,5 +170,6 @@
   "activate_cdn": "Activer le CDN",
   "multisite_delete_site_modal_description_part1": "Pour supprimer ce site, vous devez d'abord détacher tous les domaines qui lui sont associés.",
   "multisite_delete_site_modal_description_part2": "Votre site sera alors automatiquement désactivé.",
-  "multisite_delete_site_modal_description_part3": "Les répertoires et fichiers ne seront pas supprimées."
+  "multisite_delete_site_modal_description_part3": "Les répertoires et fichiers ne seront pas supprimées.",
+  "access_logs": "Accéder aux logs"
 }
