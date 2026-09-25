@@ -1,4 +1,4 @@
-import { aapi, v6 } from '@ovh-ux/manager-core-api';
+import { ApiError, aapi, v6 } from '@ovh-ux/manager-core-api';
 
 import { TAttachedDomain, TCreateAttachedDomain, TExistingDomain } from '../types/product/domain';
 import { DomainServiceType, ServiceDetailsType, ServiceInfosType } from '../types/product/service';
@@ -157,9 +157,18 @@ export const getVcsWebhookUrls = async (
 };
 
 export const getSshKey = async (serviceName: string): Promise<SshKey> => {
-  const { data } = await v6.get<SshKey>(`/hosting/web/${serviceName}/key/ssh`);
-
-  return data;
+  try {
+    const { data } = await v6.get<SshKey>(`/hosting/web/${serviceName}/key/ssh`);
+    return data;
+  } catch (error) {
+    // No SSH key generated yet for this hosting: create it.
+    const status = (error as ApiError).response?.status;
+    if (status === 404 || status === 403) {
+      const { data } = await v6.post<SshKey>(`/hosting/web/${serviceName}/key/ssh`);
+      return data;
+    }
+    throw error;
+  }
 };
 
 export const postWebsiteV6 = async (
