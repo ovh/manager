@@ -13,7 +13,7 @@ vi.mock('react-i18next', () => ({
     t: (key: string) => {
       const translations: Record<string, string> = {
         beta_modal_old: 'Classic',
-        beta_modal_new: 'New',
+        beta_modal_new: 'Alternative Navigation',
         manager_beta_button: 'Découvrir la console',
       };
       return translations[key] || key;
@@ -51,7 +51,7 @@ describe('NavReshuffleSwitchBack.component', () => {
     expect(container.firstChild).toBeNull();
   });
 
-  it('should render radio buttons when beta version is available', async () => {
+  it('should render the version dropdown when beta version is available', async () => {
     configureTest({
       mocks: [
         ...getPreferencesMocks({ betaVersion: 'false' }),
@@ -62,18 +62,20 @@ describe('NavReshuffleSwitchBack.component', () => {
     const { container } = render(wrapper(<NavReshuffleSwitchBack />));
 
     await waitFor(() => {
-      const legacyRadio = container.querySelector(
-        'osds-radio[name="version"][value="classic"]',
+      const select = container.querySelector(
+        'osds-select[data-testid="navigation_version_selector"]',
       );
-      const betaRadio = container.querySelector(
-        'osds-radio[name="version"][value="beta"]',
-      );
-      expect(legacyRadio).toBeTruthy();
-      expect(betaRadio).toBeTruthy();
+      expect(select).toBeTruthy();
+      expect(
+        select?.querySelector('osds-select-option[value="classic"]'),
+      ).toBeTruthy();
+      expect(
+        select?.querySelector('osds-select-option[value="beta"]'),
+      ).toBeTruthy();
     });
   });
 
-  it('should change preference to classic when classic radio is clicked', async () => {
+  it('should change preference to classic when classic option is selected', async () => {
     configureTest({
       mocks: [
         ...getPreferencesMocks({ betaVersion: 'true' }),
@@ -83,24 +85,24 @@ describe('NavReshuffleSwitchBack.component', () => {
 
     const { container } = render(wrapper(<NavReshuffleSwitchBack />));
 
-    const legacyRadio = await waitFor(() => {
-      const radio = container.querySelector(
-        'osds-radio[name="version"][value="classic"]',
+    const select = await waitFor(() => {
+      const element = container.querySelector(
+        'osds-select[data-testid="navigation_version_selector"]',
       );
-      expect(radio).toBeTruthy();
-      return radio;
+      expect(element).toBeTruthy();
+      return element;
     });
 
     fireEvent(
-      legacyRadio,
-      new CustomEvent('odsCheckedChange', {
+      select,
+      new CustomEvent('odsValueChange', {
         bubbles: true,
-        detail: { checked: true, value: 'classic' },
+        detail: { value: 'classic' },
       } as CustomEventInit),
     );
 
     // can't test the API call because of page reload
-    expect(legacyRadio).toBeTruthy();
+    expect(select).toBeTruthy();
   });
 
   it('should render the discover button with correct href', async () => {
@@ -121,7 +123,7 @@ describe('NavReshuffleSwitchBack.component', () => {
     });
   });
 
-  it('should change preference to beta when new radio is clicked', async () => {
+  it('should change preference to beta when alternative option is selected', async () => {
     configureTest({
       mocks: [
         ...getPreferencesMocks({ betaVersion: 'false' }),
@@ -131,23 +133,23 @@ describe('NavReshuffleSwitchBack.component', () => {
 
     const { container } = render(wrapper(<NavReshuffleSwitchBack />));
 
-    const newRadio = await waitFor(() => {
-      const radio = container.querySelector(
-        'osds-radio[name="version"][value="beta"]',
+    const select = await waitFor(() => {
+      const element = container.querySelector(
+        'osds-select[data-testid="navigation_version_selector"]',
       );
-      expect(radio).toBeTruthy();
-      return radio;
+      expect(element).toBeTruthy();
+      return element;
     });
 
     fireEvent(
-      newRadio,
-      new CustomEvent('odsCheckedChange', {
+      select,
+      new CustomEvent('odsValueChange', {
         bubbles: true,
-        detail: { checked: true, value: 'beta' },
+        detail: { value: 'beta' },
       } as CustomEventInit),
     );
 
     // can't test the API call because of page reload
-    expect(newRadio).toBeTruthy();
+    expect(select).toBeTruthy();
   });
 });
