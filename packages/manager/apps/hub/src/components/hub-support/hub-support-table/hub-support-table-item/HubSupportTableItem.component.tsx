@@ -14,22 +14,12 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 
-import { SupportTicketRow } from '@/types/support.type';
-import { isDigitalAgentEnabled } from '@/utils/digitalAgent';
+import { Ticket } from '@/types/support.type';
 
-import { DIGITAL_AGENT_URLS, SUPPORT_URLS } from '../../HubSupport.constants';
+import { SUPPORT_URLS } from '../../HubSupport.constants';
 
 type Props = {
-  ticket: SupportTicketRow;
-};
-
-/**
- * The Digital Agent lives in the Manager V7, outside of the hub iframe, hence
- * `_top`. Help Center links stay external, V6 tickets stay in the iframe.
- */
-const getTicketLinkTarget = (isDigitalAgent: boolean, isEUOrCA: boolean) => {
-  if (isDigitalAgent) return OdsHTMLAnchorElementTarget._top;
-  return isEUOrCA ? OdsHTMLAnchorElementTarget._blank : OdsHTMLAnchorElementTarget._self;
+  ticket: Ticket;
 };
 
 export const HubSupportTableItem: FunctionComponent<Props> = ({ ticket }) => {
@@ -62,27 +52,9 @@ export const HubSupportTableItem: FunctionComponent<Props> = ({ ticket }) => {
   const [url, setUrl] = useState<string>('');
 
   const isEUOrCA = ['EU', 'CA'].includes(region);
-  const isDigitalAgent = isDigitalAgentEnabled(region, ovhSubsidiary);
-
-  const { conversationId } = ticket;
 
   useEffect(() => {
     void (async () => {
-      if (isDigitalAgent) {
-        // Never send a FR customer back to the Help Center: when the
-        // conversation id is not resolved (yet), open the Digital Agent ticket
-        // list rather than the CSM page.
-        setUrl(
-          conversationId
-            ? DIGITAL_AGENT_URLS.viewTicket.replace(
-                '{conversationId}',
-                encodeURIComponent(conversationId),
-              )
-            : DIGITAL_AGENT_URLS.allTickets,
-        );
-        return;
-      }
-
       const linkResult: string = isEUOrCA
         ? SUPPORT_URLS.viewTicket.replace('{ticketId}', ticket.ticketId) + ovhSubsidiary
         : ((await navigation.getURL(
@@ -93,7 +65,7 @@ export const HubSupportTableItem: FunctionComponent<Props> = ({ ticket }) => {
 
       setUrl(linkResult);
     })();
-  }, [ticket.ticketId, isDigitalAgent, conversationId]);
+  }, [ticket.ticketId]);
 
   const handleClick = () => {
     trackClick({
@@ -105,9 +77,9 @@ export const HubSupportTableItem: FunctionComponent<Props> = ({ ticket }) => {
   };
 
   return (
-    <tr key={ticket.key}>
+    <tr key={ticket.ticketId}>
       <th scope="row" className="break-all !font-bold">
-        {ticket.label}
+        {ticket.serviceName}
       </th>
       <th scope="row">{ticket.subject}</th>
       <th scope="row" className="!min-w-min">
@@ -119,8 +91,8 @@ export const HubSupportTableItem: FunctionComponent<Props> = ({ ticket }) => {
         <OsdsLink
           href={url}
           onClick={handleClick}
-          target={getTicketLinkTarget(isDigitalAgent, isEUOrCA)}
-          rel={isEUOrCA && !isDigitalAgent ? OdsHTMLAnchorElementRel.noreferrer : undefined}
+          target={isEUOrCA ? OdsHTMLAnchorElementTarget._blank : OdsHTMLAnchorElementTarget._self}
+          rel={isEUOrCA ? OdsHTMLAnchorElementRel.noreferrer : undefined}
           color={ODS_THEME_COLOR_INTENT.primary}
           className="text-right font-bold"
         >
