@@ -49,7 +49,11 @@ describe.each`
   ${true}      | ${TClusterPlanEnum.STANDARD} | ${false}          | ${false}
   ${true}      | ${TClusterPlanEnum.STANDARD} | ${true}           | ${false}
   ${false}     | ${TClusterPlanEnum.FREE}     | ${false}          | ${false}
-  ${true}      | ${null}                      | ${false}          | ${false}
+  ${true}      | ${null}                      | ${false}          | ${true}
+  ${true}      | ${undefined}                 | ${false}          | ${true}
+  ${true}      | ${null}                      | ${true}           | ${false}
+  ${false}     | ${null}                      | ${false}          | ${false}
+  ${true}      | ${TClusterPlanEnum.ALL}      | ${false}          | ${false}
 `(
   'given repricing $hasRepricing, plan $plan, private network $hasPrivateNetwork',
   ({
@@ -59,7 +63,7 @@ describe.each`
     expected,
   }: {
     hasRepricing: boolean;
-    plan: TClusterPlan | null;
+    plan: TClusterPlan | null | undefined;
     hasPrivateNetwork: boolean;
     expected: boolean;
   }) => {
