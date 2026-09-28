@@ -2,10 +2,10 @@ import React from 'react';
 
 import '@testing-library/jest-dom';
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 import HubSupport from '@/components/hub-support/HubSupport.component';
-import { SupportTicketRow } from '@/types/support.type';
+import { SupportDataResponse, Ticket } from '@/types/support.type';
 
 const { refetch } = vi.hoisted(() => {
   return { refetch: vi.fn() };
@@ -16,9 +16,7 @@ vi.mock('../skeletons/Skeletons.component', () => ({
 }));
 
 vi.mock('./hub-support-table/HubSupportTable.component', () => ({
-  HubSupportTable: ({ maxTickets }: { tickets: SupportTicketRow[]; maxTickets: number }) => (
-    <div data-testid="hub-support-table" data-max-tickets={maxTickets}></div>
-  ),
+  HubSupportTable: ({}: { tickets: Ticket[] }) => <div data-testid="hub-support-table"></div>,
 }));
 
 vi.mock('../tile-error/TileError.component', () => ({
@@ -30,22 +28,21 @@ vi.mock('./hub-support-help/HubSupportHelp.component', () => ({
 }));
 
 const useFetchMockValue = {
-  isDigitalAgent: false,
-  tickets: [] as SupportTicketRow[],
-  count: 3,
+  data: { count: 3, data: [] } as SupportDataResponse,
+  isFetched: true,
   isLoading: false,
-  error: false as unknown,
+  error: false,
   refetch,
 };
 
-vi.mock('@/data/hooks/hubSupportTickets/useHubSupportTickets', () => ({
-  useHubSupportTickets: vi.fn(() => useFetchMockValue),
+vi.mock('@/data/hooks/apiHubSupport/useHubSupport', () => ({
+  useFetchHubSupport: vi.fn(() => useFetchMockValue),
 }));
 
 const mocks = vi.hoisted(() => ({
   environment: {
     getRegion: vi.fn(),
-    getUser: vi.fn(() => ({ ovhSubsidiary: 'GB' })),
+    getUser: vi.fn(() => ({ ovhSubsidiary: 'FR' })),
   },
   shell: {
     navigation: {
@@ -68,14 +65,6 @@ vi.mock('@ovh-ux/manager-react-shell-client', () => ({
 }));
 
 describe('HubSupport Component', () => {
-  beforeEach(() => {
-    mocks.environment.getUser.mockReturnValue({ ovhSubsidiary: 'GB' });
-    useFetchMockValue.isDigitalAgent = false;
-    useFetchMockValue.count = 3;
-    useFetchMockValue.isLoading = false;
-    useFetchMockValue.error = false;
-  });
-
   it('renders correctly with data for EU', () => {
     mocks.environment.getRegion.mockReturnValue('EU');
 
@@ -88,29 +77,12 @@ describe('HubSupport Component', () => {
     expect(osdsLinkElement).not.toBeNull();
     expect(osdsLinkElement).toHaveAttribute(
       'href',
-      'https://help.ovhcloud.com/csm?id=csm_cases_requests&spa=1&table=sn_customerservice_case&filter=active%3Dtrue&p=1&o=sys_updated_on&d=desc&ovhSubsidiary=GB',
+      'https://help.ovhcloud.com/csm?id=csm_cases_requests&spa=1&table=sn_customerservice_case&filter=active%3Dtrue&p=1&o=sys_updated_on&d=desc&ovhSubsidiary=FR',
     );
     expect(osdsLinkElement).toHaveAttribute('target', '_blank');
     expect(osdsLinkElement).toHaveAttribute('rel', 'noreferrer');
     const hubSupportTable = screen.getByTestId('hub-support-table');
     expect(hubSupportTable).toBeInTheDocument();
-    expect(hubSupportTable).toHaveAttribute('data-max-tickets', '2');
-  });
-
-  it('points "see all" to the Digital Agent tickets for FR customers on EU', async () => {
-    mocks.environment.getRegion.mockReturnValue('EU');
-    mocks.environment.getUser.mockReturnValue({ ovhSubsidiary: 'FR' });
-    useFetchMockValue.isDigitalAgent = true;
-
-    render(<HubSupport />);
-
-    await waitFor(() => {
-      const osdsLinkElement = screen.getByText('hub_support_see_more').closest('osds-link');
-      expect(osdsLinkElement).toHaveAttribute('href', '/beta/#/support/tickets?type=ticket');
-      expect(osdsLinkElement).toHaveAttribute('target', '_top');
-      expect(osdsLinkElement).not.toHaveAttribute('rel');
-      expect(screen.getByTestId('hub-support-table')).toHaveAttribute('data-max-tickets', '4');
-    });
   });
 
   it('renders correctly with data for US', async () => {
@@ -143,6 +115,7 @@ describe('HubSupport Component', () => {
 
   it('displays loading skeleton when isLoading is true', () => {
     useFetchMockValue.isLoading = true;
+    useFetchMockValue.data = undefined;
 
     render(<HubSupport />);
 
@@ -152,7 +125,7 @@ describe('HubSupport Component', () => {
 
   it('displays HubSupportHelp when there are no tickets and loading is false', () => {
     useFetchMockValue.isLoading = false;
-    useFetchMockValue.count = 0;
+    useFetchMockValue.data = { count: 0, data: [] };
 
     render(<HubSupport />);
 
