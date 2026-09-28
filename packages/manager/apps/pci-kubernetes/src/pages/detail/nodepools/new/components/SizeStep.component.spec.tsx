@@ -54,6 +54,22 @@ vi.mock('@/pages/new/steps/node-pool/PublicConnectivity.component', () => ({
   default: () => <div data-testid="public-connectivity">PublicConnectivity</div>,
 }));
 
+vi.mock('@/pages/new/steps/node-pool/PublicIpConnectivity.component', () => ({
+  default: ({ price }: { price: string }) => (
+    <div data-testid="public-ip-connectivity">{price}</div>
+  ),
+}));
+
+const mockHasRepricing = vi.fn(() => true);
+
+vi.mock('@/hooks/useRepricingInstancesAvailable', () => ({
+  default: () => mockHasRepricing(),
+}));
+
+vi.mock('@/hooks/usePublicIpPrice', () => ({
+  default: () => ({ isPending: false, price: { hourFormatted: 'US$0.0028' } }),
+}));
+
 describe('SizeStep', () => {
   const defaultProps = {
     regionInformations: null,
@@ -140,4 +156,47 @@ describe('SizeStep', () => {
       },
     );
   });
+
+  describe.each`
+    plan                         | hasRepricing | hasPrivateNetwork | displayedPublicIpPrice
+    ${TClusterPlanEnum.FREE}     | ${true}      | ${false}          | ${'US$0.0028'}
+    ${undefined}                 | ${true}      | ${false}          | ${'US$0.0028'}
+    ${TClusterPlanEnum.FREE}     | ${true}      | ${true}           | ${null}
+    ${TClusterPlanEnum.FREE}     | ${false}     | ${false}          | ${null}
+    ${TClusterPlanEnum.STANDARD} | ${true}      | ${false}          | ${null}
+  `(
+    'given a $plan cluster, repricing $hasRepricing, private network $hasPrivateNetwork',
+    ({
+      plan,
+      hasRepricing,
+      hasPrivateNetwork,
+      displayedPublicIpPrice,
+    }: {
+      plan?: TClusterPlanEnum;
+      hasRepricing: boolean;
+      hasPrivateNetwork: boolean;
+      displayedPublicIpPrice: string | null;
+    }) => {
+      describe('when sizing a new node pool', () => {
+        beforeEach(() => {
+          mockHasRepricing.mockReturnValue(hasRepricing);
+          render(
+            <SizeStep
+              {...defaultProps}
+              plan={plan}
+              region="US-EAST-VA-1"
+              hasPrivateNetwork={hasPrivateNetwork}
+            />,
+            { wrapper },
+          );
+        });
+
+        it('shows the public IP connectivity only when nodes are assigned a billed public IP', () => {
+          expect(screen.queryByTestId('public-ip-connectivity')?.textContent ?? null).toBe(
+            displayedPublicIpPrice,
+          );
+        });
+      });
+    },
+  );
 });

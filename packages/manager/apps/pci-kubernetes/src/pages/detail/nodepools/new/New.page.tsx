@@ -204,6 +204,8 @@ export default function NewPage(): ReactElement {
           <SizeStep
             regionInformations={regionInformations}
             plan={cluster?.plan}
+            region={cluster?.region}
+            hasPrivateNetwork={!!cluster?.privateNetworkId}
             selectedAvailabilityZones={store.selectedAvailabilityZones}
             antiAffinity={billingState.antiAffinity.isChecked}
             onAttachFloatingIPs={(enabled) => store.set.attachFloatingIps({ enabled })}
