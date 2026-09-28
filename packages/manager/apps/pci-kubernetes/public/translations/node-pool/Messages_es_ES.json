@@ -47,6 +47,7 @@
   "kube_common_node_pool_public_connetivity_title": "Conectividad pública",
   "kube_common_node_pool_public_connetivity_toggle": "Asociar direcciones Floating IP a los nodos",
   "kube_common_node_pool_public_connetivity_public_ip": "Se asigna una dirección IP pública a cada nodo",
+  "kube_common_node_pool_public_connetivity_free_plan_tooltip": "En la oferta Free, se asigna una dirección IPv4 pública a cada nodo del cluster, incluso si está conectado a una red privada. Esta IP se factura además de la instancia. Para desplegar nodos únicamente privados, elija la oferta Standard.",
   "kube_common_node_pool_public_connectivity_warning_title": "Advertencia de actualización del clúster:",
   "kube_common_node_pool_public_connectivity_warning_description_rolling": "La estrategia de actualización (upgrade y pach) de los clústeres es actualmente de <strong>«Rolling Upgrade» (actualización progresiva)</strong>: los nodos se <strong>reemplazan</strong> uno por uno, así como <strong>las Floating IP asociadas.</strong>",
   "kube_common_node_pool_public_connectivity_warning_description_in_place": "Una futura estrategia de actualización (<strong>«In Place»</strong>) permitirá <strong>conservar estas IP en el momento de las actualizaciones.</strong> ",
