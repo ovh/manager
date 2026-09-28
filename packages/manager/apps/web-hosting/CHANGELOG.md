@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.22.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.22.1...@ovh-ux/manager-web-hosting-app@0.22.2) (2026-09-28)
+
+
+### Bug Fixes
+
+* **web-hosting:** add logs access action for domains on my site when separated logs is active ([a633c27](https://github.com/ovh/manager/commit/a633c27f91dde592778e18d6e1a31098c9ff8db2)), closes [#DCE-470](https://github.com/ovh/manager/issues/DCE-470)
+* **web-hosting:** add ssh key on my site git association ([fb09a5a](https://github.com/ovh/manager/commit/fb09a5a1f9b0177dcbe0eff5ca987c06f14407ff)), closes [#DCE-468](https://github.com/ovh/manager/issues/DCE-468)
+* **web-hosting:** post ssh key when get is on error for git association ([8f34a35](https://github.com/ovh/manager/commit/8f34a356e36d41c745ac86ee001c18566c7f8898)), closes [#DCE-468](https://github.com/ovh/manager/issues/DCE-468)
+
+
+
+
+
 ## [0.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.22.0...@ovh-ux/manager-web-hosting-app@0.22.1) (2026-09-24)
 
 
