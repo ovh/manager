@@ -69,7 +69,7 @@ export const DomainManagement: React.FC<DomainManagementProps> = ({
         })}
       </Text>
       <div>
-        <Clipboard value={hostingService?.data?.hostingIp}>
+        <Clipboard value={hostingService?.data?.clusterIp}>
           <ClipboardControl />
           <ClipboardTrigger />
         </Clipboard>
