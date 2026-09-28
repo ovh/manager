@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { useShell } from '@/context';
+import { getCurrentPageTracking } from '@/core/tracking';
 import {
   BETA_MANAGER_FEATURE,
   BETA_MANAGER_TRACKING_CLICK,
@@ -20,7 +21,10 @@ export default function BetaManagerButton(): JSX.Element {
   }
 
   const handleClick = () => {
-    shell.getPlugin('tracking').trackClick(BETA_MANAGER_TRACKING_CLICK);
+    shell.getPlugin('tracking').trackClick({
+      ...BETA_MANAGER_TRACKING_CLICK,
+      ...getCurrentPageTracking(),
+    });
   };
 
   return (
