@@ -27,6 +27,7 @@ import HistoryHeader from '@/components/history/HistoryHeader.component';
 import HistoryResume from '@/components/history/HistoryResume.component';
 import { useComputeDate } from '@/components/history/useComputeDate.hook';
 import { PCI_FEATURES_BILLING_POST_PAID, TRUSTED_ZONE } from '@/constants';
+import { useRepricingInstances } from '@/hooks/useRepricingInstances';
 
 export default function History() {
   const { t } = useTranslation('history');
@@ -52,6 +53,8 @@ export default function History() {
     PCI_FEATURES_BILLING_POST_PAID,
     TRUSTED_ZONE,
   ]);
+
+  const { hasRepricingInstances } = useRepricingInstances();
 
   const { environment } = useContext(ShellContext);
   const isUsRegion = environment.getRegion() === 'US';
@@ -126,6 +129,7 @@ export default function History() {
                     consumption={consumption}
                     isTrustedZone={isTrustedZone}
                     isUsRegion={isUsRegion}
+                    hasRepricingInstances={!!hasRepricingInstances}
                   />
                 )}
               </div>
