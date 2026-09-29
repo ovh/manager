@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 import AssistanceSidebar, { AssistanceProps } from '.';
 import { mockPlugins, mockShell, mockUser } from '../mocks/sidebarMocks';
 import { assistanceTree } from '../navigation-tree/assistance';
+import SidebarLink from '../SidebarLink';
 
 vi.mock('@/context', () => ({
   useShell: () => {
@@ -92,26 +93,40 @@ describe('AssistanceSidebar.component', () => {
     ).not.toBeNull();
   });
 
-  describe('Digital Agent in primary', () => {
-    const clickLivechat = () => {
-      renderAssistanceSidebar({ ...props, isShort: false });
-      assistanceTree.children.find((node) => node.id === 'livechat')?.onClick();
-    };
+  describe('Live chat entry', () => {
+    const getLivechatNode = () =>
+      assistanceTree.children.find((node) => node.id === 'livechat');
 
-    it('should not open the V6 live chat for FR customers on the EU manager', () => {
-      mockUser.ovhSubsidiary = 'FR';
-      clickLivechat();
-      expect(mockPlugins.ux.openLiveChat).not.toHaveBeenCalled();
-      expect(mockPlugins.tracking.trackClick).toHaveBeenCalledWith({
-        name: 'navbar_v3_entry_home::assistance_live_chat',
-        type: 'navigation',
-      });
+    it.each(['FR', 'GB'])(
+      'should open the V6 live chat for %s customers',
+      (subsidiary) => {
+        mockUser.ovhSubsidiary = subsidiary;
+        renderAssistanceSidebar({ ...props, isShort: false });
+        getLivechatNode()?.onClick();
+        expect(mockPlugins.ux.openLiveChat).toHaveBeenCalled();
+        expect(mockPlugins.tracking.trackClick).toHaveBeenCalledWith({
+          name: 'navbar_v3_entry_home::assistance_live_chat',
+          type: 'navigation',
+        });
+      },
+    );
+
+    // The live chat opens a widget, it never navigates. A url or a routing on
+    // the node would turn it into a StaticLink and the click would redirect
+    // (see #MANAGER-15587, where it landed on the Digital Agent instead).
+    it('should not carry any url or routing', () => {
+      renderAssistanceSidebar({ ...props, isShort: false });
+      expect(getLivechatNode()?.url).toBeUndefined();
+      expect(getLivechatNode()?.routing).toBeUndefined();
     });
 
-    it('should still open the V6 live chat for the other subsidiaries', () => {
-      mockUser.ovhSubsidiary = 'GB';
-      clickLivechat();
-      expect(mockPlugins.ux.openLiveChat).toHaveBeenCalled();
+    it('should render as a button and not as a link', () => {
+      renderAssistanceSidebar({ ...props, isShort: false });
+      const { queryByRole } = render(
+        <SidebarLink node={getLivechatNode()} id="livechat-link" />,
+      );
+      expect(queryByRole('button')).not.toBeNull();
+      expect(queryByRole('link')).toBeNull();
     });
   });
 

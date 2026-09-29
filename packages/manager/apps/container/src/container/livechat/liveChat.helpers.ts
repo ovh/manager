@@ -57,3 +57,10 @@ export const generateAdriellyChatUrl = (
   ovhSubsidiary: string,
   language: string,
 ) => `${adriellyChatUrl(getCustomerLevel(ovhSupportLevel.level), ovhSubsidiary.toUpperCase(), language)}?v=${format(new Date(), 'yy-MM-dd')}`;
+
+/**
+ * Resolves a chat target from liveChat.constants into its usable URL
+ * @param target the chat target
+ * @returns {string} URL of the chat
+ */
+export const resolveChatTarget = (target: string): string => atob(target);
