@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.21.0...@ovh-ux/manager-pci-billing-app@0.22.0) (2026-09-29)
+
+
+### Features
+
+* **pci-billing:** add local storage accordion to history ([4a869f4](https://github.com/ovh/manager/commit/4a869f47f0dca0dbb7444581c363a0324e76b0f9)), closes [#TAPC-7203](https://github.com/ovh/manager/issues/TAPC-7203)
+
+
+
+
+
 # [0.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.20.0...@ovh-ux/manager-pci-billing-app@0.21.0) (2026-09-23)
 
 
