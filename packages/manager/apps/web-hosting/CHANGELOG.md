@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.22.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.22.2...@ovh-ux/manager-web-hosting-app@0.22.3) (2026-09-29)
+
+
+### Bug Fixes
+
+* **web-hosting:** display right ip address when adding external domain ([c73eeee](https://github.com/ovh/manager/commit/c73eeeea3aaeb3f2345fa31ea3a1306ee104bf97)), closes [#DCE-482](https://github.com/ovh/manager/issues/DCE-482)
+
+
+
+
+
 ## [0.22.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.22.1...@ovh-ux/manager-web-hosting-app@0.22.2) (2026-09-28)
 
 
