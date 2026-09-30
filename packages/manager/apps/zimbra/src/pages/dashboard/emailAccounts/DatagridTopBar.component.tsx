@@ -1,6 +1,6 @@
 import { useContext, useMemo } from 'react';
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -49,6 +49,7 @@ export const DatagridTopbar: React.FC<DatagridTopbarProps> = ({
   const { t } = useTranslation(['accounts', 'common', NAMESPACES.ACTIONS]);
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
+  const { platformId } = useParams();
   const context = useContext(ShellContext);
 
   const { platformUrn } = usePlatform();
@@ -58,7 +59,7 @@ export const DatagridTopbar: React.FC<DatagridTopbarProps> = ({
   const { ovhSubsidiary } = context.environment.getUser();
 
   const hrefAddEmailAccount = useGenerateUrl('./add', 'path');
-  const hrefOrderEmailAccount = useGenerateUrl('./order', 'path');
+  const hrefOrderEmailAccount = `/beta/#/web-cloud/email/zimbra/${platformId}/accounts/order`;
   const hrefDeleteSelectedEmailAccounts = useGenerateUrl('./delete_all', 'path');
 
   const hrefEmailMigratorUrl = () =>
@@ -90,7 +91,7 @@ export const DatagridTopbar: React.FC<DatagridTopbarProps> = ({
       actionType: 'navigation',
       actions: [ORDER_ZIMBRA_EMAIL_ACCOUNT],
     });
-    navigate(hrefOrderEmailAccount);
+    window.location.href = hrefOrderEmailAccount;
   };
   const handleOvhMailMigratorAccountClick = () => {
     trackClick({
