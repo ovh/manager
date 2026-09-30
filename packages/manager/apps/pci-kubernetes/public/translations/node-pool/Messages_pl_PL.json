@@ -59,5 +59,6 @@
   "kube_common_node_pool_node": "węzeł",
   "kube_common_node_pool_estimation_local_storage": "Pamięć lokalna:",
   "kube_common_node_pool_estimation_public_ip_price": "Publiczne adresy IP:",
+  "kube_common_node_pool_estimation_floating_ip_price": "Floating IPs:",
   "kube_common_node_pool_estimation_approximate_price": "~{{price}}"
 }

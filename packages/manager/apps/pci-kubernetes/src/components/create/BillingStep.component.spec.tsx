@@ -1,5 +1,5 @@
-import { render } from '@testing-library/react';
-import { describe, it, vi } from 'vitest';
+import { render, screen } from '@testing-library/react';
+import { beforeEach, describe, it, vi } from 'vitest';
 
 import { wrapper } from '@/wrapperRenders';
 
@@ -153,69 +153,57 @@ describe('BillingStep', () => {
     });
   });
 
+  describe.each`
+    ip               | pricePublicIp               | priceFloatingIp              | numberOfNodes | hourlyLine                                                                  | monthlyLine
+    ${'public_ip'}   | ${{ hour: 3, month: 2160 }} | ${null}                      | ${4}          | ${'node-pool:kube_common_node_pool_estimation_public_ip_price 12 /Hour'}    | ${'node-pool:kube_common_node_pool_estimation_public_ip_price node-pool:kube_common_node_pool_estimation_approximate_price'}
+    ${'public_ip'}   | ${{ hour: 3, month: 2160 }} | ${null}                      | ${null}       | ${'node-pool:kube_common_node_pool_estimation_public_ip_price 0 /Hour'}     | ${'node-pool:kube_common_node_pool_estimation_public_ip_price node-pool:kube_common_node_pool_estimation_approximate_price'}
+    ${'public_ip'}   | ${null}                     | ${null}                      | ${4}          | ${null}                                                                     | ${null}
+    ${'floating_ip'} | ${null}                     | ${{ hour: 0.5, month: 365 }} | ${3}          | ${'node-pool:kube_common_node_pool_estimation_floating_ip_price 1.5 /Hour'} | ${'node-pool:kube_common_node_pool_estimation_floating_ip_price node-pool:kube_common_node_pool_estimation_approximate_price'}
+    ${'floating_ip'} | ${null}                     | ${null}                      | ${3}          | ${null}                                                                     | ${null}
+  `(
+    'given $ip priced $pricePublicIp / $priceFloatingIp over $numberOfNodes nodes',
+    ({
+      ip,
+      pricePublicIp,
+      priceFloatingIp,
+      numberOfNodes,
+      hourlyLine,
+      monthlyLine,
+    }: {
+      ip: string;
+      pricePublicIp: TBillingStepProps['pricePublicIp'];
+      priceFloatingIp: TBillingStepProps['priceFloatingIp'];
+      numberOfNodes: number | null;
+      hourlyLine: string | null;
+      monthlyLine: string | null;
+    }) => {
+      describe('when rendering the billing tiles', () => {
+        beforeEach(() => {
+          render(
+            <BillingStep
+              {...defaultProps}
+              price={100}
+              monthlyPrice={15}
+              numberOfNodes={numberOfNodes}
+              pricePublicIp={pricePublicIp}
+              priceFloatingIp={priceFloatingIp}
+            />,
+            { wrapper },
+          );
+        });
+
+        it('states the node pool IP total in the hourly tile', () => {
+          expect(screen.queryByTestId(`hourly_${ip}`)?.textContent ?? null).toBe(hourlyLine);
+        });
+
+        it('states the node pool IP total in the monthly tile', () => {
+          expect(screen.queryByTestId(`monthly_${ip}`)?.textContent ?? null).toBe(monthlyLine);
+        });
+      });
+    },
+  );
+
   describe('Floating IP cost', () => {
-    it('should show floating IP cost text in hourly tile when priceFloatingIp is provided', () => {
-      const props = {
-        ...defaultProps,
-        price: 100,
-        numberOfNodes: 3,
-        priceFloatingIp: { hour: 0.5, month: 365 },
-      };
-      const { getByTestId } = render(<BillingStep {...props} />, { wrapper });
-
-      const hourlyTile = getByTestId('hourly_tile');
-
-      expect(hourlyTile.innerHTML).toContain(
-        'pci_projects_project_instances_configure_billing_type_floating_ip_cost',
-      );
-    });
-
-    it('should show floating IP cost text in monthly tile when isFloatingIpsEnabled is true', () => {
-      const props = {
-        ...defaultProps,
-        monthlyPrice: 15,
-        isFloatingIpsEnabled: true,
-        priceFloatingIp: { hour: 0.5, month: 365 },
-      };
-      const { getByTestId } = render(<BillingStep {...props} />, { wrapper });
-
-      const monthlyTile = getByTestId('monthly_tile');
-
-      expect(monthlyTile.innerHTML).toContain(
-        'pci_projects_project_instances_configure_billing_type_floating_ip_cost',
-      );
-    });
-
-    it('should not show floating IP cost text in hourly tile when priceFloatingIp is null', () => {
-      const props = {
-        ...defaultProps,
-        price: 100,
-        priceFloatingIp: null,
-      };
-      const { getByTestId } = render(<BillingStep {...props} />, { wrapper });
-
-      const hourlyTile = getByTestId('hourly_tile');
-
-      expect(hourlyTile.innerHTML).not.toContain(
-        'pci_projects_project_instances_configure_billing_type_floating_ip_cost',
-      );
-    });
-
-    it('should not show floating IP cost text in monthly tile when isFloatingIpsEnabled is false', () => {
-      const props = {
-        ...defaultProps,
-        monthlyPrice: 15,
-        isFloatingIpsEnabled: false,
-      };
-      const { getByTestId } = render(<BillingStep {...props} />, { wrapper });
-
-      const monthlyTile = getByTestId('monthly_tile');
-
-      expect(monthlyTile.innerHTML).not.toContain(
-        'pci_projects_project_instances_configure_billing_type_floating_ip_cost',
-      );
-    });
-
     it('should calculate price with floating IP and availability zones', () => {
       const props = {
         ...defaultProps,
@@ -274,37 +262,6 @@ describe('BillingStep', () => {
 
       expect(queryByTestId('hourly_local_storage')).not.toBeInTheDocument();
       expect(queryByTestId('monthly_local_storage')).not.toBeInTheDocument();
-    });
-
-    it('should state that both tile prices include the public IPs', () => {
-      const props = {
-        ...defaultProps,
-        price: 100,
-        monthlyPrice: 15,
-        numberOfNodes: 4,
-        pricePublicIp: { hour: 3, month: 2160 },
-      };
-      const { getByTestId } = render(<BillingStep {...props} />, { wrapper });
-
-      expect(getByTestId('hourly_public_ip').innerHTML).toContain(
-        'pci_projects_project_instances_configure_billing_type_public_ip_cost',
-      );
-      expect(getByTestId('monthly_public_ip').innerHTML).toContain(
-        'pci_projects_project_instances_configure_billing_type_public_ip_cost',
-      );
-    });
-
-    it('should not show a public IP line when nodes get no public IP', () => {
-      const props = {
-        ...defaultProps,
-        price: 100,
-        monthlyPrice: 15,
-        pricePublicIp: null,
-      };
-      const { queryByTestId } = render(<BillingStep {...props} />, { wrapper });
-
-      expect(queryByTestId('hourly_public_ip')).not.toBeInTheDocument();
-      expect(queryByTestId('monthly_public_ip')).not.toBeInTheDocument();
     });
 
     it('should add local storage and public IP to the hourly node pool total', () => {
