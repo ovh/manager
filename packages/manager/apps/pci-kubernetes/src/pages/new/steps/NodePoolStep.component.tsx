@@ -55,11 +55,7 @@ const NodePoolStep = ({
 
   const hasRepricing = useRepricingInstancesAvailable();
   const { price: publicIpPrice } = usePublicIpPrice(stepper.form.region?.name ?? null);
-  const nodesUsePublicIp = nodesAreAssignedPublicIp({
-    hasRepricing,
-    plan,
-    hasPrivateNetwork: !!stepper.form.network?.privateNetwork,
-  });
+  const nodesUsePublicIp = nodesAreAssignedPublicIp({ hasRepricing, plan });
 
   const columns = useMemo(
     () =>

@@ -43,33 +43,28 @@ describe('zoneAZisChecked', () => {
 });
 
 describe.each`
-  hasRepricing | plan                         | hasPrivateNetwork | expected
-  ${true}      | ${TClusterPlanEnum.FREE}     | ${false}          | ${true}
-  ${true}      | ${TClusterPlanEnum.FREE}     | ${true}           | ${false}
-  ${true}      | ${TClusterPlanEnum.STANDARD} | ${false}          | ${false}
-  ${true}      | ${TClusterPlanEnum.STANDARD} | ${true}           | ${false}
-  ${false}     | ${TClusterPlanEnum.FREE}     | ${false}          | ${false}
-  ${true}      | ${null}                      | ${false}          | ${true}
-  ${true}      | ${undefined}                 | ${false}          | ${true}
-  ${true}      | ${null}                      | ${true}           | ${false}
-  ${false}     | ${null}                      | ${false}          | ${false}
-  ${true}      | ${TClusterPlanEnum.ALL}      | ${false}          | ${false}
+  hasRepricing | plan                         | expected
+  ${true}      | ${TClusterPlanEnum.FREE}     | ${true}
+  ${true}      | ${null}                      | ${true}
+  ${true}      | ${undefined}                 | ${true}
+  ${true}      | ${TClusterPlanEnum.STANDARD} | ${false}
+  ${true}      | ${TClusterPlanEnum.ALL}      | ${false}
+  ${false}     | ${TClusterPlanEnum.FREE}     | ${false}
+  ${false}     | ${null}                      | ${false}
 `(
-  'given repricing $hasRepricing, plan $plan, private network $hasPrivateNetwork',
+  'given repricing $hasRepricing and plan $plan',
   ({
     hasRepricing,
     plan,
-    hasPrivateNetwork,
     expected,
   }: {
     hasRepricing: boolean;
     plan: TClusterPlan | null | undefined;
-    hasPrivateNetwork: boolean;
     expected: boolean;
   }) => {
     describe('when deciding whether nodes carry a billed public IP', () => {
-      it('answers from repricing, the plan and the private network together', () => {
-        expect(nodesAreAssignedPublicIp({ hasRepricing, plan, hasPrivateNetwork })).toBe(expected);
+      it('answers from repricing and the plan together', () => {
+        expect(nodesAreAssignedPublicIp({ hasRepricing, plan })).toBe(expected);
       });
     });
   },
