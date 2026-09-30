@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -12,14 +14,19 @@ import {
   TooltipTrigger,
 } from '@ovhcloud/ods-react';
 
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 type PublicIpConnectivityProps = {
   price: string;
 };
 
 const PublicIpConnectivity = ({ price }: PublicIpConnectivityProps) => {
   const { t } = useTranslation('node-pool');
-  const freePlanPublicIpExplanation = t(
-    'kube_common_node_pool_public_connetivity_free_plan_tooltip',
+  const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
+  const publicIpExplanation = t(
+    ovhSubsidiary === 'US'
+      ? 'kube_common_node_pool_public_connetivity_us_tooltip'
+      : 'kube_common_node_pool_public_connetivity_free_plan_tooltip',
   );
 
   return (
@@ -43,7 +50,7 @@ const PublicIpConnectivity = ({ price }: PublicIpConnectivityProps) => {
               <button
                 type="button"
                 className="flex border-none bg-transparent p-0"
-                aria-label={freePlanPublicIpExplanation}
+                aria-label={publicIpExplanation}
               >
                 <Icon
                   className="cursor-help text-[1.3rem] text-[--ods-color-primary-500]"
@@ -52,7 +59,7 @@ const PublicIpConnectivity = ({ price }: PublicIpConnectivityProps) => {
               </button>
             </TooltipTrigger>
             <TooltipContent className="max-w-[500px] p-4">
-              <Text color="text">{freePlanPublicIpExplanation}</Text>
+              <Text color="text">{publicIpExplanation}</Text>
             </TooltipContent>
           </Tooltip>
         </div>
