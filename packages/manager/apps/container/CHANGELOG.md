@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.206.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.205.1...@ovh-ux/manager-container-app@0.206.0) (2026-09-30)
+
+
+### Features
+
+* **container:** replace navigation switch with a dropdown ([d850f6f](https://github.com/ovh/manager/commit/d850f6f66bb924d2b05bcaa48af3343c39656b57)), closes [#MANAGER-22663](https://github.com/ovh/manager/issues/MANAGER-22663)
+
+
+### Reverts
+
+* **hub:** restore support widget and links to their pre Digital Agent state ([ce2d531](https://github.com/ovh/manager/commit/ce2d531935bdb835dba601b47cde2b3b1de01005)), closes [#MANAGER-22282](https://github.com/ovh/manager/issues/MANAGER-22282)
+
+
+
+
+
 ## [0.205.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.205.0...@ovh-ux/manager-container-app@0.205.1) (2026-09-16)
 
 

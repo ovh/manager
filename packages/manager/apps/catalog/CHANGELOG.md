@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.30.1...@ovh-ux/manager-catalog-app@1.31.0) (2026-09-30)
+
+
+### Features
+
+* **catalog:** map v8 order routes back to their v6 application ([b094ccc](https://github.com/ovh/manager/commit/b094ccc5a69b7e9975b38ff8b89852033390a149)), closes [#MANAGER-22688](https://github.com/ovh/manager/issues/MANAGER-22688)
+
+
+
+
+
 ## [1.30.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.30.0...@ovh-ux/manager-catalog-app@1.30.1) (2026-03-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-catalog-app

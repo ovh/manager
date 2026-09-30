@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.31.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.31.0...@ovh-ux/manager-hub-app@0.31.1) (2026-09-30)
+
+
+### Reverts
+
+* **hub:** restore support widget and links to their pre Digital Agent state ([ce2d531](https://github.com/ovh/manager/commit/ce2d531935bdb835dba601b47cde2b3b1de01005)), closes [#MANAGER-22282](https://github.com/ovh/manager/issues/MANAGER-22282)
+
+
+
+
+
 # [0.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.30.0...@ovh-ux/manager-hub-app@0.31.0) (2026-08-31)
 
 
