@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.47.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.46.0...@ovh-ux/manager-pci-kubernetes-app@0.47.0) (2026-09-30)
+
+
+### Bug Fixes
+
+* **pci-kubernetes:** bill public ip of free nodes on a private network ([3aacad3](https://github.com/ovh/manager/commit/3aacad3cfa665b17e472756f5aaecde1988227ba)), closes [#TAPC-7321](https://github.com/ovh/manager/issues/TAPC-7321)
+* **pci-kubernetes:** drop the plan mention from the us public ip explanation ([4406f41](https://github.com/ovh/manager/commit/4406f419dab8a15f4a62067cd63385a3f39a1742)), closes [#TAPC-7321](https://github.com/ovh/manager/issues/TAPC-7321)
+
+
+### Features
+
+* **pci-kubernetes:** price the public and floating ips in the billing tiles ([6485c9b](https://github.com/ovh/manager/commit/6485c9b9342d5b76a6e1c8b4c1bacb36b2d1fc7f)), closes [#TAPC-7321](https://github.com/ovh/manager/issues/TAPC-7321)
+
+
+
+
+
 # [0.46.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.45.0...@ovh-ux/manager-pci-kubernetes-app@0.46.0) (2026-09-29)
 
 
