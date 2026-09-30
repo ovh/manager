@@ -88,7 +88,6 @@ const stepsConfig = ({
       plan: stepper.form.plan,
       codes: stepper.form.region?.codes,
       region: stepper.form.region?.name,
-      hasPrivateNetwork: !!stepper.form.network?.privateNetwork,
       onSubmit: () => {
         stepper.confirm.step.lock();
         createNewCluster();

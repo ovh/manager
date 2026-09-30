@@ -158,37 +158,26 @@ describe('SizeStep', () => {
   });
 
   describe.each`
-    plan                         | hasRepricing | hasPrivateNetwork | displayedPublicIpPrice
-    ${TClusterPlanEnum.FREE}     | ${true}      | ${false}          | ${'US$0.0028'}
-    ${undefined}                 | ${true}      | ${false}          | ${'US$0.0028'}
-    ${TClusterPlanEnum.FREE}     | ${true}      | ${true}           | ${null}
-    ${TClusterPlanEnum.FREE}     | ${false}     | ${false}          | ${null}
-    ${TClusterPlanEnum.STANDARD} | ${true}      | ${false}          | ${null}
+    plan                         | hasRepricing | displayedPublicIpPrice
+    ${TClusterPlanEnum.FREE}     | ${true}      | ${'US$0.0028'}
+    ${undefined}                 | ${true}      | ${'US$0.0028'}
+    ${TClusterPlanEnum.FREE}     | ${false}     | ${null}
+    ${TClusterPlanEnum.STANDARD} | ${true}      | ${null}
   `(
-    'given a $plan cluster, repricing $hasRepricing, private network $hasPrivateNetwork',
+    'given a $plan cluster and repricing $hasRepricing',
     ({
       plan,
       hasRepricing,
-      hasPrivateNetwork,
       displayedPublicIpPrice,
     }: {
       plan?: TClusterPlanEnum;
       hasRepricing: boolean;
-      hasPrivateNetwork: boolean;
       displayedPublicIpPrice: string | null;
     }) => {
       describe('when sizing a new node pool', () => {
         beforeEach(() => {
           mockHasRepricing.mockReturnValue(hasRepricing);
-          render(
-            <SizeStep
-              {...defaultProps}
-              plan={plan}
-              region="US-EAST-VA-1"
-              hasPrivateNetwork={hasPrivateNetwork}
-            />,
-            { wrapper },
-          );
+          render(<SizeStep {...defaultProps} plan={plan} region="US-EAST-VA-1" />, { wrapper });
         });
 
         it('shows the public IP connectivity only when nodes are assigned a billed public IP', () => {
