@@ -24,14 +24,12 @@ type TSizeStepProps = {
   onAntiAffinityChange: (value: boolean) => void;
   plan?: TClusterPlanEnum;
   region?: string | null;
-  hasPrivateNetwork?: boolean;
 };
 
 export default function SizeStep({
   regionInformations,
   plan = TClusterPlanEnum.FREE,
   region,
-  hasPrivateNetwork,
   antiAffinity,
   onAntiAffinityChange,
 }: TSizeStepProps): ReactElement {
@@ -43,11 +41,7 @@ export default function SizeStep({
   const has3AZFeature = use3AZPlanAvailable();
   const hasRepricing = useRepricingInstancesAvailable();
   const { price: publicIpPrice } = usePublicIpPrice(region ?? null);
-  const nodesUsePublicIp = nodesAreAssignedPublicIp({
-    hasRepricing,
-    plan,
-    hasPrivateNetwork: !!hasPrivateNetwork,
-  });
+  const nodesUsePublicIp = nodesAreAssignedPublicIp({ hasRepricing, plan });
 
   useEffect(() => {
     if (regionInformations?.availabilityZones.length && !store.selectedAvailabilityZones) {

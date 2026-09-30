@@ -205,7 +205,6 @@ export default function NewPage(): ReactElement {
             regionInformations={regionInformations}
             plan={cluster?.plan}
             region={cluster?.region}
-            hasPrivateNetwork={!!cluster?.privateNetworkId}
             selectedAvailabilityZones={store.selectedAvailabilityZones}
             antiAffinity={billingState.antiAffinity.isChecked}
             onAttachFloatingIPs={(enabled) => store.set.attachFloatingIps({ enabled })}
@@ -224,7 +223,6 @@ export default function NewPage(): ReactElement {
             region={cluster?.region}
             regionType={regionInformations?.type}
             plan={cluster?.plan}
-            hasPrivateNetwork={!!cluster?.privateNetworkId}
             monthlyPrice={price?.month}
             monthlyBilling={billingState.monthlyBilling}
             warn={billingState.warn}

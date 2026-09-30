@@ -53,12 +53,10 @@ export const hasInvalidScalingOrAntiAffinityConfig = (nodePoolState: TScalingSta
 export const nodesAreAssignedPublicIp = ({
   hasRepricing,
   plan,
-  hasPrivateNetwork,
 }: {
   hasRepricing: boolean;
   plan: TClusterPlan | null | undefined;
-  hasPrivateNetwork: boolean;
-}) => hasRepricing && (!plan || plan === TClusterPlanEnum.FREE) && !hasPrivateNetwork;
+}) => hasRepricing && (!plan || plan === TClusterPlanEnum.FREE);
 
 export const getPlanCodeFloatingIps = (
   time: 'hour' | 'month',

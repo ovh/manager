@@ -25,7 +25,6 @@ type TFinalBillingStepProps = {
   region?: string | null;
   regionType?: DeploymentMode | null;
   plan?: TClusterPlan;
-  hasPrivateNetwork?: boolean;
   onCreate: () => void;
   onCancel: () => void;
 };
@@ -35,7 +34,6 @@ export default function FinalBillingStep({
   region,
   regionType,
   plan,
-  hasPrivateNetwork,
   price,
   monthlyPrice,
   monthlyBilling,
@@ -50,11 +48,7 @@ export default function FinalBillingStep({
   const hasRepricing = useRepricingInstancesAvailable();
   const localStorage = useNodeLocalStorage(store.flavor, region);
   const { price: publicIpPrice } = usePublicIpPrice(region ?? null);
-  const nodesUsePublicIp = nodesAreAssignedPublicIp({
-    hasRepricing,
-    plan,
-    hasPrivateNetwork: !!hasPrivateNetwork,
-  });
+  const nodesUsePublicIp = nodesAreAssignedPublicIp({ hasRepricing, plan });
 
   return (
     <>

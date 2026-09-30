@@ -30,7 +30,6 @@ export interface BillingStepProps {
   type: DeploymentMode;
   codes: string[];
   region?: string;
-  hasPrivateNetwork?: boolean;
 }
 
 export function ClusterConfirmationStep({
@@ -40,7 +39,6 @@ export function ClusterConfirmationStep({
   type,
   codes,
   region,
-  hasPrivateNetwork,
 }: Readonly<BillingStepProps>) {
   const { t } = useTranslation('stepper');
   const { t: tNode } = useTranslation('node-pool');
@@ -63,11 +61,7 @@ export function ClusterConfirmationStep({
   const publicIpPrice = usePublicIpPrice(region ?? null);
   const hasRepricing = useRepricingInstancesAvailable();
   const { data: instanceCatalog } = useInstanceCatalog(projectId, hasRepricing);
-  const nodesUsePublicIp = nodesAreAssignedPublicIp({
-    hasRepricing,
-    plan,
-    hasPrivateNetwork: !!hasPrivateNetwork,
-  });
+  const nodesUsePublicIp = nodesAreAssignedPublicIp({ hasRepricing, plan });
 
   const estimationPrices = getEstimationPrices(plan, plans, nodePools, {
     showSavingPlan,
