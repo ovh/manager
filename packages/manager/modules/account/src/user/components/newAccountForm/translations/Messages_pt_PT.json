@@ -26,6 +26,7 @@
   "signup_field_organisation": "Organização",
   "signup_field_companyNationalIdentificationNumber": "Número de identificação fiscal da empresa",
   "signup_field_sex": "Género",
+  "signup_field_hasVatNumber": "Tenho um número de IVA",
   "signup_field_vat": "NIF intracomunitário",
   "signup_field_gst": "Número do imposto sobre os produtos e serviços (GST)",
   "signup_field_address": "Morada",

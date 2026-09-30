@@ -26,6 +26,7 @@
   "signup_field_organisation": "Organizacja",
   "signup_field_companyNationalIdentificationNumber": "Numer identyfikacji podatkowej firmy",
   "signup_field_sex": "Płeć",
+  "signup_field_hasVatNumber": "Posiadam numer VAT",
   "signup_field_vat": "VAT UE",
   "signup_field_gst": "Numer identyfikacyjny podatku od towarów i usług (GST)",
   "signup_field_address": "Adres",

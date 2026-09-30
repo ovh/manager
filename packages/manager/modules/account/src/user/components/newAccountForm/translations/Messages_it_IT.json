@@ -26,6 +26,7 @@
   "signup_field_organisation": "Organizzazione",
   "signup_field_companyNationalIdentificationNumber": "Codice fiscale organizzazione",
   "signup_field_sex": "Sesso",
+  "signup_field_hasVatNumber": "Ho una partita IVA",
   "signup_field_vat": "Partita IVA comunitaria",
   "signup_field_gst": "Numero di imposta su beni e servizi (GST) ",
   "signup_field_address": "Indirizzo",
