@@ -69,6 +69,8 @@ export default function BillingStep(props: TBillingStepProps): ReactElement {
   const numberOfNodes = props.numberOfNodes ?? 0;
 
   const localStorageHourlyTotal = (props.priceLocalStorage?.hour ?? 0) * numberOfNodes;
+  const publicIpHourlyTotal = (props.pricePublicIp?.hour ?? 0) * numberOfNodes;
+  const floatingIpHourlyTotal = (props.priceFloatingIp?.hour ?? 0) * numberOfNodes;
 
   const hourlyPricePerNode =
     (props.priceFloatingIp?.hour ?? 0) +
@@ -156,17 +158,19 @@ export default function BillingStep(props: TBillingStepProps): ReactElement {
               </Text>
             )}
             {props.pricePublicIp && (
-              <Text className="block italic" data-testid="hourly_public_ip">
-                {t(
-                  'flavor-billing:pci_projects_project_instances_configure_billing_type_public_ip_cost',
-                )}
+              <Text className="block" data-testid="hourly_public_ip">
+                <span className="font-bold">
+                  {t('node-pool:kube_common_node_pool_estimation_public_ip_price')}{' '}
+                </span>
+                {getFormattedHourlyCatalogPrice(publicIpHourlyTotal)}
               </Text>
             )}
             {props.priceFloatingIp && (
-              <Text className="block italic">
-                {t(
-                  'flavor-billing:pci_projects_project_instances_configure_billing_type_floating_ip_cost',
-                )}
+              <Text className="block" data-testid="hourly_floating_ip">
+                <span className="font-bold">
+                  {t('node-pool:kube_common_node_pool_estimation_floating_ip_price')}{' '}
+                </span>
+                {getFormattedHourlyCatalogPrice(floatingIpHourlyTotal)}
               </Text>
             )}
           </div>
@@ -203,17 +207,19 @@ export default function BillingStep(props: TBillingStepProps): ReactElement {
                 </Text>
               )}
               {props.pricePublicIp && (
-                <Text className="block italic" data-testid="monthly_public_ip">
-                  {t(
-                    'flavor-billing:pci_projects_project_instances_configure_billing_type_public_ip_cost',
-                  )}
+                <Text className="block" data-testid="monthly_public_ip">
+                  <span className="font-bold">
+                    {t('node-pool:kube_common_node_pool_estimation_public_ip_price')}{' '}
+                  </span>
+                  {approximateMonthly(publicIpHourlyTotal)}
                 </Text>
               )}
               {props.priceFloatingIp && (
-                <Text className="block italic">
-                  {t(
-                    'flavor-billing:pci_projects_project_instances_configure_billing_type_floating_ip_cost',
-                  )}
+                <Text className="block" data-testid="monthly_floating_ip">
+                  <span className="font-bold">
+                    {t('node-pool:kube_common_node_pool_estimation_floating_ip_price')}{' '}
+                  </span>
+                  {approximateMonthly(floatingIpHourlyTotal)}
                 </Text>
               )}
             </div>
