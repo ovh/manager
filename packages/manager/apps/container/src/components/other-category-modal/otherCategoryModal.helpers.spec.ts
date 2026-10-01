@@ -15,6 +15,10 @@ describe('isUserCategoryOther', () => {
     );
   });
 
+  it('returns true for a TR customer whose category is "other" (F1)', () => {
+    expect(isUserCategoryOther(buildUser({ country: 'TR' }))).toBe(true);
+  });
+
   it('returns false when the customer is not in France', () => {
     expect(isUserCategoryOther(buildUser({ country: 'DE' }))).toBe(false);
   });
