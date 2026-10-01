@@ -10,6 +10,8 @@ export const READY_ONLY_RULES_PARAMS = [
   'smsConsent',
   // model-only field for the e-invoicing picker; /newAccount/rules rejects it
   'einvoicingBillingAddress',
+  // F1 Turkey — the "I have a VAT number" checkbox is form state, not a /me field.
+  'hasVatNumber',
 ];
 
 export const READY_ONLY_PARAMS = [
@@ -85,6 +87,7 @@ export const SECTIONS = {
     'organisation',
     'corporationType',
     'companyNationalIdentificationNumber',
+    'hasVatNumber',
     'vat',
   ],
   other: [
@@ -126,16 +129,45 @@ export const FIELD_NAME_LIST = {
   organisation: 'organisation',
   corporationType: 'corporationType',
   companyNationalIdentificationNumber: 'companyNationalIdentificationNumber',
+  hasVatNumber: 'hasVatNumber',
   vat: 'vat',
   gst: 'gst',
   iceNumber: 'iceNumber',
+  kdv: 'kdv',
+  mersis: 'mersis',
   purposeOfPurchase: 'purposeOfPurchase',
 };
 
 export const SUBSIDIARIES_VAT_FIELD_OVERRIDE = {
   IN: FIELD_NAME_LIST.gst,
   MA: FIELD_NAME_LIST.iceNumber,
+  // F1 Turkey — "Numéro de KDV" replaces "Numéro de TVA Intracommunautaire".
+  TR: FIELD_NAME_LIST.kdv,
 };
+
+/**
+ * F1 Turkey — keyed on the address country. The specification writes "TK"; the API
+ * country code is `TR` (`TK` is Tokelau).
+ */
+export const TURKEY_COUNTRY = 'TR';
+
+/**
+ * F1 Turkey — legal forms for which the MERSIS No (stored in
+ * companyNationalIdentificationNumber) is mandatory.
+ */
+export const MERSIS_LEGAL_FORMS = [
+  'corporation',
+  'personalcorporation',
+  'association',
+  'administration',
+];
+
+/**
+ * F1 Turkey — fallback formats, used only when the API rule declares no
+ * regularExpression: MERSIS No = 16 digits, KDV = 10 digits.
+ */
+export const MERSIS_PATTERN = '^\\d{16}$';
+export const KDV_PATTERN = '^\\d{10}$';
 
 export const PHONE_PREFIX = {
   AC: '247',
@@ -396,6 +428,11 @@ export const FEATURES = {
 
 export const IN_SUBSIDIARY = 'IN';
 export const FR_COUNTRIES = ['FR', 'GP', 'MQ', 'GF', 'RE', 'YT'];
+/**
+ * The countries where the e-invoicing "Autre" category controls apply: France
+ * (and its DROM) plus, for F1, Turkey.
+ */
+export const OTHER_CATEGORY_COUNTRIES = [...FR_COUNTRIES, TURKEY_COUNTRY];
 export const USER_TYPE_ENTERPRISE = 'corporation';
 export const USER_TYPE_ASSOCIATION = 'association';
 export const USER_TYPE_ADMINISTRATION = 'administration';

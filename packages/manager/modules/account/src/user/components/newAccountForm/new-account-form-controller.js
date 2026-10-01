@@ -22,6 +22,11 @@ import {
   USER_TYPE_INDIVIDUAL,
   USER_TYPE_OTHER,
   SUBSIDIARIES_VAT_FIELD_OVERRIDE,
+  TURKEY_COUNTRY,
+  MERSIS_LEGAL_FORMS,
+  MERSIS_PATTERN,
+  KDV_PATTERN,
+  OTHER_CATEGORY_COUNTRIES,
 } from './new-account-form-component.constants';
 import { KYC_STATUS } from '../../../identity-documents/user-identity-documents.constant';
 import { SUPPORT_URLS } from '../../user.constants';
@@ -84,6 +89,10 @@ export default class NewAccountFormController {
     this.determineIsEditionDisabledByKyc(this.kycStatus);
     this.newSupportTicketUrl =
       SUPPORT_URLS.createTicket + this.user.ovhSubsidiary;
+
+    // F1 Turkey — "I have a VAT number" starts ticked when a VAT is stored.
+    // Seeded on both models so it is not read as a change.
+    this.model.hasVatNumber = !!this.model.vat;
 
     // backup of original model
     this.originalModel = angular.copy(this.model);
@@ -286,10 +295,18 @@ export default class NewAccountFormController {
           this.formatSiretRules(rules);
         }
 
-        const displayRules = rules
+        const displayRules = this.applyTurkeyRules(rules)
           .map((rule) => {
             let displayFieldName = rule.fieldName;
-            if (rule.fieldName === FIELD_NAME_LIST.vat) {
+            if (this.isTurkey() && rule.fieldName === FIELD_NAME_LIST.vat) {
+              displayFieldName = FIELD_NAME_LIST.kdv;
+            } else if (
+              this.isTurkey() &&
+              rule.fieldName ===
+                FIELD_NAME_LIST.companyNationalIdentificationNumber
+            ) {
+              displayFieldName = FIELD_NAME_LIST.mersis;
+            } else if (rule.fieldName === FIELD_NAME_LIST.vat) {
               displayFieldName =
                 SUBSIDIARIES_VAT_FIELD_OVERRIDE[
                   this.user.country.toUpperCase()
@@ -766,12 +783,66 @@ export default class NewAccountFormController {
     );
   }
 
-  // The FR e-invoicing "Autre" category controls (RG2/RG3/RG4) are gated by a
-  // feature flag and restricted to French customers.
+  // F1 Turkey — the ADDRESS country (form value) is Turkey.
+  isTurkey() {
+    return (this.model.country || '').toUpperCase() === TURKEY_COUNTRY;
+  }
+
+  /**
+   * F1 Turkey — MERSIS No mandatory (16 digits) for MERSIS_LEGAL_FORMS, even
+   * without an API rule; KDV mandatory iff "I have a VAT number" is ticked,
+   * with the checkbox inserted before it. The API regularExpression wins; the
+   * patterns are fallbacks.
+   */
+  applyTurkeyRules(rules) {
+    if (!this.isTurkey()) return rules;
+    const result = [...rules];
+    const { companyNationalIdentificationNumber: cnin, vat } = FIELD_NAME_LIST;
+
+    if (
+      MERSIS_LEGAL_FORMS.includes(this.model.legalform) &&
+      !this.readonly.includes(cnin)
+    ) {
+      let cninRule = result.find((rule) => rule.fieldName === cnin);
+      if (!cninRule) {
+        cninRule = {
+          fieldName: cnin,
+          initialValue: this.model[cnin],
+          hasBottomMargin: true,
+        };
+        result.push(cninRule);
+      }
+      cninRule.mandatory = true;
+      cninRule.regularExpression = cninRule.regularExpression || MERSIS_PATTERN;
+      cninRule.patternErrorKey = 'signup_field_error_mersis';
+    }
+
+    const vatRule = result.find(
+      (rule) => rule.fieldName === vat && !rule.readonly,
+    );
+    if (vatRule) {
+      vatRule.mandatory = !!this.model.hasVatNumber;
+      vatRule.regularExpression = vatRule.regularExpression || KDV_PATTERN;
+      vatRule.patternErrorKey = 'signup_field_error_kdv';
+      result.push({
+        fieldName: FIELD_NAME_LIST.hasVatNumber,
+        fieldType: 'checkbox',
+        mandatory: false,
+        hideNotMandatory: true,
+        initialValue: !!this.model.hasVatNumber,
+        hasBottomMargin: true,
+      });
+    }
+
+    return result;
+  }
+
+  // The e-invoicing "Autre" category controls (RG2/RG3/RG4) are gated by a
+  // feature flag and restricted to French customers and, for F1, Turkish ones.
   isOtherCategoryControlActive() {
     return (
       this.isOtherCategoryControlEnabled &&
-      FR_COUNTRIES.includes(this.model?.country)
+      OTHER_CATEGORY_COUNTRIES.includes(this.model?.country)
     );
   }
 
