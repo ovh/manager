@@ -32,6 +32,7 @@ interface ActionButtonMultisiteProps {
   path?: string;
   domains?: WebHostingWebsiteDomainType[];
   isDisabled?: boolean;
+  hasDefaultDomain?: boolean;
 }
 
 const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
@@ -43,6 +44,7 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
   path,
   domains,
   isDisabled,
+  hasDefaultDomain,
 }: ActionButtonMultisiteProps) => {
   const navigate = useNavigate();
   const { t } = useTranslation('common');
@@ -193,7 +195,7 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
             ),
           label: t('delete_git'),
         }),
-        actionCondition(canAddDomain, {
+        actionCondition(canAddDomain && !hasDefaultDomain, {
           id: 12,
           onClick: () =>
             navigate(urls.editSite.replace(subRoutes.serviceName, serviceName), {
@@ -317,6 +319,7 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
     canAccessLogs,
     logUrl,
     isLogUrlLoading,
+    hasDefaultDomain,
   ]);
 
   return (
