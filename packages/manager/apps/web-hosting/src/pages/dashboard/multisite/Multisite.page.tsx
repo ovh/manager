@@ -276,12 +276,20 @@ export default function MultisitePage() {
           }
 
           const website = row.original as WebHostingWebsiteType;
+          const hasDefaultDomain = (row.original.subRows ?? []).some((siteDomain) =>
+            domainsAttached.some(
+              (d) =>
+                d.currentState?.fqdn === siteDomain.currentState?.fqdn &&
+                d.currentState?.isDefault === true,
+            ),
+          );
           return (
             <ActionButtonMultisite
               context="site"
               siteId={website.id}
               site={website.currentState?.name}
               path={website.currentState?.path}
+              hasDefaultDomain={hasDefaultDomain}
             />
           );
         },
