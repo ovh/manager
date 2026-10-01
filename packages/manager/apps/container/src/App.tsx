@@ -18,6 +18,7 @@ import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { OsdsIcon, OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
 import { ContainerProvider } from '@/core/container';
 import { setupDevApplication } from '@/core/dev';
+import { setupCurrentPageTracking } from '@/core/tracking';
 import { ApplicationProvider } from '@/context';
 import Container from '@/container';
 import { ApiError } from './types/error.type';
@@ -87,6 +88,7 @@ const App = () => {
       // load the config for the region
       const config = () => import(`./config-${environmentObj.getRegion()}.js`);
       setupDevApplication(shellObj);
+      setupCurrentPageTracking(shellObj);
       config()
         .catch(() => {})
         .then(() => {
