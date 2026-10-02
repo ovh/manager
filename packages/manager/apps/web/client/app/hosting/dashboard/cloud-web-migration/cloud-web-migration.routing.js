@@ -9,6 +9,19 @@ export default /* @ngInject */ ($stateProvider) => {
         component: 'hostingCloudWebMigrationComponent',
       },
     },
+    // A direct URL must not open the consent modal on a service that is not
+    // active: the dashboard never offers it there (see handleCloudWebMigration).
+    redirectTo: (transition) =>
+      transition
+        .injector()
+        .getAsync('Hosting')
+        .then((Hosting) => Hosting.getSelected(transition.params().productId))
+        .then(({ serviceState }) =>
+          serviceState === 'ACTIVE'
+            ? false
+            : { state: 'app.hosting.dashboard' },
+        )
+        .catch(() => ({ state: 'app.hosting.dashboard' })),
     resolve: {
       breadcrumb: () => null,
 
