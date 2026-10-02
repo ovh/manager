@@ -170,6 +170,64 @@ describe('Update table in settings page', () => {
     });
   });
 
+  it('enables the plan button from servicePlan even when service update is disabled', async () => {
+    vi.mocked(ServiceContext.useServiceData).mockReturnValue({
+      projectId: 'projectId',
+      service: {
+        ...mockedService,
+        capabilities: {
+          ...mockedService.capabilities,
+          service: {
+            update: database.service.capability.StateEnum.disabled,
+          },
+          servicePlan: {
+            update: database.service.capability.StateEnum.enabled,
+          },
+        },
+      },
+      category: 'operational',
+      serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
+    });
+    render(<UpdateTable />, { wrapper: RouterWithQueryClientWrapper });
+    await waitFor(() => {
+      expect(
+        screen.getByTestId('update-button-tableVersion').className,
+      ).toContain('cursor-not-allowed');
+      expect(
+        screen.getByTestId('update-button-tablePlan').className,
+      ).not.toContain('cursor-not-allowed');
+    });
+  });
+
+  it('disables the plan button from servicePlan even when service update is enabled', async () => {
+    vi.mocked(ServiceContext.useServiceData).mockReturnValue({
+      projectId: 'projectId',
+      service: {
+        ...mockedService,
+        capabilities: {
+          ...mockedService.capabilities,
+          service: {
+            update: database.service.capability.StateEnum.enabled,
+          },
+          servicePlan: {
+            update: database.service.capability.StateEnum.disabled,
+          },
+        },
+      },
+      category: 'operational',
+      serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
+    });
+    render(<UpdateTable />, { wrapper: RouterWithQueryClientWrapper });
+    await waitFor(() => {
+      expect(
+        screen.getByTestId('update-button-tableVersion').className,
+      ).not.toContain('cursor-not-allowed');
+      expect(
+        screen.getByTestId('update-button-tablePlan').className,
+      ).toContain('cursor-not-allowed');
+    });
+  });
+
   it('still shows update buttons when the current service is EOS/EOL', async () => {
     // Simulate an EOS/EOL service: it is filtered out of the status-filtered
     // availabilities (version/plan/flavor), and is only returned by the 'self'

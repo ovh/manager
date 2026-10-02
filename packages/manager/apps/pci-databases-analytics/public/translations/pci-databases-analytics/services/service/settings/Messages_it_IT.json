@@ -55,5 +55,6 @@
   "serviceDeletionProtectionActivate": "Attivare",
   "serviceDeletionProtectionActivatedDeactivate": "Disattivare",
   "serviceDeletionProtectionDeactivate": "Disattivare",
-  "serviceDeletionProtectionDeactivated": "Disattivata"
+  "serviceDeletionProtectionDeactivated": "Disattivata",
+  "unshelveServiceButton": "Reactivate service"
 }
