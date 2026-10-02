@@ -30,5 +30,6 @@
   "orders_order_action_retract": "Quiero desistir del contrato",
   "orders_tracking": "Seguimiento del pedido",
   "orders_order_status_orderExpired": "El pedido ha expirado.",
-  "orders_order_view_bill": "Ver mi factura"
+  "orders_order_view_bill": "Ver mi factura",
+  "commitment_entry": "Introducir un número de compromiso"
 }

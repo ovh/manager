@@ -30,5 +30,6 @@
   "orders_order_action_retract": "Vorrei recedere il contratto",
   "orders_tracking": "Stato dell'ordine",
   "orders_order_status_orderExpired": "Ordine scaduto",
-  "orders_order_view_bill": "Visualizzare la fattura"
+  "orders_order_view_bill": "Visualizzare la fattura",
+  "commitment_entry": "Inserire un numero di impegno"
 }
