@@ -1,0 +1,72 @@
+<div class="billing-commitment-entry">
+    <oui-header
+        data-heading="{{ :: 'commitment_entry_title' | translate }}"
+        data-description="{{ :: 'commitment_entry_description' | translate }}"
+    >
+    </oui-header>
+
+    <p
+        data-translate="commitment_entry_order_number"
+        data-translate-values="{ t0: $ctrl.orderId }"
+    ></p>
+
+    <div data-ng-if="$ctrl.success">
+        <oui-message type="success">
+            <span
+                data-translate="commitment_entry_success"
+                data-translate-values="{ t0: $ctrl.commitmentNumber, t1: $ctrl.orderId }"
+            ></span>
+        </oui-message>
+        <button
+            type="button"
+            class="oui-button oui-button_secondary"
+            ng-click="$ctrl.goToOrders()"
+        >
+            <span data-translate="orders_retract_return_to_orders"></span>
+        </button>
+    </div>
+
+    <div data-ng-if="!$ctrl.success">
+        <form
+            name="$ctrl.commitmentForm"
+            novalidate
+            data-ng-submit="$ctrl.commitmentForm.$valid && $ctrl.submit()"
+        >
+            <oui-spinner data-ng-if="$ctrl.loading"></oui-spinner>
+
+            <div data-ng-if="!$ctrl.loading">
+                <oui-field
+                    data-label="{{ :: 'commitment_entry_number_label' | translate }}"
+                    data-help-text="{{ :: 'commitment_entry_number_title' | translate }}"
+                    data-error-messages="{
+                        required: ('commitment_entry_number_required' | translate),
+                        pattern: ('commitment_entry_number_invalid' | translate)
+                    }"
+                >
+                    <input
+                        class="oui-input"
+                        type="text"
+                        id="commitmentNumber"
+                        name="commitmentNumber"
+                        data-ng-model="$ctrl.commitmentNumber"
+                        data-required
+                        data-ng-pattern="/^[A-Za-z0-9_+\/-]+$/"
+                        title="{{ 'commitment_entry_number_title' | translate }}"
+                    />
+                </oui-field>
+
+                <oui-form-actions
+                    data-submit-text="{{:: 'commitment_entry_submit' | translate }}"
+                    data-cancel-text="{{:: 'common_back' | translate }}"
+                    data-on-cancel="$ctrl.goToOrders()"
+                    data-disabled="$ctrl.commitmentForm.$invalid"
+                >
+                </oui-form-actions>
+            </div>
+        </form>
+
+        <oui-message data-ng-if="$ctrl.error" type="error">
+            <span data-translate="commitment_entry_error"></span>
+        </oui-message>
+    </div>
+</div>

@@ -4,8 +4,14 @@ export const BILLING_ORDERS_STATUS = {
   NOT_PAID: 'notPaid',
   ORDER_EXPIRED: 'orderExpired',
   DOCUMENTS_REQUESTED: 'documentsRequested',
+  DELIVERING: 'delivering',
 };
+
+export const COMMITMENT_ENTRY_ALLOWED_LEGALFORM = 'administration';
+export const COMMITMENT_ENTRY_ALLOWED_BILLING_COUNTRY = 'FR';
 
 export default {
   BILLING_ORDERS_STATUS,
+  COMMITMENT_ENTRY_ALLOWED_LEGALFORM,
+  COMMITMENT_ENTRY_ALLOWED_BILLING_COUNTRY,
 };
