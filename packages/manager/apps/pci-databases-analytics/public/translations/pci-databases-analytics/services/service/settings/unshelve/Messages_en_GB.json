@@ -1,0 +1,9 @@
+{
+  "unshelveServiceTitle": "Reactivate service",
+  "unshelveServiceDescription": "The service {{name}} will be reactivated so you can retrieve your data. Reactivation may take a few minutes.",
+  "unshelveServiceButtonCancel": "Cancel",
+  "unshelveServiceButtonConfirm": "Reactivate",
+  "unshelveServiceToastErrorTitle": "Error",
+  "unshelveServiceToastSuccessTitle": "Reactivation in progress",
+  "unshelveServiceToastSuccessDescription": "Your service is being reactivated. Its status will be updated once the operation is complete."
+}

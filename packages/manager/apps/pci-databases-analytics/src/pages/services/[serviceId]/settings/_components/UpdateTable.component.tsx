@@ -79,7 +79,11 @@ const UpdateTable = () => {
       updateButtonDisplayed: availabilitiesPlanQuery.data?.some(
         (availability) => availability.plan !== service.plan,
       ),
-      disabled: isCapabilityDisabled(service, 'service', 'update'),
+      disabled: isCapabilityDisabled(
+        service,
+        service.capabilities.servicePlan ? 'servicePlan' : 'service',
+        'update',
+      ),
     },
     {
       title: t('tableFlavor'),

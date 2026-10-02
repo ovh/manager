@@ -6,6 +6,7 @@ import {
   addService,
   editService,
   deleteService,
+  unshelveService,
 } from '@/data/api/database/service.api';
 import * as database from '@/types/cloud/project/database';
 
@@ -117,6 +118,18 @@ describe('database service functions', () => {
     });
     expect(apiClient.v6.delete).toHaveBeenCalledWith(
       '/cloud/project/projectId/database/mongodb/serviceId',
+    );
+  });
+
+  it('should call unshelveService', async () => {
+    expect(apiClient.v6.post).not.toHaveBeenCalled();
+    await unshelveService({
+      projectId: 'projectId',
+      engine: database.EngineEnum.mongodb,
+      serviceId: 'serviceId',
+    });
+    expect(apiClient.v6.post).toHaveBeenCalledWith(
+      '/cloud/project/projectId/database/mongodb/serviceId/unshelve',
     );
   });
 });

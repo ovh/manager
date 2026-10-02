@@ -163,4 +163,69 @@ describe('Settings page', () => {
       screen.queryByTestId('advanced-config-accordion-trigger'),
     ).toBeNull();
   });
+
+  describe('unshelve button', () => {
+    const freemiumService = {
+      ...mockedService,
+      engine: database.EngineEnum.mongodb,
+      plan: 'discovery',
+      flavor: 'db2-free',
+    };
+    const mockServiceData = (service: database.Service) =>
+      vi.mocked(ServiceContext.useServiceData).mockReturnValue({
+        projectId: 'projectId',
+        service,
+        category: 'operational',
+        serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
+      });
+
+    it('is enabled for a freemium service with the capability', () => {
+      mockServiceData({
+        ...freemiumService,
+        capabilities: {
+          ...freemiumService.capabilities,
+          unshelve: { create: database.service.capability.StateEnum.enabled },
+        },
+      });
+      render(<Settings />, { wrapper: RouterWithQueryClientWrapper });
+      expect(
+        screen.getByTestId('service-unshelve-button').className,
+      ).not.toContain('cursor-not-allowed');
+    });
+
+    it('is disabled when the capability actions are disabled', () => {
+      mockServiceData({
+        ...freemiumService,
+        capabilities: {
+          ...freemiumService.capabilities,
+          unshelve: {
+            create: database.service.capability.StateEnum.disabled,
+            update: database.service.capability.StateEnum.disabled,
+          },
+        },
+      });
+      render(<Settings />, { wrapper: RouterWithQueryClientWrapper });
+      expect(screen.getByTestId('service-unshelve-button').className).toContain(
+        'cursor-not-allowed',
+      );
+    });
+
+    it('is not displayed without the capability', () => {
+      mockServiceData(freemiumService);
+      render(<Settings />, { wrapper: RouterWithQueryClientWrapper });
+      expect(screen.queryByTestId('service-unshelve-button')).toBeNull();
+    });
+
+    it('is not displayed for a service that is not freemium', () => {
+      mockServiceData({
+        ...mockedService,
+        capabilities: {
+          ...mockedService.capabilities,
+          unshelve: { create: database.service.capability.StateEnum.enabled },
+        },
+      });
+      render(<Settings />, { wrapper: RouterWithQueryClientWrapper });
+      expect(screen.queryByTestId('service-unshelve-button')).toBeNull();
+    });
+  });
 });
