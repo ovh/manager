@@ -15,6 +15,7 @@ import { IdentityDocumentsModal } from '@/components/identity-documents-modal/Id
 import { CommunicationAnnounceModal } from '../communication-announce-modal/CommunicationAnnounceModal.component';
 import CompanyInformationModal from '../company-information-modal/CompanyInformationModal.component';
 import OtherCategoryModal from '../other-category-modal/OtherCategoryModal.component';
+import MissingCninModal from '../compliance-reminder-modal/MissingCninModal.component';
 
 const MODALS: FC[] = [
   IdentityDocumentsModal,
@@ -22,6 +23,8 @@ const MODALS: FC[] = [
   AgreementsUpdateModal,
   CompanyInformationModal,
   OtherCategoryModal,
+  // F1: the missing-CNIN reminder, right after the "Autre" category one.
+  MissingCninModal,
   SuggestionModal,
   CommunicationAnnounceModal,
 ];

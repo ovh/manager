@@ -68,6 +68,7 @@ import {
   shouldAccessOrganizationSearch,
   shouldEnableSIRENDisplay,
 } from '@/helpers/flowHelper';
+import { applyTurkeyRules, isTurkeyCountry } from '@/helpers/turkeyHelper';
 import { useDetailsRedirection } from '@/hooks/redirection/useDetailsRedirection';
 import {
   useTrackError,
@@ -98,7 +99,7 @@ type AccountDetailsFormProps = {
 };
 
 function AccountDetailsForm({
-  rules,
+  rules: apiRules,
   isLoading,
   currentUser,
   updateRulesParams,
@@ -134,6 +135,25 @@ function AccountDetailsForm({
     einvoicingBillingAddress?: string;
   };
 
+  // F1 Turkey — the address country and the "I have a VAT number" checkbox
+  // bend two rules (MERSIS No, KDV); every render gate below reads `rules`.
+  const [formCountry, setFormCountry] = useState<string | undefined>(
+    currentUser.country,
+  );
+  const [hasVatNumber, setHasVatNumber] = useState(
+    Boolean(companyDetails?.vatID),
+  );
+  const isTurkey = isTurkeyCountry(formCountry);
+  const rules = useMemo(
+    () =>
+      applyTurkeyRules(apiRules, {
+        country: formCountry,
+        legalForm,
+        hasVatNumber,
+      }) as Record<RuleField, Rule>,
+    [apiRules, formCountry, legalForm, hasVatNumber],
+  );
+
   const zodSchema = useMemo(() => {
     const baseSchema = getZodSchemaFromRule(rules);
     return baseSchema.extend({
@@ -157,6 +177,7 @@ function AccountDetailsForm({
     handleSubmit,
     watch,
     setValue,
+    trigger,
     formState: { errors, isValid, isDirty },
   } = useForm<FormValues>({
     defaultValues: {
@@ -180,9 +201,14 @@ function AccountDetailsForm({
   });
 
   const [phoneNumberLocale] = i18n.language.split('_');
+  // F1 Turkey — Turkey is not an OVH subsidiary, so its "KDV" label is looked
+  // up by country.
   const vatLabel = useMemo(
-    () => (ovhSubsidiary && COUNTRIES_VAT_LABEL[ovhSubsidiary]) || 'VAT',
-    [ovhSubsidiary],
+    () =>
+      (isTurkey && COUNTRIES_VAT_LABEL.TR) ||
+      (ovhSubsidiary && COUNTRIES_VAT_LABEL[ovhSubsidiary]) ||
+      'VAT',
+    [isTurkey, ovhSubsidiary],
   );
   const shouldDisplaySIREN = useMemo(
     () => shouldEnableSIRENDisplay(currentUser.country, legalForm),
@@ -292,7 +318,9 @@ function AccountDetailsForm({
                   className="text-critical leading-[0.8]"
                   preset="caption"
                 >
-                  {renderTranslatedZodError(errors.vat.message, rules?.vat)}
+                  {isTurkey && errors.vat.message === 'error_pattern'
+                    ? t('account_details_error_kdv')
+                    : renderTranslatedZodError(errors.vat.message, rules?.vat)}
                 </OdsText>
               )}
             </>
@@ -301,6 +329,13 @@ function AccountDetailsForm({
       )}
     />
   );
+
+  // F1 Turkey — the CNIN is the SIRET in France and the MERSIS No in Turkey.
+  let cninLabel = t(
+    'account_details_field_companyNationalIdentificationNumber',
+  );
+  if (separateSIRENAndSIRET) cninLabel = t('account_details_field_siret');
+  else if (isTurkey) cninLabel = t('account_details_field_mersis');
 
   useEffect(() => {
     setValue('phone', '');
@@ -315,8 +350,14 @@ function AccountDetailsForm({
     }
   }, [phoneCountry]);
 
+  // F1 Turkey — re-validate the KDV when the checkbox changes its rule.
+  useEffect(() => {
+    if (isTurkey) trigger('vat');
+  }, [hasVatNumber]);
+
   useEffect(() => {
     if (country) {
+      setFormCountry(country);
       updateRulesParams('country', country);
       if (country !== currentUser.country) {
         setValue('language', '');
@@ -801,23 +842,9 @@ function AccountDetailsForm({
                 render={({ field: { name, value, onChange, onBlur } }) => (
                   <>
                     <OdsFormField>
-                      <label
-                        htmlFor={name}
-                        slot="label"
-                        aria-label={
-                          separateSIRENAndSIRET
-                            ? t('account_details_field_siret')
-                            : t(
-                                'account_details_field_companyNationalIdentificationNumber',
-                              )
-                        }
-                      >
+                      <label htmlFor={name} slot="label" aria-label={cninLabel}>
                         <OdsText preset="caption">
-                          {separateSIRENAndSIRET
-                            ? t('account_details_field_siret')
-                            : t(
-                                'account_details_field_companyNationalIdentificationNumber',
-                              )}
+                          {cninLabel}
                           {rules?.companyNationalIdentificationNumber
                             ?.mandatory && ' *'}
                         </OdsText>
@@ -846,11 +873,15 @@ function AccountDetailsForm({
                             className="text-critical leading-[0.8]"
                             preset="caption"
                           >
-                            {renderTranslatedZodError(
-                              errors.companyNationalIdentificationNumber
-                                .message,
-                              rules?.companyNationalIdentificationNumber,
-                            )}
+                            {isTurkey &&
+                            errors.companyNationalIdentificationNumber
+                              .message === 'error_pattern'
+                              ? t('account_details_error_mersis')
+                              : renderTranslatedZodError(
+                                  errors.companyNationalIdentificationNumber
+                                    .message,
+                                  rules?.companyNationalIdentificationNumber,
+                                )}
                           </OdsText>
                         )}
                     </OdsFormField>
@@ -916,6 +947,28 @@ function AccountDetailsForm({
                   </OdsFormField>
                 )}
               />
+            )}
+            {/* F1 Turkey — "I have a VAT number": ticked ⇒ the KDV is
+                mandatory. Page state, never sent to PUT /me. */}
+            {isTurkey && apiRules?.vat && !isIndividualLegalForm(legalForm) && (
+              <OdsFormField>
+                <div className="w-full flex flex-row gap-4 items-center cursor-pointer ">
+                  <OdsCheckbox
+                    inputId="hasVatNumber"
+                    id="hasVatNumber"
+                    name="hasVatNumber"
+                    isChecked={hasVatNumber}
+                    value={String(hasVatNumber)}
+                    onClick={() => setHasVatNumber(!hasVatNumber)}
+                    class="flex-[0]"
+                  ></OdsCheckbox>
+                  <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                    <label htmlFor="hasVatNumber">
+                      {t('account_details_field_has_vat_number')}
+                    </label>
+                  </OdsText>
+                </div>
+              </OdsFormField>
             )}
             {!showEinvoicingSection && vatField}
             {rules?.purposeOfPurchase && (
