@@ -10,6 +10,8 @@ import queryClient from '@/query.client';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import ServiceTabs from './_components/ServiceTabs.component';
 import { ServiceLayoutContext } from './Service.context';
+import MongoFreemiumEolBanner from '@/components/mongo-freemium-eol-banner/MongoFreemiumEolBanner.component';
+import { isMongoFreemium } from '@/lib/mongoFreemiumHelper';
 
 interface ServiceLayoutProps {
   params: {
@@ -76,6 +78,12 @@ export default function ServiceLayout() {
   return (
     <>
       <ServiceHeader service={service} />
+      {isMongoFreemium(service) && (
+        <MongoFreemiumEolBanner
+          migrateTo="settings#update"
+          className="mb-4"
+        />
+      )}
       <ServiceTabs service={service} />
       <div className="space-y-2">
         <Outlet context={serviceLayoutContext} />

@@ -48,6 +48,28 @@ describe('Services List page', () => {
       expect(screen.getByText(mockedService.id)).toBeInTheDocument();
       expect(screen.getByText(mockedService.description)).toBeInTheDocument();
     });
+    expect(
+      screen.queryByTestId('mongo-freemium-eol-banner'),
+    ).not.toBeInTheDocument();
+  });
+
+  it('should display the end-of-life banner when a MongoDB freemium service exists', async () => {
+    vi.mocked(serviceApi.getServices).mockResolvedValueOnce([
+      mockedService,
+      {
+        ...mockedService,
+        id: 'freemiumId',
+        engine: database.EngineEnum.mongodb,
+        plan: 'discovery',
+        flavor: 'db2-free',
+      },
+    ]);
+    render(<Services />, { wrapper: RouterWithQueryClientWrapper });
+    await waitFor(() => {
+      expect(
+        screen.getByTestId('mongo-freemium-eol-banner'),
+      ).toBeInTheDocument();
+    });
   });
 });
 

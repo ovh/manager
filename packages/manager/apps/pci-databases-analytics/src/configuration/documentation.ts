@@ -10,6 +10,14 @@ export const LINKS = {
     default:
       'https://docs.ovh.com/gb/en/publiccloud/databases/order-terraform/',
   },
+  MONGODB_BACKUP_RESTORE: {
+    fr_FR:
+      'https://docs.ovhcloud.com/fr/guides/public-cloud/databases/mongodb-howto-backup-restore',
+    fr_CA:
+      'https://docs.ovhcloud.com/fr/guides/public-cloud/databases/mongodb-howto-backup-restore',
+    default:
+      'https://docs.ovhcloud.com/en/guides/public-cloud/databases/mongodb-howto-backup-restore',
+  },
   PG_OFFICIAL_DOCUMENTATION: 'https://www.postgresql.org/docs/',
   MySQL_OFFICIAL_DOCUMENTATION: 'https://dev.mysql.com/doc/',
 };

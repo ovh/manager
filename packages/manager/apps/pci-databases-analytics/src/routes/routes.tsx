@@ -545,6 +545,15 @@ export default [
                     ),
                   },
                   {
+                    path: 'unshelve',
+                    id: 'service.{service.engine}.settings.unshelve',
+                    ...lazyLoadRoute(() =>
+                      import(
+                        '@/pages/services/[serviceId]/settings/unshelve/Unshelve.modal'
+                      ),
+                    ),
+                  },
+                  {
                     path: 'deletion-protection',
                     id: 'service.{service.engine}.settings.deletion-protection',
                     ...lazyLoadRoute(() =>

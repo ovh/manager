@@ -76,4 +76,36 @@ describe('Service Layout', () => {
       ).toBeInTheDocument();
     });
   });
+
+  it('renders the end-of-life banner for a MongoDB freemium service', async () => {
+    vi.mocked(serviceAPI.getService).mockResolvedValue({
+      ...mockedService,
+      engine: database.EngineEnum.mongodb,
+      plan: 'discovery',
+      flavor: 'db2-free',
+    });
+    render(<ServiceLayout />, {
+      wrapper: RouterWithQueryClientWrapper,
+    });
+    await waitFor(() => {
+      expect(
+        screen.getByTestId('mongo-freemium-eol-banner'),
+      ).toBeInTheDocument();
+    });
+  });
+
+  it('does not render the end-of-life banner for another service', async () => {
+    vi.mocked(serviceAPI.getService).mockResolvedValue(mockedService);
+    render(<ServiceLayout />, {
+      wrapper: RouterWithQueryClientWrapper,
+    });
+    await waitFor(() => {
+      expect(
+        screen.getByTestId('service-header-container'),
+      ).toBeInTheDocument();
+    });
+    expect(
+      screen.queryByTestId('mongo-freemium-eol-banner'),
+    ).not.toBeInTheDocument();
+  });
 });
