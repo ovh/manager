@@ -97,3 +97,12 @@ export const deleteService = async ({
   apiClient.v6.delete(
     `/cloud/project/${projectId}/database/${engine}/${serviceId}`,
   );
+
+export const unshelveService = async ({
+  projectId,
+  engine,
+  serviceId,
+}: ServiceData) =>
+  apiClient.v6.post<database.Service>(
+    `/cloud/project/${projectId}/database/${engine}/${serviceId}/unshelve`,
+  );

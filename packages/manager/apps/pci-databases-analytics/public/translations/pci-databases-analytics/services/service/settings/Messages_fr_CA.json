@@ -53,5 +53,6 @@
   "kafkaSettingsRestApiTitle": "Kafka API REST",
   "kafkaSettingsRestApiDescription": "Interface HTTP REST pour un cluster Kafka (basée sur le projet <anchor>Karapace</anchor>)",
   "kafkaSettingsSchemaRegistryTitle": "Schema Registry",
-  "kafkaSettingsSchemaRegistryDescription": "Interface de service HTTP REST pour stocker les schémas Apache Kafka (basée sur le projet <anchor>Karapace</anchor>)"
+  "kafkaSettingsSchemaRegistryDescription": "Interface de service HTTP REST pour stocker les schémas Apache Kafka (basée sur le projet <anchor>Karapace</anchor>)",
+  "unshelveServiceButton": "Réactiver le service"
 }

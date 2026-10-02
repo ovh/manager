@@ -19,6 +19,11 @@ import Guides from '@/components/guides/Guides.component';
 import { GuideSections } from '@/types/guide';
 import { cn } from '@/lib/utils';
 import KafkaSettingsTile from './_components/KafkaSettingsTile.component';
+import NavLink from '@/components/links/NavLink.component';
+import {
+  isUnshelveDisplayed,
+  isUnshelveEnabled,
+} from '@/lib/mongoFreemiumHelper';
 
 const Settings = () => {
   const { service } = useServiceData();
@@ -42,8 +47,18 @@ const Settings = () => {
         id="update"
       >
         <Card data-testid="update-table-card">
-          <CardHeader>
+          <CardHeader className="flex flex-row justify-between items-center space-y-0">
             <h5>{t('updateTitle')}</h5>
+            {isUnshelveDisplayed(service) && (
+              <NavLink
+                data-testid="service-unshelve-button"
+                className="py-0"
+                to="./unshelve"
+                disabled={!isUnshelveEnabled(service)}
+              >
+                {t('unshelveServiceButton')}
+              </NavLink>
+            )}
           </CardHeader>
           <CardContent>
             <UpdateTable />

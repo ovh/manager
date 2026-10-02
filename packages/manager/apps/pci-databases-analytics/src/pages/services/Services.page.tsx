@@ -12,6 +12,8 @@ import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { TRACKING } from '@/configuration/tracking.constants';
 import * as database from '@/types/cloud/project/database';
 import RoadmapChangelog from '@/components/roadmap-changelog/RoadmapChangelog.component';
+import MongoFreemiumEolBanner from '@/components/mongo-freemium-eol-banner/MongoFreemiumEolBanner.component';
+import { isMongoFreemium } from '@/lib/mongoFreemiumHelper';
 
 const Services = () => {
   const { t } = useTranslation('pci-databases-analytics/services');
@@ -30,6 +32,8 @@ const Services = () => {
         service.category === category,
     );
   }, [servicesQuery.data, category]);
+
+  const mongoFreemiumService = servicesQuery.data?.find(isMongoFreemium);
 
   if (servicesQuery.isLoading) return <ServicesList.Skeleton />;
   return (
@@ -50,6 +54,11 @@ const Services = () => {
           />
         </div>
       </div>
+      {mongoFreemiumService && (
+        <MongoFreemiumEolBanner
+          migrateTo={`${mongoFreemiumService.id}/settings#update`}
+        />
+      )}
       <ServicesList services={filteredServices} />
       <LegalMentions />
       <Outlet />
