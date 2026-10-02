@@ -30,5 +30,6 @@
   "orders_order_action_retract": "Chcę odstąpić od umowy",
   "orders_tracking": "Informacje o zamówieniu",
   "orders_order_status_orderExpired": "Zamówienie wygasło",
-  "orders_order_view_bill": "Sprawdź fakturę"
+  "orders_order_view_bill": "Sprawdź fakturę",
+  "commitment_entry": "Wprowadź numer zobowiązania"
 }

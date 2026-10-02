@@ -30,5 +30,6 @@
   "orders_order_action_retract": "I wish to cancel my order",
   "orders_tracking": "Order tracking",
   "orders_order_status_orderExpired": "Order expired ",
-  "orders_order_view_bill": "Pay my bill"
+  "orders_order_view_bill": "Pay my bill",
+  "commitment_entry": "Enter a commitment number"
 }
