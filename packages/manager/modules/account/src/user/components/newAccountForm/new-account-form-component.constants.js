@@ -423,7 +423,6 @@ export const TRACKING_PREFIX = 'accountmodification';
 export const FEATURES = {
   emailConsent: 'account:email-consent',
   smsConsent: 'account:sms-consent',
-  otherCategory: 'account:fr-e-invoicing-other-category',
 };
 
 export const IN_SUBSIDIARY = 'IN';

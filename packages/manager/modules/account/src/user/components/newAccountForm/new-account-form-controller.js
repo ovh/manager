@@ -105,21 +105,13 @@ export default class NewAccountFormController {
     this.$scope.$on(COMPANY_SELECTED_EVENT, () => this.clearApiErrors());
 
     return this.ovhFeatureFlipping
-      .checkFeatureAvailability([
-        FEATURES.emailConsent,
-        FEATURES.smsConsent,
-        FEATURES.otherCategory,
-      ])
+      .checkFeatureAvailability([FEATURES.emailConsent, FEATURES.smsConsent])
       .then((result) => {
         this.isEmailConsentAvailable = result.isFeatureAvailable(
           FEATURES.emailConsent,
         );
         this.isSmsConsentAvailable = result.isFeatureAvailable(
           FEATURES.smsConsent,
-        );
-        // Gates the FR e-invoicing "Autre" category controls (RG2/RG3/RG4)
-        this.isOtherCategoryControlEnabled = result.isFeatureAvailable(
-          FEATURES.otherCategory,
         );
       })
       .then(() => this.fetchRules(this.model))
@@ -837,13 +829,12 @@ export default class NewAccountFormController {
     return result;
   }
 
-  // The e-invoicing "Autre" category controls (RG2/RG3/RG4) are gated by a
-  // feature flag and restricted to French customers and, for F1, Turkish ones.
+  // The e-invoicing "Autre" category controls (RG2/RG3/RG4) apply to French
+  // customers and, for F1, Turkish ones. Not behind the
+  // account:fr-e-invoicing-other-category flag: they are a lasting rule, while
+  // the flag only gates the temporary home reminder (OtherCategoryModal).
   isOtherCategoryControlActive() {
-    return (
-      this.isOtherCategoryControlEnabled &&
-      OTHER_CATEGORY_COUNTRIES.includes(this.model?.country)
-    );
+    return OTHER_CATEGORY_COUNTRIES.includes(this.model?.country);
   }
 
   // RG2/RG3: the currently selected category is the invalid "Autre" value.
