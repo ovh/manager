@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.42.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.41.3...@ovh-ux/manager-pci-databases-analytics-app@1.42.0) (2026-10-05)
+
+
+### Features
+
+* **pci-databases-analytics:** handle mongodb freemium end of life ([271f7df](https://github.com/ovh/manager/commit/271f7dfed6a275763dfd6117a04d21073e0e30b3)), closes [#DATATR-4134](https://github.com/ovh/manager/issues/DATATR-4134) [#DATATR-4135](https://github.com/ovh/manager/issues/DATATR-4135) [#DATATR-4136](https://github.com/ovh/manager/issues/DATATR-4136)
+
+
+
+
+
 ## [1.41.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.41.2...@ovh-ux/manager-pci-databases-analytics-app@1.41.3) (2026-07-02)
 
 
