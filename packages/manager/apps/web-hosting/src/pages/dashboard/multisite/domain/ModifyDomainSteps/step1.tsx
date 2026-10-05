@@ -104,7 +104,7 @@ export default function Step1({
                 checked={field.value === ServiceStatus.ACTIVE}
                 disabled={!isGitDisabled || watch('countriesIpEnabled')}
                 onCheckedChange={(detail) =>
-                  field.onChange(detail.checked ? ServiceStatus.ACTIVE : ServiceStatus.INACTIVE)
+                  field.onChange(detail.checked ? ServiceStatus.ACTIVE : ServiceStatus.NONE)
                 }
                 onBlur={field.onBlur}
               >
