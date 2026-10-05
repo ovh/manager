@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { Location, useLocation, useNavigate } from 'react-router-dom';
 
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
@@ -14,6 +14,7 @@ import { Modal, useNotifications } from '@ovh-ux/muk';
 
 import { putAttachedDomain } from '@/data/api/webHosting';
 import { useGetAttachedDomainDetails } from '@/data/hooks/webHosting/webHostingAttachedDomain/useWebHostingAttachedDomain';
+import { getWebHostingWebsiteQueryKey } from '@/data/hooks/webHosting/webHostingWebsite/useWebHostingWebsite';
 import {
   useGetDomainZone,
   useGetHostingService,
@@ -53,7 +54,7 @@ export default function ModifyModalDomain() {
     defaultValues: {
       domain: state.domain ?? '',
       path: state.path ?? '',
-      cdn: state.cdnStatus ?? ServiceStatus.INACTIVE,
+      cdn: state.cdnStatus ?? ServiceStatus.NONE,
       firewall: state.firewallStatus ?? ServiceStatus.INACTIVE,
       countriesIpEnabled:
         state.cdnStatus !== ServiceStatus.ACTIVE ? !!domainDetails?.ipLocation : false,
@@ -67,7 +68,7 @@ export default function ModifyModalDomain() {
     const next = {
       domain: state.domain ?? '',
       path: state.path ?? '',
-      cdn: state.cdnStatus ?? ServiceStatus.INACTIVE,
+      cdn: state.cdnStatus ?? ServiceStatus.NONE,
       firewall: state.firewallStatus ?? ServiceStatus.INACTIVE,
       countriesIpEnabled:
         state.cdnStatus !== ServiceStatus.ACTIVE ? !!domainDetails?.ipLocation : false,
@@ -79,6 +80,7 @@ export default function ModifyModalDomain() {
   }, [domainDetails, reset]);
 
   const { addError, addSuccess } = useNotifications();
+  const queryClient = useQueryClient();
   const onClose = () => navigate(-1);
 
   const { mutate: onUpdateDomain } = useMutation<
@@ -95,6 +97,12 @@ export default function ModifyModalDomain() {
       }
     },
     onSuccess: () => {
+      void queryClient.invalidateQueries({
+        queryKey: getWebHostingWebsiteQueryKey(state.serviceName),
+      });
+      void queryClient.invalidateQueries({
+        queryKey: ['hosting', 'web', state.serviceName, 'attachedDomain', state.domain],
+      });
       addSuccess(
         <Text preset={TEXT_PRESET.paragraph}>
           {t('multisite:multisite_modal_domain_configuration_modify_success')}
