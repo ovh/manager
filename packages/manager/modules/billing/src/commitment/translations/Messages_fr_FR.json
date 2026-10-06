@@ -1,0 +1,12 @@
+{
+  "commitment_entry_title": "Saisir un numéro d'engagement",
+  "commitment_entry_description": "Renseignez le numéro d'engagement juridique fourni par votre administration. Il sera reporté sur la facture de cette commande.",
+  "commitment_entry_order_number": "Commande n° {{t0}}",
+  "commitment_entry_number_label": "Numéro d'engagement",
+  "commitment_entry_number_title": "Lettres, chiffres et caractères _ + / - uniquement, sans espace.",
+  "commitment_entry_number_required": "Le numéro d'engagement est obligatoire.",
+  "commitment_entry_number_invalid": "Le numéro d'engagement ne doit contenir que des lettres, des chiffres et les caractères _ + / -.",
+  "commitment_entry_submit": "Valider",
+  "commitment_entry_success": "Le numéro d'engagement {{t0}} a bien été enregistré pour la commande n° {{t1}}.",
+  "commitment_entry_error": "Une erreur est survenue lors de l'enregistrement du numéro d'engagement. Veuillez réessayer."
+}
