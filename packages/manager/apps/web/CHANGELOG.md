@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.50.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.50.1...@ovh-ux/manager-web@19.50.2) (2026-10-06)
+
+
+### Bug Fixes
+
+* **web-hosting:** redirect on dashboard when service is not active for web cloud migration ([eb5b503](https://github.com/ovh/manager/commit/eb5b50345a6eee622bd6f8967c070cbee6624b22)), closes [#DCE-402](https://github.com/ovh/manager/issues/DCE-402)
+
+
+
+
+
 ## [19.50.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.50.0...@ovh-ux/manager-web@19.50.1) (2026-09-24)
 
 

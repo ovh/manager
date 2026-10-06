@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.22.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.22.3...@ovh-ux/manager-web-hosting-app@0.22.4) (2026-10-06)
+
+
+### Bug Fixes
+
+* **web-hosting:** disable path modification for site with default attached domain ([535e06e](https://github.com/ovh/manager/commit/535e06e0e9bb659c73ab37c93a9a2e10afabc6fd)), closes [#DCE-471](https://github.com/ovh/manager/issues/DCE-471)
+* **web-hosting:** send right enum for cdn when removing attached domain ([ea22500](https://github.com/ovh/manager/commit/ea225009e5a44f65925ec0fcb960ff6baeb81a11)), closes [#DCE-530](https://github.com/ovh/manager/issues/DCE-530)
+
+
+
+
+
 ## [0.22.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.22.2...@ovh-ux/manager-web-hosting-app@0.22.3) (2026-09-29)
 
 
