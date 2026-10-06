@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.71.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.70.0...@ovh-ux/manager-billing@0.71.0) (2026-10-06)
+
+
+### Features
+
+* **billing:** add new commitment number form for B2G customer on order ([#23270](https://github.com/ovh/manager/issues/23270)) ([d03f638](https://github.com/ovh/manager/commit/d03f638e635f8ce22f09c67e56c929de1ab6106d)), closes [#MANAGER-22806](https://github.com/ovh/manager/issues/MANAGER-22806)
+
+
+
+
+
 # [0.70.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.69.0...@ovh-ux/manager-billing@0.70.0) (2026-09-08)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.31.1...@ovh-ux/manager-hub-app@0.32.0) (2026-10-06)
+
+
+### Features
+
+* **container:** track click on the go-to-manager-v8-beta topnav button ([#23228](https://github.com/ovh/manager/issues/23228)) ([255c701](https://github.com/ovh/manager/commit/255c7011c0bef2de63748ac6eae5286cd3453584)), closes [#MANAGER-22613](https://github.com/ovh/manager/issues/MANAGER-22613)
+
+
+
+
+
 ## [0.31.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.31.0...@ovh-ux/manager-hub-app@0.31.1) (2026-09-30)
 
 
