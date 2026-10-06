@@ -30,5 +30,6 @@
   "orders_order_action_retract": "Anular a encomenda",
   "orders_tracking": "Seguir encomenda",
   "orders_order_status_orderExpired": "Encomenda expirada",
-  "orders_order_view_bill": "Ver a minha fatura"
+  "orders_order_view_bill": "Ver a minha fatura",
+  "commitment_entry": "Introduzir um número de compromisso"
 }
