@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.44.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.44.6...@ovh-ux/manager-zimbra-app@0.44.7) (2026-10-07)
+
+
+### Bug Fixes
+
+* **zimbra:** add container height on aliases datagrid ([faa223c](https://github.com/ovh/manager/commit/faa223c46662fee6dc084f12f13643669506e35c)), closes [#DCE-347](https://github.com/ovh/manager/issues/DCE-347)
+* **zimbra:** redirect to v8 order on email account order click ([da08d21](https://github.com/ovh/manager/commit/da08d211eef3ab47d52e62047099eb205fcc1f73)), closes [#DCE-336](https://github.com/ovh/manager/issues/DCE-336)
+
+
+
+
+
 ## [0.44.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.44.5...@ovh-ux/manager-zimbra-app@0.44.6) (2026-09-21)
 
 
