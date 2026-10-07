@@ -7,7 +7,7 @@ export default /* @ngInject */ ($stateProvider) => {
     template,
     controller,
     controllerAs: '$ctrl',
-    translations: { value: ['./translations'], format: 'json' },
+    translations: { value: ['.'], format: 'json' },
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('commitment_entry_title'),
