@@ -91,7 +91,7 @@ export const DatagridTopbar: React.FC<DatagridTopbarProps> = ({
       actionType: 'navigation',
       actions: [ORDER_ZIMBRA_EMAIL_ACCOUNT],
     });
-    window.location.href = hrefOrderEmailAccount;
+    (window.top ?? window).location.href = hrefOrderEmailAccount;
   };
   const handleOvhMailMigratorAccountClick = () => {
     trackClick({
