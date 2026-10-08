@@ -26,6 +26,7 @@
   "signup_field_organisation": "Organisation",
   "signup_field_companyNationalIdentificationNumber": "Company tax identification number",
   "signup_field_sex": "Gender",
+  "signup_field_hasVatNumber": "I have a VAT number",
   "signup_field_vat": "Intra-Community VAT number",
   "signup_field_gst": "Goods and Services Tax number (GST)",
   "signup_field_address": "Address",

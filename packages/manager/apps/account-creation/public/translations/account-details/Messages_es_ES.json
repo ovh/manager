@@ -14,6 +14,8 @@
   "account_details_field_siret": "SIRET:",
   "account_details_field_siren": "SIREN:",
   "account_details_field_vat": "Número de {{vatLabel}}",
+  "account_details_field_has_vat_number": "Tengo un número de {{vatLabel}}",
+  "account_details_error_vat_cnin_mismatch": "Este número de {{vatLabel}} no coincide con su {{cninLabel}}.",
   "account_details_field_country": "País de residencia",
   "account_details_field_address": "Dirección",
   "account_details_field_zip": "Código postal",

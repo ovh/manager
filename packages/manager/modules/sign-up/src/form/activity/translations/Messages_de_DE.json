@@ -1,5 +1,6 @@
 {
   "sign_up_activity_field_vat": "Identifikationsnummer",
+  "sign_up_activity_field_has_vat_number": "Ich habe eine {{ vatLabel }}-Nummer",
   "sign_up_activity_field_vat_more": "Identifikationsnummer ({{ vatLabel }})",
   "sign_up_activity_field_vat_association": "Identifikationsnummer der Organisation",
   "sign_up_activity_field_vat_association_more": "Identifikationsnummer der Organisation ({{ vatLabel }})",

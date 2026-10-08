@@ -26,6 +26,7 @@
   "signup_field_organisation": "Organización",
   "signup_field_companyNationalIdentificationNumber": "NIF de empresa",
   "signup_field_sex": "Género",
+  "signup_field_hasVatNumber": "Tengo un número de IVA",
   "signup_field_vat": "N.º de IVA intracomunitario",
   "signup_field_gst": "Número de impuesto sobre bienes y servicios (GST)",
   "signup_field_address": "Dirección",
