@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.31.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.31.0...@ovh-ux/manager-iplb@1.31.1) (2026-10-08)
+
+
+### Bug Fixes
+
+* **iplb:** unwrap the configo's default export on the order route ([2886e77](https://github.com/ovh/manager/commit/2886e77f141fa9692dd8f1285be754f281b25d96)), closes [#MANAGER-22850](https://github.com/ovh/manager/issues/MANAGER-22850)
+
+
+
+
+
 # [1.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.30.2...@ovh-ux/manager-iplb@1.31.0) (2026-03-09)
 
 
