@@ -23,7 +23,7 @@ import { cmp } from '@/cmp';
 import links from './links';
 import ovhCloudLogo from '../assets/images/logo-ovhcloud.png';
 import { WEBSITE_PRIVACY_COOKIE_NAME, WEBSITE_TRACKING_CONSENT_VALUE } from './CookiePolicy.constants';
-import { deleteCookie } from '@/helpers';
+import { deleteCookie, deleteCookieOnAllDomains } from '@/helpers';
 
 type Props = {
   shell: Shell;
@@ -81,6 +81,8 @@ const CookiePolicy = ({ shell, onValidate }: Props): JSX.Element => {
     } else {
       trackingPlugin.setEnabled(false);
       deleteCookie('clientSideUserId');
+      // A stale Piano `pa_privacy=optin` must not outlive a refusal.
+      deleteCookieOnAllDomains('pa_privacy');
     }
     onValidate(agreed);
   };
@@ -97,6 +99,7 @@ const CookiePolicy = ({ shell, onValidate }: Props): JSX.Element => {
     } else {
       trackingPlugin.setEnabled(false);
       deleteCookie('clientSideUserId');
+      deleteCookieOnAllDomains('pa_privacy');
     }
     onValidate(hasConsent);
   };

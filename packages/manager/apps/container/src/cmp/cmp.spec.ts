@@ -78,10 +78,26 @@ describe('cmp facade', () => {
           LOADER_URLS.preproduction,
         );
         expect(testWindow.__cmpConfig).toMatchObject({
-          locale: 'en-GB',
+          locale: 'en-CA',
           region: 'CA',
           environment: 'preproduction',
         });
+      },
+    );
+
+    it.each([
+      ['en_GB', 'CA', 'en-CA'],
+      ['fr_FR', 'CA', 'fr-CA'],
+      ['fr_CA', 'CA', 'fr-CA'],
+      ['de_DE', 'CA', 'de-DE'],
+      ['en_GB', 'EU', 'en-GB'],
+      ['fr_FR', 'EU', 'fr-FR'],
+    ])(
+      'declares the CMP locale for %s in %s as %s',
+      (locale, region: 'EU' | 'CA', expected) => {
+        makeCmp().load({ locale, region });
+
+        expect(testWindow.__cmpConfig).toMatchObject({ locale: expected });
       },
     );
 

@@ -121,6 +121,17 @@ describe('CookiePolicy.component', () => {
     });
   });
 
+  it('EU with CMP analytics refused: removes a stale Piano pa_privacy cookie', async () => {
+    document.cookie = 'pa_privacy=optin; path=/';
+    mockedCmp.getConsent.mockReturnValue({ analytics: false } as CmpChoices);
+    await mockShellForRegion('EU');
+    renderCookiePolicy();
+    await waitFor(() => {
+      expect(trackingSetEnabled).toHaveBeenCalledWith(false);
+    });
+    expect(document.cookie).not.toContain('pa_privacy');
+  });
+
   it('EU without consent yet: waits in beforeConsent mode, no legacy modal', async () => {
     mockedCmp.getConsent.mockReturnValue(null);
     await mockShellForRegion('EU');
@@ -175,12 +186,14 @@ describe('CookiePolicy.component', () => {
     });
 
     it('disables tracking when the legacy cookie refuses consent', async () => {
+      document.cookie = 'pa_privacy=optin; path=/';
       mockCookieValue('0');
       await mockShellForRegion('EU');
       renderCookiePolicy();
       await waitFor(() => {
         expect(trackingSetEnabled).toHaveBeenCalledWith(false);
       });
+      expect(document.cookie).not.toContain('pa_privacy');
     });
   });
 });
