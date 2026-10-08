@@ -87,6 +87,25 @@ const defaultInjectScript: InjectScript = (src, onError) => {
 
 const toBcp47 = (locale: string): string => locale.replace('_', '-');
 
+/**
+ * The CMP derives the cookie policy link (and banner locale) from `locale`.
+ * The Manager has no Canadian English (`en_GB` is used everywhere) and CA
+ * users may pick `fr_FR`, so English and French are pinned to their Canadian
+ * variants in the CA region to point at the `en-ca` / `fr-ca` pages.
+ */
+const CA_LOCALES: Record<string, string> = {
+  en: 'en-CA',
+  fr: 'fr-CA',
+};
+
+const toCmpLocale = (locale: string, region: CmpLoadParams['region']): string => {
+  if (region === 'CA') {
+    const language = locale.split(/[_-]/)[0];
+    if (CA_LOCALES[language]) return CA_LOCALES[language];
+  }
+  return toBcp47(locale);
+};
+
 export function createCmp(
   deps: {
     injectScript?: InjectScript;
@@ -162,7 +181,7 @@ export function createCmp(
 
     // Must be set BEFORE the bundle loads (read once at module-init).
     win().__cmpConfig = {
-      locale: toBcp47(locale),
+      locale: toCmpLocale(locale, region),
       region,
       environment,
       scripts: [],
