@@ -14,7 +14,7 @@ export const getTopicAcls = async ({
   serviceId,
 }: ServiceData) =>
   apiClient.v6.get<database.kafka.TopicAcl[]>(
-    `/cloud/project/${projectId}/database/${engine}/${serviceId}/acl`,
+    `/cloud/project/${projectId}/database/${engine}/${serviceId}/topicAcl`,
     { headers: createHeaders(NoCacheHeaders, IcebergPaginationHeaders) },
   );
 
@@ -28,7 +28,7 @@ export const addTopicAcl = async ({
   topicAcl,
 }: AddTopicAcl) =>
   apiClient.v6.post<database.kafka.TopicAcl>(
-    `/cloud/project/${projectId}/database/${engine}/${serviceId}/acl`,
+    `/cloud/project/${projectId}/database/${engine}/${serviceId}/topicAcl`,
     topicAcl,
   );
 
@@ -42,5 +42,5 @@ export const deleteTopicAcl = async ({
   serviceId,
 }: DeleteTopicAcl) =>
   apiClient.v6.delete(
-    `/cloud/project/${projectId}/database/${engine}/${serviceId}/acl/${topicAclId}`,
+    `/cloud/project/${projectId}/database/${engine}/${serviceId}/topicAcl/${topicAclId}`,
   );
