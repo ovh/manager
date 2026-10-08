@@ -12,6 +12,18 @@ export const deleteCookie = (cookieName: string) => {
   }
 };
 
+// Deletes a cookie on the current host and every parent domain — needed for
+// cookies set on an intermediate domain (e.g. Piano's `.eu.ovhcloud.com`).
+export const deleteCookieOnAllDomains = (cookieName: string) => {
+  const parts = window.location.hostname.split('.');
+  const expired = 'expires=Thu, 01 Jan 1970 00:00:00 GMT';
+  document.cookie = `${cookieName}=; path=/; ${expired}`;
+  parts.slice(1, -1).forEach((_, i) => {
+    const domain = parts.slice(i + 1).join('.');
+    document.cookie = `${cookieName}=; path=/; domain=.${domain}; ${expired}`;
+  });
+};
+
 export const deleteMatchingCookies = () => {
   const cookies = document.cookie.split(';');
   cookies.forEach((cookie) => {
