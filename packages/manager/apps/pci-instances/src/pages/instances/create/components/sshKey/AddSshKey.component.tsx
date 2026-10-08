@@ -69,10 +69,11 @@ const AddSshKey: FC<TAddSshKeyProps> = ({
     onCancel();
   };
 
-  const handleAddSshKey = (event: FormEvent) => {
-    void handleSubmit(onSubmit)(event);
-    handleResetAddSshKeyForm();
-  };
+  const handleAddSshKey = (event: FormEvent) =>
+    void handleSubmit((values) => {
+      onSubmit(values);
+      handleResetAddSshKeyForm();
+    })(event);
 
   return (
     <form
