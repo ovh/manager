@@ -57,3 +57,20 @@ export const isSiretMissingOrInvalid = (user) =>
   user.legalform === 'corporation' &&
   SIRET_COUNTRIES.includes(user.country) &&
   !isSiretValid(user.companyNationalIdentificationNumber);
+
+// The invoicing run straddles the month boundary: the delay banner shows from
+// the 28th of a month up to and including the 7th of the next one.
+const INVOICE_DELAY_BANNER_OPENING_DAY = 28;
+const INVOICE_DELAY_BANNER_CLOSING_DAY = 7;
+
+// A date falls inside the window whenever it sits at either end of a month.
+// Kept in sync with the hub (apps/hub/src/pages/dashboard), which draws the
+// same banner over the same window.
+export const isWithinInvoiceDelayPeriod = (date = new Date()) => {
+  const dayOfMonth = date.getDate();
+
+  return (
+    dayOfMonth >= INVOICE_DELAY_BANNER_OPENING_DAY ||
+    dayOfMonth <= INVOICE_DELAY_BANNER_CLOSING_DAY
+  );
+};
