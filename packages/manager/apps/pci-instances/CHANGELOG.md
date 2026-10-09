@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.21.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.21.0...@ovh-ux/manager-pci-instances-app@0.21.1) (2026-10-09)
+
+
+### Bug Fixes
+
+* **pci-instances:** submit the new ssh key before resetting its form ([4d49d33](https://github.com/ovh/manager/commit/4d49d33f4bd057bd7e5fb5e7578acb7ac87acb24))
+
+
+
+
+
 # [0.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.20.0...@ovh-ux/manager-pci-instances-app@0.21.0) (2026-09-23)
 
 
