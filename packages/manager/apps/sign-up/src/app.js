@@ -5,6 +5,8 @@ import {
   useDefaultLanguage,
 } from '@ovh-ux/manager-config';
 
+// test staging
+
 /* eslint-disable import/no-webpack-loader-syntax, import/extensions */
 import 'script-loader!jquery';
 import 'script-loader!lodash';
