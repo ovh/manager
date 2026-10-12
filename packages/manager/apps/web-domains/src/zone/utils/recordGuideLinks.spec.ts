@@ -54,9 +54,9 @@ describe('getRecordGuideUrl', () => {
     );
   });
 
-  it('falls back to the French Canadian guide when the variant has no article', () => {
+  it('falls back to the English guide when the variant has no article', () => {
     expect(getRecordGuideUrl('A', 'en_GB', 'CA')).toBe(
-      'https://help.ovhcloud.com/csm/fr-ca-dns-create-a-record?id=kb_article_view&sysparm_article=KB0067692',
+      'https://help.ovhcloud.com/csm/en-gb-dns-create-a-record?id=kb_article_view&sysparm_article=KB0067683',
     );
   });
 

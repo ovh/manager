@@ -98,7 +98,7 @@ const ENGLISH_VARIANT_BY_SUBSIDIARY: Record<string, GuideVariant> = {
   CA: 'en-ca',
 };
 
-const FALLBACK_VARIANT: GuideVariant = 'fr-ca';
+const FALLBACK_VARIANT: GuideVariant = 'en-gb';
 
 export const getGuideVariant = (locale: string, subsidiary: string): GuideVariant => {
   const [language, region] = locale.split(/[_-]/);
