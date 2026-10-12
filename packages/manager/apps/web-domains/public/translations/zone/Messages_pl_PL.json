@@ -585,5 +585,9 @@
   "zone_page_banner_zone_status_error": "Nasze systemy wykryły błędy podczas weryfikacji twojej strefy. <bold>Twoje ostatnie zmiany nie zostały uwzględnione.</bold> Aby to naprawić, proszę poprawić następujące problemy:",
   "zone_page_banner_propagation": "Jedna lub więcej akcji zostało ostatnio wykonanych w strefie DNS. W przypadku jakichkolwiek dodatków, zmian, usunięć lub resetowania, proszę pamiętać, że zmiana może wymagać maksymalnego czasu propagacji wynoszącego 24 godziny.",
   "zone_page_banner_empty_zone": "Nie ma żadnych rekordów w twojej strefie DNS.",
-  "zone_page_form_record_preview_label": "Podgląd nagrania"
+  "zone_page_form_record_preview_label": "Podgląd nagrania",
+  "zone_page_form_help_button": "Pomoc",
+  "zone_page_form_help_title": "Pomoc — rekord {{type}}",
+  "zone_page_form_help_subtitle": "Oczekiwane wartości w formularzu.",
+  "zone_page_form_help_guide_link": "Zobacz przewodnik"
 }
