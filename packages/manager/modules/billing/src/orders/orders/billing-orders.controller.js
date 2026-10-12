@@ -51,9 +51,8 @@ export default class BillingOrdersCtrl {
     this.currentUser = currentUser;
   }
 
-  allowCommitmentEntry($row) {
+  allowCommitmentEntry() {
     return (
-      $row.status === BILLING_ORDERS_STATUS.DELIVERING &&
       this.currentUser.legalform === COMMITMENT_ENTRY_ALLOWED_LEGALFORM &&
       this.currentUser.billingCountry ===
         COMMITMENT_ENTRY_ALLOWED_BILLING_COUNTRY

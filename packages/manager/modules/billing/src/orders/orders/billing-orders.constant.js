@@ -4,7 +4,6 @@ export const BILLING_ORDERS_STATUS = {
   NOT_PAID: 'notPaid',
   ORDER_EXPIRED: 'orderExpired',
   DOCUMENTS_REQUESTED: 'documentsRequested',
-  DELIVERING: 'delivering',
 };
 
 export const COMMITMENT_ENTRY_ALLOWED_LEGALFORM = 'administration';
