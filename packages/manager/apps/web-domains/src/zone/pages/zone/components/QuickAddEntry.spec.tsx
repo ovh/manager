@@ -1,0 +1,92 @@
+import '@/common/setupTests';
+import { beforeAll, describe, it, expect, vi } from 'vitest';
+import { act, fireEvent, screen, waitFor } from '@testing-library/react';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { mockShellContext, render } from '@/common/utils/test.provider';
+import QuickAddEntry from '@/zone/pages/zone/components/QuickAddEntry';
+
+vi.mock('@/zone/hooks/useAddZoneRecord/useAddZoneRecord', () => ({
+  useAddZoneRecord: () => ({ addRecord: vi.fn(), isAddingRecord: false }),
+}));
+
+vi.mock('@/zone/hooks/useUpdateZoneRecord/useUpdateZoneRecord', () => ({
+  useUpdateZoneRecord: () => ({ updateRecord: vi.fn(), isUpdatingRecord: false }),
+}));
+
+vi.mock('@/zone/hooks/useIsDesktop', () => ({
+  useIsDesktop: () => true,
+}));
+
+function renderQuickAddEntry(locale: string, ovhSubsidiary: string) {
+  const shellContext = {
+    ...mockShellContext,
+    environment: {
+      ...mockShellContext.environment,
+      getUserLocale: () => locale,
+      getUser: () => ({ ovhSubsidiary }),
+    },
+  } as typeof mockShellContext;
+  return render(
+    <ShellContext.Provider value={shellContext}>
+      <QuickAddEntry serviceName="example.com" visible />
+    </ShellContext.Provider>,
+  );
+}
+
+async function selectRecordType(label: string) {
+  await act(async () => {
+    fireEvent.click(screen.getByRole('combobox'));
+  });
+  const option = await screen.findByText(label, { selector: 'span' });
+  await act(async () => {
+    fireEvent.click(option);
+  });
+}
+
+describe('QuickAddEntry — help drawer', () => {
+  beforeAll(() => {
+    Element.prototype.scrollTo = vi.fn();
+    Element.prototype.scrollIntoView = vi.fn();
+  });
+
+  it('hides the help button until a record type is selected', () => {
+    renderQuickAddEntry('fr_FR', 'FR');
+    expect(screen.queryByText('zone_page_form_help_button')).not.toBeInTheDocument();
+  });
+
+  it('opens the help drawer with the guide link for an A record', async () => {
+    renderQuickAddEntry('fr_FR', 'FR');
+    await selectRecordType('A');
+
+    fireEvent.click(await screen.findByText('zone_page_form_help_button'));
+
+    await waitFor(() => {
+      expect(screen.getByText('zone_page_form_help_title')).toBeInTheDocument();
+    });
+    expect(screen.getByText('zone_page_form_help_guide_link').closest('a')).toHaveAttribute(
+      'href',
+      'https://help.ovhcloud.com/csm/fr-dns-create-a-record?id=kb_article_view&sysparm_article=KB0067694',
+    );
+  });
+
+  it('uses the interface language and subsidiary to pick the guide', async () => {
+    renderQuickAddEntry('en_GB', 'IN');
+    await selectRecordType('MX');
+
+    fireEvent.click(await screen.findByText('zone_page_form_help_button'));
+
+    await waitFor(() => {
+      expect(screen.getByText('zone_page_form_help_guide_link').closest('a')).toHaveAttribute(
+        'href',
+        'https://help.ovhcloud.com/csm/en-in-dns-configure-mx-dns-zone?id=kb_article_view&sysparm_article=KB0069750',
+      );
+    });
+  });
+
+  it.each(['CNAME', 'DNAME', 'SRV'])('does not show the help button for a %s record', async (recordType) => {
+    renderQuickAddEntry('fr_FR', 'FR');
+    await selectRecordType(recordType);
+
+    expect(screen.queryByText('zone_page_form_help_button')).not.toBeInTheDocument();
+  });
+});
