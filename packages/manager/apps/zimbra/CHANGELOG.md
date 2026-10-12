@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.44.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.44.7...@ovh-ux/manager-zimbra-app@0.44.8) (2026-10-12)
+
+
+### Bug Fixes
+
+* **zimbra:** fix order email account redirection ([166a2e8](https://github.com/ovh/manager/commit/166a2e8b2be7690cc911406a7e1c3680e05d1c0a)), closes [#DCE-336](https://github.com/ovh/manager/issues/DCE-336)
+
+
+
+
+
 ## [0.44.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.44.6...@ovh-ux/manager-zimbra-app@0.44.7) (2026-10-07)
 
 
