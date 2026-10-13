@@ -17,12 +17,11 @@ vi.mock('@/zone/hooks/useIsDesktop', () => ({
   useIsDesktop: () => true,
 }));
 
-function renderQuickAddEntry(locale: string, ovhSubsidiary: string) {
+function renderQuickAddEntry(ovhSubsidiary: string) {
   const shellContext = {
     ...mockShellContext,
     environment: {
       ...mockShellContext.environment,
-      getUserLocale: () => locale,
       getUser: () => ({ ovhSubsidiary }),
     },
   } as typeof mockShellContext;
@@ -50,12 +49,12 @@ describe('QuickAddEntry — help drawer', () => {
   });
 
   it('hides the help button until a record type is selected', () => {
-    renderQuickAddEntry('fr_FR', 'FR');
+    renderQuickAddEntry('FR');
     expect(screen.queryByText('zone_page_form_help_button')).not.toBeInTheDocument();
   });
 
   it('opens the help drawer with the guide link for an A record', async () => {
-    renderQuickAddEntry('fr_FR', 'FR');
+    renderQuickAddEntry('FR');
     await selectRecordType('A');
 
     fireEvent.click(await screen.findByText('zone_page_form_help_button'));
@@ -69,8 +68,8 @@ describe('QuickAddEntry — help drawer', () => {
     );
   });
 
-  it('uses the interface language and subsidiary to pick the guide', async () => {
-    renderQuickAddEntry('en_GB', 'IN');
+  it('uses the subsidiary to pick the guide', async () => {
+    renderQuickAddEntry('IN');
     await selectRecordType('MX');
 
     fireEvent.click(await screen.findByText('zone_page_form_help_button'));
@@ -83,8 +82,22 @@ describe('QuickAddEntry — help drawer', () => {
     });
   });
 
-  it.each(['CNAME', 'DNAME', 'SRV'])('does not show the help button for a %s record', async (recordType) => {
-    renderQuickAddEntry('fr_FR', 'FR');
+  it('links the CNAME record to its docs guide', async () => {
+    renderQuickAddEntry('FR');
+    await selectRecordType('CNAME');
+
+    fireEvent.click(await screen.findByText('zone_page_form_help_button'));
+
+    await waitFor(() => {
+      expect(screen.getByText('zone_page_form_help_guide_link').closest('a')).toHaveAttribute(
+        'href',
+        'https://docs.ovhcloud.com/fr/guides/web-cloud/domains/dns-zone-cname-record-creation',
+      );
+    });
+  });
+
+  it.each(['DNAME', 'SRV'])('does not show the help button for a %s record', async (recordType) => {
+    renderQuickAddEntry('FR');
     await selectRecordType(recordType);
 
     expect(screen.queryByText('zone_page_form_help_button')).not.toBeInTheDocument();
