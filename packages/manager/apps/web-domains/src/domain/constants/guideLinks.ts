@@ -11,9 +11,16 @@ export enum GuideNameEnum {
   FAQ_LINK = 'FAQ_LINK',
   DNS_ZONE = 'DNS_ZONE',
   DNS_HISTORY = 'DNS_HISTORY',
+  DNS_RECORD_A = 'DNS_RECORD_A',
+  DNS_RECORD_AAAA = 'DNS_RECORD_AAAA',
+  DNS_RECORD_TXT = 'DNS_RECORD_TXT',
+  DNS_RECORD_MX = 'DNS_RECORD_MX',
+  DNS_RECORD_CNAME = 'DNS_RECORD_CNAME',
 }
 
 const helpRoot = 'https://help.ovhcloud.com/csm/';
+const docsRoot = 'https://docs.ovhcloud.com/';
+const DOCS_LANGUAGES = ['fr', 'de', 'es', 'it', 'pl', 'pt'];
 
 export interface Links {
   [key: string]: string;
@@ -72,7 +79,11 @@ type CategoryGuide = {
   type: 'category';
   suffix: string;
 };
-type GuideConfig = ArticleGuide | CategoryGuide;
+type DocsGuide = {
+  type: 'docs';
+  path: string;
+};
+type GuideConfig = ArticleGuide | CategoryGuide | DocsGuide;
 
 const guides: Record<GuideNameEnum, GuideConfig> = {
   [GuideNameEnum.DOMAINS_LINK]: {
@@ -288,6 +299,114 @@ const guides: Record<GuideNameEnum, GuideConfig> = {
         TN: 'KB0061056',
       } as Record<LanguageKey, string>,
     },
+    [GuideNameEnum.DNS_RECORD_A]: {
+      type: 'article',
+      target: '-dns-create-a-record',
+      articles: {
+        DEFAULT: 'KB0067684',
+        ASIA: 'KB0067686',
+        AU: '',
+        CA: '',
+        DE: 'KB0067688',
+        ES: 'KB0067680',
+        FR: 'KB0067694',
+        GB: 'KB0067683',
+        IE: 'KB0067684',
+        IN: 'KB0069733',
+        IT: 'KB0067695',
+        LT: 'KB0067680',
+        MA: 'KB0067694',
+        NL: 'KB0067684',
+        PL: 'KB0067697',
+        PT: 'KB0067693',
+        QC: 'KB0067692',
+        SG: 'KB0067681',
+        SN: 'KB0067694',
+        TN: 'KB0067694',
+      },
+    },
+    [GuideNameEnum.DNS_RECORD_AAAA]: {
+      type: 'article',
+      target: '-dns-create-aaaa-record',
+      articles: {
+        DEFAULT: 'KB0067711',
+        ASIA: 'KB0067699',
+        AU: '',
+        CA: 'KB0067701',
+        DE: 'KB0067704',
+        ES: 'KB0067705',
+        FR: 'KB0067712',
+        GB: 'KB0067700',
+        IE: 'KB0067711',
+        IN: 'KB0069731',
+        IT: 'KB0067710',
+        LT: 'KB0067705',
+        MA: 'KB0067712',
+        NL: 'KB0067711',
+        PL: 'KB0067713',
+        PT: 'KB0067707',
+        QC: 'KB0067706',
+        SG: 'KB0067708',
+        SN: 'KB0067712',
+        TN: 'KB0067712',
+      },
+    },
+    [GuideNameEnum.DNS_RECORD_TXT]: {
+      type: 'article',
+      target: '-dns-create-txt-record',
+      articles: {
+        DEFAULT: 'KB0071058',
+        ASIA: '',
+        AU: '',
+        CA: 'KB0071065',
+        DE: 'KB0071052',
+        ES: 'KB0071056',
+        FR: 'KB0071062',
+        GB: 'KB0071061',
+        IE: 'KB0071058',
+        IN: 'KB0071053',
+        IT: 'KB0071054',
+        LT: 'KB0071056',
+        MA: 'KB0071062',
+        NL: 'KB0071058',
+        PL: 'KB0071057',
+        PT: 'KB0071055',
+        QC: 'KB0071050',
+        SG: 'KB0071063',
+        SN: 'KB0071062',
+        TN: 'KB0071062',
+      },
+    },
+    [GuideNameEnum.DNS_RECORD_MX]: {
+      type: 'article',
+      target: '-dns-configure-mx-dns-zone',
+      articles: {
+        DEFAULT: 'KB0051691',
+        ASIA: 'KB0051688',
+        AU: '',
+        CA: 'KB0051696',
+        DE: 'KB0039624',
+        ES: 'KB0051698',
+        FR: 'KB0051707',
+        GB: 'KB0051697',
+        IE: 'KB0051691',
+        IN: 'KB0069750',
+        IT: 'KB0051708',
+        LT: 'KB0051698',
+        MA: 'KB0051707',
+        NL: 'KB0051691',
+        PL: 'KB0051700',
+        PT: 'KB0051702',
+        QC: 'KB0051706',
+        SG: 'KB0051693',
+        SN: 'KB0051707',
+        TN: 'KB0051707',
+      },
+    },
+    [GuideNameEnum.DNS_RECORD_CNAME]: {
+      type: 'docs',
+      path: 'guides/web-cloud/domains/dns-zone-cname-record-creation',
+    },
   };
 
 
@@ -301,7 +420,11 @@ const buildLinksByLanguage = (
         string
       >;
       for (const [guideKey, config] of Object.entries(guides)) {
-        if (config.type === 'category') {
+        if (config.type === 'docs') {
+          const [prefix] = Languages[lang].split('-');
+          const docsLanguage = DOCS_LANGUAGES.includes(prefix) ? prefix : 'en';
+          urls[guideKey as GuideNameEnum] = `${docsRoot}${docsLanguage}/${config.path}`;
+        } else if (config.type === 'category') {
           urls[
             guideKey as GuideNameEnum
           ] = `${helpRoot}${Languages[lang]}${config.suffix}`;
@@ -320,3 +443,22 @@ export const useLinks = (language: Subsidiary): Record<GuideNameEnum, string> =>
   useMemo(() => LINKS_BY_LANGUAGE[language] || LINKS_BY_LANGUAGE.DEFAULT, [
     language,
   ]);
+
+const RECORD_TYPE_GUIDES: Record<string, GuideNameEnum> = {
+  A: GuideNameEnum.DNS_RECORD_A,
+  AAAA: GuideNameEnum.DNS_RECORD_AAAA,
+  TXT: GuideNameEnum.DNS_RECORD_TXT,
+  MX: GuideNameEnum.DNS_RECORD_MX,
+  CNAME: GuideNameEnum.DNS_RECORD_CNAME,
+};
+
+export const getRecordGuideUrl = (
+  recordType: string,
+  language: Subsidiary | string,
+): string | undefined => {
+  const guide = RECORD_TYPE_GUIDES[recordType];
+  if (!guide) {
+    return undefined;
+  }
+  return (LINKS_BY_LANGUAGE[language] || LINKS_BY_LANGUAGE.DEFAULT)[guide];
+};
