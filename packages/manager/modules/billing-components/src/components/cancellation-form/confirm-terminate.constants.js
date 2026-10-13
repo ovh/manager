@@ -29,6 +29,7 @@ export const SERVICE_WITH_AGORA_TERMINATION = [
   'managed-cms-1',
   'video-center-plus',
   'video-center-pro',
+  'anycast',
 ];
 
 export const SERVICE_TYPES_WITH_AGORA_TERMINATION = [
@@ -36,6 +37,7 @@ export const SERVICE_TYPES_WITH_AGORA_TERMINATION = [
   'hosting_privateDatabase',
   'hosting_web_cdn',
   'hosting_web',
+  'videocenter_resource',
 ];
 
 export const SERVICE_GROUP_WITH_AGORA_TERMINATION_REGEX = /hycu-vms-*|(logs-enterprise(-hds)?$)|^backup-vault-paygo/;
