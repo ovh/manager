@@ -6,6 +6,7 @@ import {
   TNameServerWithType,
   DomainService,
 } from '@/domain/types/domainResource';
+import { TServiceInfo } from '@/common/types/common.types';
 import { DnsConfigurationTypeEnum } from '../../enum/dnsConfigurationType.enum';
 import {
   DomainColumn,
@@ -19,6 +20,7 @@ export const fetchDomainColumns = async (
   domain: TDomainResource,
   domainServices: DomainService | undefined,
   selectedColumns: DomainColumn[],
+  serviceInfo?: TServiceInfo,
 ): Promise<ExportRowData> => {
   const row: Record<string, string> = {};
 
@@ -35,7 +37,8 @@ export const fetchDomainColumns = async (
   }
 
   if (selectedColumns.includes('creation')) {
-    row['creation'] = domainServices?.lastUpdate || '';
+    row['creation'] =
+      serviceInfo?.billing?.lifecycle?.current?.creationDate || '';
   }
 
   if (selectedColumns.includes('dns-server')) {
