@@ -11,6 +11,7 @@ import {
 } from '@/domain/types/domainResource';
 import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 import { DomainColumn, ContactColumn } from '@/domain/types/export.types';
+import { serviceInfoPremium } from '@/domain/__mocks__/serviceInfo';
 
 vi.mock('@/common/data/api/common.api', () => ({
   getDomainContact: vi.fn(),
@@ -91,17 +92,18 @@ describe('exportDataFetchers', () => {
       });
     });
 
-    it('should fetch creation column', async () => {
+    it('should fetch creation column from the subscription, not the last update', async () => {
       const columns: DomainColumn[] = ['creation'];
 
       const result = await fetchDomainColumns(
         mockDomain,
         mockDomainServices,
         columns,
+        serviceInfoPremium,
       );
 
       expect(result).toEqual({
-        creation: '2024-01-01',
+        creation: '2024-09-25T06:40:26Z',
       });
     });
 

@@ -97,8 +97,8 @@ export default function SubscriptionCards({
       </ManagerTile.Title>
       <ManagerTile.Divider />
       <CreationDate
-        domainResources={domainResource}
-        isFetchingDomainResources={isFetchingDomainResource}
+        creationDate={serviceInfo?.billing?.lifecycle?.current?.creationDate}
+        isLoading={isServiceInfoLoading}
         serviceName={serviceName}
       />
       <ManagerTile.Divider />
