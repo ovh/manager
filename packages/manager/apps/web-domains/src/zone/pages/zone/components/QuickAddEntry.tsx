@@ -20,7 +20,7 @@ import { useAddZoneRecord } from "@/zone/hooks/useAddZoneRecord/useAddZoneRecord
 import { useUpdateZoneRecord } from "@/zone/hooks/useUpdateZoneRecord/useUpdateZoneRecord";
 import { useIsDesktop } from "@/zone/hooks/useIsDesktop";
 import type { ZoneRecord } from "@/zone/types/zoneRecords.types";
-import { getRecordGuideUrl } from "@/zone/utils/recordGuideLinks";
+import { getRecordGuideUrl } from "@/domain/constants/guideLinks";
 import RecordHelpDrawer from "./RecordHelpDrawer";
 
 function addEntryResolver(t: (key: string, params?: Record<string, unknown>) => string): Resolver<AddEntrySchemaType> {
@@ -316,13 +316,8 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
   }
 
   const recordTypeStr = recordType as string ?? '';
-  const userLocale = environment?.getUserLocale?.();
   const guideUrl = recordTypeStr
-    ? getRecordGuideUrl(
-        recordTypeStr,
-        typeof userLocale === 'string' ? userLocale : '',
-        environment?.getUser?.()?.ovhSubsidiary ?? '',
-      )
+    ? getRecordGuideUrl(recordTypeStr, environment?.getUser?.()?.ovhSubsidiary ?? '')
     : undefined;
 
   return (
