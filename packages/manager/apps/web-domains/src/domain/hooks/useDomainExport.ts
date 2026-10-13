@@ -1,3 +1,6 @@
+import { getServiceInformation } from '@/common/data/api/common.api';
+import { ServiceRoutes } from '@/common/enum/common.enum';
+import { TServiceInfo } from '@/common/types/common.types';
 import { getDomainService } from '@/domain/data/api/domainResources';
 import { TDomainResource, DomainService } from '@/domain/types/domainResource';
 import {
@@ -54,7 +57,6 @@ export const useDomainExport = () => {
     const needsExpiration = selection.domainColumns.includes('expiration');
     const needsContacts = selection?.contactColumns?.length > 0;
     const needsOtherDetails =
-      selection.domainColumns.includes('creation') ||
       selection.domainColumns.includes('dns-server') ||
       selection.domainColumns.includes('dns-anycast') ||
       selection.domainColumns.includes('dns-type');
@@ -71,8 +73,25 @@ export const useDomainExport = () => {
       }
     }
 
+    let serviceInfo: TServiceInfo | undefined;
+    if (selection.domainColumns.includes('creation')) {
+      try {
+        serviceInfo = await getServiceInformation(
+          domain.id,
+          ServiceRoutes.Domain,
+        );
+      } catch {
+        // Silent failure - the creation date stays empty
+      }
+    }
+
     const [domainData, contactData, dnssecStatus] = await Promise.all([
-      fetchDomainColumns(domain, domainServices, selection.domainColumns),
+      fetchDomainColumns(
+        domain,
+        domainServices,
+        selection.domainColumns,
+        serviceInfo,
+      ),
       fetchContactColumns(domain, selection.contactColumns),
       selection.domainColumns.includes('dnssec')
         ? fetchDnssecData(domain.id)
