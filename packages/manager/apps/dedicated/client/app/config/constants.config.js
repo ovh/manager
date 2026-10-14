@@ -2257,7 +2257,8 @@ const constants = {
       },
     },
     accountCreation: {
-      default: 'https://us.ovhcloud.com/auth/signup/',
+      default:
+        'https://auth.us.ovhcloud.com/signup/?ovhSubsidiary=US&country=US',
     },
     billingRenew: {
       CA:
