@@ -11,6 +11,7 @@ export enum Header {
   REQUEST_ID = 'X-OVH-MANAGER-REQUEST-ID',
   PAGE = 'X-OVH-MANAGER-PAGE',
   VERSION = 'X-OVH-MANAGER-VERSION',
+  SCHEMA_VERSION = 'X-Schemas-Version',
 }
 
 export interface Headers {
@@ -18,6 +19,7 @@ export interface Headers {
   [Header.REQUEST_ID]: string;
   [Header.PAGE]: string;
   [Header.VERSION]?: string;
+  [Header.SCHEMA_VERSION]?: string;
 }
 
 export interface HeadersOverrides {
@@ -108,6 +110,7 @@ export const getHeaders = (url: string): Partial<Headers> => {
       ...(window.ovhRequestTaggerApplicationVersion
         ? { [Header.VERSION]: window.ovhRequestTaggerApplicationVersion }
         : {}),
+      ...(url.startsWith('/engine/api/v2') ? { [Header.SCHEMA_VERSION]: '0.0' } : {}),
       ...searchHeadersOverride(url),
     };
   }
