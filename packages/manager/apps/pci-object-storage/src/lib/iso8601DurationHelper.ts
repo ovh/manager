@@ -12,26 +12,52 @@ export interface Duration {
 }
 
 /**
+ * ISO 8601 date-part duration (years, months, weeks, days), e.g. 'P1Y', 'P2W', 'P1Y6M'
+ */
+const ISO8601_DURATION_REGEX =
+  /^P(?=\d)(?:(\d+)Y)?(?:(\d+)M)?(?:(\d+)W)?(?:(\d+)D)?$/;
+
+const DAYS_PER_WEEK = 7;
+const DAYS_PER_MONTH = 30;
+const DAYS_PER_YEAR = 365;
+
+/**
  * Converts an ISO 8601 duration string to a value and unit object
- * Supports Days (D), Months (M), and Years (Y)
- * @param period - ISO 8601 duration string (e.g., 'P1Y', 'P30D', 'P6M')
+ * The API may return any ISO 8601 duration (e.g. 'P2W' for 14 days), while the
+ * object lock form only handles years and days: a duration made only of years
+ * stays in years, anything else is converted to days.
+ * @param period - ISO 8601 duration string (e.g., 'P1Y', 'P30D', 'P2W')
  * @param defaultValue - Default duration to return if parsing fails (defaults to { value: 1, unit: 'Y' })
  * @returns Object with value and unit
  * @example
  * fromISO8601('P1Y') // { value: 1, unit: 'Y' }
  * fromISO8601('P30D') // { value: 30, unit: 'D' }
+ * fromISO8601('P2W') // { value: 14, unit: 'D' }
  * fromISO8601('invalid') // { value: 1, unit: 'Y' }
  */
 export const fromISO8601 = (
   period?: string,
   defaultValue: Duration = { value: 1, unit: 'Y' },
 ): Duration => {
-  if (!period) return defaultValue;
-  const match = period.match(/^P(\d+)([DMY])$/);
+  const match = period?.match(ISO8601_DURATION_REGEX);
   if (!match) return defaultValue;
 
-  const unit = match[2] as DurationUnit;
-  return { value: parseInt(match[1], 10), unit };
+  const [years, months, weeks, days] = match
+    .slice(1)
+    .map((part) => (part ? parseInt(part, 10) : 0));
+
+  if (years > 0 && months === 0 && weeks === 0 && days === 0) {
+    return { value: years, unit: 'Y' };
+  }
+
+  const totalDays =
+    years * DAYS_PER_YEAR +
+    months * DAYS_PER_MONTH +
+    weeks * DAYS_PER_WEEK +
+    days;
+  if (totalDays <= 0) return defaultValue;
+
+  return { value: totalDays, unit: 'D' };
 };
 
 /**
@@ -58,10 +84,11 @@ export const toISO8601 = (value: number, unit: DurationUnit): string => {
  * @example
  * isValidISO8601('P1Y') // true
  * isValidISO8601('P30D') // true
+ * isValidISO8601('P2W') // true
  * isValidISO8601('invalid') // false
  */
 export const isValidISO8601 = (period: string): boolean => {
-  return /^P(\d+)([DMY])$/.test(period);
+  return ISO8601_DURATION_REGEX.test(period);
 };
 
 /**
