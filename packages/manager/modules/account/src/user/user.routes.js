@@ -49,27 +49,29 @@ export default /* @ngInject */ ($stateProvider) => {
         if (!areGdprFeaturesAvailable) {
           return DEFAULT_AUTHORIZATIONS;
         }
+        // an IAM failure (e.g. 400 "Unknown version" on CA) must not block
+        // the whole account section, it only hides the GDPR requests
         return Apiv2Service.httpApiv2({
           method: 'get',
           url: '/engine/api/v2/iam/resource?resourceType=account',
-        }).then(({ data }) => {
-          if (!data[0]?.urn) {
-            return DEFAULT_AUTHORIZATIONS;
-          }
-          return Apiv2Service.httpApiv2({
-            method: 'post',
-            url: `/engine/api/v2/iam/resource/${encodeURIComponent(
-              data[0].urn,
-            )}/authorization/check`,
-            data: {
-              actions: GDPR_REQUEST_MANAGEMENT_ACTIONS.map(
-                ({ name: actionName }) => actionName,
-              ),
-            },
+        })
+          .then(({ data }) => {
+            if (!data[0]?.urn) {
+              return DEFAULT_AUTHORIZATIONS;
+            }
+            return Apiv2Service.httpApiv2({
+              method: 'post',
+              url: `/engine/api/v2/iam/resource/${encodeURIComponent(
+                data[0].urn,
+              )}/authorization/check`,
+              data: {
+                actions: GDPR_REQUEST_MANAGEMENT_ACTIONS.map(
+                  ({ name: actionName }) => actionName,
+                ),
+              },
+            }).then(({ data: actions }) => actions);
           })
-            .then(({ data: actions }) => actions)
-            .catch(() => []);
-        });
+          .catch(() => DEFAULT_AUTHORIZATIONS);
       },
       canManageGdprRequests: /* @ngInject */ (iamAuthorizations) =>
         GDPR_REQUEST_MANAGEMENT_ACTIONS.every(
