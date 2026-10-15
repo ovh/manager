@@ -38,6 +38,7 @@
   "user_account_menu_useful_links_tasks": "Network status and incidents",
   "user_account_menu_useful_links_tickets": "My support tickets ",
   "user_account_menu_useful_links_createTicket": "Create a ticket",
+  "user_account_menu_useful_links_manage_cookies": "Manage cookies",
   "user_account_menu_user_id": "ID: <strong>{{nichandle}}</strong>",
   "user_account_menu_profile": "Access my account",
   "user_account_menu_beta_feedback": "Share your feedback!",

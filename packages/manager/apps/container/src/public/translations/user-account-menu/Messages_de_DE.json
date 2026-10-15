@@ -38,6 +38,7 @@
   "user_account_menu_useful_links_tasks": "Zustand des Netzwerks und Störungen",
   "user_account_menu_useful_links_tickets": "Meine Support-Anfragen",
   "user_account_menu_useful_links_createTicket": "Ein Ticket erstellen",
+  "user_account_menu_useful_links_manage_cookies": "Cookies verwalten",
   "user_account_menu_user_id": "Kennung: <strong>{{nichandle}}</strong>",
   "user_account_menu_profile": "Zu meinem Account",
   "user_account_menu_beta_feedback": "Geben Sie uns Ihr Feedback!",

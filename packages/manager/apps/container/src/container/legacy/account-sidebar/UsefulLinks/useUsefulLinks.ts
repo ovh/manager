@@ -6,6 +6,8 @@ import { UsefulLink } from './Link/usefulLink';
 
 import { useShell } from '@/context/useApplicationContext';
 import useContainer from '@/core/container';
+import { cmp } from '@/cmp';
+import { useCookiePreferencesAvailable } from '@/hooks/useCookiePreferencesAvailable';
 
 import getOdsIcon from '../getOdsIcon';
 import { getSvgIcon } from '../getSvgIcon';
@@ -25,6 +27,7 @@ const useUsefulLinks = (): UseUsefulLinks => {
   const { isLivechatEnabled, setChatbotReduced } = useContainer();
 
   const isEUOrCA = ['EU', 'CA'].includes(region);
+  const isCookiePreferencesAvailable = useCookiePreferencesAvailable(region);
 
   const getUsefulLinks = (): UsefulLink[] => {
     const trackingPrefix = 'hub::sidebar::useful-links';
@@ -79,6 +82,23 @@ const useUsefulLinks = (): UseUsefulLinks => {
               href: constants[region].support.createTicket(user.ovhSubsidiary),
               tracking: `${trackingPrefix}::go-to-create-ticket`,
               icon: getOdsIcon(ODS_ICON_NAME.USER_SUPPORT_CONCEPT),
+            },
+          ]
+        : []),
+      // Same action as the reshuffled account menu: reopen the CMP
+      // preferences so the customer can review or withdraw consent.
+      ...(isCookiePreferencesAvailable
+        ? [
+            {
+              id: 'manage_cookies',
+              action: () => {
+                shell.getPlugin('tracking').trackClick({
+                  name: `${trackingPrefix}::manage-cookies`,
+                  type: 'action',
+                });
+                cmp.showPreferences();
+              },
+              icon: getOdsIcon(ODS_ICON_NAME.SHIELD_CONCEPT),
             },
           ]
         : []),
