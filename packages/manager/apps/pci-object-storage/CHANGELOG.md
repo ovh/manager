@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.37.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.37.6...@ovh-ux/manager-pci-object-storage-app@0.37.7) (2026-10-15)
+
+
+### Bug Fixes
+
+* **pci.object-storage:** parse any iso 8601 object lock period ([3ec6f53](https://github.com/ovh/manager/commit/3ec6f53a071445195765df9d5aab1a126ec146a2))
+
+
+
+
+
 ## [0.37.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.37.5...@ovh-ux/manager-pci-object-storage-app@0.37.6) (2026-04-27)
 
 
