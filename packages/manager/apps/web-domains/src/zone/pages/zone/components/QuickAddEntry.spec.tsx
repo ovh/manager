@@ -64,7 +64,7 @@ describe('QuickAddEntry — help drawer', () => {
     });
     expect(screen.getByText('zone_page_form_help_guide_link').closest('a')).toHaveAttribute(
       'href',
-      'https://help.ovhcloud.com/csm/fr-dns-create-a-record?id=kb_article_view&sysparm_article=KB0067694',
+      'https://docs.ovhcloud.com/fr/guides/web-cloud/domains/dns-zone-a-record-creation',
     );
   });
 
@@ -77,7 +77,7 @@ describe('QuickAddEntry — help drawer', () => {
     await waitFor(() => {
       expect(screen.getByText('zone_page_form_help_guide_link').closest('a')).toHaveAttribute(
         'href',
-        'https://help.ovhcloud.com/csm/en-in-dns-configure-mx-dns-zone?id=kb_article_view&sysparm_article=KB0069750',
+        'https://docs.ovhcloud.com/en/guides/web-cloud/domains/dns-zone-mx',
       );
     });
   });
