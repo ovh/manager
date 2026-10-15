@@ -10,6 +10,7 @@ import { links, tracking } from './constants';
 
 import { useShell } from '@/context';
 import { cmp } from '@/cmp';
+import { useCookiePreferencesAvailable } from '@/hooks/useCookiePreferencesAvailable';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 
 import { UserLink } from './UserLink';
@@ -36,13 +37,7 @@ const UserAccountMenu = ({
   const [isKycDocumentsVisible, setIsDocumentsVisible] = useState<boolean>(
     false,
   );
-  // "Manage cookies" opens the CMP preferences modal: only EU/CA have a CMP,
-  // and only once it is actually up (on failure the legacy modal took over
-  // and there are no preferences to open).
-  const [
-    isCookiePreferencesAvailable,
-    setIsCookiePreferencesAvailable,
-  ] = useState<boolean>(false);
+  const isCookiePreferencesAvailable = useCookiePreferencesAvailable(region);
   const user = shell
     .getPlugin('environment')
     .getEnvironment()
@@ -148,17 +143,6 @@ const UserAccountMenu = ({
 
     fetchData();
   }, []);
-
-  useEffect(() => {
-    if (!['EU', 'CA'].includes(region)) return undefined;
-    let cancelled = false;
-    cmp.whenReady().then(() => {
-      if (!cancelled) setIsCookiePreferencesAvailable(!cmp.isError());
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, [region]);
 
   const nichandle = useMemo<string | undefined>(() => {
     if (user.email !== user.nichandle) {
