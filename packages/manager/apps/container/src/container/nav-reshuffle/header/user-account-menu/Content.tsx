@@ -9,6 +9,7 @@ import style from './style.module.scss';
 import { links, tracking } from './constants';
 
 import { useShell } from '@/context';
+import { cmp } from '@/cmp';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 
 import { UserLink } from './UserLink';
@@ -35,6 +36,13 @@ const UserAccountMenu = ({
   const [isKycDocumentsVisible, setIsDocumentsVisible] = useState<boolean>(
     false,
   );
+  // "Manage cookies" opens the CMP preferences modal: only EU/CA have a CMP,
+  // and only once it is actually up (on failure the legacy modal took over
+  // and there are no preferences to open).
+  const [
+    isCookiePreferencesAvailable,
+    setIsCookiePreferencesAvailable,
+  ] = useState<boolean>(false);
   const user = shell
     .getPlugin('environment')
     .getEnvironment()
@@ -64,6 +72,12 @@ const UserAccountMenu = ({
     if (link.trackingHit) {
       onTrackNavigation(link.trackingHit);
     }
+  };
+
+  const onManageCookiesClick = () => {
+    closeAccountSidebar();
+    onTrackNavigation(tracking.manageCookies);
+    cmp.showPreferences();
   };
 
   const getUrl = (key: string, hash: string) =>
@@ -134,6 +148,17 @@ const UserAccountMenu = ({
 
     fetchData();
   }, []);
+
+  useEffect(() => {
+    if (!['EU', 'CA'].includes(region)) return undefined;
+    let cancelled = false;
+    cmp.whenReady().then(() => {
+      if (!cancelled) setIsCookiePreferencesAvailable(!cmp.isError());
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [region]);
 
   const nichandle = useMemo<string | undefined>(() => {
     if (user.email !== user.nichandle) {
@@ -260,6 +285,19 @@ const UserAccountMenu = ({
             >
               {sidebarTranslation.t('sidebar_account_kyc_documents')}
             </a>
+          )}
+          {isCookiePreferencesAvailable && (
+            <button
+              type="button"
+              id="manageCookies"
+              className="oui-button oui-button_link d-block p-0 text-left"
+              onClick={onManageCookiesClick}
+              aria-label={t('user_account_menu_manage_cookies')}
+              title={t('user_account_menu_manage_cookies')}
+              data-navi-id="manage-cookies"
+            >
+              {t('user_account_menu_manage_cookies')}
+            </button>
           )}
         </div>
         <div>
