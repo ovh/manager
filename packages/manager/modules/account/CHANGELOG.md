@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.29.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.29.1...@ovh-ux/manager-account@0.29.2) (2026-10-15)
+
+
+### Bug Fixes
+
+* **account:** keep account section reachable when iam check fails ([d2c45ff](https://github.com/ovh/manager/commit/d2c45ff520f6c9cbd1c2de3d3d33ddb56113550d)), closes [#MANAGER-22900](https://github.com/ovh/manager/issues/MANAGER-22900)
+
+
+
+
+
 ## [0.29.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.29.0...@ovh-ux/manager-account@0.29.1) (2026-09-08)
 
 **Note:** Version bump only for package @ovh-ux/manager-account
