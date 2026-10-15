@@ -75,7 +75,9 @@ describe('SubscriptionCards component', () => {
           '@ovh-ux/manager-common-translations/billing:subscription',
         ),
       ).toBeInTheDocument();
-      expect(screen.getByText(/1 janv\. 2023/i)).toBeInTheDocument();
+      // The subscription's creation (/services), not the v2 resource's.
+      expect(screen.getByText(/25 sept\. 2024/i)).toBeInTheDocument();
+      expect(screen.queryByText(/1 janv\. 2023/i)).not.toBeInTheDocument();
       expect(
         screen.getByText(
           /domain_tab_general_information_subscription_renew_frequency_year/i,

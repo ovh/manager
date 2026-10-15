@@ -9,17 +9,16 @@ import {
   ManagerTile,
   useFormatDate,
 } from '@ovh-ux/manager-react-components';
-import { TDomainResource } from '@/domain/types/domainResource';
 
 interface CreationDateProps {
   serviceName: string;
-  domainResources: TDomainResource;
-  isFetchingDomainResources: boolean;
+  creationDate?: string | null;
+  isLoading: boolean;
 }
 
 export default function CreationDate({
-  domainResources,
-  isFetchingDomainResources,
+  creationDate,
+  isLoading,
   serviceName,
 }: CreationDateProps) {
   const { t } = useTranslation([
@@ -46,12 +45,12 @@ export default function CreationDate({
       </ManagerTile.Item.Label>
       <div className="flex items-center justify-between">
         <Text>
-          {formatDate({ date: domainResources.currentState.createdAt })}
+          {formatDate({ date: creationDate })}
         </Text>
         <ActionMenu
           id="creation-date"
           isCompact
-          isLoading={isFetchingDomainResources}
+          isLoading={isLoading}
           data-testid={'action-btn-creation'}
           items={[
             {

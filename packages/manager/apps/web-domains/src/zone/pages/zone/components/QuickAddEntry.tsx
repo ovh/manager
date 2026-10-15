@@ -1,9 +1,10 @@
-import { useEffect, useMemo, useCallback, useState } from "react";
+import { useContext, useEffect, useMemo, useCallback, useState } from "react";
 import { type FieldErrors, FormProvider, type Resolver, useForm, Controller } from "react-hook-form";
 import { Trans, useTranslation } from "react-i18next";
 import { Badge, BADGE_COLOR, BADGE_SIZE, Button, BUTTON_SIZE, BUTTON_VARIANT, FormField, FormFieldError, FormFieldLabel, ICON_NAME, Message, MESSAGE_COLOR, MessageIcon, Select, SelectContent, SelectControl, type SelectCustomOptionRendererArg, Textarea } from "@ovhcloud/ods-react";
 import { zForm, AddEntrySchemaType, getTargetDisplayValue, parseSpfTarget, FIELD_TYPES_POINTING_RECORDS, FIELD_TYPES_EXTENDED_RECORDS, FIELD_TYPES_MAIL_RECORDS, RECORD_TYPES_WITHOUT_TTL } from "@/zone/utils/formSchema.utils";
 import { NAMESPACES } from "@ovh-ux/manager-common-translations";
+import { ShellContext } from "@ovh-ux/manager-react-shell-client";
 import {
   FieldTypeExtendedRecordsEnum,
   FieldTypeMailRecordsEnum,
@@ -19,6 +20,8 @@ import { useAddZoneRecord } from "@/zone/hooks/useAddZoneRecord/useAddZoneRecord
 import { useUpdateZoneRecord } from "@/zone/hooks/useUpdateZoneRecord/useUpdateZoneRecord";
 import { useIsDesktop } from "@/zone/hooks/useIsDesktop";
 import type { ZoneRecord } from "@/zone/types/zoneRecords.types";
+import { getRecordGuideUrl } from "@/domain/constants/guideLinks";
+import RecordHelpDrawer from "./RecordHelpDrawer";
 
 function addEntryResolver(t: (key: string, params?: Record<string, unknown>) => string): Resolver<AddEntrySchemaType> {
   return (values) => {
@@ -52,6 +55,8 @@ interface QuickAddEntryProps {
 export default function QuickAddEntry({ serviceName, visible, onSuccess, onCancel, editingRecord }: QuickAddEntryProps) {
   const { t } = useTranslation(["zone", "form", NAMESPACES.ACTIONS]);
   const isDesktop = useIsDesktop();
+  const { environment } = useContext(ShellContext);
+  const [helpOpen, setHelpOpen] = useState(false);
 
   const resolver = useMemo(() => addEntryResolver(t), [t]);
 
@@ -311,6 +316,9 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
   }
 
   const recordTypeStr = recordType as string ?? '';
+  const guideUrl = recordTypeStr
+    ? getRecordGuideUrl(recordTypeStr, environment?.getUser?.()?.ovhSubsidiary ?? '')
+    : undefined;
 
   return (
     <FormProvider {...methods}>
@@ -328,25 +336,37 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
                     control={control}
                     render={({ field, fieldState: { error } }) => (
                       <div className="flex flex-wrap items-center gap-2">
-                        <Select
-                          name="recordType"
-                          id="recordType"
-                          className="w-full"
-                          value={field.value ? [field.value as string] : []}
-                          items={selectItems}
-                          invalid={!!error}
-                          onValueChange={(detail: { value?: string[] }) => {
-                            const selectedValue = detail.value?.[0] ?? '';
-                            if (selectedValue) {
-                              field.onChange(selectedValue);
-                              handleSelectRecordType(selectedValue);
-                            }
-                          }}
-                          onBlur={field.onBlur}
-                        >
-                          <SelectControl placeholder={t('zone_page_form_select_title')} />
-                          <SelectContent customOptionRenderer={renderOption} />
-                        </Select>
+                        <div className="flex w-full items-center gap-2">
+                          <Select
+                            name="recordType"
+                            id="recordType"
+                            className="flex-1"
+                            value={field.value ? [field.value as string] : []}
+                            items={selectItems}
+                            invalid={!!error}
+                            onValueChange={(detail: { value?: string[] }) => {
+                              const selectedValue = detail.value?.[0] ?? '';
+                              if (selectedValue) {
+                                field.onChange(selectedValue);
+                                handleSelectRecordType(selectedValue);
+                              }
+                            }}
+                            onBlur={field.onBlur}
+                          >
+                            <SelectControl placeholder={t('zone_page_form_select_title')} />
+                            <SelectContent customOptionRenderer={renderOption} />
+                          </Select>
+                          {guideUrl && (
+                            <Button
+                              type="button"
+                              variant={BUTTON_VARIANT.ghost}
+                              size={BUTTON_SIZE.sm}
+                              onClick={() => setHelpOpen(true)}
+                            >
+                              {t('zone_page_form_help_button')}
+                            </Button>
+                          )}
+                        </div>
                         {error?.message && <FormFieldError>{error.message}</FormFieldError>}
                       </div>
                     )}
@@ -473,6 +493,13 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
           )}
         </div>
       </form>
+      {helpOpen && guideUrl && (
+        <RecordHelpDrawer
+          recordType={recordTypeStr}
+          guideUrl={guideUrl}
+          onClose={() => setHelpOpen(false)}
+        />
+      )}
     </FormProvider>
   );
 }
