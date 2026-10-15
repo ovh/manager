@@ -11,7 +11,11 @@ import {
   TRACKING_CONTEXT,
   TRACKING_PREFIX,
 } from "./otherCategoryModal.constants";
-import { isUserCategoryOther } from "./otherCategoryModal.helpers";
+import {
+  isTurkishAccount,
+  setOtherCategoryDismissed,
+  shouldRemindOtherCategory,
+} from "./otherCategoryModal.helpers";
 import { useCheckModalDisplay } from "@/hooks/modal/useModal";
 import { useSuggestionTargetUrl } from "@/data/hooks/suggestion/useSuggestion";
 import { useApplication } from "@/context";
@@ -21,19 +25,24 @@ const OtherCategoryModal: FC = () => {
   const ux = shell.getPlugin('ux');
   const tracking = shell.getPlugin('tracking');
   const { t } = useTranslation('other-category-modal');
+  // F1: no French e-invoicing link for Turkish accounts.
+  const isTurkey = isTurkishAccount(
+    shell.getPlugin('environment')?.getEnvironment?.()?.getUser?.(),
+  );
 
   const accountEditionLink = useSuggestionTargetUrl();
 
-  // No preference/interval throttling: the modal is displayed at every login as
-  // long as the category remains "Autre" (RG1). It is skipped on the account
-  // edition page itself so it does not overlap the form the CTA leads to.
+  // RG1 "at every login": no preference/interval throttling, but once dismissed
+  // the modal stays closed for the rest of the browser session. It is skipped on
+  // the account edition page itself so it does not overlap the form the CTA
+  // leads to.
   const shouldDisplayModal = useCheckModalDisplay(
     undefined,
     undefined,
     [OTHER_CATEGORY_FEATURE],
     undefined,
     undefined,
-    isUserCategoryOther,
+    shouldRemindOtherCategory,
     [accountEditionLink],
   );
 
@@ -41,6 +50,7 @@ const OtherCategoryModal: FC = () => {
 
   const closeModal = useCallback(() => {
     setShowModal(false);
+    setOtherCategoryDismissed();
     ux.notifyModalActionDone(OtherCategoryModal.name);
     tracking.trackClick({
       name: `${TRACKING_PREFIX}::pop-up::button::other_category::dismiss`,
@@ -51,6 +61,7 @@ const OtherCategoryModal: FC = () => {
 
   const goToCategoryEdition = useCallback(() => {
     setShowModal(false);
+    setOtherCategoryDismissed();
     ux.notifyModalActionDone(OtherCategoryModal.name);
     tracking.trackClick({
       name: `${TRACKING_PREFIX}::pop-up::button::other_category::update`,
@@ -87,6 +98,9 @@ const OtherCategoryModal: FC = () => {
           color={ODS_THEME_COLOR_INTENT.text}
           size={ODS_THEME_TYPOGRAPHY_SIZE._400}
         >
+          {isTurkey ? (
+            t('other_category_modal_description_tr')
+          ) : (
           <Trans
             i18nKey="other_category_modal_description"
             t={t}
@@ -101,6 +115,7 @@ const OtherCategoryModal: FC = () => {
               ),
             }}
           />
+          )}
         </OsdsText>
         <OsdsButton
           onClick={goToCategoryEdition}

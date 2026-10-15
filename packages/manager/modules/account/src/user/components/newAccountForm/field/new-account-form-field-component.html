@@ -155,7 +155,7 @@
             data-disabled="$ctrl.rule.disabled()"
         >
             <span
-                data-translate="{{ 'signup_field_' + $ctrl.rule.displayFieldName | translate }} {{ !$ctrl.rule.mandatory ? 'signup_not_mandatory_field' : '' | translate }}"
+                data-translate="{{ 'signup_field_' + $ctrl.rule.displayFieldName | translate }} {{ !$ctrl.rule.mandatory && !$ctrl.rule.hideNotMandatory ? 'signup_not_mandatory_field' : '' | translate }}"
             ></span>
         </oui-checkbox>
 
@@ -182,7 +182,7 @@
             class="help-block text-danger"
             data-ng-repeat="(error, value) in $ctrl.fieldset['ovh_field_' + $ctrl.rule.fieldName].$error"
             role="alert"
-            data-translate="{{ 'common_field_error_' + error }}"
+            data-translate="{{ error === 'pattern' && $ctrl.rule.patternErrorKey ? $ctrl.rule.patternErrorKey : 'common_field_error_' + error }}"
             data-translate-values="{ minlength: $ctrl.rule.minLength, maxlength: $ctrl.rule.maxLength }"
         ></span>
 
