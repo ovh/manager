@@ -4,7 +4,7 @@ import { fireEvent, screen } from '@testing-library/react';
 import { render } from '@/common/utils/test.provider';
 import RecordHelpDrawer, { getRecordHelpEntries } from '@/zone/pages/zone/components/RecordHelpDrawer';
 
-const GUIDE_URL = 'https://help.ovhcloud.com/csm/fr-dns-create-a-record?id=kb_article_view&sysparm_article=KB0067694';
+const GUIDE_URL = 'https://docs.ovhcloud.com/fr/guides/web-cloud/domains/dns-zone-a-record-creation';
 
 describe('getRecordHelpEntries', () => {
   it('lists the subdomain, target and TTL of an A record', () => {
