@@ -264,6 +264,14 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
     } else if (window.ATInternet) {
       window.ATInternet.Utils.consentReceived(true);
     }
+    // A tracker that was disabled (stored or explicit refusal) may still hold
+    // hits queued before the refusal was applied — e.g. boot hits emitted
+    // while the CMP was coming up. They were produced without consent, so
+    // they are dropped rather than replayed; a first-time consent (tracker
+    // never disabled) keeps its pending hits.
+    if (!this.enabled) {
+      this.clearTrackQueue();
+    }
     // Re-enabled up front: a user who refused earlier (CMP preferences) must
     // not lose the hits emitted while the tag initialises.
     this.setEnabled(true);
