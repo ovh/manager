@@ -191,7 +191,12 @@ describe('TenantForm', () => {
     iam: { id: 'iam-123', urn: 'urn:service:123' },
   };
 
-  const createMockForm = (overrides?: Partial<UseFormReturn<TenantFormData>>) => {
+  // handleSubmit is mocked with a plain function: its generic return type is not worth reproducing
+  type MockFormOverrides = Omit<Partial<UseFormReturn<TenantFormData>>, 'handleSubmit'> & {
+    handleSubmit?: unknown;
+  };
+
+  const createMockForm = (overrides?: MockFormOverrides) => {
     const formState = {
       isValid: true,
       errors: {},
