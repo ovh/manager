@@ -14,6 +14,8 @@ vi.mock('@/data/hooks/suggestion/useSuggestion', () => ({
   useSuggestionTargetUrl: () => ACCOUNT_EDITION_LINK,
 }));
 
+let mockUser: { country: string } = { country: 'FR' };
+
 vi.mock('@/context', () => ({
   useApplication: () => ({
     shell: {
@@ -23,6 +25,8 @@ vi.mock('@/context', () => ({
             return { notifyModalActionDone };
           case 'tracking':
             return { trackClick, trackPage };
+          case 'environment':
+            return { getEnvironment: () => ({ getUser: () => mockUser }) };
           default:
             return {};
         }
@@ -36,6 +40,7 @@ const renderComponent = () => render(<OtherCategoryModal />);
 describe('OtherCategoryModal', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    mockUser = { country: 'FR' };
     Object.defineProperty(window, 'top', {
       value: { location: { href: '' } },
       writable: true,
@@ -50,6 +55,26 @@ describe('OtherCategoryModal', () => {
     await waitFor(() => {
       expect(queryByTestId('other-category-modal')).not.toBeNull();
     });
+  });
+
+  it('keeps the French e-invoicing wording for a FR account', async () => {
+    vi.spyOn(useModalModule, 'useCheckModalDisplay').mockReturnValue(true);
+    const { queryByTestId, queryByText } = renderComponent();
+    await waitFor(() => {
+      expect(queryByTestId('other-category-modal')).not.toBeNull();
+    });
+    expect(queryByText('other_category_modal_description_tr')).toBeNull();
+  });
+
+  it('drops the French e-invoicing link and wording for a TR account (F1)', async () => {
+    mockUser = { country: 'TR' };
+    vi.spyOn(useModalModule, 'useCheckModalDisplay').mockReturnValue(true);
+    const { container, queryByTestId, getByText } = renderComponent();
+    await waitFor(() => {
+      expect(queryByTestId('other-category-modal')).not.toBeNull();
+    });
+    expect(container.querySelector('osds-link')).toBeNull();
+    expect(getByText('other_category_modal_description_tr')).toBeTruthy();
   });
 
   it('does not render when the display check resolves to false', async () => {
