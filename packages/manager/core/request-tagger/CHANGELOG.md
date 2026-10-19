@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.1](https://github.com/ovh/manager/compare/@ovh-ux/request-tagger@0.6.0...@ovh-ux/request-tagger@0.6.1) (2026-10-19)
+
+
+### Bug Fixes
+
+* **api:** add headers type to allow X-Schemas-Version for v2 client ([ead6180](https://github.com/ovh/manager/commit/ead618085c994e7a84f566014c21460610cce360))
+
+
+
+
+
 # [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/request-tagger@0.5.10...@ovh-ux/request-tagger@0.6.0) (2025-12-16)
 
 

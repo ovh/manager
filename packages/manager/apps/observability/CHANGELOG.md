@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-observability-app@0.1.3...@ovh-ux/manager-observability-app@0.1.4) (2026-10-19)
+
+
+### Bug Fixes
+
+* **apps:** pin @types/react 18, drop the axios return type and loosen the form mock ([8b5e3ca](https://github.com/ovh/manager/commit/8b5e3ca17bf216db1c13cbbcdf8c5f0f48952d53))
+
+
+
+
+
 ## [0.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-observability-app@0.1.2...@ovh-ux/manager-observability-app@0.1.3) (2026-03-25)
 
 

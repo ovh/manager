@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-network-vrack-app@0.1.1...@ovh-ux/manager-network-vrack-app@0.1.2) (2026-10-19)
+
+
+### Bug Fixes
+
+* **apps:** pin @types/react 18, drop the axios return type and loosen the form mock ([8b5e3ca](https://github.com/ovh/manager/commit/8b5e3ca17bf216db1c13cbbcdf8c5f0f48952d53))
+
+
+
+
+
 ## [0.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-network-vrack-app@0.1.0...@ovh-ux/manager-network-vrack-app@0.1.1) (2026-04-22)
 
 

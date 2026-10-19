@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.21](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.3.20...@ovh-ux/manager-hpc-vmware-vsphere-app@0.3.21) (2026-10-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-vsphere-app
+
+
+
+
+
 ## [0.3.20](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.3.19...@ovh-ux/manager-hpc-vmware-vsphere-app@0.3.20) (2026-03-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-vsphere-app

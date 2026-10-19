@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-forge-cli",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "private": true,
   "description": "",
   "license": "BSD-3-Clause",
@@ -22,7 +22,7 @@
     "test:coverage": "manager-test run --coverage"
   },
   "dependencies": {
-    "@ovh-ux/manager-cli-core": "^0.1.7",
+    "@ovh-ux/manager-cli-core": "^0.1.8",
     "enquirer": "^2.4.1",
     "tsc-alias": "^1.8.16"
   },

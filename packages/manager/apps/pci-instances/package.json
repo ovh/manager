@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-instances-app",
-  "version": "0.21.1",
+  "version": "0.21.2",
   "private": true,
   "type": "module",
   "scripts": {
@@ -17,13 +17,13 @@
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",
     "@ovh-ux/manager-common-translations": "^0.29.0",
-    "@ovh-ux/manager-config": "^8.9.0",
-    "@ovh-ux/manager-core-api": "^0.21.2",
+    "@ovh-ux/manager-config": "^8.9.1",
+    "@ovh-ux/manager-core-api": "^0.21.3",
     "@ovh-ux/manager-core-utils": "^0.5.0",
     "@ovh-ux/manager-pci-common": "^0.18.3",
     "@ovh-ux/manager-react-components": "^1.48.0",
-    "@ovh-ux/manager-react-core-application": "^0.15.5",
-    "@ovh-ux/manager-react-shell-client": "^1.2.4",
+    "@ovh-ux/manager-react-core-application": "^0.15.6",
+    "@ovh-ux/manager-react-shell-client": "^1.2.5",
     "@ovh-ux/metrics-to-customer": "^0.2.2",
     "@ovh-ux/muk": "1.2.0",
     "@ovhcloud/ods-common-core": "17.2.2",

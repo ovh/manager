@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-hpc-vmware-vsphere-app",
-  "version": "0.3.20",
+  "version": "0.3.21",
   "private": true,
   "description": "Managed VMware vsphere services",
   "repository": {
@@ -22,14 +22,14 @@
   "dependencies": {
     "@ovh-ux/logs-to-customer": "1.12.0",
     "@ovh-ux/manager-common-translations": "^0.29.0",
-    "@ovh-ux/manager-config": "^8.9.0",
-    "@ovh-ux/manager-core-api": "^0.21.2",
+    "@ovh-ux/manager-config": "^8.9.1",
+    "@ovh-ux/manager-core-api": "^0.21.3",
     "@ovh-ux/manager-core-utils": "^0.5.0",
-    "@ovh-ux/manager-module-order": "^0.14.1",
+    "@ovh-ux/manager-module-order": "^0.14.2",
     "@ovh-ux/manager-react-components": "2.43.1",
-    "@ovh-ux/manager-react-core-application": "^0.15.5",
+    "@ovh-ux/manager-react-core-application": "^0.15.6",
     "@ovh-ux/manager-react-shell-client": "^0.11.2",
-    "@ovh-ux/request-tagger": "^0.6.0",
+    "@ovh-ux/request-tagger": "^0.6.1",
     "@ovhcloud/ods-components": "18.6.2",
     "@ovhcloud/ods-themes": "18.6.2",
     "@tanstack/react-query": "5.90.12",
@@ -44,7 +44,7 @@
     "tailwindcss": "^3.4.4"
   },
   "devDependencies": {
-    "@ovh-ux/manager-core-test-utils": "^0.11.8",
+    "@ovh-ux/manager-core-test-utils": "^0.11.9",
     "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0",
     "@ovh-ux/manager-tests-setup": "^0.8.0",
     "@ovh-ux/manager-vite-config": "^0.15.6",

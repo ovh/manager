@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/sign-up",
-  "version": "3.10.1",
+  "version": "3.10.2",
   "private": true,
   "description": "Sign-Up form component.",
   "repository": {
@@ -23,7 +23,7 @@
     "test:coverage": "manager-test run --coverage"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^8.9.0",
+    "@ovh-ux/manager-config": "^8.9.1",
     "flag-icon-css": "^3.4.2",
     "lodash": "^4.17.15"
   },
