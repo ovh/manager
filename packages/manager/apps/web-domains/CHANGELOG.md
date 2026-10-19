@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.17.2...@ovh-ux/manager-web-domains-app@1.18.0) (2026-10-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1319] ([8b42a3e](https://github.com/ovh/manager/commit/8b42a3e8224adb430b556d541c42a32ba5550917))
+* **web-domains:** date domains from their subscription in export and tile ([23ffefc](https://github.com/ovh/manager/commit/23ffefc6b40fb6786c4888819cef9cbb634d3268)), closes [#DCE-649](https://github.com/ovh/manager/issues/DCE-649)
+
+
+### Features
+
+* **web-domains:** base dns record guides on subsidiary and add cname guide ([5f3d54f](https://github.com/ovh/manager/commit/5f3d54f32af4ab141ededf717f12f2034be64a69)), closes [#DCE-525](https://github.com/ovh/manager/issues/DCE-525)
+* **web-domains:** point dns record guides to docs.ovhcloud.com ([221e60b](https://github.com/ovh/manager/commit/221e60b7ed06e484804a93082b09fb6aba8f3c24)), closes [#DCE-525](https://github.com/ovh/manager/issues/DCE-525)
+* **web-hosting:** add guides in dns zone page ([8fbebfa](https://github.com/ovh/manager/commit/8fbebfabfc6b6ea32c61e46a3ab8330514fabe5a)), closes [#DCE-525](https://github.com/ovh/manager/issues/DCE-525)
+* **web-hosting:** correct link dns zone ([661190b](https://github.com/ovh/manager/commit/661190bee5dac3a60915944f90203b90df58d043)), closes [#DCE-525](https://github.com/ovh/manager/issues/DCE-525)
+
+
+
+
+
 ## [1.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.17.1...@ovh-ux/manager-web-domains-app@1.17.2) (2026-10-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-domains-app

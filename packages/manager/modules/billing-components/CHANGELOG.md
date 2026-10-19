@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.39.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.39.4...@ovh-ux/manager-billing-components@4.39.5) (2026-10-19)
+
+
+### Bug Fixes
+
+* **billing:** confirm video center and anycast terminations via agora ([a4b90c6](https://github.com/ovh/manager/commit/a4b90c60212adae6167bdd195d79e813dd03d375)), closes [#DCE-655](https://github.com/ovh/manager/issues/DCE-655)
+* **web-hosting:** add hosting on service types with agora termination ([0f42361](https://github.com/ovh/manager/commit/0f4236141923400e51e82bca082609491c818d50)), closes [#DCE-273](https://github.com/ovh/manager/issues/DCE-273)
+
+
+
+
+
 ## [4.39.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.39.3...@ovh-ux/manager-billing-components@4.39.4) (2026-10-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing-components

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.51.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.50.3...@ovh-ux/manager-web@19.51.0) (2026-10-19)
+
+
+### Features
+
+* **web-hosting:** add guides in dns zone page ([8fbebfa](https://github.com/ovh/manager/commit/8fbebfabfc6b6ea32c61e46a3ab8330514fabe5a)), closes [#DCE-525](https://github.com/ovh/manager/issues/DCE-525)
+
+
+
+
+
 ## [19.50.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.50.2...@ovh-ux/manager-web@19.50.3) (2026-10-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-web
