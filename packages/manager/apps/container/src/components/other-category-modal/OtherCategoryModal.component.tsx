@@ -12,7 +12,7 @@ import {
   TRACKING_PREFIX,
 } from "./otherCategoryModal.constants";
 import {
-  isTurkishAccount,
+  isFrenchAccount,
   setOtherCategoryDismissed,
   shouldRemindOtherCategory,
 } from "./otherCategoryModal.helpers";
@@ -25,8 +25,8 @@ const OtherCategoryModal: FC = () => {
   const ux = shell.getPlugin('ux');
   const tracking = shell.getPlugin('tracking');
   const { t } = useTranslation('other-category-modal');
-  // F1: no French e-invoicing link for Turkish accounts.
-  const isTurkey = isTurkishAccount(
+  // The French e-invoicing reform wording and link are for French accounts only.
+  const isFrance = isFrenchAccount(
     shell.getPlugin('environment')?.getEnvironment?.()?.getUser?.(),
   );
 
@@ -98,23 +98,23 @@ const OtherCategoryModal: FC = () => {
           color={ODS_THEME_COLOR_INTENT.text}
           size={ODS_THEME_TYPOGRAPHY_SIZE._400}
         >
-          {isTurkey ? (
-            t('other_category_modal_description_tr')
+          {isFrance ? (
+            <Trans
+              i18nKey="other_category_modal_description"
+              t={t}
+              components={{
+                anchor: (
+                  <OsdsLink
+                    href={ELECTRONIC_BILLING_REGULATION_LINK}
+                    color={ODS_THEME_COLOR_INTENT.primary}
+                    target={OdsHTMLAnchorElementTarget._blank}
+                    rel={OdsHTMLAnchorElementRel.noopener}
+                  />
+                ),
+              }}
+            />
           ) : (
-          <Trans
-            i18nKey="other_category_modal_description"
-            t={t}
-            components={{
-              anchor: (
-                <OsdsLink
-                  href={ELECTRONIC_BILLING_REGULATION_LINK}
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                  target={OdsHTMLAnchorElementTarget._blank}
-                  rel={OdsHTMLAnchorElementRel.noopener}
-                />
-              ),
-            }}
-          />
+            t('other_category_modal_description_generic')
           )}
         </OsdsText>
         <OsdsButton

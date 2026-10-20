@@ -211,3 +211,53 @@ describe('the API errors the form displays', () => {
     expect(alerter.resetMessage).toHaveBeenCalledWith('InfoErrors');
   });
 });
+
+describe('the "Autre" category controls', () => {
+  const COUNTRIES = ['FR', 'GP', 'TR', 'DE', 'US'];
+  const withCategory = (country, original, current) => {
+    const built = build();
+    built.ctrl.model = { country, legalform: current };
+    built.ctrl.originalModel = { country, legalform: original };
+    return built;
+  };
+
+  describe.each(COUNTRIES)('in %s', (country) => {
+    it('flags "other" as selected and blocks the save', () => {
+      const { ctrl, alerter } = withCategory(country, 'other', 'other');
+      ctrl.userAccountServiceInfos = { updateUseraccountInfos: vi.fn() };
+
+      expect(ctrl.isOtherCategorySelected()).toBe(true);
+      expect(ctrl.submit()).toBe(null);
+      expect(alerter.alertFromSWS).toHaveBeenCalledWith(
+        'signup_legalform_other_save_blocked',
+        'ERROR',
+        'InfoErrors',
+      );
+      expect(
+        ctrl.userAccountServiceInfos.updateUseraccountInfos,
+      ).not.toHaveBeenCalled();
+    });
+
+    it.each(['corporation', 'association', 'administration'])(
+      'warns when switching from "other" to %s',
+      (legalform) => {
+        const { ctrl } = withCategory(country, 'other', legalform);
+
+        expect(ctrl.isOtherCategorySelected()).toBe(false);
+        expect(ctrl.shouldShowCategorySwitchWarning()).toBe(true);
+      },
+    );
+
+    it('does not warn when switching to individual', () => {
+      const { ctrl } = withCategory(country, 'other', 'individual');
+
+      expect(ctrl.shouldShowCategorySwitchWarning()).toBe(false);
+    });
+
+    it('does not warn when the category did not come from "other"', () => {
+      const { ctrl } = withCategory(country, 'corporation', 'corporation');
+
+      expect(ctrl.shouldShowCategorySwitchWarning()).toBe(false);
+    });
+  });
+});

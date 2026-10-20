@@ -2,8 +2,8 @@
 // reminder (the "Other" category one is `OtherCategoryModal`).
 
 /**
- * The account countries that get the compliance reminders (the missing-CNIN
- * one and `OtherCategoryModal`). The specification writes "TK"
+ * The account countries that get the missing-CNIN reminder (`OtherCategoryModal`
+ * applies to every country). The specification writes "TK"
  * for Turkey; the API country code is `TR` (`TK` is Tokelau).
  */
 export const COMPLIANCE_MODAL_COUNTRIES = ['FR', 'TR'];
