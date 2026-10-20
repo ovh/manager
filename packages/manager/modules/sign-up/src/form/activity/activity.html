@@ -7,7 +7,7 @@
         >
             <!-- nationalIdentificationNumber -->
             <oui-field
-                data-label="{{ 'sign_up_activity_field_nationalIdentificationNumber' | translate}}"
+                data-label="{{ $ctrl.getNationalIdentificationNumberFieldLabel() }}"
                 data-ng-class="{ 'required-field': $ctrl.signUpFormCtrl.rules.nationalIdentificationNumber.mandatory }"
             >
                 <input
@@ -51,8 +51,21 @@
         </div>
 
         <div class="col-lg-6" data-ng-if="$ctrl.signUpFormCtrl.rules.vat">
+            <!-- "I have a <vat label> number": only the countries that derive
+                 the VAT number from the company identifier offer the choice -->
+            <oui-checkbox
+                data-ng-if="$ctrl.derivesVatFromCnin()"
+                data-name="hasVatNumberCheckbox"
+                data-model="$ctrl.hasVatNumber"
+                data-on-change="$ctrl.onVatAvailabilityChange(modelValue)"
+            >
+                <span
+                    data-ng-bind="'sign_up_activity_field_has_vat_number' | translate:{ vatLabel: $ctrl.getVatLabel() }"
+                ></span>
+            </oui-checkbox>
             <!-- vat -->
             <oui-field
+                data-ng-if="!$ctrl.derivesVatFromCnin() || $ctrl.hasVatNumber"
                 data-label="{{ $ctrl.getVatFieldLabel() }}"
                 data-ng-class="{ 'required-field': $ctrl.signUpFormCtrl.rules.vat.mandatory }"
             >
@@ -65,7 +78,7 @@
                     data-ng-required="$ctrl.signUpFormCtrl.rules.vat.mandatory"
                     data-ng-maxlength="$ctrl.signUpFormCtrl.rules.vat.maxLength"
                     data-ng-minlength="$ctrl.signUpFormCtrl.rules.vat.minLength"
-                    data-ng-pattern="$ctrl.signUpFormCtrl.rules.vat.regularExpression"
+                    data-ng-pattern="$ctrl.getVatFieldPattern()"
                     data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.vat)"
                 />
             </oui-field>
@@ -108,7 +121,7 @@
         >
             <!-- companyNationalIdentificationNumber -->
             <oui-field
-                data-label="{{ 'sign_up_activity_field_companyNationalIdentificationNumber_' + $ctrl.signUpFormCtrl.me.ovhSubsidiary.toLowerCase() | translateDefault:'sign_up_activity_field_companyNationalIdentificationNumber'}}"
+                data-label="{{ $ctrl.getCompanyNationalIdentificationNumberFieldLabel() }}"
                 data-label-popover="{{ 'sign_up_activity_field_companyNationalIdentificationNumber_' + $ctrl.signUpFormCtrl.me.ovhSubsidiary.toLowerCase() + '_tooltip' | translate}}"
                 data-ng-class="{ 'required-field': $ctrl.signUpFormCtrl.rules.companyNationalIdentificationNumber.mandatory }"
             >
@@ -122,6 +135,7 @@
                     data-ng-maxlength="$ctrl.signUpFormCtrl.rules.companyNationalIdentificationNumber.maxLength"
                     data-ng-minlength="$ctrl.signUpFormCtrl.rules.companyNationalIdentificationNumber.minLength"
                     data-ng-pattern="$ctrl.signUpFormCtrl.rules.companyNationalIdentificationNumber.regularExpression"
+                    data-ng-change="$ctrl.syncDerivedVat()"
                     data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.companyNationalIdentificationNumber)"
                 />
             </oui-field>
