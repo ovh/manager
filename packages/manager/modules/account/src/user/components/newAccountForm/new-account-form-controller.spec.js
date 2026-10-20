@@ -211,3 +211,72 @@ describe('the API errors the form displays', () => {
     expect(alerter.resetMessage).toHaveBeenCalledWith('InfoErrors');
   });
 });
+
+describe('administration outside France (MANAGER-22958)', () => {
+  // the helpers under test are the real ones: build() stubs the SIRET one
+  const buildFor = (country, legalform = 'administration') => {
+    const { ctrl } = build();
+    delete ctrl.siretFieldIsAvailable;
+    ctrl.model = { legalform, country };
+    return ctrl;
+  };
+
+  it('offers none of the French company-data flows', () => {
+    const ctrl = buildFor('DE');
+
+    expect(ctrl.siretFieldIsAvailable()).toBe(false);
+    expect(buildFor('DE', 'association').isFrenchAssociation()).toBe(false);
+  });
+
+  it.each(['corporationType', 'nationalIdentificationNumber'])(
+    'does not hide the %s rule',
+    (fieldName) => {
+      expect(buildFor('DE').isFieldHiddenForFr({ fieldName })).toBe(false);
+    },
+  );
+
+  it.each(['FR', 'GP'])('keeps the SIRET search for %s', (country) => {
+    expect(buildFor(country).siretFieldIsAvailable()).toBe(true);
+  });
+
+  // non-regression MANAGER-21837: a saved administration reloads as such
+  it('loads the administration rules for a DE account', async () => {
+    const { ctrl } = build();
+    ctrl.model = { country: 'DE', legalform: 'administration' };
+    ctrl.originalModel = { ...ctrl.model };
+    ctrl.rules = undefined;
+    ctrl.$q = {
+      all: (o) =>
+        Promise.all(Object.values(o)).then(([email, sms]) => ({ email, sms })),
+      resolve: (v) => Promise.resolve(v),
+    };
+    ctrl.coreConfig = { isRegion: () => false, getUserLocale: () => 'de_DE' };
+    ctrl.user = { country: 'DE' };
+    ctrl.readonly = [];
+    ctrl.userAccountServiceInfos = {
+      fetchConsentDecision: () => Promise.resolve(),
+      fetchMarketingConsentDecision: () => Promise.resolve(),
+      postRules: () =>
+        Promise.resolve([
+          { fieldName: 'email' },
+          { fieldName: 'phone' },
+          {
+            fieldName: 'legalform',
+            in: ['corporation', 'administration'],
+          },
+          { fieldName: 'organisation', mandatory: true },
+          { fieldName: 'address', mandatory: true },
+          { fieldName: 'vat', mandatory: false },
+        ]),
+    };
+
+    const rules = await ctrl.fetchRules(ctrl.model);
+    const get = (name) => rules.find((r) => r.fieldName === name);
+
+    expect(get('legalform').initialValue).toBe('administration');
+    expect(get('organisation').mandatory).toBe(true);
+    expect(get('address').mandatory).toBe(true);
+    expect(get('vat').mandatory).toBe(false);
+    expect(get('corporationType')).toBeUndefined();
+  });
+});
