@@ -14,6 +14,12 @@ vi.mock('@/data/hooks/suggestion/useSuggestion', () => ({
   useSuggestionTargetUrl: () => ACCOUNT_EDITION_LINK,
 }));
 
+// Trans renders its key so the French reform wording can be asserted.
+vi.mock('react-i18next', () => ({
+  useTranslation: () => ({ t: (translationKey: string) => translationKey }),
+  Trans: ({ i18nKey }: { i18nKey: string }) => i18nKey,
+}));
+
 let mockUser: { country: string } = { country: 'FR' };
 
 vi.mock('@/context', () => ({
@@ -57,24 +63,25 @@ describe('OtherCategoryModal', () => {
     });
   });
 
-  it('keeps the French e-invoicing wording for a FR account', async () => {
+  it('shows the French e-invoicing wording for a FR account', async () => {
     vi.spyOn(useModalModule, 'useCheckModalDisplay').mockReturnValue(true);
-    const { queryByTestId, queryByText } = renderComponent();
+    const { queryByTestId, queryByText, getByText } = renderComponent();
     await waitFor(() => {
       expect(queryByTestId('other-category-modal')).not.toBeNull();
     });
-    expect(queryByText('other_category_modal_description_tr')).toBeNull();
+    expect(getByText('other_category_modal_description')).toBeTruthy();
+    expect(queryByText('other_category_modal_description_generic')).toBeNull();
   });
 
-  it('drops the French e-invoicing link and wording for a TR account (F1)', async () => {
-    mockUser = { country: 'TR' };
+  it.each(['TR', 'DE'])('shows the generic wording without link for a %s account', async (country) => {
+    mockUser = { country };
     vi.spyOn(useModalModule, 'useCheckModalDisplay').mockReturnValue(true);
     const { container, queryByTestId, getByText } = renderComponent();
     await waitFor(() => {
       expect(queryByTestId('other-category-modal')).not.toBeNull();
     });
     expect(container.querySelector('osds-link')).toBeNull();
-    expect(getByText('other_category_modal_description_tr')).toBeTruthy();
+    expect(getByText('other_category_modal_description_generic')).toBeTruthy();
   });
 
   it('does not render when the display check resolves to false', async () => {

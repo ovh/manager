@@ -1,5 +1,6 @@
 import { User } from '@ovh-ux/manager-config';
 import {
+  isFrenchAccount,
   isUserCategoryOther,
   OTHER_CATEGORY_DISMISSED_KEY,
   setOtherCategoryDismissed,
@@ -20,12 +21,22 @@ describe('isUserCategoryOther', () => {
     );
   });
 
-  it('returns true for a TR customer whose category is "other" (F1)', () => {
-    expect(isUserCategoryOther(buildUser({ country: 'TR' }))).toBe(true);
+  it.each(['TR', 'DE', 'US'])('returns true for a %s customer whose category is "other"', (country) => {
+    expect(isUserCategoryOther(buildUser({ country } as Partial<User>))).toBe(true);
+  });
+});
+
+describe('isFrenchAccount', () => {
+  it('is true for FR in any case', () => {
+    expect(isFrenchAccount({ country: 'FR' })).toBe(true);
+    expect(isFrenchAccount({ country: 'fr' } as unknown as User)).toBe(true);
   });
 
-  it('returns false when the customer is not in France', () => {
-    expect(isUserCategoryOther(buildUser({ country: 'DE' }))).toBe(false);
+  it('is false for other countries and a missing user', () => {
+    ['TR', 'DE', 'GP'].forEach((country) =>
+      expect(isFrenchAccount({ country } as User)).toBe(false),
+    );
+    expect(isFrenchAccount(undefined)).toBe(false);
   });
 });
 
@@ -39,6 +50,12 @@ describe('shouldRemindOtherCategory', () => {
       'true',
     );
     expect(shouldRemindOtherCategory(buildUser({ country: 'TR' }))).toBe(false);
+  });
+
+  it('reminds a DE "Autre" account until it is dismissed', () => {
+    expect(shouldRemindOtherCategory(buildUser({ country: 'DE' }))).toBe(true);
+    setOtherCategoryDismissed();
+    expect(shouldRemindOtherCategory(buildUser({ country: 'DE' }))).toBe(false);
   });
 
   it('does not remind an account that is not concerned', () => {
