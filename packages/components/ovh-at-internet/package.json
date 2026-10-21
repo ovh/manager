@@ -36,7 +36,7 @@
   "devDependencies": {
     "@ovh-ux/manager-config": "^8.9.1",
     "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0",
-    "tsc-alias": "^1.8.16"
+    "tsc-alias": "1.8.16"
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^8.0.1"
