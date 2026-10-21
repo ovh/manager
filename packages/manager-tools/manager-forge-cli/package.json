@@ -24,7 +24,7 @@
   "dependencies": {
     "@ovh-ux/manager-cli-core": "^0.1.8",
     "enquirer": "^2.4.1",
-    "tsc-alias": "^1.8.16"
+    "tsc-alias": "1.8.16"
   },
   "devDependencies": {
     "@ovh-ux/manager-static-analysis-kit": "0.15.0",
