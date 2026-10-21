@@ -31,6 +31,6 @@
     "@ovh-ux/manager-static-analysis-kit": "^0.15.0",
     "@ovh-ux/manager-tests-setup": "^0.8.0",
     "@ovh-ux/manager-vite-config": "^0.15.6",
-    "tsc-alias": "^1.8.16"
+    "tsc-alias": "1.8.16"
   }
 }
