@@ -124,14 +124,23 @@ describe('BasicIP listing', () => {
   it.each([
     ['a parked ip', buildRow(false)],
     ['an ip attached to an instance', buildRow(true)],
-    [
-      'an ip carried by a gateway',
-      buildRow(true, { associatedResourceType: 'gateway' }),
-    ],
   ])('allows selecting %s for deletion', (_case, row) => {
     renderListing({ canCreateEdit: false });
 
     expect(renderSelectionCell(row)).not.toHaveAttribute('disabled');
+  });
+
+  it('refuses selecting an ip carried by a gateway for deletion and explains why', () => {
+    renderListing({ canCreateEdit: false });
+
+    const checkbox = renderSelectionCell(
+      buildRow(true, { associatedResourceType: 'gateway' }),
+    );
+
+    expect(checkbox).toHaveAttribute('disabled');
+    expect(checkbox.closest('osds-tooltip')).toHaveTextContent(
+      'pci_additional_ips_basic_ip_delete_carried_by_gateway',
+    );
   });
 
   it('hides the creation button without the create-edit feature', () => {

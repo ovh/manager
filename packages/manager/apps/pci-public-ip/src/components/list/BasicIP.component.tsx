@@ -18,6 +18,8 @@ import {
   ODS_ICON_SIZE,
   ODS_MESSAGE_TYPE,
   ODS_SPINNER_SIZE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
   OdsCheckboxCheckedChangeEventDetail,
   OsdsCheckboxCustomEvent,
 } from '@ovhcloud/ods-components';
@@ -33,6 +35,9 @@ import {
   OsdsPopoverContent,
   OsdsSearchBar,
   OsdsSpinner,
+  OsdsText,
+  OsdsTooltip,
+  OsdsTooltipContent,
 } from '@ovhcloud/ods-components/react';
 import { useNavigate } from 'react-router-dom';
 import { useRef, useState } from 'react';
@@ -44,7 +49,11 @@ import {
   useDetachBasicIp,
   useTerminateBasicIps,
 } from '@/api/hooks/useBasicIp';
-import { BASIC_IP_RESOURCE_TYPE, TBasicIpRow } from '@/types/publicip.type';
+import {
+  BASIC_IP_RESOURCE_TYPE,
+  TBasicIpRow,
+  isCarriedByGateway,
+} from '@/types/publicip.type';
 import TerminateModal from '@/components/terminate/Terminate.component';
 import { useCreateEditBasicIp } from '@/hooks/useCreateEditBasicIp';
 import { ResponseAPIError } from '@/interface';
@@ -192,24 +201,50 @@ export default function BasicIPComponent({
     {
       id: 'selection',
       isSortable: false,
-      cell: (props: TBasicIpRow) => (
-        <OsdsCheckbox
-          value={props.id}
-          checked={selectedIpIds.includes(props.id)}
-          ariaLabel={t('pci_additional_ips_basic_ip_select', {
-            ip: props.ip,
-          })}
-          onOdsCheckedChange={(
-            event: OsdsCheckboxCustomEvent<OdsCheckboxCheckedChangeEventDetail>,
-          ) => toggleIpSelection(props.id, event.detail.checked)}
-        >
-          <OsdsCheckboxButton
-            color={ODS_THEME_COLOR_INTENT.primary}
-            size={ODS_CHECKBOX_BUTTON_SIZE.sm}
-            interactive
-          />
-        </OsdsCheckbox>
-      ),
+      cell: (props: TBasicIpRow) => {
+        const isSelectionRefused = isCarriedByGateway(props);
+        const checkbox = (
+          <OsdsCheckbox
+            value={props.id}
+            checked={selectedIpIds.includes(props.id)}
+            disabled={isSelectionRefused || undefined}
+            ariaLabel={t('pci_additional_ips_basic_ip_select', {
+              ip: props.ip,
+            })}
+            onOdsCheckedChange={(
+              event: OsdsCheckboxCustomEvent<
+                OdsCheckboxCheckedChangeEventDetail
+              >,
+            ) => toggleIpSelection(props.id, event.detail.checked)}
+          >
+            <OsdsCheckboxButton
+              color={ODS_THEME_COLOR_INTENT.primary}
+              size={ODS_CHECKBOX_BUTTON_SIZE.sm}
+              interactive
+            />
+          </OsdsCheckbox>
+        );
+
+        if (!isSelectionRefused) return checkbox;
+
+        return (
+          <OsdsTooltip>
+            {checkbox}
+            <OsdsTooltipContent slot="tooltip-content">
+              <OsdsText
+                size={ODS_TEXT_SIZE._100}
+                level={ODS_TEXT_LEVEL.body}
+                color={ODS_THEME_COLOR_INTENT.text}
+                className="break-normal"
+              >
+                {t('pci_additional_ips_basic_ip_delete_carried_by_gateway', {
+                  ip: props.ip,
+                })}
+              </OsdsText>
+            </OsdsTooltipContent>
+          </OsdsTooltip>
+        );
+      },
       label: '',
     },
     {
