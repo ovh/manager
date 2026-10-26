@@ -18,7 +18,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
-import { TBasicIpRow } from '@/types/publicip.type';
+import { TBasicIpRow, isCarriedByGateway } from '@/types/publicip.type';
 
 type BasicIPActionsProps = {
   basicIp: TBasicIpRow;
@@ -36,6 +36,30 @@ export default function BasicIPActions({
   const { t } = useTranslation('common');
 
   const hrefRemove = useHref(`./${basicIp.id}/terminate`);
+  const isDeletionRefused = isCarriedByGateway(basicIp);
+  const deletionRefusalReasonId = `delete-refusal-reason-${basicIp.id}`;
+  const deletionRefusalReason = t(
+    'pci_additional_ips_basic_ip_delete_carried_by_gateway',
+    { ip: basicIp.ip },
+  );
+
+  const deleteButton = (
+    <OsdsButton
+      size={ODS_BUTTON_SIZE.sm}
+      variant={ODS_BUTTON_VARIANT.ghost}
+      color={ODS_THEME_COLOR_INTENT.primary}
+      {...(isDeletionRefused ? { disabled: true } : { href: hrefRemove })}
+    >
+      <OsdsText
+        size={ODS_THEME_TYPOGRAPHY_SIZE._500}
+        level={ODS_TEXT_LEVEL.button}
+        color={ODS_THEME_COLOR_INTENT.primary}
+        slot={'start'}
+      >
+        {t('pci_additional_ips_delete')}
+      </OsdsText>
+    </OsdsButton>
+  );
 
   return (
     <OsdsMenu>
@@ -75,21 +99,20 @@ export default function BasicIPActions({
         </OsdsMenuItem>
       )}
       <OsdsMenuItem>
-        <OsdsButton
-          size={ODS_BUTTON_SIZE.sm}
-          variant={ODS_BUTTON_VARIANT.ghost}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          href={hrefRemove}
-        >
-          <OsdsText
-            size={ODS_THEME_TYPOGRAPHY_SIZE._500}
-            level={ODS_TEXT_LEVEL.button}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            slot={'start'}
+        {isDeletionRefused ? (
+          <div
+            tabIndex={0}
+            title={deletionRefusalReason}
+            aria-describedby={deletionRefusalReasonId}
           >
-            {t('pci_additional_ips_delete')}
-          </OsdsText>
-        </OsdsButton>
+            {deleteButton}
+            <span id={deletionRefusalReasonId} className="sr-only">
+              {deletionRefusalReason}
+            </span>
+          </div>
+        ) : (
+          deleteButton
+        )}
       </OsdsMenuItem>
     </OsdsMenu>
   );
