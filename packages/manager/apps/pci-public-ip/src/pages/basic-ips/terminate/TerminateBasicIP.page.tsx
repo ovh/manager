@@ -1,9 +1,10 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { Translation, useTranslation } from 'react-i18next';
 import { useAllBasicIp, useTerminateBasicIp } from '@/api/hooks/useBasicIp';
 import TerminateModal from '@/components/terminate/Terminate.component';
 import { ResponseAPIError } from '@/interface';
+import { isCarriedByGateway } from '@/types/publicip.type';
 
 export default function TerminateBasicIPPage() {
   const navigate = useNavigate();
@@ -49,6 +50,10 @@ export default function TerminateBasicIPPage() {
     },
   });
   const onConfirm = () => terminate(basicIP);
+
+  if (basicIP && isCarriedByGateway(basicIP)) {
+    return <Navigate to=".." replace />;
+  }
 
   return (
     <TerminateModal
