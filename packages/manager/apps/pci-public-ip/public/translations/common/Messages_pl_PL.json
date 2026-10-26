@@ -11,6 +11,7 @@
   "pci_additional_ips_basic_ip_terminate_dual_stack": "Basic IP jest dostarczany jako para adresów IPv4 i IPv6. Usunięcie jednego z dwóch adresów nie powoduje usunięcia drugiego.",
   "pci_additional_ips_basic_ip_select": "Zaznacz adres IP {{ip}}",
   "pci_additional_ips_basic_ip_delete_selected": "Usuń zaznaczone",
+  "pci_additional_ips_basic_ip_delete_carried_by_gateway": "Adres {{ip}} jest powiązany z gateway i nie można go usunąć.",
   "pci_additional_ips_basic_ip_attach": "Przypisz do instancji",
   "pci_additional_ips_basic_ip_detach": "Odłącz",
   "pci_additional_ips_basic_ip_attach_title": "Przypisz adres IP {{ip}} do instancji",
