@@ -34,3 +34,6 @@ export enum PublicIp {
   FLOATING = 'floating_ip',
   BASIC = 'basic_ip',
 }
+
+export const isCarriedByGateway = (basicIp: TBasicIpRow) =>
+  basicIp.associatedResourceType === BASIC_IP_RESOURCE_TYPE.GATEWAY;

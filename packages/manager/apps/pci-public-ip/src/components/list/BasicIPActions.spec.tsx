@@ -54,13 +54,8 @@ describe('BasicIPActions', () => {
       isAttached: true,
       resourceType: 'instance',
     },
-    {
-      case: 'an address carried by a gateway',
-      isAttached: true,
-      resourceType: 'gateway',
-    },
   ])(
-    'the api parts with $case, so its deletion is always offered',
+    'the api parts with $case, so its deletion is offered',
     ({ isAttached, resourceType }) => {
       it.each([true, false])(
         'offers the deletion with the create-edit feature set to %s',
@@ -72,10 +67,40 @@ describe('BasicIPActions', () => {
           );
 
           expect(deleteButton(container)).not.toHaveAttribute('disabled');
+          expect(deleteButton(container)).toHaveAttribute(
+            'href',
+            '/resolved/203.0.113.42/terminate',
+          );
         },
       );
     },
   );
+
+  describe('an address carried by a gateway', () => {
+    it.each([true, false])(
+      'refuses the deletion with the create-edit feature set to %s',
+      (canEditAssociation) => {
+        const { container } = renderActions(
+          true,
+          canEditAssociation,
+          'gateway',
+        );
+
+        expect(deleteButton(container)).toHaveAttribute('disabled');
+        expect(deleteButton(container)).not.toHaveAttribute('href');
+        const refusedAction = deleteButton(container).parentElement;
+
+        expect(refusedAction).toHaveAttribute('tabindex', '0');
+        expect(refusedAction).toHaveAttribute(
+          'title',
+          'pci_additional_ips_basic_ip_delete_carried_by_gateway',
+        );
+        expect(refusedAction).toHaveAccessibleDescription(
+          'pci_additional_ips_basic_ip_delete_carried_by_gateway',
+        );
+      },
+    );
+  });
 
   describe('without the create-edit feature', () => {
     it('offers no association action', () => {
