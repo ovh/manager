@@ -203,7 +203,7 @@ vi.mock('react-router-dom', async (importActual) => {
         ({
           serviceName: 'test-service',
           domain: 'test-domain.com',
-          path: '/public_html',
+          '*': '/public_html',
         }) as Record<string, string | undefined>,
     ),
   };
