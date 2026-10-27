@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.39.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.39.5...@ovh-ux/manager-billing-components@4.39.6) (2026-10-27)
+
+
+### Bug Fixes
+
+* **billing:** confirm backup licenses terminations via agora ([341fc48](https://github.com/ovh/manager/commit/341fc486c04746842c82e7457bb4b6a087b6ec91)), closes [#BKP-1161](https://github.com/ovh/manager/issues/BKP-1161)
+
+
+
+
+
 ## [4.39.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.39.4...@ovh-ux/manager-billing-components@4.39.5) (2026-10-19)
 
 
