@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-bmc-backup-licenses-app@0.5.7...@ovh-ux/manager-bmc-backup-licenses-app@0.5.8) (2026-10-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-bmc-backup-licenses-app
+
+
+
+
+
 ## [0.5.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-bmc-backup-licenses-app@0.5.6...@ovh-ux/manager-bmc-backup-licenses-app@0.5.7) (2026-10-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-bmc-backup-licenses-app
