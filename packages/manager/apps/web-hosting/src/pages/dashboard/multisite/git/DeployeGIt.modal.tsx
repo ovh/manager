@@ -25,7 +25,7 @@ import {
 export default function DeployeGitModal() {
   const navigate = useNavigate();
   const { t } = useTranslation(['dashboard', NAMESPACES.ACTIONS]);
-  const { serviceName, path } = useParams();
+  const { serviceName, '*': path } = useParams();
 
   const [reset, setReset] = useState(false);
 

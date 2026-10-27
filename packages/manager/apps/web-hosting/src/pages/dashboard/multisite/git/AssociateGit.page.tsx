@@ -61,7 +61,7 @@ interface AssociateGitState {
 export default function AssociateGitPage() {
   const navigate = useNavigate();
   const { t } = useTranslation('multisite');
-  const { serviceName, path } = useParams();
+  const { serviceName, '*': path } = useParams();
   const { addSuccess, addWarning } = useNotifications();
   const { state } = useLocation() as Location<AssociateGitState>;
   const isConfiguration = state?.isConfiguration ?? false;

@@ -2,7 +2,9 @@ export const subRoutes = {
   serviceName: ':serviceName',
   domain: ':domain',
   locationId: ':locationId',
-  path: ':path',
+  // splat: a website path can contain slashes (e.g. "test/public"), so it must stay last in the url,
+  // behind the static "website" segment so it can't collide with /multisite/:domain/<action> routes
+  path: '*',
   serviceId: ':serviceId',
 };
 
@@ -54,14 +56,14 @@ export const urls = {
   multisite: `/${subRoutes.serviceName}/multisite`,
   editName: `/${subRoutes.serviceName}/multisite/edit-name`,
   editSite: `/${subRoutes.serviceName}/multisite/edit-site`,
-  deleteSite: `/${subRoutes.serviceName}/multisite/${subRoutes.path}/delete-site`,
+  deleteSite: `/${subRoutes.serviceName}/multisite/website/delete-site/${subRoutes.path}`,
 
   // GIT
-  associateGit: `/${subRoutes.serviceName}/multisite/${subRoutes.path}/associate-git`,
-  configureGit: `/${subRoutes.serviceName}/multisite/${subRoutes.path}/configure-git`,
-  deleteGit: `/${subRoutes.serviceName}/multisite/${subRoutes.path}/delete-git`,
-  deployeGit: `/${subRoutes.serviceName}/multisite/${subRoutes.path}/deploye-git`,
-  lastDeploymentGit: `/${subRoutes.serviceName}/multisite/${subRoutes.path}/last-deployment-git`,
+  associateGit: `/${subRoutes.serviceName}/multisite/website/associate-git/${subRoutes.path}`,
+  configureGit: `/${subRoutes.serviceName}/multisite/website/configure-git/${subRoutes.path}`,
+  deleteGit: `/${subRoutes.serviceName}/multisite/website/delete-git/${subRoutes.path}`,
+  deployeGit: `/${subRoutes.serviceName}/multisite/website/deploye-git/${subRoutes.path}`,
+  lastDeploymentGit: `/${subRoutes.serviceName}/multisite/website/last-deployment-git/${subRoutes.path}`,
 
   // CDN
   modifyCdn: `/${subRoutes.serviceName}/multisite/${subRoutes.domain}/modify-cdn`,
@@ -75,7 +77,7 @@ export const urls = {
 
   // MODULE
   addModule: `/${subRoutes.serviceName}/multisite/add-module`,
-  deleteModule: `/${subRoutes.serviceName}/multisite/delete-module/${subRoutes.path}`,
+  deleteModule: `/${subRoutes.serviceName}/multisite/website/delete-module/${subRoutes.path}`,
 
   // VIDEO CENTER
   videoCenter: '/video-center',
