@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: pull-request
-      uses: repo-sync/pull-request@v2
+      uses: repo-sync/pull-request@7e79a9f5dc3ad0ce53138f01df2fad14a04831c5 # v2
       with:
         destination_branch: "master"
         github_token: ${{ secrets.GITHUB_TOKEN }}
