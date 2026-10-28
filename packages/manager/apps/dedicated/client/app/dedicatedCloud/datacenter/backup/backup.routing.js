@@ -14,8 +14,13 @@ import {
 
 import {
   BACKUP_TARIFF_URL,
+  MANAGED_BACKUP_FOR_VMWARE_URL,
   TRUSTED_ACCOUNT_BACKUP_TARIFF_URL,
 } from './backup.constants';
+import {
+  getBackupOrderAvailability,
+  isLegacyBackupOrderBlockedByManagedBackupForVmware,
+} from './backup-order-availability';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicatedCloud.details.datacenter.details.backup', {
@@ -33,8 +38,16 @@ export default /* @ngInject */ ($stateProvider) => {
           transition.injector().getAsync('licence'),
           transition.injector().getAsync('backup'),
           transition.injector().getAsync('hosts'),
+          transition
+            .injector()
+            .getAsync('isOrderBlockedByManagedBackupForVmware'),
         ])
-        .then(([licence, backup, hosts]) => {
+        .then(([licence, backup, hosts, isOrderBlockedByMbv]) => {
+          // The legacy offer can no longer be activated: stay on the tab,
+          // which points to Managed Backup for VMware.
+          if (isOrderBlockedByMbv) {
+            return false;
+          }
           if (!licence.isSplaActive) {
             return {
               state:
@@ -196,14 +209,25 @@ export default /* @ngInject */ ($stateProvider) => {
         $location.hash('dedicatedCloud_datacenter_backup_header');
         $anchorScroll();
       },
-      canOrderBackup: /* @ngInject */ (ovhFeatureFlipping) =>
-        ovhFeatureFlipping
-          .checkFeatureAvailability('dedicated-cloud:canOrderBackup')
-          .then((featureAvailability) =>
-            featureAvailability.isFeatureAvailable(
-              'dedicated-cloud:canOrderBackup',
-            ),
-          ),
+      backupOrderAvailability: /* @ngInject */ (
+        coreConfig,
+        ovhFeatureFlipping,
+      ) =>
+        getBackupOrderAvailability(
+          ovhFeatureFlipping,
+          coreConfig.getUser().isTrusted,
+        ),
+      canOrderBackup: /* @ngInject */ (backupOrderAvailability) =>
+        backupOrderAvailability.canOrderBackup,
+      isOrderBlockedByManagedBackupForVmware: /* @ngInject */ (
+        backup,
+        backupOrderAvailability,
+      ) =>
+        isLegacyBackupOrderBlockedByManagedBackupForVmware(
+          backup,
+          backupOrderAvailability,
+        ),
+      managedBackupForVmwareUrl: () => MANAGED_BACKUP_FOR_VMWARE_URL,
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('dedicated_cloud_datacenters_datacenter_backup'),
     },

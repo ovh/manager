@@ -17,6 +17,8 @@ export default {
     guideUrl: '<',
     trackingPrefix: '<',
     canOrderBackup: '<',
+    isOrderBlockedByManagedBackupForVmware: '<',
+    managedBackupForVmwareUrl: '<',
   },
   controller,
   template,

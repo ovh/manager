@@ -54,7 +54,19 @@ export const TRUSTED_ACCOUNT_BACKUP_TARIFF_URL = {
     'https://www.ovhcloud.com/fr/enterprise/products/hosted-private-cloud/secnumcloud/prices/',
 };
 
+/**
+ * Onboarding of Managed Backup for VMware in Manager v8, which replaces the
+ * legacy Veeam Managed Backup offer (BKP-1758). Manager v8 has no entry in the
+ * legacy application registry (coreURLBuilder / shell navigation.getURL only
+ * know legacy applications), so it is reached by its path on the same origin,
+ * like the container does for the other Manager v8 pages
+ * (see container BETA_MANAGER_URL and the '/beta/#/web-cloud/...' links).
+ */
+export const MANAGED_BACKUP_FOR_VMWARE_URL =
+  '/beta/#/private-cloud/managed-backup-for-vmware';
+
 export default {
   BACKUP_TARIFF_URL,
+  MANAGED_BACKUP_FOR_VMWARE_URL,
   TRUSTED_ACCOUNT_BACKUP_TARIFF_URL,
 };

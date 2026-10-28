@@ -1,3 +1,4 @@
+import { redirectToBackupTabWhenOrderBlockedByManagedBackupForVmware } from '../backup-order-availability';
 import { BACKUP_MINIMUM_HOST_COUNT } from '../../../../components/dedicated-cloud/datacenter/backup/backup.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -6,6 +7,7 @@ export default /* @ngInject */ ($stateProvider) => {
     {
       url: '/minimum-hosts',
       component: 'dedicatedCloudDatacenterBackupMinimumHosts',
+      redirectTo: redirectToBackupTabWhenOrderBlockedByManagedBackupForVmware,
       resolve: {
         goToOrderHosts: /* @ngInject */ (
           $state,

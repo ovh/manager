@@ -20,12 +20,45 @@
     </oui-guide-menu>
 </div>
 <div data-ui-view>
-    <oui-message type="warning" class="mb-4" data-ng-if="!$ctrl.canOrderBackup">
+    <oui-message
+        type="warning"
+        class="mb-4"
+        data-ng-if="!$ctrl.canOrderBackup && !$ctrl.isOrderBlockedByManagedBackupForVmware"
+    >
         <span
             data-translate="dedicatedCloud_datacenter_backup_order_warning"
         ></span>
     </oui-message>
-    <div class="datacenter-backup">
+    <oui-message
+        type="info"
+        class="mb-4"
+        data-ng-if="$ctrl.isOrderBlockedByManagedBackupForVmware"
+    >
+        <p
+            class="mb-2"
+            data-translate="dedicatedCloud_datacenter_backup_managed_backup_for_vmware_order_info"
+        ></p>
+        <a
+            class="oui-link_icon"
+            target="_top"
+            data-ng-href="{{:: $ctrl.managedBackupForVmwareUrl }}"
+            data-track-on="click"
+            data-track-name="{{:: $ctrl.trackingPrefix + '::datacenter::backup::go-to-managed-backup-for-vmware' }}"
+            data-track-type="navigation"
+        >
+            <span
+                data-translate="dedicatedCloud_datacenter_backup_managed_backup_for_vmware_order_link"
+            ></span>
+            <span
+                class="oui-icon oui-icon-arrow-right"
+                aria-hidden="true"
+            ></span>
+        </a>
+    </oui-message>
+    <div
+        class="datacenter-backup"
+        data-ng-if="!$ctrl.isOrderBlockedByManagedBackupForVmware"
+    >
         <div data-ovh-alert="{{ $ctrl.alertMain }}"></div>
         <div data-ng-if="$ctrl.backup.isActive()">
             <div class="oui-switch">
