@@ -26,6 +26,6 @@
   },
   "devDependencies": {
     "@ovh-ux/manager-static-analysis-kit": "^0.15.0",
-    "tsc-alias": "^1.8.16"
+    "tsc-alias": "1.8.16"
   }
 }
