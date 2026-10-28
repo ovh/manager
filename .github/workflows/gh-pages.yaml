@@ -29,7 +29,7 @@ jobs:
       # Derive NX_BASE / NX_HEAD
       # ------------------------------------------
       - name: Derive SHAs for Nx affected
-        uses: nrwl/nx-set-shas@v4
+        uses: nrwl/nx-set-shas@3e9ad7370203c1e93d109be57f3b72eb0eb511b1 # v4
         with:
           main-branch-name: master
 
@@ -112,7 +112,7 @@ jobs:
       # Deploy to GitHub Pages
       # ------------------------------------------
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v4
+        uses: peaceiris/actions-gh-pages@329bcc8f12caed2cefe5a5b80781499a6f3b361b # v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs/.vitepress/dist

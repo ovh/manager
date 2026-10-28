@@ -28,7 +28,7 @@ jobs:
       # Derive NX_BASE / NX_HEAD
       # ------------------------------------------
       - name: Derive SHAs for Nx affected
-        uses: nrwl/nx-set-shas@v4
+        uses: nrwl/nx-set-shas@3e9ad7370203c1e93d109be57f3b72eb0eb511b1 # v4
         with:
           main-branch-name: master
 

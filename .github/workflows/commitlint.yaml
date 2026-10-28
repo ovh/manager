@@ -12,6 +12,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: wagoid/commitlint-github-action@v4
+      - uses: wagoid/commitlint-github-action@d524cbd2fcbd5dcce5ad4ca6733154643ab768da # v4
         with:
           configFile: './.commitlintrc.js'
