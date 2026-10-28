@@ -4,7 +4,15 @@ import get from 'lodash/get';
 import omit from 'lodash/omit';
 import partition from 'lodash/partition';
 
-import { isSiretMissingOrInvalid } from './billing-main-history.helpers';
+import {
+  isSiretMissingOrInvalid,
+  isWithinInvoiceDelayPeriod,
+} from './billing-main-history.helpers';
+
+const HIDE_HTML_INVOICE_FEATURE = 'billing:hideHtmlInvoice';
+// Shared with the hub banner (apps/hub/src/pages/dashboard), so a single switch
+// drives the banner in both places.
+const INVOICE_DELAY_BANNER_FEATURE = 'billing:invoiceDelayBanner';
 
 const mapDateFilter = (comparator, value) => {
   switch (comparator) {
@@ -177,12 +185,25 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
             billId,
             debtId,
           }),
-        isHtmlInvoiceAvailable: /* @ngInject */ (ovhFeatureFlipping) => {
-          const featureName = 'billing:hideHtmlInvoice';
-          return ovhFeatureFlipping
-            .checkFeatureAvailability(featureName)
-            .then((feature) => !feature.isFeatureAvailable(featureName));
-        },
+        featureAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
+          ovhFeatureFlipping.checkFeatureAvailability([
+            HIDE_HTML_INVOICE_FEATURE,
+            INVOICE_DELAY_BANNER_FEATURE,
+          ]),
+        isHtmlInvoiceAvailable: /* @ngInject */ (featureAvailability) =>
+          !featureAvailability.isFeatureAvailable(HIDE_HTML_INVOICE_FEATURE),
+        // The electronic invoicing platform the wording refers to is the French
+        // one: the delay only concerns customers of the FR subsidiary, wherever
+        // in the French regions they live.
+        showInvoiceDelayBanner: /* @ngInject */ (
+          currentUser,
+          featureAvailability,
+        ) =>
+          featureAvailability.isFeatureAvailable(
+            INVOICE_DELAY_BANNER_FEATURE,
+          ) &&
+          currentUser.ovhSubsidiary === 'FR' &&
+          isWithinInvoiceDelayPeriod(),
         canDownloadInvoices: /* @ngInject */ (currentUser) =>
           !isSiretMissingOrInvalid(currentUser),
         breadcrumb: () => null,
