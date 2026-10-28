@@ -10,7 +10,7 @@
         <label
             class="oui-field__label"
             data-ng-if="$ctrl.rule.fieldName !== 'area'"
-            data-ng-bind="('signup_field_' + $ctrl.rule.displayFieldName | translate) + ' ' + ($ctrl.rule.mandatory ? '' : 'signup_not_mandatory_field' | translate)"
+            data-ng-bind="$ctrl.getTranslatedLabel() + ' ' + ($ctrl.rule.mandatory ? '' : 'signup_not_mandatory_field' | translate)"
         ></label>
         <label
             class="oui-field__label"

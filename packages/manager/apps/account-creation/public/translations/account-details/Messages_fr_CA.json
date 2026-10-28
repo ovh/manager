@@ -28,6 +28,8 @@
   "account_details_field_siret": "SIRET",
   "account_details_field_siren": "SIREN",
   "account_details_field_vat": "Numéro de {{vatLabel}}",
+  "account_details_field_has_vat_number": "Je dispose d'un numéro de {{vatLabel}}",
+  "account_details_error_vat_cnin_mismatch": "Ce numéro de {{vatLabel}} ne correspond pas à votre {{cninLabel}}.",
   "account_details_field_italian_sdi": "Code du destinataire pour la facturation électronique (SDI)",
   "account_details_field_country": "Pays de résidence",
   "account_details_field_address": "Adresse",

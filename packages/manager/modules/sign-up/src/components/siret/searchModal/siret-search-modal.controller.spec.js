@@ -133,13 +133,16 @@ describe('auto-search on open', () => {
   it.each([
     ['', 'nothing'],
     [undefined, 'no binding at all'],
-  ])('leaves the field empty when the account holds %p (%s)', (initialSearch) => {
-    const { ctrl } = build({ init: false, initialSearch });
+  ])(
+    'leaves the field empty when the account holds %p (%s)',
+    (initialSearch) => {
+      const { ctrl } = build({ init: false, initialSearch });
 
-    ctrl.$onInit();
+      ctrl.$onInit();
 
-    expect(ctrl.search).toBe('');
-  });
+      expect(ctrl.search).toBe('');
+    },
+  );
 });
 
 describe('stale responses', () => {
@@ -191,7 +194,8 @@ describe('stale responses', () => {
 
   it('keeps a response whose SIRET is still the one on screen', async () => {
     const { ctrl } = build({
-      getSiret: () => Promise.resolve({ entryList: [FULL_ENTRY], type: 'siret' }),
+      getSiret: () =>
+        Promise.resolve({ entryList: [FULL_ENTRY], type: 'siret' }),
       init: false,
       initialSearch: '42476141900045',
     });
@@ -327,16 +331,15 @@ describe('wording of the intro', () => {
   it('asks to check the information once a company is on screen', () => {
     const { ctrl } = build({ legalForm: 'administration' });
     ctrl.selected = FULL_ENTRY;
-    expect(ctrl.getIntroKey()).toBe(
-      'siret_modal_review_intro_administration',
-    );
+    expect(ctrl.getIntroKey()).toBe('siret_modal_review_intro_administration');
   });
 });
 
 describe('result shapes', () => {
   it('preselects the single establishment a SIRET matches', async () => {
     const { ctrl } = build({
-      getSiret: () => Promise.resolve({ entryList: [FULL_ENTRY], type: 'siret' }),
+      getSiret: () =>
+        Promise.resolve({ entryList: [FULL_ENTRY], type: 'siret' }),
     });
     ctrl.search = '42476141900045';
 
@@ -350,7 +353,11 @@ describe('result shapes', () => {
   it('reports no result on the 404 shape', async () => {
     const { ctrl, atInternet } = build({
       getSiret: () =>
-        Promise.resolve({ error: false, searched: '98471504500014', entryList: [] }),
+        Promise.resolve({
+          error: false,
+          searched: '98471504500014',
+          entryList: [],
+        }),
     });
     ctrl.search = '98471504500014';
 
@@ -377,7 +384,9 @@ describe('result shapes', () => {
   });
 
   it('survives a rejected lookup', async () => {
-    const { ctrl } = build({ getSiret: () => Promise.reject(new Error('net')) });
+    const { ctrl } = build({
+      getSiret: () => Promise.reject(new Error('net')),
+    });
     ctrl.search = '98471504500014';
 
     await ctrl.submitSearch();

@@ -245,7 +245,10 @@ export default class SiretSearchModalCtrl {
     if (this.missingFieldsSource !== this.selected) {
       this.missingFieldsSource = this.selected;
       this.missingFieldLabelKeys = [
-        { value: this.selected?.name, key: companyNameLabelKey(this.legalForm) },
+        {
+          value: this.selected?.name,
+          key: companyNameLabelKey(this.legalForm),
+        },
         {
           value: this.selected?.address,
           key: 'siret_modal_non_diffusible_field_address',
