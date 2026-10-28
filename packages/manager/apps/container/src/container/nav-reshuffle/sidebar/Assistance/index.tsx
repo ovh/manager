@@ -122,7 +122,7 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
       <>
         <div
           ref={popoverAnchorRef}
-          className="flex justify-center my-2 h-[3.5rem]"
+          className="my-2 flex h-14 justify-center"
           tabIndex={0}
           onFocus={() =>
             document.getElementById('useful-links-button')?.focus()
@@ -134,7 +134,7 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
 
   return (
     <ul
-      className="mt-auto pb-3 flex-none"
+      className="mt-auto flex-none pb-3"
       id="useful-links"
       role="menu"
       data-testid="assistance-sidebar"

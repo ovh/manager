@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 import AssistanceSidebar, { AssistanceProps } from '.';
 import { mockShell } from '../mocks/sidebarMocks';
 import { assistanceTree } from '../navigation-tree/assistance';
+import SidebarLink from '../SidebarLink';
 
 vi.mock('@/context', () => ({
   useShell: () => {
