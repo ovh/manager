@@ -63,7 +63,8 @@ describe('OtherCategoryModal', () => {
     });
   });
 
-  it('shows the French e-invoicing wording for a FR account', async () => {
+  it.each(['FR', 'GP'])('shows the French e-invoicing wording for a %s account', async (country) => {
+    mockUser = { country };
     vi.spyOn(useModalModule, 'useCheckModalDisplay').mockReturnValue(true);
     const { queryByTestId, queryByText, getByText } = renderComponent();
     await waitFor(() => {

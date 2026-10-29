@@ -1,13 +1,19 @@
-import { User } from "@ovh-ux/manager-config";
+import { Country, User } from "@ovh-ux/manager-config";
+
+import { CERTIFICATE_CHECK_COUNTRIES } from '../company-information-modal/companyInformationModal.constants';
 
 // The "Autre" category (legalform === 'other') is removed for every country:
 // any account still holding it must update its category.
 export const isUserCategoryOther = (user: User) => user.legalform === 'other';
 
 // The French e-invoicing reform wording and its economie.gouv.fr link only make
-// sense in France; every other account gets the same request without them.
+// sense where the reform applies: mainland France and the overseas territories
+// it reaches (same list as the company information modal). Every other account
+// gets the same request without them.
 export const isFrenchAccount = (user?: Pick<User, 'country'> | null) =>
-  (user?.country ?? '').toUpperCase() === 'FR';
+  CERTIFICATE_CHECK_COUNTRIES.includes(
+    (user?.country ?? '').toUpperCase() as Country,
+  );
 
 // RG1 "at every login": once dismissed, the reminder stays closed for the rest of
 // the browser session (sessionStorage) and comes back with the next one, instead

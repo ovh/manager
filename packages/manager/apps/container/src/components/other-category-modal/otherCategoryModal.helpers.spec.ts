@@ -27,13 +27,15 @@ describe('isUserCategoryOther', () => {
 });
 
 describe('isFrenchAccount', () => {
-  it('is true for FR in any case', () => {
-    expect(isFrenchAccount({ country: 'FR' })).toBe(true);
+  it('is true for France and its overseas territories, in any case', () => {
+    ['FR', 'GP', 'MQ', 'RE', 'GF', 'YT', 'BL', 'PM'].forEach((country) =>
+      expect(isFrenchAccount({ country } as User)).toBe(true),
+    );
     expect(isFrenchAccount({ country: 'fr' } as unknown as User)).toBe(true);
   });
 
   it('is false for other countries and a missing user', () => {
-    ['TR', 'DE', 'GP'].forEach((country) =>
+    ['TR', 'DE'].forEach((country) =>
       expect(isFrenchAccount({ country } as User)).toBe(false),
     );
     expect(isFrenchAccount(undefined)).toBe(false);
