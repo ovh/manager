@@ -26,7 +26,6 @@ import {
   MERSIS_LEGAL_FORMS,
   MERSIS_PATTERN,
   KDV_PATTERN,
-  OTHER_CATEGORY_COUNTRIES,
 } from './new-account-form-component.constants';
 import { KYC_STATUS } from '../../../identity-documents/user-identity-documents.constant';
 import { SUPPORT_URLS } from '../../user.constants';
@@ -829,27 +828,19 @@ export default class NewAccountFormController {
     return result;
   }
 
-  // The e-invoicing "Autre" category controls (RG2/RG3/RG4) apply to French
-  // customers and, for F1, Turkish ones. Not behind the
+  // The "Autre" category controls (RG2/RG3/RG4) apply in every country: the
+  // standalone "Autre" category is no longer accepted. Not behind the
   // account:fr-e-invoicing-other-category flag: they are a lasting rule, while
   // the flag only gates the temporary home reminder (OtherCategoryModal).
-  isOtherCategoryControlActive() {
-    return OTHER_CATEGORY_COUNTRIES.includes(this.model?.country);
-  }
-
   // RG2/RG3: the currently selected category is the invalid "Autre" value.
   isOtherCategorySelected() {
-    return (
-      this.isOtherCategoryControlActive() &&
-      this.model?.legalform === USER_TYPE_OTHER
-    );
+    return this.model?.legalform === USER_TYPE_OTHER;
   }
 
   // RG4: the saved category was "Autre" and the customer switched to a category
   // holding company data (B2B/B2G/association). B2C (individual) is excluded (RG5).
   shouldShowCategorySwitchWarning() {
     return (
-      this.isOtherCategoryControlActive() &&
       this.originalModel?.legalform === USER_TYPE_OTHER &&
       [
         USER_TYPE_ENTERPRISE,
@@ -859,7 +850,7 @@ export default class NewAccountFormController {
     );
   }
 
-  // RG4: bring the customer to the company data (SIRET) section of the form.
+  // RG4: bring the customer to the company data (activity) section of the form.
   scrollToCompanyData() {
     this.$anchorScroll('ovh_form_content_activity');
   }

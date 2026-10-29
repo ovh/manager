@@ -427,11 +427,6 @@ export const FEATURES = {
 
 export const IN_SUBSIDIARY = 'IN';
 export const FR_COUNTRIES = ['FR', 'GP', 'MQ', 'GF', 'RE', 'YT'];
-/**
- * The countries where the e-invoicing "Autre" category controls apply: France
- * (and its DROM) plus, for F1, Turkey.
- */
-export const OTHER_CATEGORY_COUNTRIES = [...FR_COUNTRIES, TURKEY_COUNTRY];
 export const USER_TYPE_ENTERPRISE = 'corporation';
 export const USER_TYPE_ASSOCIATION = 'association';
 export const USER_TYPE_ADMINISTRATION = 'administration';

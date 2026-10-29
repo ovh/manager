@@ -1,17 +1,19 @@
-import { User } from "@ovh-ux/manager-config";
+import { Country, User } from "@ovh-ux/manager-config";
 
-import { isComplianceModalCountry } from '../compliance-reminder-modal/complianceReminderModal.helpers';
+import { CERTIFICATE_CHECK_COUNTRIES } from '../company-information-modal/companyInformationModal.constants';
 
-// The "Autre" category (legalform === 'other') is not compatible with the French
-// e-invoicing reform: FR customers holding it must update their category, and so
-// must Turkish ones (F1).
-export const isUserCategoryOther = (user: User) =>
-  user.legalform === 'other' && isComplianceModalCountry(user.country);
+// The "Autre" category (legalform === 'other') is removed for every country:
+// any account still holding it must update its category.
+export const isUserCategoryOther = (user: User) => user.legalform === 'other';
 
-// F1: the French e-invoicing reform wording and its economie.gouv.fr link only
-// make sense in France; Turkish accounts get the same request without them.
-export const isTurkishAccount = (user?: Pick<User, 'country'> | null) =>
-  (user?.country ?? '').toUpperCase() === 'TR';
+// The French e-invoicing reform wording and its economie.gouv.fr link only make
+// sense where the reform applies: mainland France and the overseas territories
+// it reaches (same list as the company information modal). Every other account
+// gets the same request without them.
+export const isFrenchAccount = (user?: Pick<User, 'country'> | null) =>
+  CERTIFICATE_CHECK_COUNTRIES.includes(
+    (user?.country ?? '').toUpperCase() as Country,
+  );
 
 // RG1 "at every login": once dismissed, the reminder stays closed for the rest of
 // the browser session (sessionStorage) and comes back with the next one, instead
@@ -35,7 +37,7 @@ export const setOtherCategoryDismissed = () => {
   }
 };
 
-// The display check: an "Autre" FR/TR account that has not dismissed the
+// The display check: an "Autre" account that has not dismissed the
 // reminder during this session.
 export const shouldRemindOtherCategory = (user: User) =>
   isUserCategoryOther(user) && !isOtherCategoryDismissed();

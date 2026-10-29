@@ -4,7 +4,7 @@
 export { ELECTRONIC_BILLING_REGULATION_LINK } from '../company-information-modal/companyInformationModal.constants';
 
 export const MODAL_NAME = 'OtherCategoryModal';
-// Feature flag gating the whole "Autre" category e-invoicing flow (FR only).
+// Feature flag gating the "Autre" category home reminder (every country).
 export const OTHER_CATEGORY_FEATURE = 'account:fr-e-invoicing-other-category';
 // Field id of the legalform select in the account edition form, used so the CTA
 // lands directly on the category select.
