@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.22.1...@ovh-ux/manager-pci-public-ip-app@0.23.0) (2026-10-30)
+
+
+### Bug Fixes
+
+* **pci-public-ip:** use masculine agreement in gateway deletion reason ([aeba8c9](https://github.com/ovh/manager/commit/aeba8c979a2c2d4924d800697e8d6fe7a4808631)), closes [#TAPC-7510](https://github.com/ovh/manager/issues/TAPC-7510)
+
+
+### Features
+
+* **pci-public-ip:** block deletion of basic ips carried by a gateway ([dc59421](https://github.com/ovh/manager/commit/dc594212e03852d020f5f623f175cd388284122d)), closes [#TAPC-7510](https://github.com/ovh/manager/issues/TAPC-7510)
+* **pci-public-ip:** translate gateway deletion block reason ([347720c](https://github.com/ovh/manager/commit/347720cad065158c6ace4f59435ddb7b116e246f)), closes [#TAPC-7510](https://github.com/ovh/manager/issues/TAPC-7510)
+
+
+
+
+
 ## [0.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.22.0...@ovh-ux/manager-pci-public-ip-app@0.22.1) (2026-10-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-public-ip-app

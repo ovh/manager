@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.17.9](https://github.com/ovh/manager/compare/@ovh-ux/backup-licenses@1.17.8...@ovh-ux/backup-licenses@1.17.9) (2026-10-30)
+
+
+### Bug Fixes
+
+* **backup-licenses:** pin tsc-alias to 1.8.16 ([c903943](https://github.com/ovh/manager/commit/c9039435161ead5af7a1cf28447e4a0cc733d2a2))
+
+
+
+
+
 ## [1.17.8](https://github.com/ovh/manager/compare/@ovh-ux/backup-licenses@1.17.7...@ovh-ux/backup-licenses@1.17.8) (2026-10-28)
 
 
