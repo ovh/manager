@@ -16,18 +16,18 @@ jobs:
       # Checkout
       # -------------------------
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
 
       # -------------------------
       # labeler
       # -------------------------
       - name: PR Labeler (actions/labeler)
-        uses: actions/labeler@v4
+        uses: actions/labeler@ac9175f8a1f3625fd0d4fb234536d26811351594 # v4.3.0
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Branch name labeler
-        uses: TimonVS/pr-labeler-action@v4
+        uses: TimonVS/pr-labeler-action@8b99f404a073744885d8021d1de4e40c6eaf38e2 # v4.1.1
         with:
           configuration-path: .github/branch-name-labeler.yml
         env:
@@ -44,7 +44,7 @@ jobs:
       # merge_conflict_finder
       # -------------------------
       - name: Merge Conflict finder
-        uses: olivernybroe/action-conflict-finder@v4.0
+        uses: olivernybroe/action-conflict-finder@78f7add155e0bf97e9c71cb0383ef5691f72868c # v4.0
         with:
           exclude_dir: "node_modules/**"
 
@@ -52,7 +52,7 @@ jobs:
       # auto-label-merge-conflicts
       # -------------------------
       - name: Auto-label merge conflicts
-        uses: mschilde/auto-label-merge-conflicts@master
+        uses: mschilde/auto-label-merge-conflicts@3fdaf1c8b3f8e5b0f88753d9cb3c9c779370b3ef # master 2026-05-09 (v2.0 does not build: unpinned node:alpine)
         with:
           CONFLICT_LABEL_NAME: "has conflicts"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -63,7 +63,7 @@ jobs:
       # yarn-explain
       # -------------------------
       - name: Yarn Lock Changes
-        uses: Simek/yarn-lock-changes@main
+        uses: Simek/yarn-lock-changes@59f47ee499424d2c2437c5aebf863b5c6d50a5bc # v0.14.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           collapsibleThreshold: 10

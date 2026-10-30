@@ -30,7 +30,7 @@ jobs:
       # Free disk space
       # ------------------------------------------
       - name: Free Disk Space (Ubuntu)
-        uses: jlumbroso/free-disk-space@v1.3.1
+        uses: jlumbroso/free-disk-space@54081f138730dfa15788a46383842cd2f914a1be # v1.3.1
         with:
           tool-cache: true
           android: false
@@ -44,7 +44,7 @@ jobs:
       # Checkout
       # ------------------------------------------
       - name: Checkout latest code
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
           fetch-depth: 0
 
@@ -52,7 +52,7 @@ jobs:
       # Derive NX_BASE / NX_HEAD
       # ------------------------------------------
       - name: Derive SHAs for Nx affected
-        uses: nrwl/nx-set-shas@v4
+        uses: nrwl/nx-set-shas@3e9ad7370203c1e93d109be57f3b72eb0eb511b1 # v4.4.0
         with:
           main-branch-name: master
 
@@ -65,7 +65,7 @@ jobs:
       # Node
       # ------------------------------------------
       - name: Use Node.js 22.x
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: 22
 
@@ -73,7 +73,7 @@ jobs:
       # pnpm binary cache (tool only)
       # ------------------------------------------
       - name: Restore pnpm binary
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
           path: target/pnpm
           key: ${{ runner.os }}-pnpm-binary-${{ env.PNPM_VERSION }}
@@ -84,7 +84,7 @@ jobs:
       # Yarn cache (tarballs only, standard path)
       # ------------------------------------------
       - name: Restore Yarn cache
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
           path: ~/.cache/yarn
           key: ${{ runner.os }}-yarn-cache-node22-${{ hashFiles('yarn.lock') }}
@@ -98,7 +98,7 @@ jobs:
       # Nx local cache
       # ------------------------------------------
       - name: Restore Nx cache
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
           path: .nx
           key: ${{ runner.os }}-nx-cache-node22-${{ hashFiles('yarn.lock') }}
