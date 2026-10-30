@@ -1,0 +1,7 @@
+{
+  "missing_cnin_modal_title": "Complétez le numéro d'identification de votre entreprise",
+  "missing_cnin_modal_description_siret": "Le numéro SIRET de votre entreprise n'est pas renseigné sur votre compte. Sa saisie est obligatoire pour que vos factures restent conformes.",
+  "missing_cnin_modal_description_mersis": "Le MERSIS No de votre entreprise n'est pas renseigné sur votre compte. Sa saisie est obligatoire pour que vos factures restent conformes.",
+  "missing_cnin_modal_action_update": "Compléter mon profil",
+  "missing_cnin_modal_action_later": "Plus tard"
+}
