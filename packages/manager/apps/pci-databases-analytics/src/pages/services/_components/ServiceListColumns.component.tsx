@@ -25,6 +25,7 @@ import { EngineIcon } from '@/components/engine-icon/EngineIcon.component';
 import { getRegionFlag } from '@/lib/flagHelper';
 import Flag from '@/components/flag/Flag.component';
 import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
+import EolBadge from '@/components/eol-badge/EolBadge.component';
 
 interface ServiceListColumnsProps {
   onRenameClicked: (service: database.Service) => void;
@@ -91,6 +92,7 @@ export const getColumns = ({
             <EngineIcon engine={engine} category={category} />
             <span className="whitespace-nowrap">{humanizeEngine(engine)}</span>
             <span>{version}</span>
+            <EolBadge engine={engine} version={version} />
           </div>
         );
       },
