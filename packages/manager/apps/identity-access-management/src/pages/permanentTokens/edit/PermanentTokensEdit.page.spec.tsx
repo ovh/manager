@@ -24,30 +24,40 @@ vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
     OdsInput: ({
       value,
       onOdsChange,
+      maxlength,
+      hasError,
       ...props
     }: PropsWithChildren<{
       value: string;
       onOdsChange: (value: unknown) => unknown;
+      maxlength?: number;
+      hasError?: boolean;
     }>) => (
       <input
         data-testid="ods-input"
         value={value}
         onChange={(e) => onOdsChange({ detail: { value: e.target.value } })}
+        maxLength={maxlength}
         {...props}
       />
     ),
     OdsTextarea: ({
       value,
       onOdsChange,
+      maxlength,
+      hasError,
       ...props
     }: PropsWithChildren<{
       value: string;
       onOdsChange: (value: unknown) => unknown;
+      maxlength?: number;
+      hasError?: boolean;
     }>) => (
       <input
         data-testid="ods-textarea"
         value={value}
         onChange={(e) => onOdsChange({ detail: { value: e.target.value } })}
+        maxLength={maxlength}
         {...props}
       />
     ),
