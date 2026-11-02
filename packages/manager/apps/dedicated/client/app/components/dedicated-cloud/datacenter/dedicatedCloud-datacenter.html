@@ -60,7 +60,19 @@
             data-ng-click=":: $ctrl.trackTab('nsx-edge-nodes')"
             ><span data-ng-bind=":: $ctrl.NETWORK_LABEL"></span
         ></oui-header-tabs-item>
-        <oui-header-tabs-item data-state="{{:: $ctrl.backupState }}"
+        <oui-header-tabs-item data-ng-if="!$ctrl.backupTabTarget"
+            ><span data-translate="dedicatedCloud_tab_backup"></span
+        ></oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-ng-if="$ctrl.backupTabTarget === $ctrl.BACKUP_TAB.MANAGED_BACKUP_FOR_VMWARE_APP"
+            data-href="{{:: $ctrl.managedBackupForVmwareDashboardUrl }}"
+            data-external="true"
+            data-on-click="$ctrl.trackTab('managed-backup-for-vmware')"
+            ><span data-translate="dedicatedCloud_tab_backup"></span
+        ></oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-ng-if="$ctrl.backupTabTarget && $ctrl.backupTabTarget !== $ctrl.BACKUP_TAB.MANAGED_BACKUP_FOR_VMWARE_APP"
+            data-state="{{:: $ctrl.backupState }}"
             ><span data-translate="dedicatedCloud_tab_backup"></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item

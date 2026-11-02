@@ -65,8 +65,14 @@ export const TRUSTED_ACCOUNT_BACKUP_TARIFF_URL = {
 export const MANAGED_BACKUP_FOR_VMWARE_URL =
   '/beta/#/private-cloud/managed-backup-for-vmware';
 
+/** The two pages of the MBV app the Backup tab leads to (BKP-1775). */
+export const MANAGED_BACKUP_FOR_VMWARE_DASHBOARD_URL = `${MANAGED_BACKUP_FOR_VMWARE_URL}/dashboard`;
+export const MANAGED_BACKUP_FOR_VMWARE_ORDER_URL = `${MANAGED_BACKUP_FOR_VMWARE_URL}/order`;
+
 export default {
   BACKUP_TARIFF_URL,
+  MANAGED_BACKUP_FOR_VMWARE_DASHBOARD_URL,
+  MANAGED_BACKUP_FOR_VMWARE_ORDER_URL,
   MANAGED_BACKUP_FOR_VMWARE_URL,
   TRUSTED_ACCOUNT_BACKUP_TARIFF_URL,
 };

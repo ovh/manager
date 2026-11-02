@@ -12,14 +12,17 @@ import {
   MANAGED_BACKUP_FOR_VMWARE_CONTAINER_FEATURE,
   MANAGED_BACKUP_FOR_VMWARE_CONTAINER_SNC_FEATURE,
 } from '../../../../app/dedicatedCloud/datacenter/backup/backup-order-availability';
+import { BACKUP_TAB } from '../../../../app/dedicatedCloud/datacenter/backup/backup-tab';
 
 const BACKUP_STATE = 'app.dedicatedCloud.details.datacenter.details.backup';
+const DASHBOARD_STATE =
+  'app.dedicatedCloud.details.datacenter.details.dashboard';
 const MBV_OPEN = [
   CAN_ORDER_BACKUP_FEATURE,
   MANAGED_BACKUP_FOR_VMWARE_CONTAINER_FEATURE,
 ];
 
-describe('PCC datacenter backup routing (BKP-1758)', () => {
+describe('PCC datacenter backup routing (BKP-1758, BKP-1775)', () => {
   let $state;
   let $rootScope;
   let lastTransition;
@@ -32,6 +35,7 @@ describe('PCC datacenter backup routing (BKP-1758)', () => {
     featureFlippingFails = false,
     isSplaActive = true,
     hostCount = 3,
+    backupTab = BACKUP_TAB.LEGACY,
   } = {}) => {
     beforeEach(() => {
       angular.module('backupRoutingTest', ['ui.router']);
@@ -56,8 +60,10 @@ describe('PCC datacenter backup routing (BKP-1758)', () => {
               datacenterList: () => [{ id: 1 }],
               currentService: () => ({ usesLegacyOrder: false }),
               currentUser: () => ({ ovhSubsidiary: 'FR', isTrusted }),
+              backupTab: ['$q', ($q) => ({ target: $q.resolve(backupTab) })],
             },
           })
+          .state(DASHBOARD_STATE, {})
           .state('app.dedicatedCloud.details.operation', {})
           .state('app.dedicatedCloud.details.license', {})
           .state(
@@ -120,8 +126,8 @@ describe('PCC datacenter backup routing (BKP-1758)', () => {
     it('stays on the Backup tab instead of the activation page', () => {
       expect(go(BACKUP_STATE)).toBe(BACKUP_STATE);
       expect(resolved('isOrderBlockedByManagedBackupForVmware')).toBe(true);
-      expect(resolved('managedBackupForVmwareUrl')).toBe(
-        '/beta/#/private-cloud/managed-backup-for-vmware',
+      expect(resolved('managedBackupForVmwareOrderUrl')).toBe(
+        '/beta/#/private-cloud/managed-backup-for-vmware/order',
       );
     });
 
@@ -129,6 +135,24 @@ describe('PCC datacenter backup routing (BKP-1758)', () => {
       'sends a direct URL to %s back to the Backup tab',
       (subState) => {
         expect(go(`${BACKUP_STATE}.${subState}`)).toBe(BACKUP_STATE);
+      },
+    );
+  });
+
+  describe('normal account, MBV open, PCC protected by MBV', () => {
+    setup({
+      features: MBV_OPEN,
+      backupTab: BACKUP_TAB.MANAGED_BACKUP_FOR_VMWARE_APP,
+    });
+
+    it('sends a direct URL to the Backup tab to the datacenter dashboard', () => {
+      expect(go(BACKUP_STATE)).toBe(DASHBOARD_STATE);
+    });
+
+    it.each(['new', 'spla-licence', 'minimum-hosts'])(
+      'sends a direct URL to %s to the datacenter dashboard',
+      (subState) => {
+        expect(go(`${BACKUP_STATE}.${subState}`)).toBe(DASHBOARD_STATE);
       },
     );
   });

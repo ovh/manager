@@ -1,0 +1,15 @@
+{
+  "dedicatedCloud_datacenter_backup_managed_backup_for_vmware_onboarding_product_name": "Managed Backup for VMware",
+  "dedicatedCloud_datacenter_backup_managed_backup_for_vmware_onboarding_title": "All the reliability of Veeam for your VMware VMs, without the complexity",
+  "dedicatedCloud_datacenter_backup_managed_backup_for_vmware_onboarding_description": "Back up the virtual machines of your infrastructure (PCC) without running a server or managing a licence: OVHcloud deploys and maintains your dedicated VBR, encrypted storage included.",
+  "dedicatedCloud_datacenter_backup_managed_backup_for_vmware_onboarding_order": "Order",
+  "dedicatedCloud_datacenter_backup_managed_backup_for_vmware_onboarding_launch_offer_title": "Launch offer: your first consumption period is free",
+  "dedicatedCloud_datacenter_backup_managed_backup_for_vmware_onboarding_launch_offer_description": "Order by {{ date }} and the consumption period running on the day of your order is not billed. Your backups start at no cost, and billing begins with the next period.",
+  "dedicatedCloud_datacenter_backup_managed_backup_for_vmware_onboarding_guide_badge": "Tutorial",
+  "dedicatedCloud_datacenter_backup_managed_backup_for_vmware_onboarding_guide_getting_started_title": "Getting started with Managed Backup for VMware",
+  "dedicatedCloud_datacenter_backup_managed_backup_for_vmware_onboarding_guide_getting_started_description": "Order the service, connect to your VBR and start protecting your virtual machines.",
+  "dedicatedCloud_datacenter_backup_managed_backup_for_vmware_onboarding_guide_tag_vm_title": "How to tag my virtual machines",
+  "dedicatedCloud_datacenter_backup_managed_backup_for_vmware_onboarding_guide_tag_vm_description": "Add the tag in vSphere to choose the Backup plan of each machine.",
+  "dedicatedCloud_datacenter_backup_managed_backup_for_vmware_onboarding_guide_migrate_title": "Migrate from Veeam Managed Backup to Managed Backup for VMware",
+  "dedicatedCloud_datacenter_backup_managed_backup_for_vmware_onboarding_guide_migrate_description": "Already using Veeam Managed Backup? Find out how to move your virtual machines to Managed Backup for VMware."
+}

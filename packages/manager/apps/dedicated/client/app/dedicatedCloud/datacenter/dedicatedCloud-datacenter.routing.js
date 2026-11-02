@@ -5,6 +5,10 @@ import {
   MAX_NSX_EDGES,
   TRACKING_PREFIX_DATACENTER,
 } from './dedicatedCloud-datacenter.constants';
+import Backup from '../../components/dedicated-cloud/datacenter/backup/backup.class';
+import { getBackupOrderAvailability } from './backup/backup-order-availability';
+import { getBackupTab } from './backup/backup-tab';
+import { MANAGED_BACKUP_FOR_VMWARE_DASHBOARD_URL } from './backup/backup.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicatedCloud.details.datacenter.details', {
@@ -68,6 +72,34 @@ export default /* @ngInject */ ($stateProvider) => {
           'app.dedicatedCloud.details.datacenter.details.dashboard.delete',
         ),
       backupState: () => 'app.dedicatedCloud.details.datacenter.details.backup',
+      // Wrapped so that the page does not wait for it: while it loads, the
+      // Backup tab is shown and does nothing on click (BKP-1775).
+      backupTab: /* @ngInject */ (
+        $http,
+        $q,
+        coreConfig,
+        datacenterId,
+        OvhApiDedicatedCloudDatacenter,
+        ovhFeatureFlipping,
+        serviceName,
+      ) => ({
+        target: getBackupTab({
+          $http,
+          $q,
+          backupOrderAvailability: getBackupOrderAvailability(
+            ovhFeatureFlipping,
+            coreConfig.getUser().isTrusted,
+          ),
+          getBackup: () =>
+            OvhApiDedicatedCloudDatacenter.Backup()
+              .v6()
+              .get({ serviceName, datacenterId })
+              .$promise.then((backup) => new Backup(backup)),
+          serviceName,
+        }),
+      }),
+      managedBackupForVmwareDashboardUrl: () =>
+        MANAGED_BACKUP_FOR_VMWARE_DASHBOARD_URL,
       dashboardState: () =>
         'app.dedicatedCloud.details.datacenter.details.dashboard',
       datastoresState: () =>
