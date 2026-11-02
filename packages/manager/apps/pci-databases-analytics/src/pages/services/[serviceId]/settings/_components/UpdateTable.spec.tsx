@@ -62,6 +62,10 @@ vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
 }));
 
 
+vi.mock('@/data/api/database/capabilities.api', () => ({
+  getEnginesCapabilities: vi.fn(() => []),
+}));
+
 vi.mock('@/data/api/database/availability.api', () => ({
   getAvailabilities: vi.fn(() => [
     mockedAvailabilities,

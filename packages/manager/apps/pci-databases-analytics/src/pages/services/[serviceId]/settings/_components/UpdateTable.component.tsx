@@ -12,6 +12,7 @@ import { useGetCurrentAvailability } from '@/hooks/api/database/availability/use
 import { isEndOfLifecycle } from '@/lib/availabilitiesHelper';
 import NavLink from '@/components/links/NavLink.component';
 import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
+import VersionEolDate from './VersionEolDate.component';
 
 const UpdateTable = () => {
   const { t } = useTranslation(
@@ -65,7 +66,12 @@ const UpdateTable = () => {
   const rows = [
     {
       title: t('tableVersion'),
-      cell: `${humanizeEngine(service.engine)} ${service.version}`,
+      cell: (
+        <>
+          {`${humanizeEngine(service.engine)} ${service.version}`}
+          <VersionEolDate />
+        </>
+      ),
       path: './update-version',
       updateButtonDisplayed: availabilitiesVersionQuery.data?.some(
         (availability) => availability.version !== service.version,
