@@ -1,0 +1,45 @@
+<oui-message
+    type="info"
+    class="mb-4"
+    data-ng-if=":: $ctrl.isLaunchOfferRunning"
+>
+    <strong
+        class="d-block"
+        data-translate="dedicatedCloud_datacenter_backup_managed_backup_for_vmware_onboarding_launch_offer_title"
+    ></strong>
+    <span
+        data-translate="dedicatedCloud_datacenter_backup_managed_backup_for_vmware_onboarding_launch_offer_description"
+        data-translate-values="{ date: $ctrl.launchOfferEnd }"
+    ></span>
+</oui-message>
+<manager-on-boarding-layout
+    data-guides=":: $ctrl.guides"
+    data-image-source=":: $ctrl.illustration"
+>
+    <onboarding-title>
+        <span
+            data-translate="dedicatedCloud_datacenter_backup_managed_backup_for_vmware_onboarding_product_name"
+        ></span>
+    </onboarding-title>
+    <onboarding-description>
+        <p
+            class="font-weight-bold"
+            data-translate="dedicatedCloud_datacenter_backup_managed_backup_for_vmware_onboarding_title"
+        ></p>
+        <p
+            class="mb-4"
+            data-translate="dedicatedCloud_datacenter_backup_managed_backup_for_vmware_onboarding_description"
+        ></p>
+        <div class="d-flex justify-content-center">
+            <a
+                class="oui-button oui-button_primary oui-button_l text-light"
+                target="_top"
+                data-ng-href="{{:: $ctrl.orderUrl }}"
+                data-track-on="click"
+                data-track-name="{{:: $ctrl.trackingPrefix + '::datacenter::backup::managed-backup-for-vmware::order' }}"
+                data-track-type="navigation"
+                data-translate="dedicatedCloud_datacenter_backup_managed_backup_for_vmware_onboarding_order"
+            ></a>
+        </div>
+    </onboarding-description>
+</manager-on-boarding-layout>

@@ -14,9 +14,10 @@ import {
 
 import {
   BACKUP_TARIFF_URL,
-  MANAGED_BACKUP_FOR_VMWARE_URL,
+  MANAGED_BACKUP_FOR_VMWARE_ORDER_URL,
   TRUSTED_ACCOUNT_BACKUP_TARIFF_URL,
 } from './backup.constants';
+import { BACKUP_TAB } from './backup-tab';
 import {
   getBackupOrderAvailability,
   isLegacyBackupOrderBlockedByManagedBackupForVmware,
@@ -41,10 +42,22 @@ export default /* @ngInject */ ($stateProvider) => {
           transition
             .injector()
             .getAsync('isOrderBlockedByManagedBackupForVmware'),
+          transition
+            .injector()
+            .getAsync('backupTab')
+            .then(({ target }) => target),
         ])
-        .then(([licence, backup, hosts, isOrderBlockedByMbv]) => {
+        .then(([licence, backup, hosts, isOrderBlockedByMbv, backupTab]) => {
+          // The PCC is protected by Managed Backup for VMware: the tab opens
+          // the MBV app in a new browser tab, a direct URL lands on the
+          // datacenter dashboard.
+          if (backupTab === BACKUP_TAB.MANAGED_BACKUP_FOR_VMWARE_APP) {
+            return {
+              state: 'app.dedicatedCloud.details.datacenter.details.dashboard',
+            };
+          }
           // The legacy offer can no longer be activated: stay on the tab,
-          // which points to Managed Backup for VMware.
+          // which shows the Managed Backup for VMware onboarding.
           if (isOrderBlockedByMbv) {
             return false;
           }
@@ -227,7 +240,7 @@ export default /* @ngInject */ ($stateProvider) => {
           backup,
           backupOrderAvailability,
         ),
-      managedBackupForVmwareUrl: () => MANAGED_BACKUP_FOR_VMWARE_URL,
+      managedBackupForVmwareOrderUrl: () => MANAGED_BACKUP_FOR_VMWARE_ORDER_URL,
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('dedicated_cloud_datacenters_datacenter_backup'),
     },

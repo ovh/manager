@@ -9,6 +9,7 @@ import {
 } from './dedicatedCloud-datacenter.constants';
 import { VDC_TYPE } from './vmware-vdc-add/dedicatedCloud-vmware-vdc-add.constants';
 import { NETWORK_LABEL } from '../../../dedicatedCloud/datacenter/dedicatedCloud-datacenter.constants';
+import { BACKUP_TAB } from '../../../dedicatedCloud/datacenter/backup/backup-tab';
 import { LABELS } from '../dedicatedCloud.constant';
 
 export default class {
@@ -21,9 +22,19 @@ export default class {
     this.TRACKING_NEW_PRODUCT_BANNER = TRACKING_NEW_PRODUCT_BANNER;
     this.NETWORK_LABEL = NETWORK_LABEL;
     this.LABELS = LABELS;
+    this.BACKUP_TAB = BACKUP_TAB;
   }
 
   $onInit() {
+    // Managed Bare Metal does not bind it: its Backup tab is unchanged.
+    if (this.backupTab) {
+      this.backupTab.target.then((target) => {
+        this.backupTabTarget = target;
+      });
+    } else {
+      this.backupTabTarget = BACKUP_TAB.LEGACY;
+    }
+
     this.ovhManagerPccDatacenterService
       .getCommercialRangeName(
         this.datacenter.model.serverName,

@@ -6,6 +6,8 @@ export default {
     datacenter: '<',
     editDetails: '<',
     backupState: '<',
+    backupTab: '<?',
+    managedBackupForVmwareDashboardUrl: '<?',
     dashboardState: '<',
     datastoresState: '<',
     zertoAvailability: '<',

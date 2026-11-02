@@ -12,6 +12,7 @@ import './backup.less';
 import backupOfferDetails from './components/offer-details';
 import backupOffers from './components/offers';
 import backupService from './backup.service';
+import managedBackupForVmwareOnboarding from './managed-backup-for-vmware-onboarding';
 import component from './backup.component';
 
 const moduleName = 'ovhManagerDedicatedCloudBackupModule';
@@ -26,6 +27,7 @@ angular
     'pascalprecht.translate',
     backupOfferDetails,
     backupOffers,
+    managedBackupForVmwareOnboarding,
     ngAtInternet,
   ])
   .component('dedicatedCloudDatacenterBackup', component)

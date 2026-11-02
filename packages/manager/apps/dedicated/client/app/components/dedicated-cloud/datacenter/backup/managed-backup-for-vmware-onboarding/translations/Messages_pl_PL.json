@@ -1,0 +1,15 @@
+{
+  "dedicatedCloud_datacenter_backup_managed_backup_for_vmware_onboarding_product_name": "Managed Backup for VMware",
+  "dedicatedCloud_datacenter_backup_managed_backup_for_vmware_onboarding_title": "Pełna niezawodność Veeam dla Twoich maszyn wirtualnych VMware, bez złożoności",
+  "dedicatedCloud_datacenter_backup_managed_backup_for_vmware_onboarding_description": "Twórz kopie zapasowe maszyn wirtualnych swojej infrastruktury (PCC) bez utrzymywania serwera i zarządzania licencją: OVHcloud wdraża i utrzymuje Twój dedykowany VBR, szyfrowana pamięć masowa w cenie.",
+  "dedicatedCloud_datacenter_backup_managed_backup_for_vmware_onboarding_order": "Zamów",
+  "dedicatedCloud_datacenter_backup_managed_backup_for_vmware_onboarding_launch_offer_title": "Oferta na start: Twój pierwszy okres zużycia jest bezpłatny",
+  "dedicatedCloud_datacenter_backup_managed_backup_for_vmware_onboarding_launch_offer_description": "Zamów do {{ date }}: okres zużycia trwający w dniu złożenia zamówienia nie zostanie Ci naliczony. Twoje kopie zapasowe startują bez kosztów, a rozliczenie zaczyna się od kolejnego okresu.",
+  "dedicatedCloud_datacenter_backup_managed_backup_for_vmware_onboarding_guide_badge": "Tutorial",
+  "dedicatedCloud_datacenter_backup_managed_backup_for_vmware_onboarding_guide_getting_started_title": "Pierwsze kroki z Managed Backup for VMware",
+  "dedicatedCloud_datacenter_backup_managed_backup_for_vmware_onboarding_guide_getting_started_description": "Zamów usługę, połącz się ze swoim VBR i zacznij chronić swoje maszyny wirtualne.",
+  "dedicatedCloud_datacenter_backup_managed_backup_for_vmware_onboarding_guide_tag_vm_title": "Jak otagować moje maszyny wirtualne",
+  "dedicatedCloud_datacenter_backup_managed_backup_for_vmware_onboarding_guide_tag_vm_description": "Nadaj tag w vSphere, aby wybrać Backup plan dla każdej maszyny.",
+  "dedicatedCloud_datacenter_backup_managed_backup_for_vmware_onboarding_guide_migrate_title": "Migracja z Veeam Managed Backup do Managed Backup for VMware",
+  "dedicatedCloud_datacenter_backup_managed_backup_for_vmware_onboarding_guide_migrate_description": "Korzystasz z Veeam Managed Backup? Dowiedz się, jak przenieść swoje maszyny wirtualne do Managed Backup for VMware."
+}

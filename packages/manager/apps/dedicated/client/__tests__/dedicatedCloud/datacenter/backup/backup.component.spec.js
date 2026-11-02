@@ -5,9 +5,11 @@ import {
   BACKUP_STATE_ENABLED,
 } from '../../../../app/components/dedicated-cloud/datacenter/backup/backup.constants';
 
-const MBV_URL = '/beta/#/private-cloud/managed-backup-for-vmware';
+const MBV_ORDER_URL = '/beta/#/private-cloud/managed-backup-for-vmware/order';
+const ONBOARDING =
+  'dedicated-cloud-datacenter-backup-managed-backup-for-vmware-onboarding';
 
-describe('dedicatedCloudDatacenterBackup component (BKP-1758)', () => {
+describe('dedicatedCloudDatacenterBackup component (BKP-1758, BKP-1775)', () => {
   let $compile;
   let $rootScope;
 
@@ -42,7 +44,7 @@ describe('dedicatedCloudDatacenterBackup component (BKP-1758)', () => {
         data-tracking-prefix="trackingPrefix"
         data-can-order-backup="canOrderBackup"
         data-is-order-blocked-by-managed-backup-for-vmware="isOrderBlocked"
-        data-managed-backup-for-vmware-url="managedBackupForVmwareUrl"
+        data-managed-backup-for-vmware-order-url="managedBackupForVmwareOrderUrl"
       ></dedicated-cloud-datacenter-backup>
     `)($scope);
     $scope.$digest();
@@ -51,40 +53,35 @@ describe('dedicatedCloudDatacenterBackup component (BKP-1758)', () => {
 
   const text = (element) => element.textContent;
 
-  it('orients a datacenter without backup to Managed Backup for VMware when MBV blocks the order', () => {
+  it('shows the Managed Backup for VMware onboarding, and only it, when MBV blocks the order', () => {
     const element = render({
       backup: new Backup({ state: BACKUP_STATE_DISABLED }),
       canOrderBackup: true,
       isOrderBlocked: true,
-      managedBackupForVmwareUrl: MBV_URL,
+      managedBackupForVmwareOrderUrl: MBV_ORDER_URL,
     });
 
-    expect(text(element)).toContain(
-      'dedicatedCloud_datacenter_backup_managed_backup_for_vmware_order_info',
-    );
-    const link = element.querySelector(`a[href="${MBV_URL}"]`);
-    expect(link).not.toBeNull();
-    expect(link.getAttribute('target')).toBe('_top');
-    expect(text(link)).toContain(
-      'dedicatedCloud_datacenter_backup_managed_backup_for_vmware_order_link',
+    const onboarding = element.querySelector(ONBOARDING);
+    expect(onboarding).not.toBeNull();
+    expect(onboarding.getAttribute('data-order-url')).toBe(
+      '$ctrl.managedBackupForVmwareOrderUrl',
     );
     expect(element.querySelector('.datacenter-backup')).toBeNull();
+    expect(element.querySelector('.datacenter-backup-header')).toBeNull();
     expect(text(element)).not.toContain(
       'dedicatedCloud_datacenter_backup_order_warning',
     );
   });
 
-  it('shows the MBV message, not the out-of-stock warning, when both block', () => {
+  it('shows the onboarding, not the out-of-stock warning, when both block', () => {
     const element = render({
       backup: new Backup({ state: BACKUP_STATE_DISABLED }),
       canOrderBackup: false,
       isOrderBlocked: true,
-      managedBackupForVmwareUrl: MBV_URL,
+      managedBackupForVmwareOrderUrl: MBV_ORDER_URL,
     });
 
-    expect(text(element)).toContain(
-      'dedicatedCloud_datacenter_backup_managed_backup_for_vmware_order_info',
-    );
+    expect(element.querySelector(ONBOARDING)).not.toBeNull();
     expect(text(element)).not.toContain(
       'dedicatedCloud_datacenter_backup_order_warning',
     );
@@ -100,24 +97,20 @@ describe('dedicatedCloudDatacenterBackup component (BKP-1758)', () => {
     expect(text(element)).toContain(
       'dedicatedCloud_datacenter_backup_order_warning',
     );
-    expect(text(element)).not.toContain(
-      'dedicatedCloud_datacenter_backup_managed_backup_for_vmware_order_info',
-    );
+    expect(element.querySelector(ONBOARDING)).toBeNull();
   });
 
-  it('leaves an existing customer everything, without the MBV message, when MBV is open', () => {
+  it('leaves an existing customer everything, without the onboarding, when MBV is open', () => {
     const element = render({
       backup: new Backup({ state: BACKUP_STATE_ENABLED }),
       canOrderBackup: true,
       isOrderBlocked: false,
-      managedBackupForVmwareUrl: MBV_URL,
+      managedBackupForVmwareOrderUrl: MBV_ORDER_URL,
     });
 
     expect(element.querySelector('.datacenter-backup')).not.toBeNull();
     expect(element.querySelector('#backupCapabilitiesForm')).not.toBeNull();
-    expect(text(element)).not.toContain(
-      'dedicatedCloud_datacenter_backup_managed_backup_for_vmware_order_info',
-    );
+    expect(element.querySelector(ONBOARDING)).toBeNull();
     expect(text(element)).not.toContain(
       'dedicatedCloud_datacenter_backup_order_warning',
     );
