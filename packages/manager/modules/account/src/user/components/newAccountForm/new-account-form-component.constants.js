@@ -10,6 +10,11 @@ export const READY_ONLY_RULES_PARAMS = [
   'smsConsent',
   // model-only field for the e-invoicing picker; /newAccount/rules rejects it
   'einvoicingBillingAddress',
+  // model-only field for the pixel-tracking checkbox: it is a decision on the
+  // marketing-email consent campaign, not a /me attribute, so both
+  // /newAccount/rules and PUT /me reject it. This single entry strips it from
+  // both (READY_ONLY_PARAMS is derived from this list just below).
+  'pixelTrackingConsent',
 ];
 
 export const READY_ONLY_PARAMS = [
@@ -68,6 +73,8 @@ export const SECTIONS = {
   contact: [
     'email',
     'commercialCommunicationsApproval',
+    // the pixel-tracking checkbox sits next to the marketing-email one
+    'pixelTrackingConsent',
     'spareEmail',
     'country',
     'address',
@@ -108,6 +115,10 @@ export const FIELD_NAME_LIST = {
   nationalIdentificationNumber: 'nationalIdentificationNumber',
   email: 'email',
   commercialCommunicationsApproval: 'commercialCommunicationsApproval',
+  // this position drives the display order (the rules are sorted by
+  // Object.keys(FIELD_NAME_LIST).indexOf), so the pixel checkbox renders right
+  // under the marketing-email one whatever the splice index was
+  pixelTrackingConsent: 'pixelTrackingConsent',
   spareEmail: 'spareEmail',
   password: 'password',
   timezone: 'timezone',
@@ -388,6 +399,18 @@ export const FIELD_WITHOUT_MARGIN_BOTTOM = ['email', 'phoneType', 'phone'];
 
 export const TRACKING_PREFIX = 'accountmodification';
 
+// Parent controller -> checkbox field components.
+// A checkbox's rendered state lives in the field component's own local value
+// (setInitialValue runs once, at $onInit, behind a truthy-only guard), and the
+// ng-repeat tracks by fieldName, so re-injecting a rule with a new
+// initialValue cannot repaint a box. These two events are the only way to push
+// state down.
+//
+// ...reset:  revoke pixel tracking because marketing email consent was revoked.
+// ...resync: repaint both consent checkboxes from a freshly fetched decision.
+export const PIXEL_TRACKING_RESET_EVENT = 'account.pixelTrackingConsent.reset';
+export const CONSENT_RESYNC_EVENT = 'account.consent.resync';
+
 export const FEATURES = {
   emailConsent: 'account:email-consent',
   smsConsent: 'account:sms-consent',
@@ -395,6 +418,12 @@ export const FEATURES = {
 };
 
 export const IN_SUBSIDIARY = 'IN';
+// French e-invoicing / SIRET / PPF-directory scope (DROM only), read by
+// isFrenchAssociation, siretFieldIsAvailable, isOtherCategoryControlActive,
+// isFieldHiddenForFr and the e-invoicing child's isEligible.
+// This is NOT the pixel-tracking consent scope: that one lives in
+// ./pixel-tracking-consent.js, covers every overseas collectivity plus Italy,
+// and is a different business rule. Do not merge the two lists.
 export const FR_COUNTRIES = ['FR', 'GP', 'MQ', 'GF', 'RE', 'YT'];
 export const USER_TYPE_ENTERPRISE = 'corporation';
 export const USER_TYPE_ASSOCIATION = 'association';
@@ -415,6 +444,8 @@ export default {
   FIELD_NAME_LIST,
   FIELD_WITHOUT_MARGIN_BOTTOM,
   TRACKING_PREFIX,
+  PIXEL_TRACKING_RESET_EVENT,
+  CONSENT_RESYNC_EVENT,
   FEATURES,
   IN_SUBSIDIARY,
   FR_COUNTRIES,

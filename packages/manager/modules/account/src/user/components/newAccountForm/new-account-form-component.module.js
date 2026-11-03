@@ -7,6 +7,8 @@ import '@uirouter/angularjs';
 
 import '@ovh-ux/sign-up';
 
+import './field/new-account-form-field-component.scss';
+
 import component from './new-account-form-component';
 import fieldComponent from './field/new-account-form-field-component';
 import einvoicingComponent from './einvoicing/new-account-form-einvoicing.component';

@@ -6,9 +6,11 @@ import map from 'lodash/map';
 import startsWith from 'lodash/startsWith';
 import { LANGUAGES } from '@ovh-ux/manager-config';
 import {
+  CONSENT_RESYNC_EVENT,
   PHONE_PREFIX,
   MODEL_DEBOUNCE_DELAY,
   FIELD_NAME_LIST,
+  PIXEL_TRACKING_RESET_EVENT,
   USER_TYPE_ENTERPRISE,
 } from '../new-account-form-component.constants';
 
@@ -114,6 +116,46 @@ export default class NewAccountFormFieldController {
     if (this.rule.fieldName === 'smsConsent') {
       this.$scope.$on('account.smsConsent.reset', () => {
         // switch value to false only if it is true
+        if (this.value) {
+          this.onChange();
+          this.value = false;
+        }
+      });
+    }
+
+    // The two marketing-consent checkboxes are the only fields whose displayed
+    // state the API can contradict after a submit. That state is this local
+    // copy — setInitialValue() runs once, at $onInit, behind a truthy-only
+    // guard, and the parent's ng-repeat tracks by fieldName — so re-injecting
+    // the rule cannot repaint a box. The parent hands the freshly fetched
+    // decision back through this event instead.
+    // No onChange() here on purpose: the parent has already set the model to
+    // the decision it re-read, so the model already matches both the server
+    // and the value assigned below — notifying it would only re-enter
+    // onFieldChange, emitting a consent trackClick and a rules refresh for a
+    // change the customer did not make.
+    if (
+      [
+        FIELD_NAME_LIST.commercialCommunicationsApproval,
+        FIELD_NAME_LIST.pixelTrackingConsent,
+      ].includes(this.rule.fieldName)
+    ) {
+      this.$scope.$on(CONSENT_RESYNC_EVENT, (event, decision = {}) => {
+        this.value = !!decision[this.rule.fieldName];
+      });
+    }
+
+    // Revoking marketing email consent revokes pixel tracking with it
+    // (business rule 9), so the box is cleared and disabled in the same UI
+    // update. Same shape as the smsConsent reset above — and THE ORDER OF THE
+    // TWO STATEMENTS IS LOAD-BEARING, for the same reason: onChange() re-reads
+    // this PRE-toggle local value and inverts it (see its checkbox branch), so
+    // it has to run while this.value is still true in order to push false into
+    // the model. Swapping the two lines would push TRUE — the exact opposite
+    // of a reset. Do not "tidy" this; there is a test that fails if you do.
+    if (this.rule.fieldName === FIELD_NAME_LIST.pixelTrackingConsent) {
+      this.$scope.$on(PIXEL_TRACKING_RESET_EVENT, () => {
+        // nothing to clear when it is already unchecked
         if (this.value) {
           this.onChange();
           this.value = false;
