@@ -1,5 +1,5 @@
 import { execSync } from 'node:child_process';
-import { writeFileSync, rmSync, mkdirSync, existsSync, cpSync } from 'node:fs';
+import { writeFileSync, rmSync, mkdirSync, existsSync, cpSync, readdirSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 // @ts-ignore
@@ -61,8 +61,11 @@ function copyExtraDts(pairs: SrcDest[]) {
 }
 
 (async () => {
+  // Keep dist/tsconfig: sibling packages extend it while the kit rebuilds in parallel.
   console.log('🧹 Cleaning dist...');
-  rmSync(dist, { recursive: true, force: true });
+  for (const entry of existsSync(dist) ? readdirSync(dist) : []) {
+    if (entry !== 'tsconfig') rmSync(resolve(dist, entry), { recursive: true, force: true });
+  }
 
   console.log('🛠️  Building TypeScript...');
   execSync('tsc --project tsconfig.json', { stdio: 'inherit' });
