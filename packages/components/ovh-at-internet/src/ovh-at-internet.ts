@@ -125,6 +125,17 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
     this.trackQueue.splice(0, this.trackQueue.length);
   }
 
+  /**
+   * Defers a hit until the tag is up (consent pending). Once tracking has
+   * been disabled (consent refused) the hit is dropped instead: it must not
+   * be replayed to Piano if the user later opts in from the CMP preferences.
+   */
+  private enqueue(item: IOvhAtInternetTrack): void {
+    if (this.enabled) {
+      this.trackQueue.push(item);
+    }
+  }
+
   processTrackQueue(): void {
     while (this.trackQueue.length) {
       const { type, data } = this.trackQueue.shift();
@@ -174,6 +185,7 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
         addEventURL: 'true',
         cookieDomain: (window.location.hostname.match(/\..+/) || [])[0] || '',
         campaignPrefix: ['at_'],
+        privacyDefaultMode: 'no-storage',
       });
       this.tag = {};
     } else if (window.ATInternet) {
@@ -238,40 +250,60 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
       window.pa.privacy.include.property('*', 'beforeConsent');
       window.pa.privacy.include.event('*', 'beforeConsent');
       window.pa.privacy.exclude.storageKey('pa_uid', ['beforeConsent']);
+      window.pa.privacy.exclude.storageKey('pa_vid', ['beforeConsent']);
+      window.pa.privacy.exclude.storageKey('pa_privacy', ['beforeConsent']);
       window.pa.privacy.setMode('beforeConsent');
-      deleteCookieOnAllDomains('pa_privacy');
     }
   }
 
   onUserConsentFromModal(consent: boolean) {
     debug(`tracking consent modal ${consent ? 'accept' : 'decline'}`);
-    if (this.shouldUsePianoAnalytics() && consent) {
+    if (!consent) {
+      return this.onUserConsentDeclined();
+    }
+    if (this.shouldUsePianoAnalytics()) {
       window.pa.privacy.setMode('optin');
     } else if (window.ATInternet) {
-      window.ATInternet.Utils.consentReceived(consent);
+      window.ATInternet.Utils.consentReceived(true);
     }
-    return this.init(consent)
-      .then(() => {
-        if (consent) {
-          this.trackClick({
-            type: 'action',
-            name: 'cookie-banner-manager::accept',
-          } as any);
-        } else {
-          this.trackClick({
-            type: 'action',
-            name: 'cookie-banner-manager::decline',
-          } as any);
-        }
-      })
-      .finally(() => {
-        this.setEnabled(consent);
-        if (!consent && this.shouldUsePianoAnalytics()) {
-          deleteCookieOnAllDomains('_pctx');
-          deleteCookieOnAllDomains('_pcid');
-          deleteCookieOnAllDomains('pa_privacy');
-        }
-      });
+    // A tracker that was disabled (stored or explicit refusal) may still hold
+    // hits queued before the refusal was applied — e.g. boot hits emitted
+    // while the CMP was coming up. They were produced without consent, so
+    // they are dropped rather than replayed; a first-time consent (tracker
+    // never disabled) keeps its pending hits.
+    if (!this.enabled) {
+      this.clearTrackQueue();
+    }
+    // Re-enabled up front: a user who refused earlier (CMP preferences) must
+    // not lose the hits emitted while the tag initialises.
+    this.setEnabled(true);
+    return this.init(true).then(() => {
+      this.trackClick({
+        type: 'action',
+        name: 'cookie-banner-manager::accept',
+      } as any);
+    });
+  }
+
+  /**
+   * A refusal must not produce any hit. Piano's `beforeConsent` mode (armed
+   * by onConsentModalDisplay) still ships events, so the gate is ours: the
+   * tracker is disabled synchronously, the hits queued while the banner was
+   * on screen are dropped, the tag is never initialised and no "decline"
+   * click is sent.
+   */
+  private onUserConsentDeclined(): Promise<void> {
+    this.setEnabled(false);
+    this.clearTrackQueue();
+    if (window.ATInternet) {
+      window.ATInternet.Utils.consentReceived(false);
+    }
+    if (this.shouldUsePianoAnalytics()) {
+      deleteCookieOnAllDomains('_pctx');
+      deleteCookieOnAllDomains('_pcid');
+      deleteCookieOnAllDomains('pa_privacy');
+    }
+    return Promise.resolve();
   }
 
   sendEvent(type: string, data: any) {
@@ -314,7 +346,7 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
         );
       }
     } else {
-      this.trackQueue.push({
+      this.enqueue({
         type: 'trackMVTest',
         data,
       });
@@ -336,7 +368,7 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
         );
       }
     } else {
-      this.trackQueue.push({
+      this.enqueue({
         type: 'trackPage',
         data,
       });
@@ -359,7 +391,7 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
         );
       }
     } else {
-      this.trackQueue.push({
+      this.enqueue({
         type: 'trackMixCommanderS3',
         data,
       });
@@ -387,7 +419,7 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
         );
       }
     } else {
-      this.trackQueue.push({ type: 'trackClick', data });
+      this.enqueue({ type: 'trackClick', data });
     }
   }
 
@@ -408,7 +440,7 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
       };
       this.sendEvent('page.display', filterTrackingData(tracking));
     } else {
-      this.trackQueue.push({ type: 'trackEvent', data });
+      this.enqueue({ type: 'trackEvent', data });
     }
   }
 
@@ -423,7 +455,7 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
         );
       }
     } else {
-      this.trackQueue.push({ type: 'trackImpression', data });
+      this.enqueue({ type: 'trackImpression', data });
     }
   }
 
@@ -438,7 +470,7 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
         );
       }
     } else {
-      this.trackQueue.push({ type: 'trackClickImpression', data });
+      this.enqueue({ type: 'trackClickImpression', data });
     }
   }
 }

@@ -9,6 +9,8 @@ import style from './style.module.scss';
 import { links, tracking } from './constants';
 
 import { useShell } from '@/context';
+import { cmp } from '@/cmp';
+import { useCookiePreferencesAvailable } from '@/hooks/useCookiePreferencesAvailable';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 
 import { UserLink } from './UserLink';
@@ -35,6 +37,7 @@ const UserAccountMenu = ({
   const [isKycDocumentsVisible, setIsDocumentsVisible] = useState<boolean>(
     false,
   );
+  const isCookiePreferencesAvailable = useCookiePreferencesAvailable(region);
   const user = shell
     .getPlugin('environment')
     .getEnvironment()
@@ -64,6 +67,12 @@ const UserAccountMenu = ({
     if (link.trackingHit) {
       onTrackNavigation(link.trackingHit);
     }
+  };
+
+  const onManageCookiesClick = () => {
+    closeAccountSidebar();
+    onTrackNavigation(tracking.manageCookies);
+    cmp.showPreferences();
   };
 
   const getUrl = (key: string, hash: string) =>
@@ -260,6 +269,19 @@ const UserAccountMenu = ({
             >
               {sidebarTranslation.t('sidebar_account_kyc_documents')}
             </a>
+          )}
+          {isCookiePreferencesAvailable && (
+            <button
+              type="button"
+              id="manageCookies"
+              className="oui-button oui-button_link d-block p-0 text-left"
+              onClick={onManageCookiesClick}
+              aria-label={t('user_account_menu_manage_cookies')}
+              title={t('user_account_menu_manage_cookies')}
+              data-navi-id="manage-cookies"
+            >
+              {t('user_account_menu_manage_cookies')}
+            </button>
           )}
         </div>
         <div>
