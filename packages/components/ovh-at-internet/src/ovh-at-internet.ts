@@ -174,6 +174,7 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
         addEventURL: 'true',
         cookieDomain: (window.location.hostname.match(/\..+/) || [])[0] || '',
         campaignPrefix: ['at_'],
+        privacyDefaultMode: 'no-storage',
       });
       this.tag = {};
     } else if (window.ATInternet) {
@@ -238,8 +239,9 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
       window.pa.privacy.include.property('*', 'beforeConsent');
       window.pa.privacy.include.event('*', 'beforeConsent');
       window.pa.privacy.exclude.storageKey('pa_uid', ['beforeConsent']);
+      window.pa.privacy.exclude.storageKey('pa_vid', ['beforeConsent']);
+      window.pa.privacy.exclude.storageKey('pa_privacy', ['beforeConsent']);
       window.pa.privacy.setMode('beforeConsent');
-      deleteCookieOnAllDomains('pa_privacy');
     }
   }
 
