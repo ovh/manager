@@ -23,7 +23,7 @@
   "dependencies": {
     "@ovh-ux/manager-config": "^8.9.1",
     "@ovh-ux/manager-core-api": "^0.21.3",
-    "@ovh-ux/manager-react-shell-client": "^1.2.5",
+    "@ovh-ux/manager-react-shell-client": "1.2.4",
     "@ovh-ux/ovh-at-internet": "^0.30.1",
     "@ovh-ux/shell": "^4.10.8",
     "@tanstack/react-query": "^5.51.21",
