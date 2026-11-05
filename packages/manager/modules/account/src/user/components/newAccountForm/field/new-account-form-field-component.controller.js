@@ -10,6 +10,7 @@ import {
   MODEL_DEBOUNCE_DELAY,
   FIELD_NAME_LIST,
   USER_TYPE_ENTERPRISE,
+  USER_TYPE_OTHER,
 } from '../new-account-form-component.constants';
 
 export default class NewAccountFormFieldController {
@@ -378,6 +379,17 @@ export default class NewAccountFormFieldController {
         translated,
       };
     });
+
+    // "Autre" can no longer be chosen, in any country. An account that still
+    // holds it keeps it in the list, so the select shows the current value
+    // until the customer picks a valid one (saving is blocked meanwhile).
+    if (this.rule.fieldName === this.FIELD_NAME_LIST.legalform) {
+      result = result.filter(
+        ({ key }) =>
+          key !== USER_TYPE_OTHER ||
+          this.newAccountForm?.originalModel?.legalform === USER_TYPE_OTHER,
+      );
+    }
 
     result = this.$filter('orderBy')(
       result,
