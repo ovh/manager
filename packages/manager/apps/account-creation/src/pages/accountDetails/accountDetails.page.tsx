@@ -68,6 +68,12 @@ import {
   shouldAccessOrganizationSearch,
   shouldEnableSIRENDisplay,
 } from '@/helpers/flowHelper';
+import {
+  isTurkishCompany,
+  KdvChoice,
+  turkeyKdvValue,
+  turkeySchemaFields,
+} from '@/helpers/turkeyHelper';
 import { useDetailsRedirection } from '@/hooks/redirection/useDetailsRedirection';
 import {
   useTrackError,
@@ -88,6 +94,7 @@ import {
 import ExitGuard from '@/components/exitGuard/ExitGuard.component';
 import InvalidationRedirectGuard from '@/components/invalidationRedirectGuard/InvalidationRedirectGuard.component';
 import VatSelect from './vatSelect/VatSelect.component';
+import TurkeyIdentifierFields from './turkeyIdentifiers/TurkeyIdentifierFields.component';
 import EinvoicingAddressSelect from './einvoicingAddressSelect/EinvoicingAddressSelect.component';
 
 type AccountDetailsFormProps = {
@@ -132,7 +139,15 @@ function AccountDetailsForm({
     phoneType?: string;
     smsConsent?: boolean;
     einvoicingBillingAddress?: string;
+    kdvChoice?: KdvChoice;
   };
+
+  // Türkiye — the address country and the category decide where the Turkish
+  // identifiers are laid out; the API rules decide which ones, and how.
+  const [formCountry, setFormCountry] = useState<string | undefined>(
+    currentUser.country,
+  );
+  const turkishCompany = isTurkishCompany(formCountry, legalForm);
 
   const zodSchema = useMemo(() => {
     const baseSchema = getZodSchemaFromRule(rules);
@@ -141,8 +156,9 @@ function AccountDetailsForm({
       smsConsent: z.boolean().optional(),
       // requiredness is enforced by isEinvoicingSelectionMissing, not the schema
       einvoicingBillingAddress: z.string().optional(),
+      ...turkeySchemaFields(rules, { country: formCountry, legalForm }),
     });
-  }, [rules]);
+  }, [rules, formCountry, legalForm]);
 
   function renderTranslatedZodError(message: string | undefined, rule: Rule) {
     if (!message) return undefined;
@@ -302,6 +318,10 @@ function AccountDetailsForm({
     />
   );
 
+  const cninLabel = separateSIRENAndSIRET
+    ? t('account_details_field_siret')
+    : t('account_details_field_companyNationalIdentificationNumber');
+
   useEffect(() => {
     setValue('phone', '');
     if (phoneType === 'landline' && isSMSConsentAvailable) {
@@ -315,8 +335,25 @@ function AccountDetailsForm({
     }
   }, [phoneCountry]);
 
+  // Türkiye — the KDV is never typed: `vat` holds the VKN when the organisation
+  // has a KDV number (and the VKN is valid), `''` otherwise. No `vat` rule: no
+  // KDV, nothing to derive.
+  const kdvChoice = (watch('kdvChoice' as never) as unknown) as
+    | KdvChoice
+    | undefined;
+  const vkn = watch('nationalIdentificationNumber');
+  useEffect(() => {
+    if (!turkishCompany || !rules?.vat) return;
+    setValue(
+      'vat',
+      turkeyKdvValue(kdvChoice, vkn, rules?.nationalIdentificationNumber),
+      { shouldValidate: false },
+    );
+  }, [turkishCompany, rules, kdvChoice, vkn]);
+
   useEffect(() => {
     if (country) {
+      setFormCountry(country);
       updateRulesParams('country', country);
       if (country !== currentUser.country) {
         setValue('language', '');
@@ -334,6 +371,9 @@ function AccountDetailsForm({
         confirmSend,
         smsConsent,
         einvoicingBillingAddress,
+        // Türkiye — the KDV choice only decides `vat`; it is never sent.
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        kdvChoice: unsentKdvChoice,
         ...updatedUser
       } = payload;
 
@@ -549,57 +589,60 @@ function AccountDetailsForm({
             />
           )}
           {/* Display national identification number if legal form is individual and national identification number rule is present */}
-          {rules?.nationalIdentificationNumber && !separateSIRENAndSIRET && (
-            <>
-              <Controller
-                control={control}
-                name="nationalIdentificationNumber"
-                render={({ field: { name, value, onChange, onBlur } }) => (
-                  <OdsFormField>
-                    <label
-                      htmlFor={name}
-                      slot="label"
-                      aria-label={t(
-                        'account_details_field_nationalIdentificationNumber',
-                      )}
-                    >
-                      <OdsText preset="caption">
-                        {t(
+          {/* Türkiye — the VKN is rendered at the top of the legal block. */}
+          {rules?.nationalIdentificationNumber &&
+            !separateSIRENAndSIRET &&
+            !turkishCompany && (
+              <>
+                <Controller
+                  control={control}
+                  name="nationalIdentificationNumber"
+                  render={({ field: { name, value, onChange, onBlur } }) => (
+                    <OdsFormField>
+                      <label
+                        htmlFor={name}
+                        slot="label"
+                        aria-label={t(
                           'account_details_field_nationalIdentificationNumber',
                         )}
-                        {rules?.firstname?.mandatory && ' *'}
-                      </OdsText>
-                    </label>
-                    <OdsInput
-                      isReadonly={!rules}
-                      name={name}
-                      id={name}
-                      value={value}
-                      maxlength={
-                        rules?.nationalIdentificationNumber?.maxLength ||
-                        undefined
-                      }
-                      hasError={!!errors[name]}
-                      onOdsChange={onChange}
-                      onBlur={onBlur}
-                    />
-                    {errors.nationalIdentificationNumber &&
-                      rules?.nationalIdentificationNumber && (
-                        <OdsText
-                          className="text-critical leading-[0.8]"
-                          preset="caption"
-                        >
-                          {renderTranslatedZodError(
-                            errors.nationalIdentificationNumber.message,
-                            rules?.nationalIdentificationNumber,
+                      >
+                        <OdsText preset="caption">
+                          {t(
+                            'account_details_field_nationalIdentificationNumber',
                           )}
+                          {rules?.firstname?.mandatory && ' *'}
                         </OdsText>
-                      )}
-                  </OdsFormField>
-                )}
-              />
-            </>
-          )}
+                      </label>
+                      <OdsInput
+                        isReadonly={!rules}
+                        name={name}
+                        id={name}
+                        value={value}
+                        maxlength={
+                          rules?.nationalIdentificationNumber?.maxLength ||
+                          undefined
+                        }
+                        hasError={!!errors[name]}
+                        onOdsChange={onChange}
+                        onBlur={onBlur}
+                      />
+                      {errors.nationalIdentificationNumber &&
+                        rules?.nationalIdentificationNumber && (
+                          <OdsText
+                            className="text-critical leading-[0.8]"
+                            preset="caption"
+                          >
+                            {renderTranslatedZodError(
+                              errors.nationalIdentificationNumber.message,
+                              rules?.nationalIdentificationNumber,
+                            )}
+                          </OdsText>
+                        )}
+                    </OdsFormField>
+                  )}
+                />
+              </>
+            )}
           {rules?.sex?.mandatory && (
             <Controller
               control={control}
@@ -712,6 +755,18 @@ function AccountDetailsForm({
             <OdsText className="block" preset={ODS_TEXT_PRESET.heading4}>
               {t('account_details_section_legal')}
             </OdsText>
+            {/* Türkiye — VKN, the KDV choice, the read-only KDV, then MERSİS No
+                or DETSİS No, at the top of the legal block. */}
+            {turkishCompany && (
+              <TurkeyIdentifierFields
+                control={control}
+                errors={errors}
+                rules={rules}
+                legalForm={legalForm}
+                kdvChoice={kdvChoice}
+                vat={watch('vat') ?? ''}
+              />
+            )}
             <Controller
               control={control}
               name="organisation"
@@ -794,30 +849,16 @@ function AccountDetailsForm({
                 )}
               />
             )}
-            {rules?.companyNationalIdentificationNumber && (
+            {rules?.companyNationalIdentificationNumber && !turkishCompany && (
               <Controller
                 control={control}
                 name="companyNationalIdentificationNumber"
                 render={({ field: { name, value, onChange, onBlur } }) => (
                   <>
                     <OdsFormField>
-                      <label
-                        htmlFor={name}
-                        slot="label"
-                        aria-label={
-                          separateSIRENAndSIRET
-                            ? t('account_details_field_siret')
-                            : t(
-                                'account_details_field_companyNationalIdentificationNumber',
-                              )
-                        }
-                      >
+                      <label htmlFor={name} slot="label" aria-label={cninLabel}>
                         <OdsText preset="caption">
-                          {separateSIRENAndSIRET
-                            ? t('account_details_field_siret')
-                            : t(
-                                'account_details_field_companyNationalIdentificationNumber',
-                              )}
+                          {cninLabel}
                           {rules?.companyNationalIdentificationNumber
                             ?.mandatory && ' *'}
                         </OdsText>
@@ -917,7 +958,8 @@ function AccountDetailsForm({
                 )}
               />
             )}
-            {!showEinvoicingSection && vatField}
+            {/* Türkiye — the KDV is the read-only field of the Turkish block. */}
+            {!showEinvoicingSection && !turkishCompany && vatField}
             {rules?.purposeOfPurchase && (
               <Controller
                 control={control}
