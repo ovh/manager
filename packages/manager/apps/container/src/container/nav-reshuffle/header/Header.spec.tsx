@@ -1,4 +1,4 @@
-import { render, screen, waitFor, act } from '@testing-library/react';
+import { render, screen, waitFor, act, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { vi } from 'vitest';
 import { KeyPairName } from '@ovh-ux/manager-config';
@@ -11,6 +11,7 @@ import UserAccountMenu from './user-account-menu/Content';
 import { UserLink } from './user-account-menu/UserLink';
 import { fetchProcedureStatus } from '@/data/api/procedure/procedure';
 import { ProcedureStatus } from '@/types/procedure';
+import { cmp } from '@/cmp';
 
 /**
  * Mocked Data
@@ -54,6 +55,15 @@ vi.mock('@/core/notifications/useNotifications', () => ({
 
 vi.mock('@/data/api/procedure/procedure');
 
+vi.mock('@/cmp', () => ({
+  cmp: {
+    whenReady: vi.fn().mockResolvedValue(undefined),
+    isError: vi.fn().mockReturnValue(false),
+    showPreferences: vi.fn(),
+  },
+}));
+const mockedCmp = vi.mocked(cmp);
+
 vi.mock('@/hooks/useOnboardingPreferences', () => ({
   useOnboardingPreferences: vi.fn().mockReturnValue({
     data: {},
@@ -86,6 +96,7 @@ vi.mock('@/context', async (original) => ({
         user: mockedUser,
       }),
       onUserChange: vi.fn(),
+      trackClick: vi.fn(),
       getLocale: vi.fn().mockReturnValue('en'),
       getURL: vi.fn((key) => `https://mockedurl.mock/${key}`),
       getAvailableLocales: vi.fn(() =>
@@ -134,7 +145,10 @@ describe('Header.component', () => {
 
   it('should display the hamburger menu and logo on mobile', async () => {
     vi.mock('@/core/product-nav-reshuffle', () => ({
-      default: vi.fn().mockReturnValue({ isMobile: true }),
+      default: vi.fn().mockReturnValue({
+        isMobile: true,
+        closeAccountSidebar: vi.fn(),
+      }),
     }));
 
     await act(async () => {
@@ -300,6 +314,64 @@ describe('Header.component', () => {
       expect(
         screen.getByText('user_account_menu_my_assistance_tickets'),
       ).toBeInTheDocument();
+    });
+
+    describe('manage cookies (CMP preferences)', () => {
+      const renderMenu = () =>
+        act(async () => {
+          render(
+            <UserAccountMenu
+              defaultPaymentMethod={{ getStatusCategory: () => 'success' }}
+              isLoading={false}
+            />,
+          );
+        });
+
+      beforeEach(() => {
+        vi.mocked(fetchFeatureAvailabilityData).mockResolvedValue({
+          'identity-documents': false,
+          'procedures:fraud': false,
+          account: true,
+          billing: true,
+        });
+        mockedCmp.isError.mockReturnValue(false);
+      });
+
+      afterEach(() => {
+        mockedRegion = 'EU';
+      });
+
+      it('opens the CMP preferences from the account menu in EU', async () => {
+        mockedRegion = 'EU';
+        await renderMenu();
+
+        const button = await screen.findByRole('button', {
+          name: 'user_account_menu_manage_cookies',
+        });
+        fireEvent.click(button);
+
+        expect(mockedCmp.showPreferences).toHaveBeenCalledTimes(1);
+      });
+
+      it('hides the entry when the CMP failed to come up', async () => {
+        mockedRegion = 'EU';
+        mockedCmp.isError.mockReturnValue(true);
+        await renderMenu();
+
+        expect(
+          screen.queryByText('user_account_menu_manage_cookies'),
+        ).not.toBeInTheDocument();
+      });
+
+      it('hides the entry in US (no CMP)', async () => {
+        mockedRegion = 'US';
+        await renderMenu();
+
+        expect(
+          screen.queryByText('user_account_menu_manage_cookies'),
+        ).not.toBeInTheDocument();
+        expect(mockedCmp.whenReady).not.toHaveBeenCalled();
+      });
     });
 
     it.each([
