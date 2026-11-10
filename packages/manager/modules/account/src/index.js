@@ -19,6 +19,7 @@ import 'punycode';
 /* eslint-disable import/no-webpack-loader-syntax */
 import 'script-loader!ipaddr.js/ipaddr.min.js';
 import 'ovh-api-services';
+import { ACCOUNT_READ_ONLY, isAccountWriteRequest } from './account.constants';
 
 const moduleName = 'ovhManagerAccountLazyLoading';
 
@@ -40,6 +41,28 @@ angular
     ovhContacts,
     ovhManagerAtInternetConfiguration,
   ])
+  .config(
+    /* @ngInject */ ($httpProvider) => {
+      if (!ACCOUNT_READ_ONLY) return;
+      // Safety net behind the disabled UI: any write sent from the account
+      // section is rejected before reaching the API, as a 403-like response so
+      // the existing error handlers display it.
+      $httpProvider.interceptors.push(
+        /* @ngInject */ ($q) => ({
+          request: (config) =>
+            isAccountWriteRequest(config)
+              ? $q.reject({
+                  config,
+                  status: 403,
+                  statusText: 'Forbidden',
+                  data: { message: 'Account edition is suspended.' },
+                  headers: () => null,
+                })
+              : config,
+        }),
+      );
+    },
+  )
   .config(
     /* @ngInject */ ($stateProvider) => {
       $stateProvider.state('account.**', {

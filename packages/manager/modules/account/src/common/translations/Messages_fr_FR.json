@@ -547,5 +547,6 @@
   "common_subscription_contacts_billing": "Facturation",
   "common_subscription_contacts_tech": "Technique",
   "common_unavailable_information": "Information indisponible",
+  "account_read_only_banner": "La modification de compte est suspendue sur cette version de l'espace client. Pour les modifier, rendez-vous sur votre dernière version de la console (<a href=\"{{url}}\" target=\"_blank\" rel=\"noopener\">{{url}}</a>).",
   "common_resiliate_contact_support": "Pour résilier ce service, merci de contacter notre support technique au numéro suivant : <strong>1007</strong> et <strong>appuyez directement sur 8.</strong> Merci pour votre compréhension."
 }
