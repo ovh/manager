@@ -18,7 +18,7 @@
                 type="button"
                 variant="link"
                 data-on-click="$ctrl.sendErasureRequestConfirmationEmail()"
-                data-disabled="$ctrl.loading.sendConfirmEmail"
+                data-disabled="$root.accountReadOnly || $ctrl.loading.sendConfirmEmail"
             >
                 <oui-spinner
                     data-size="s"
@@ -63,7 +63,7 @@
                     type="submit"
                     variant="primary"
                     data-on-click="$ctrl.submitConfirmation()"
-                    data-disabled="confirmForm.$invalid || $ctrl.loading.confirm"
+                    data-disabled="$root.accountReadOnly || confirmForm.$invalid || $ctrl.loading.confirm"
                 >
                     <oui-spinner
                         data-size="s"

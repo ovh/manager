@@ -22,6 +22,7 @@
                     data-type="help"
                     data-primary-label="{{:: 'documents_dashboard_modal_primary_label' | translate }}"
                     data-primary-action="$ctrl.uploadDocuments()"
+                    data-primary-disabled="$root.accountReadOnly"
                     data-secondary-label="{{:: 'documents_dashboard_modal_secondary_label' | translate }}"
                     data-secondary-action="$ctrl.cancelSubmit()"
                     data-secondary-disabled="false"
@@ -97,7 +98,7 @@
                     data-multiple
                     data-maxsize="$ctrl.maximum_size"
                     data-name="documents"
-                    data-disabled="$ctrl.isDisabled || $ctrl.links"
+                    data-disabled="$root.accountReadOnly || $ctrl.isDisabled || $ctrl.links"
                 ></oui-file>
 
                 <oui-message
@@ -113,7 +114,7 @@
 
                 <oui-form-actions
                     class="mt-5"
-                    data-disabled="$ctrl.form.$invalid || !$ctrl.documents || $ctrl.documents.length === 0 || $ctrl.documents.length > $ctrl.maximum_documents || $ctrl.isDisabled"
+                    data-disabled="$root.accountReadOnly || $ctrl.form.$invalid || !$ctrl.documents || $ctrl.documents.length === 0 || $ctrl.documents.length > $ctrl.maximum_documents || $ctrl.isDisabled"
                     data-on-submit="$ctrl.sendDocumentClick()"
                     data-submit-text="{{:: 'documents_dashboard_cta_send' | translate}}"
                 ></oui-form-actions>

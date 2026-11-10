@@ -37,6 +37,7 @@
                     <oui-button
                         data-variant="primary"
                         data-on-click="$ctrl.validateTaskWithToken()"
+                        data-disabled="$root.accountReadOnly"
                     >
                         <span
                             data-translate="user_account_email_token_received"
@@ -45,7 +46,7 @@
                     <oui-button
                         data-variant="secondary"
                         class="ml-2"
-                        data-disabled="$ctrl.requestingToken"
+                        data-disabled="$root.accountReadOnly || $ctrl.requestingToken"
                         data-on-click="$ctrl.requestChangeEmailToken($ctrl.controls.taskEmailChangeTodo.newEmail)"
                     >
                         <span
@@ -88,41 +89,43 @@
                         data-ng-if="!$ctrl.controls.validateEmailChange.loading"
                         data-ng-submit="$ctrl.acceptEmail()"
                     >
-                        <div class="form-group">
-                            <label
-                                for="validation_token"
-                                class="control-label"
-                                data-translate="user_account_email_token"
-                            ></label>
-                            <input
-                                id="validation_token"
-                                class="form-control"
-                                type="text"
-                                data-ng-required
-                                data-ng-model="$ctrl.controls.validateEmailChange.token"
-                                autofocus
-                            />
-                        </div>
+                        <fieldset data-ng-disabled="$root.accountReadOnly">
+                            <div class="form-group">
+                                <label
+                                    for="validation_token"
+                                    class="control-label"
+                                    data-translate="user_account_email_token"
+                                ></label>
+                                <input
+                                    id="validation_token"
+                                    class="form-control"
+                                    type="text"
+                                    data-ng-required
+                                    data-ng-model="$ctrl.controls.validateEmailChange.token"
+                                    autofocus
+                                />
+                            </div>
 
-                        <div>
-                            <button
-                                type="button"
-                                class="btn btn-default mr-4"
-                                data-ng-disabled="!$ctrl.controls.validateEmailChange.token ||
-                                                      !$ctrl.controls.validateEmailChange.taskId || $ctrl.controls.validateEmailChange.error
-                                                      || $ctrl.controls.validateEmailChange.loading"
-                                data-ng-click="$ctrl.refuseEmail()"
-                                data-translate="user_account_email_token_refuse"
-                            ></button>
-                            <button
-                                type="submit"
-                                class="btn btn-primary"
-                                data-ng-disabled="!$ctrl.controls.validateEmailChange.token ||
-                                                      !$ctrl.controls.validateEmailChange.taskId || $ctrl.controls.validateEmailChange.error
-                                                      || $ctrl.controls.validateEmailChange.loading"
-                                data-translate="user_account_email_token_accept"
-                            ></button>
-                        </div>
+                            <div>
+                                <button
+                                    type="button"
+                                    class="btn btn-default mr-4"
+                                    data-ng-disabled="!$ctrl.controls.validateEmailChange.token ||
+                                                          !$ctrl.controls.validateEmailChange.taskId || $ctrl.controls.validateEmailChange.error
+                                                          || $ctrl.controls.validateEmailChange.loading"
+                                    data-ng-click="$ctrl.refuseEmail()"
+                                    data-translate="user_account_email_token_refuse"
+                                ></button>
+                                <button
+                                    type="submit"
+                                    class="btn btn-primary"
+                                    data-ng-disabled="!$ctrl.controls.validateEmailChange.token ||
+                                                          !$ctrl.controls.validateEmailChange.taskId || $ctrl.controls.validateEmailChange.error
+                                                          || $ctrl.controls.validateEmailChange.loading"
+                                    data-translate="user_account_email_token_accept"
+                                ></button>
+                            </div>
+                        </fieldset>
                     </form>
                 </div>
             </div>

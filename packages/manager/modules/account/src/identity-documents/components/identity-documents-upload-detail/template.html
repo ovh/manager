@@ -71,6 +71,7 @@
                     data-droparea
                     data-multiple="$ctrl.multipleFile"
                     data-maxsize="$ctrl.MAX_SIZE"
+                    data-disabled="$root.accountReadOnly"
                 >
                 </oui-file>
             </div>
@@ -92,7 +93,7 @@
         data-on-click="$ctrl.clickAddDocuments()"
         data-variant="primary"
         data-size="l"
-        data-disabled="!$ctrl.isValid"
+        data-disabled="$root.accountReadOnly || !$ctrl.isValid"
     >
         <span data-translate="upload-documents-details-add-documents"></span>
     </oui-button>

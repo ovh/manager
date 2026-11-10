@@ -3,11 +3,13 @@
 
     <h2 data-translate="user_account_advanced_section_beta"></h2>
 
-    <ovh-manager-beta-preference
-        data-on-success="advancedCtrl.onBetaSuccess(message)"
-        data-on-error="advancedCtrl.onBetaError(message)"
-    >
-    </ovh-manager-beta-preference>
+    <fieldset data-ng-disabled="$root.accountReadOnly">
+        <ovh-manager-beta-preference
+            data-on-success="advancedCtrl.onBetaSuccess(message)"
+            data-on-error="advancedCtrl.onBetaError(message)"
+        >
+        </ovh-manager-beta-preference>
+    </fieldset>
 
     <h2 data-translate="user_account_advanced_section_developer_title"></h2>
 
@@ -53,7 +55,7 @@
                         class="oui-switch__checkbox"
                         data-ng-model="advancedCtrl.developmentMode.enabled"
                         data-ng-change="advancedCtrl.updateDevelopmentMode()"
-                        data-ng-disabled="advancedCtrl.isLoadingDeveloperMode"
+                        data-ng-disabled="$root.accountReadOnly || advancedCtrl.isLoadingDeveloperMode"
                         data-track-on="click"
                         data-track-type="action"
                         data-track-name="account::advanced_settings::edit::developer_mode"

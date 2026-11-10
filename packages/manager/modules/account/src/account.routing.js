@@ -6,6 +6,19 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '',
       name: 'account',
       redirectTo: 'account.user',
+      template: `
+        <oui-message
+          class="d-block mb-4"
+          data-type="warning"
+          data-ng-if="$root.accountReadOnly"
+        >
+          <span
+            data-translate="account_read_only_banner"
+            data-translate-values="{ url: $root.accountLatestConsoleUrl }"
+          ></span>
+        </oui-message>
+        <ui-view></ui-view>
+      `,
       resolve: {
         featureAvailability: /* @ngInject */ ($http) =>
           $http
