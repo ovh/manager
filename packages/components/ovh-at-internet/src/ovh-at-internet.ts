@@ -185,8 +185,14 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
         addEventURL: 'true',
         cookieDomain: (window.location.hostname.match(/\..+/) || [])[0] || '',
         campaignPrefix: ['at_'],
-        privacyDefaultMode: 'no-storage',
       });
+      // The SDK boots in its default privacy mode (the container sets it to
+      // 'no-storage' through window._pac, see helpers/piano-override). A
+      // stored consent must switch it to 'optin' explicitly, otherwise a
+      // consenting visitor without pa_privacy cookie would stay anonymous.
+      if (withConsent) {
+        window.pa.privacy.setMode('optin');
+      }
       this.tag = {};
     } else if (window.ATInternet) {
       debug(`tracking init: ATInternet (consent=${withConsent})`);
