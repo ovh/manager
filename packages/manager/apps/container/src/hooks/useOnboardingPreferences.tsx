@@ -27,7 +27,7 @@ const fetchOnboardingPreferences = (): Promise<OnboardingPreferences> =>
           showOnboarding: true,
         } as OnboardingPreferences;
       }
-      throw error;
+      throw error as Error;
     });
 
 const updateOnboardingPreferences = (data: OnboardingPreferences) =>
