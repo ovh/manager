@@ -33,8 +33,8 @@ export default function BetaManagerButton(): JSX.Element {
       onClick={handleClick}
       className={`ml-3 ${style.betaManagerButton}`}
     >
-      {t('manager_beta_button')}
-      <span className={style.betaTag}>&gt;BETA_</span>
+      {t('manager_discover_console_button')}
+      <span className={style.betaTag}>&gt;CONSOLE_</span>
     </a>
   );
 }
