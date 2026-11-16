@@ -91,5 +91,22 @@
   "account_details_einvoicing_single_b2g": "Die Adresse {{address}} wird als Standardadresse für die elektronische Rechnungsstellung verwendet. Falls Ihre SIREN für die Rechnungsstellung von der SIREN Ihrer Einheit abweicht, können Sie den Support kontaktieren, um eine andere anzugeben.",
   "account_details_einvoicing_multi_b2g_hint": "Sie können auch eine andere in Ihrem Rechnungsbereich konfigurieren.",
   "account_details_einvoicing_multi_b2b": "Bitte wählen Sie Ihre Standardadresse für die elektronische Rechnungsstellung aus.",
-  "account_details_einvoicing_multi_b2g": "Bitte wählen Sie Ihre Standardadresse für die elektronische Rechnungsstellung aus. Falls Ihre SIREN für die Rechnungsstellung von der SIREN Ihrer Einheit abweicht, können Sie den Support kontaktieren, um eine andere anzugeben."
+  "account_details_einvoicing_multi_b2g": "Bitte wählen Sie Ihre Standardadresse für die elektronische Rechnungsstellung aus. Falls Ihre SIREN für die Rechnungsstellung von der SIREN Ihrer Einheit abweicht, können Sie den Support kontaktieren, um eine andere anzugeben.",
+  "account_details_field_mersis": "MERSİS-Nr.",
+  "account_details_error_mersis": "Die MERSİS-Nr. muss genau 16 Ziffern ohne Trennzeichen enthalten.",
+  "account_details_field_vkn": "VKN",
+  "account_details_field_kdv": "KDV-Nr.",
+  "account_details_field_detsis": "DETSİS-Nr.",
+  "account_details_kdv_has_corporation": "Mein Unternehmen verfügt über eine KDV-Nummer (entspricht der VKN)",
+  "account_details_kdv_has_association": "Mein Verein verfügt über eine KDV-Nummer (entspricht der VKN)",
+  "account_details_kdv_has_administration": "Diese Behörde verfügt über eine KDV-Nummer (entspricht der VKN)",
+  "account_details_kdv_none_corporation": "Mein Unternehmen hat keine KDV-Nummer",
+  "account_details_kdv_none_association": "Mein Verein hat keine KDV-Nummer",
+  "account_details_kdv_none_administration": "Diese Behörde hat keine KDV-Nummer",
+  "account_details_hint_kdv": "Die KDV-Nummer entspricht Ihrer VKN.",
+  "account_details_error_vkn": "Die VKN muss genau 10 Ziffern ohne Trennzeichen enthalten.",
+  "account_details_error_detsis": "Die DETSİS-Nr. muss genau 8 Ziffern ohne Trennzeichen enthalten.",
+  "account_details_error_identical_digits": "Diese Nummer darf nicht aus einer einzigen wiederholten Ziffer bestehen.",
+  "account_details_error_sequential_digits": "Diese Nummer darf keine Folge aufeinanderfolgender Ziffern sein.",
+  "account_details_error_kdv_choice": "Geben Sie an, ob Ihre Organisation über eine KDV-Nummer verfügt."
 }

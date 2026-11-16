@@ -91,5 +91,22 @@
   "account_details_einvoicing_single_b2g": "L'indirizzo {{address}} sarà utilizzato come indirizzo di fatturazione elettronica predefinito. Se il Suo SIREN di fatturazione è diverso dal SIREN della Sua entità, può contattare l'assistenza per indicarne un altro.",
   "account_details_einvoicing_multi_b2g_hint": "Potrà inoltre configurarne un altro dal Suo spazio di fatturazione.",
   "account_details_einvoicing_multi_b2b": "La preghiamo di selezionare il Suo indirizzo di fatturazione elettronica predefinito.",
-  "account_details_einvoicing_multi_b2g": "La preghiamo di selezionare il Suo indirizzo di fatturazione elettronica predefinito. Se il Suo SIREN di fatturazione è diverso dal SIREN della Sua entità, può contattare l'assistenza per indicarne un altro."
+  "account_details_einvoicing_multi_b2g": "La preghiamo di selezionare il Suo indirizzo di fatturazione elettronica predefinito. Se il Suo SIREN di fatturazione è diverso dal SIREN della Sua entità, può contattare l'assistenza per indicarne un altro.",
+  "account_details_field_mersis": "N. MERSİS",
+  "account_details_error_mersis": "Il n. MERSİS deve essere composto da esattamente 16 cifre, senza separatori.",
+  "account_details_field_vkn": "VKN",
+  "account_details_field_kdv": "N. KDV",
+  "account_details_field_detsis": "N. DETSİS",
+  "account_details_kdv_has_corporation": "La mia azienda possiede un numero KDV (uguale al VKN)",
+  "account_details_kdv_has_association": "La mia associazione possiede un numero KDV (uguale al VKN)",
+  "account_details_kdv_has_administration": "Questa amministrazione possiede un numero KDV (uguale al VKN)",
+  "account_details_kdv_none_corporation": "La mia azienda non possiede un numero KDV",
+  "account_details_kdv_none_association": "La mia associazione non possiede un numero KDV",
+  "account_details_kdv_none_administration": "Questa amministrazione non possiede un numero KDV",
+  "account_details_hint_kdv": "Il numero KDV è uguale al VKN.",
+  "account_details_error_vkn": "Il VKN deve essere composto da esattamente 10 cifre, senza separatori.",
+  "account_details_error_detsis": "Il n. DETSİS deve essere composto da esattamente 8 cifre, senza separatori.",
+  "account_details_error_identical_digits": "Questo numero non può essere composto da una sola cifra ripetuta.",
+  "account_details_error_sequential_digits": "Questo numero non può essere una sequenza di cifre consecutive.",
+  "account_details_error_kdv_choice": "Indichi se la Sua organizzazione possiede un numero KDV."
 }

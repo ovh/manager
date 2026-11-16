@@ -91,5 +91,22 @@
   "account_details_einvoicing_single_b2g": "O endereço {{address}} será utilizado como endereço de faturação eletrónica por defeito. Se o seu SIREN de faturação for diferente do SIREN da sua entidade, pode contactar o suporte para indicar outro.",
   "account_details_einvoicing_multi_b2g_hint": "Poderá igualmente configurar outro a partir da sua área de faturação.",
   "account_details_einvoicing_multi_b2b": "Por favor, selecione o seu endereço de faturação eletrónica por defeito.",
-  "account_details_einvoicing_multi_b2g": "Por favor, selecione o seu endereço de faturação eletrónica por defeito. Se o seu SIREN de faturação for diferente do SIREN da sua entidade, pode contactar o suporte para indicar outro."
+  "account_details_einvoicing_multi_b2g": "Por favor, selecione o seu endereço de faturação eletrónica por defeito. Se o seu SIREN de faturação for diferente do SIREN da sua entidade, pode contactar o suporte para indicar outro.",
+  "account_details_field_mersis": "N.º MERSİS",
+  "account_details_error_mersis": "O N.º MERSİS deve conter exatamente 16 dígitos, sem separador.",
+  "account_details_field_vkn": "VKN",
+  "account_details_field_kdv": "N.º de KDV",
+  "account_details_field_detsis": "N.º DETSİS",
+  "account_details_kdv_has_corporation": "A minha empresa possui um número de KDV (igual ao VKN)",
+  "account_details_kdv_has_association": "A minha associação possui um número de KDV (igual ao VKN)",
+  "account_details_kdv_has_administration": "Esta administração possui um número de KDV (igual ao VKN)",
+  "account_details_kdv_none_corporation": "A minha empresa não possui um número de KDV",
+  "account_details_kdv_none_association": "A minha associação não possui um número de KDV",
+  "account_details_kdv_none_administration": "Esta administração não possui um número de KDV",
+  "account_details_hint_kdv": "O número de KDV é igual ao seu VKN.",
+  "account_details_error_vkn": "O VKN deve conter exatamente 10 dígitos, sem separador.",
+  "account_details_error_detsis": "O N.º DETSİS deve conter exatamente 8 dígitos, sem separador.",
+  "account_details_error_identical_digits": "Este número não pode ser composto por um único dígito repetido.",
+  "account_details_error_sequential_digits": "Este número não pode ser uma sequência de dígitos consecutivos.",
+  "account_details_error_kdv_choice": "Indique se a sua organização possui um número de KDV."
 }

@@ -91,5 +91,22 @@
   "account_details_einvoicing_single_b2g": "The address {{address}} will be used as the default electronic invoicing address. If your invoicing SIREN is different from your entity's SIREN, you can contact support to provide another one.",
   "account_details_einvoicing_multi_b2g_hint": "You will also be able to configure another one from your invoicing area.",
   "account_details_einvoicing_multi_b2b": "Please select your default electronic invoicing address.",
-  "account_details_einvoicing_multi_b2g": "Please select your default electronic invoicing address. If your invoicing SIREN is different from your entity's SIREN, you can contact support to provide another one."
+  "account_details_einvoicing_multi_b2g": "Please select your default electronic invoicing address. If your invoicing SIREN is different from your entity's SIREN, you can contact support to provide another one.",
+  "account_details_field_mersis": "MERSİS No",
+  "account_details_error_mersis": "The MERSİS No must consist of exactly 16 digits, without separators.",
+  "account_details_field_vkn": "VKN",
+  "account_details_field_kdv": "KDV No",
+  "account_details_field_detsis": "DETSİS No",
+  "account_details_kdv_has_corporation": "My company has a KDV number (equal to the VKN)",
+  "account_details_kdv_has_association": "My association has a KDV number (equal to the VKN)",
+  "account_details_kdv_has_administration": "This administration has a KDV number (equal to the VKN)",
+  "account_details_kdv_none_corporation": "My company does not have a KDV number",
+  "account_details_kdv_none_association": "My association does not have a KDV number",
+  "account_details_kdv_none_administration": "This administration does not have a KDV number",
+  "account_details_hint_kdv": "The KDV number is equal to your VKN.",
+  "account_details_error_vkn": "The VKN must consist of exactly 10 digits, without separators.",
+  "account_details_error_detsis": "The DETSİS No must consist of exactly 8 digits, without separators.",
+  "account_details_error_identical_digits": "This number cannot consist of a single repeated digit.",
+  "account_details_error_sequential_digits": "This number cannot be a sequence of consecutive digits.",
+  "account_details_error_kdv_choice": "Indicate whether your organisation has a KDV number."
 }
