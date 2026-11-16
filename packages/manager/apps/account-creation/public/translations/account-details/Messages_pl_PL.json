@@ -91,5 +91,22 @@
   "account_details_einvoicing_single_b2g": "Adres {{address}} będzie używany jako domyślny adres faktur elektronicznych. Jeśli Państwa numer SIREN do faktur różni się od numeru SIREN Państwa podmiotu, mogą Państwo skontaktować się z działem wsparcia, aby podać inny.",
   "account_details_einvoicing_multi_b2g_hint": "Będziesz mógł również skonfigurować inny adres w swoim panelu fakturowania.",
   "account_details_einvoicing_multi_b2b": "Proszę wybrać domyślny adres faktur elektronicznych.",
-  "account_details_einvoicing_multi_b2g": "Proszę wybrać domyślny adres faktur elektronicznych. Jeśli Państwa numer SIREN do faktur różni się od numeru SIREN Państwa podmiotu, mogą Państwo skontaktować się z działem wsparcia, aby podać inny."
+  "account_details_einvoicing_multi_b2g": "Proszę wybrać domyślny adres faktur elektronicznych. Jeśli Państwa numer SIREN do faktur różni się od numeru SIREN Państwa podmiotu, mogą Państwo skontaktować się z działem wsparcia, aby podać inny.",
+  "account_details_field_mersis": "Numer MERSİS",
+  "account_details_error_mersis": "Numer MERSİS musi składać się dokładnie z 16 cyfr, bez separatorów.",
+  "account_details_field_vkn": "VKN",
+  "account_details_field_kdv": "Numer KDV",
+  "account_details_field_detsis": "Numer DETSİS",
+  "account_details_kdv_has_corporation": "Moja firma posiada numer KDV (równy VKN)",
+  "account_details_kdv_has_association": "Moje stowarzyszenie posiada numer KDV (równy VKN)",
+  "account_details_kdv_has_administration": "Ta administracja posiada numer KDV (równy VKN)",
+  "account_details_kdv_none_corporation": "Moja firma nie posiada numeru KDV",
+  "account_details_kdv_none_association": "Moje stowarzyszenie nie posiada numeru KDV",
+  "account_details_kdv_none_administration": "Ta administracja nie posiada numeru KDV",
+  "account_details_hint_kdv": "Numer KDV jest równy Twojemu VKN.",
+  "account_details_error_vkn": "Numer VKN musi składać się dokładnie z 10 cyfr, bez separatorów.",
+  "account_details_error_detsis": "Numer DETSİS musi składać się dokładnie z 8 cyfr, bez separatorów.",
+  "account_details_error_identical_digits": "Ten numer nie może składać się z jednej powtarzającej się cyfry.",
+  "account_details_error_sequential_digits": "Ten numer nie może być ciągiem kolejnych cyfr.",
+  "account_details_error_kdv_choice": "Wskaż, czy Twoja organizacja posiada numer KDV."
 }

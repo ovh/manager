@@ -91,5 +91,22 @@
   "account_details_einvoicing_single_b2g": "La dirección {{address}} se utilizará como dirección de facturación electrónica por defecto. Si su SIREN de facturación es diferente al SIREN de su entidad, puede contactar con el soporte para indicar otra.",
   "account_details_einvoicing_multi_b2g_hint": "También podrá configurar otra desde su espacio de facturación.",
   "account_details_einvoicing_multi_b2b": "Por favor, seleccione su dirección de facturación electrónica por defecto.",
-  "account_details_einvoicing_multi_b2g": "Por favor, seleccione su dirección de facturación electrónica por defecto. Si su SIREN de facturación es diferente al SIREN de su entidad, puede contactar con el soporte para indicar otra."
+  "account_details_einvoicing_multi_b2g": "Por favor, seleccione su dirección de facturación electrónica por defecto. Si su SIREN de facturación es diferente al SIREN de su entidad, puede contactar con el soporte para indicar otra.",
+  "account_details_field_mersis": "N.º MERSİS",
+  "account_details_error_mersis": "El N.º MERSİS debe contener exactamente 16 dígitos, sin separadores.",
+  "account_details_field_vkn": "VKN",
+  "account_details_field_kdv": "N.º KDV",
+  "account_details_field_detsis": "N.º DETSİS",
+  "account_details_kdv_has_corporation": "Mi empresa dispone de un número de KDV (igual al VKN)",
+  "account_details_kdv_has_association": "Mi asociación dispone de un número de KDV (igual al VKN)",
+  "account_details_kdv_has_administration": "Esta administración dispone de un número de KDV (igual al VKN)",
+  "account_details_kdv_none_corporation": "Mi empresa no tiene número de KDV",
+  "account_details_kdv_none_association": "Mi asociación no tiene número de KDV",
+  "account_details_kdv_none_administration": "Esta administración no tiene número de KDV",
+  "account_details_hint_kdv": "El número de KDV es igual a su VKN.",
+  "account_details_error_vkn": "El VKN debe contener exactamente 10 dígitos, sin separadores.",
+  "account_details_error_detsis": "El N.º DETSİS debe contener exactamente 8 dígitos, sin separadores.",
+  "account_details_error_identical_digits": "Este número no puede estar compuesto por un solo dígito repetido.",
+  "account_details_error_sequential_digits": "Este número no puede ser una secuencia de dígitos consecutivos.",
+  "account_details_error_kdv_choice": "Indique si su organización dispone de un número de KDV."
 }
