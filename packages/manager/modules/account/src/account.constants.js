@@ -33,6 +33,22 @@ export const isAccountWriteRequest = ({ method, url }) =>
     pattern.test((url || '').split('?')[0]),
   );
 
+// Safety net behind the disabled UI: any write sent from the account section
+// is rejected before reaching the API, as a 403-like response so the existing
+// error handlers display it.
+export const accountReadOnlyInterceptor = /* @ngInject */ ($q) => ({
+  request: (config) =>
+    isAccountWriteRequest(config)
+      ? $q.reject({
+          config,
+          status: 403,
+          statusText: 'Forbidden',
+          data: { message: 'Account edition is suspended.' },
+          headers: () => null,
+        })
+      : config,
+});
+
 export default {
   FEATURES,
   GDPR_FEATURES_FEATURE,
