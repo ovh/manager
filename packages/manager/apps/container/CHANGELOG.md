@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.208.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.207.1...@ovh-ux/manager-container-app@0.208.0) (2026-11-18)
+
+
+### Features
+
+* **container:** rename `beta` label to `Console` ([3aab7f1](https://github.com/ovh/manager/commit/3aab7f112699b44820e884d5a484b48ca6ece127))
+
+
+
+
+
 ## [0.207.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.207.0...@ovh-ux/manager-container-app@0.207.1) (2026-10-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app
