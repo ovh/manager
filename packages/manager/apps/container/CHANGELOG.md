@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.208.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.208.0...@ovh-ux/manager-container-app@0.208.1) (2026-11-18)
+
+
+### Bug Fixes
+
+* **container:** add space in `>CONSOLE_` beta tag label ([aa28d8b](https://github.com/ovh/manager/commit/aa28d8b962fb38af4b9f6f0ba9fd15bbb584292c))
+
+
+
+
+
 # [0.208.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.207.1...@ovh-ux/manager-container-app@0.208.0) (2026-11-18)
 
 
