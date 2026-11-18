@@ -23,7 +23,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
-    "tsc-alias": "^1.8.16"
+    "tsc-alias": "1.8.16"
   },
   "peerDependencies": {
     "react": "^18.2.0",
