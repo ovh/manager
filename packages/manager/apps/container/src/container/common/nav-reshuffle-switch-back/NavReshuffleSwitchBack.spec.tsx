@@ -119,7 +119,7 @@ describe('NavReshuffleSwitchBack.component', () => {
       const button = container.querySelector(`a[href="${BETA_MANAGER_URL}"]`);
       expect(button).toBeTruthy();
       expect(button?.textContent).toContain('Découvrir la');
-      expect(button?.textContent).toContain('>CONSOLE_');
+      expect(button?.textContent).toContain('> CONSOLE_');
     });
   });
 
