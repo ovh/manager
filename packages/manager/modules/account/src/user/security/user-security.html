@@ -45,6 +45,7 @@
                     <button
                         type="button"
                         class="oui-button oui-button_primary float-right no-margin"
+                        data-ng-disabled="$root.accountReadOnly"
                         data-ng-click="setAction('password/user-password')"
                         data-track-name="account::security::edit::password_edit"
                         data-track-on="click"
@@ -89,6 +90,7 @@
 
                             <a
                                 data-ui-sref="account.user.security.mfa"
+                                data-ng-if="!$root.accountReadOnly"
                                 class="oui-button oui-button_primary float-right"
                                 data-track-on="click"
                                 data-track-name="account::security::authentication::double_authentication"
@@ -98,6 +100,15 @@
                                     data-translate="user_account_security_double_auth_action_activate"
                                 ></span>
                             </a>
+                            <oui-button
+                                class="float-right"
+                                data-disabled="true"
+                                data-ng-if="$root.accountReadOnly"
+                            >
+                                <span
+                                    data-translate="user_account_security_double_auth_action_activate"
+                                ></span>
+                            </oui-button>
                         </div>
                         <div data-ng-if="doubleAuth.isConnectionSSO">
                             <p
@@ -240,6 +251,7 @@
                                                             <button
                                                                 type="button"
                                                                 class="btn btn-link"
+                                                                data-ng-disabled="$root.accountReadOnly"
                                                                 data-ng-click="setAction('security/sms/edit/user-security-sms-edit', smsAccount)"
                                                                 data-translate="user_account_security_double_auth_type_sms_table_action_update"
                                                             ></button>
@@ -248,6 +260,7 @@
                                                             <button
                                                                 type="button"
                                                                 class="btn btn-link"
+                                                                data-ng-disabled="$root.accountReadOnly"
                                                                 data-ng-click="setAction('security/sms/delete/user-security-sms-delete', smsAccount)"
                                                                 data-translate="user_account_security_double_auth_type_sms_table_action_delete"
                                                             ></button>
@@ -261,6 +274,7 @@
                                 <button
                                     class="oui-button oui-button_secondary"
                                     type="button"
+                                    data-ng-disabled="$root.accountReadOnly"
                                     data-ng-click="setAction('security/sms/add/user-security-sms-add', sms.smsAccounts)"
                                     data-translate="user_account_security_double_auth_type_sms_action_add"
                                 ></button>
@@ -386,6 +400,7 @@
                                                             <button
                                                                 type="button"
                                                                 class="btn btn-link"
+                                                                data-ng-disabled="$root.accountReadOnly"
                                                                 data-ng-click="setAction('security/totp/edit/user-security-totp-edit', totpAccount)"
                                                                 data-translate="user_account_security_double_auth_type_totp_table_action_update"
                                                             ></button>
@@ -394,6 +409,7 @@
                                                             <button
                                                                 type="button"
                                                                 class="btn btn-link"
+                                                                data-ng-disabled="$root.accountReadOnly"
                                                                 data-ng-click="setAction('security/totp/delete/user-security-totp-delete', totpAccount)"
                                                                 data-translate="user_account_security_double_auth_type_totp_table_action_delete"
                                                             ></button>
@@ -407,6 +423,7 @@
                                 <button
                                     class="oui-button oui-button_secondary"
                                     type="button"
+                                    data-ng-disabled="$root.accountReadOnly"
                                     data-ng-click="setAction('security/totp/add/user-security-totp-add', doubleAuth)"
                                     data-translate="user_account_security_double_auth_type_totp_action_add"
                                 ></button>
@@ -532,6 +549,7 @@
                                                             <button
                                                                 type="button"
                                                                 class="btn btn-link"
+                                                                data-ng-disabled="$root.accountReadOnly"
                                                                 data-ng-click="setAction('security/u2f/edit/user-security-u2f-edit', u2fAccount)"
                                                                 data-translate="user_account_security_double_auth_type_u2f_table_action_update"
                                                             ></button>
@@ -540,6 +558,7 @@
                                                             <button
                                                                 type="button"
                                                                 class="btn btn-link"
+                                                                data-ng-disabled="$root.accountReadOnly"
                                                                 data-ng-click="setAction('security/u2f/delete/user-security-u2f-delete', u2fAccount)"
                                                                 data-translate="user_account_security_double_auth_type_u2f_table_action_delete"
                                                             ></button>
@@ -553,6 +572,7 @@
                                 <button
                                     class="oui-button oui-button_secondary"
                                     type="button"
+                                    data-ng-disabled="$root.accountReadOnly"
                                     data-ng-click="setAction('security/u2f/add/user-security-u2f-add', doubleAuth)"
                                     data-translate="user_account_security_double_auth_type_u2f_action_add"
                                 ></button>
@@ -627,6 +647,7 @@
                                 <button
                                     class="oui-button oui-button_secondary"
                                     type="button"
+                                    data-ng-disabled="$root.accountReadOnly"
                                     data-ng-click="setAction('security/backupCode/manage/user-security-backupCode-manage', backupCode.sotpAccount)"
                                 >
                                     <span
@@ -644,6 +665,7 @@
                                     data-ng-if="backupCode.sotpAccount.status && backupCode.sotpAccount.status !== 'needCodeValidation'"
                                     class="oui-button oui-button_secondary"
                                     type="button"
+                                    data-ng-disabled="$root.accountReadOnly"
                                     data-ng-click="setAction('security/backupCode/delete/user-security-backupCode', backupCode.sotpAccount)"
                                     data-translate="user_account_security_double_auth_type_backup_code_action_delete"
                                 ></button>
@@ -714,77 +736,79 @@
                             data-ng-submit="updateDefaultRule()"
                             data-ng-if="!loaders.defaultRule"
                         >
-                            <div class="form-group">
-                                <label
-                                    class="col-md-2 control-label"
-                                    for="inputRule"
-                                    data-translate="user_ipRestrictions_rule"
-                                >
-                                </label>
-                                <div class="col-md-4">
-                                    <select
-                                        id="inputRule"
-                                        class="form-control"
-                                        data-ng-model="defaultRule.rule"
-                                        data-ng-change="updateRestrictionButtonDisabled()"
+                            <fieldset data-ng-disabled="$root.accountReadOnly">
+                                <div class="form-group">
+                                    <label
+                                        class="col-md-2 control-label"
+                                        for="inputRule"
+                                        data-translate="user_ipRestrictions_rule"
                                     >
-                                        <option
-                                            value="accept"
-                                            data-translate="user_ipRestrictions_rule_ACCEPT"
+                                    </label>
+                                    <div class="col-md-4">
+                                        <select
+                                            id="inputRule"
+                                            class="form-control"
+                                            data-ng-model="defaultRule.rule"
+                                            data-ng-change="updateRestrictionButtonDisabled()"
                                         >
-                                        </option>
-                                        <option
-                                            value="deny"
-                                            data-translate="user_ipRestrictions_rule_DENY"
-                                        >
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label
-                                    class="col-md-2 control-label"
-                                    for="inputWarning"
-                                >
-                                    <span
-                                        data-translate="user_ipRestrictions_alert"
-                                    ></span>
-                                    <span
-                                        class="oui-icon oui-icon-help-circle"
-                                        data-oui-tooltip="{{:: 'user_ipRestrictions_alert_information' | translate }}"
-                                        data-oui-tooltip-placement="bottom"
-                                        aria-hidden="true"
-                                    >
-                                    </span>
-                                </label>
-                                <div class="col-md-4">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input
-                                                type="checkbox"
-                                                id="inputWarning"
-                                                data-ng-model="defaultRule.warning"
-                                            />
-                                        </label>
+                                            <option
+                                                value="accept"
+                                                data-translate="user_ipRestrictions_rule_ACCEPT"
+                                            >
+                                            </option>
+                                            <option
+                                                value="deny"
+                                                data-translate="user_ipRestrictions_rule_DENY"
+                                            >
+                                            </option>
+                                        </select>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-offset-2 col-md-4">
-                                    <button
-                                        type="submit"
-                                        class="oui-button oui-button_secondary"
-                                        data-ng-disabled="preventSubmitIfDefaultRuleIsDeny()"
-                                        data-track-name="account::security::edit::validation_IP_restriction_edit"
-                                        data-track-on="click"
-                                        data-track-type="action"
+                                <div class="form-group">
+                                    <label
+                                        class="col-md-2 control-label"
+                                        for="inputWarning"
                                     >
                                         <span
-                                            data-translate="user_account_OK"
+                                            data-translate="user_ipRestrictions_alert"
                                         ></span>
-                                    </button>
+                                        <span
+                                            class="oui-icon oui-icon-help-circle"
+                                            data-oui-tooltip="{{:: 'user_ipRestrictions_alert_information' | translate }}"
+                                            data-oui-tooltip-placement="bottom"
+                                            aria-hidden="true"
+                                        >
+                                        </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input
+                                                    type="checkbox"
+                                                    id="inputWarning"
+                                                    data-ng-model="defaultRule.warning"
+                                                />
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-4">
+                                        <button
+                                            type="submit"
+                                            class="oui-button oui-button_secondary"
+                                            data-ng-disabled="preventSubmitIfDefaultRuleIsDeny()"
+                                            data-track-name="account::security::edit::validation_IP_restriction_edit"
+                                            data-track-on="click"
+                                            data-track-type="action"
+                                        >
+                                            <span
+                                                data-translate="user_account_OK"
+                                            ></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </fieldset>
                         </form>
 
                         <hr />
@@ -943,6 +967,7 @@
                                                     <button
                                                         type="button"
                                                         class="btn btn-link"
+                                                        data-ng-disabled="$root.accountReadOnly"
                                                         data-ng-click="setIpRestrictionCurrentEdit(restriction)"
                                                         data-translate="user_ipRestrictions_update"
                                                     ></button>
@@ -951,7 +976,7 @@
                                                     <button
                                                         type="button"
                                                         class="btn btn-link"
-                                                        data-ng-disabled="shouldDisplayWarningMessage()"
+                                                        data-ng-disabled="$root.accountReadOnly || shouldDisplayWarningMessage()"
                                                         data-ng-click="setAction('ip/restriction/delete/user-ip-restriction-delete', restriction)"
                                                         data-translate="user_ipRestrictions_delete"
                                                     ></button>
@@ -964,6 +989,7 @@
                                             <button
                                                 type="button"
                                                 class="btn btn-link"
+                                                data-ng-disabled="$root.accountReadOnly"
                                                 data-ng-click="saveIpRestrictionCurrentEdit()"
                                             >
                                                 <i
@@ -987,6 +1013,7 @@
                         <button
                             type="button"
                             class="oui-button oui-button_secondary"
+                            data-ng-disabled="$root.accountReadOnly"
                             data-ng-click="setAction('ip/restriction/add/user-ip-restriction-add')"
                             data-track-name="account::security::IP::add_IP_restriction"
                             data-track-on="click"

@@ -7,6 +7,11 @@ import user from './user';
 import ExitGuardService from './utils/exitGuard.service';
 import identityDocuments from './identity-documents';
 import kycDocuments from './kyc-documents';
+import {
+  ACCOUNT_EDIT_STATES,
+  ACCOUNT_READ_ONLY,
+  LATEST_CONSOLE_URL,
+} from './account.constants';
 
 import '@ovh-ux/manager-core';
 import '@ovh-ux/ng-ui-router-breadcrumb';
@@ -37,6 +42,23 @@ angular
   .config(redirection)
   .config(routing)
   .service('ExitGuardService', ExitGuardService)
+  .run(
+    /* @ngInject */ ($rootScope, $transitions, coreConfig) => {
+      if (!ACCOUNT_READ_ONLY) return;
+      $rootScope.accountReadOnly = true;
+      $rootScope.accountLatestConsoleUrl =
+        LATEST_CONSOLE_URL[coreConfig.getRegion()] || LATEST_CONSOLE_URL.EU;
+      // States that only exist to edit the account fall back to their view.
+      $transitions.onBefore(
+        { to: (state) => !!ACCOUNT_EDIT_STATES[state.name] },
+        (transition) =>
+          transition.router.stateService.target(
+            ACCOUNT_EDIT_STATES[transition.to().name],
+            transition.params(),
+          ),
+      );
+    },
+  )
   .run(/* @ngTranslationsInject:json ./common/translations */)
   .run(
     /* @ngInject */ ($translate) => {

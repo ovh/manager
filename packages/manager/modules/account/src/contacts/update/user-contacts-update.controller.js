@@ -9,6 +9,7 @@ import { LANGUAGES } from '@ovh-ux/manager-config';
 export default /* @ngInject */ function UserAccountUpdateController(
   UserAccountContactUpdateService,
   $scope,
+  $rootScope,
   $stateParams,
   $q,
   $location,
@@ -235,7 +236,7 @@ export default /* @ngInject */ function UserAccountUpdateController(
       if ($scope.hasTrade && $scope.isReadonly('email')) {
         $scope.changeOwnerUrl = $scope.domainOrderTradeUrl;
       }
-      if ($scope.fieldsInError) {
+      if ($scope.fieldsInError && !$rootScope.accountReadOnly) {
         $scope.edit(true);
       }
     });

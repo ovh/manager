@@ -263,7 +263,7 @@
     <!-- valid that the information is correct -->
     <oui-checkbox
         class="mb-4"
-        data-ng-if="$ctrl.suggest.type === 'siret' || $ctrl.displayManualForm"
+        data-ng-if="!$root.accountReadOnly && ($ctrl.suggest.type === 'siret' || $ctrl.displayManualForm)"
         data-name="isCorrectCheckbox"
         data-model="$ctrl.informationConfirmed"
         data-required

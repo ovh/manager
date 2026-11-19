@@ -19,6 +19,10 @@ import 'punycode';
 /* eslint-disable import/no-webpack-loader-syntax */
 import 'script-loader!ipaddr.js/ipaddr.min.js';
 import 'ovh-api-services';
+import {
+  ACCOUNT_READ_ONLY,
+  accountReadOnlyInterceptor,
+} from './account.constants';
 
 const moduleName = 'ovhManagerAccountLazyLoading';
 
@@ -40,6 +44,13 @@ angular
     ovhContacts,
     ovhManagerAtInternetConfiguration,
   ])
+  .config(
+    /* @ngInject */ ($httpProvider) => {
+      if (ACCOUNT_READ_ONLY) {
+        $httpProvider.interceptors.push(accountReadOnlyInterceptor);
+      }
+    },
+  )
   .config(
     /* @ngInject */ ($stateProvider) => {
       $stateProvider.state('account.**', {
