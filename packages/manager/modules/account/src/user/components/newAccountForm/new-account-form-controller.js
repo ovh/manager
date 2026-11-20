@@ -7,7 +7,9 @@ import { LANGUAGES } from '@ovh-ux/manager-config';
 
 import {
   CONSENT_MARKETING_EMAIL_NAME,
+  CONSENT_RESYNC_EVENT,
   FIELD_NAME_LIST,
+  PIXEL_TRACKING_RESET_EVENT,
   READY_ONLY_PARAMS,
   READY_ONLY_RULES_PARAMS,
   SECTIONS,
@@ -23,6 +25,11 @@ import {
   USER_TYPE_OTHER,
   SUBSIDIARIES_VAT_FIELD_OVERRIDE,
 } from './new-account-form-component.constants';
+import {
+  buildConsentDecisionPayload,
+  isPixelTrackingCountry,
+  readPixelConsent,
+} from './pixel-tracking-consent';
 import { KYC_STATUS } from '../../../identity-documents/user-identity-documents.constant';
 import { SUPPORT_URLS } from '../../user.constants';
 
@@ -90,6 +97,7 @@ export default class NewAccountFormController {
 
     this.consentDecision = null;
     this.smsConsentDecision = null;
+    this.pixelConsentDecision = null;
 
     // Validating a company in the SIRET lookup replaces the data the API
     // complained about, so its errors no longer describe the form.
@@ -180,6 +188,23 @@ export default class NewAccountFormController {
       })
       .then(({ email, sms }) => {
         this.consentDecision = !!email?.value;
+        // pixel.value drives the checkbox; pixel.history is the CNIL audit
+        // trail, not a UI need — never read it.
+        //
+        // Captured ONCE, on the first read. fetchRules re-runs on every field
+        // change, but a checkbox already on screen is never repainted by it:
+        // the rendered state is the field component's own local copy, set at
+        // its $onInit from rule.initialValue and never watched afterwards. So
+        // re-reading here would only desynchronise the two — a decision
+        // granted in another tab would become the submit-time fallback for a
+        // box the customer still sees unchecked, and saving any other field
+        // would write a consent the screen does not show. Keeping the loaded
+        // state means what is submitted is always what was displayed.
+        // resyncConsentDecisions is the one thing that moves it afterwards,
+        // and it repaints both boxes in the same breath.
+        if (this.pixelConsentDecision === null) {
+          this.pixelConsentDecision = readPixelConsent(email);
+        }
         this.smsConsentDecision =
           this.isSmsConsentAvailable &&
           !!Object.keys(sms?.sms || {}).some((key) => sms.sms[key]);
@@ -244,6 +269,88 @@ export default class NewAccountFormController {
             hasBottomMargin: true,
             disabled: () => this.model.phoneType !== 'mobile',
           });
+          // Pixel tracking, France + Italy only. Located by fieldName rather
+          // than by reusing emailFieldIndex, so the two splices above keep
+          // their arithmetic untouched. The splice position is cosmetic
+          // anyway: the display order is imposed by FIELD_NAME_LIST (the sort
+          // further down) and the fieldset by SECTIONS.contact.
+          //
+          // The gate is a LIVE read of the country the form currently shows
+          // (see the getter), never a value frozen at load: the country select
+          // is editable here, so the checkbox has to follow it. fetchRules
+          // re-runs on every field change, and this rule is rebuilt — or left
+          // out — against the country of that very moment.
+          //
+          // Leaving it out takes the unsaved pixel choice with it, through
+          // updateRules()' `delete this.model[fieldName]` loop, and that is the
+          // point rather than a side effect: a checkbox the customer can no
+          // longer see must not travel in the submit payload. Coming back into
+          // scope rebuilds the box from initialValue below — the decision the
+          // GET returned — never from the discarded click.
+          //
+          // This is where it differs from commercialCommunicationsApproval and
+          // smsConsent, which are injected unconditionally and so can never
+          // meet that delete loop.
+          if (this.isPixelTrackingAvailable) {
+            const emailConsentIndex = rules.findIndex(
+              (injected) =>
+                injected.fieldName ===
+                FIELD_NAME_LIST.commercialCommunicationsApproval,
+            );
+            rules.splice(emailConsentIndex + 1, 0, {
+              in: null,
+              mandatory: false,
+              // never a defaultValue: setDefaultValue() writes into the parent
+              // model at init and would dirty the form. Business rule 1 — no
+              // default consent, the box loads unchecked unless the API says
+              // otherwise.
+              defaultValue: null,
+              // reflects pixel.value from the GET: checked if true, unchecked
+              // if false (setInitialValue's guard is truthy-only, and an unset
+              // local value renders unchecked — the same thing on screen)
+              initialValue: this.pixelConsentDecision,
+              fieldName: FIELD_NAME_LIST.pixelTrackingConsent,
+              fieldType: 'checkbox',
+              regularExpression: null,
+              prefix: null,
+              examples: null,
+              hasBottomMargin: true,
+              // The label names the mailbox the pixels would measure, so the
+              // rule has to carry one — and it is the REGISTERED address, not
+              // the live this.model.email. An address typed into the email
+              // field above is not receiving anything yet: submit() routes it
+              // through changeEmail(), a procedure the customer still has to
+              // confirm from the CURRENT mailbox. Naming it here would state
+              // something untrue for as long as the change is pending, and
+              // would rewrite the sentence under the customer's eyes on every
+              // keystroke, since a field change refreshes the rules.
+              //
+              // The only rule that declares translateValues. Every other field
+              // leaves it undefined, which is what the label's
+              // `| translate:undefined` already resolves to today, so no other
+              // label changes.
+              translateValues: { email: this.originalModel?.email },
+              // Business rule 9: the API refuses pixel consent without email
+              // consent and fails the whole request, so the combination has to
+              // be unreachable in the UI — we never leave the box enabled and
+              // lean on the 400. The field template already binds this as
+              // data-disabled="$ctrl.rule.disabled()", and the one-way binding
+              // re-evaluates it on every digest pass, so it follows the other
+              // checkbox with no event and no watcher of its own. Keep it
+              // pure, cheap and allocation-free.
+              // Deliberately NO descriptionKey: the box renders exactly like
+              // the marketing-email checkbox above it, with nothing under the
+              // label. The field template interpolates '' when the key is
+              // absent, which leaves ouiCheckbox's hasDescription() false and
+              // renders no description element at all.
+              //
+              // The trade-off, should it ever need revisiting: disabled()
+              // greys the box out without saying why, and ouiCheckbox wired
+              // that reason to the input's aria-describedby, so a screen
+              // reader now announces the box unavailable with no explanation.
+              disabled: () => !this.isEmailConsentGranted(),
+            });
+          }
         }
         return rules;
       })
@@ -401,11 +508,14 @@ export default class NewAccountFormController {
           type: 'navigation',
         };
         if (this.isEmailConsentAvailable) {
-          const emailConsent =
-            typeof this.model.commercialCommunicationsApproval !== 'undefined'
-              ? this.model.commercialCommunicationsApproval
-              : this.consentDecision;
-          tracking.accountEmailConsent = emailConsent ? 'opt-in' : 'opt-out';
+          tracking.accountEmailConsent = this.isEmailConsentGranted()
+            ? 'opt-in'
+            : 'opt-out';
+          if (this.isPixelTrackingAvailable) {
+            tracking.accountPixelConsent = this.isPixelConsentGranted()
+              ? 'opt-in'
+              : 'opt-out';
+          }
         }
         if (this.isSmsConsentAvailable) {
           const smsConsent =
@@ -445,16 +555,42 @@ export default class NewAccountFormController {
     }
 
     const consentRequests = [];
+    // Both checkbox states go out in ONE request rather than two sequential
+    // calls: the campaign's PUT takes them together and applies the email
+    // decision first, so the pair can never be refused; it reads clearer and
+    // it saves a round trip. Which means the guard has to fire when EITHER
+    // value changed — keyed on the email value alone, as it was, a pixel-only
+    // change would send nothing at all.
+    //
+    // isEmailConsentAvailable gates the pair because it is literally the same
+    // request: the pixel decision is a field of the marketing-email campaign
+    // and cannot have a flag of its own without splitting that request.
+    const hasEmailConsentChange =
+      this.originalModel.commercialCommunicationsApproval !==
+      this.model.commercialCommunicationsApproval;
+    const hasPixelConsentChange =
+      this.isPixelTrackingAvailable &&
+      this.originalModel[FIELD_NAME_LIST.pixelTrackingConsent] !==
+        this.model[FIELD_NAME_LIST.pixelTrackingConsent];
     if (
       this.isEmailConsentAvailable &&
-      this.originalModel.commercialCommunicationsApproval !==
-        this.model.commercialCommunicationsApproval
+      (hasEmailConsentChange || hasPixelConsentChange)
     ) {
       consentRequests.push(
-        this.userAccountServiceInfos.updateConsentDecision(
-          CONSENT_MARKETING_EMAIL_NAME,
-          this.model.commercialCommunicationsApproval || false,
-        ),
+        this.userAccountServiceInfos
+          .updateConsentDecision(
+            CONSENT_MARKETING_EMAIL_NAME,
+            // isEmailConsentGranted(), not `this.model.x || false`: a
+            // pixel-only change leaves the email model key untouched, and
+            // sending false for it would revoke the customer's email consent
+            // as a side effect — and cascade the pixel decision back to denied
+            buildConsentDecisionPayload({
+              hasEmailConsent: this.isEmailConsentGranted(),
+              isPixelTrackingAvailable: this.isPixelTrackingAvailable,
+              hasPixelConsent: this.isPixelConsentGranted(),
+            }),
+          )
+          .catch((error) => this.resyncConsentDecisions(error)),
       );
     }
     if (
@@ -588,6 +724,72 @@ export default class NewAccountFormController {
   }
 
   /**
+   * The UI never builds { value: false, pixel: { value: true } } — the
+   * disabled rule makes it unreachable by clicking and
+   * buildConsentDecisionPayload clamps it away — but a page left open while
+   * email consent was revoked in another tab can still submit it, and the API
+   * answers 400 ("pixel tracking requires marketing email consent to be
+   * granted") having written NOTHING: email consent is not revoked either.
+   *
+   * Trusting the optimistic state after that would leave two checkboxes
+   * showing something the server refused, so re-fetch the decision with a GET
+   * and re-render both boxes from the fresh answer. Repainting needs the
+   * broadcast: the rendered value is the field component's own local copy,
+   * setInitialValue() runs only at $onInit behind a truthy-only guard, and the
+   * ng-repeat tracks by fieldName — so a rules refresh cannot move it.
+   *
+   * Attached to the consent request's OWN catch, not to submit()'s shared one:
+   * an unrelated 400 (a VAT the API refuses, typically) must not throw away
+   * the customer's consent choices.
+   *
+   * A failed re-read is swallowed with angular.noop, and the error is always
+   * re-rejected, so submit()'s catch still sets submitError and pushes the
+   * InfoErrors banner with the API's own message.
+   */
+  resyncConsentDecisions(error) {
+    // Scoped to the accounts the pixel checkbox exists for, and to the status
+    // the contract documents. Out of the country scope the payload carries no
+    // `pixel` key at all, so this route cannot answer the pixel/email 400 —
+    // any 400 it does answer there belongs to the worldwide marketing-email
+    // checkbox, which this epic does not touch. Recovering from it would
+    // silently throw that customer's click away and repaint their box, where
+    // today the error simply reaches submit()'s catch with the click intact
+    // for the retry the banner invites.
+    if (!this.isPixelTrackingAvailable || error?.status !== 400) {
+      return this.$q.reject(error);
+    }
+    return this.userAccountServiceInfos
+      .fetchConsentDecision(CONSENT_MARKETING_EMAIL_NAME)
+      .then((decision) => {
+        const hasEmailConsent = !!decision?.value;
+        const hasPixelConsent = readPixelConsent(decision);
+        this.consentDecision = hasEmailConsent;
+        this.pixelConsentDecision = hasPixelConsent;
+        // The refused choices must stop contradicting the server, so both keys
+        // are SET to what the GET just returned — not deleted. Deleting reads
+        // tidier (it also takes the form back to "unchanged" for the two
+        // consents) but it desynchronises the model from the checkboxes this
+        // very method is repainting, and it breaks the retry the error banner
+        // invites: with the keys gone the submit guards compare undefined to
+        // undefined and build no consent request at all, so pressing Save
+        // again reports success having written nothing — and for an account
+        // whose granted email consent DID reach originalModel, the guard fires
+        // while isEmailConsentGranted() falls back to the decision just
+        // re-read, re-granting the very consent the customer was revoking.
+        // Assigning instead keeps model, checkbox and server in agreement, so
+        // a retry is the redundant no-op write the contract calls safe.
+        this.model.commercialCommunicationsApproval = hasEmailConsent;
+        this.model[FIELD_NAME_LIST.pixelTrackingConsent] = hasPixelConsent;
+        this.$scope.$broadcast(CONSENT_RESYNC_EVENT, {
+          [FIELD_NAME_LIST.commercialCommunicationsApproval]: hasEmailConsent,
+          [FIELD_NAME_LIST.pixelTrackingConsent]: hasPixelConsent,
+        });
+      })
+      .catch(angular.noop)
+      .then(() => this.$q.reject(error));
+  }
+
+  /**
    * Drops the errors the API raised against data the customer has since
    * replaced: the banner it pushed to the alert container, and the inline
    * message the form renders from submitError.
@@ -677,6 +879,26 @@ export default class NewAccountFormController {
           chapter2: 'myaccount',
           chapter3: 'consent',
         });
+        // Cascade, mirroring the backend's own (business rule 9): revoking
+        // marketing email consent unchecks AND disables pixel tracking in the
+        // same UI update, so the form never shows a state the next GET would
+        // contradict. disabled() greys the box out by itself; only this reset
+        // clears the checkmark, because the rendered value is the field
+        // component's local copy.
+        //
+        // There is deliberately NO `else`. Re-checking email is not the mirror
+        // image (business rule 6): it only lifts disabled(), making the box
+        // checkable again while it stays UNCHECKED. Re-subscribing to email
+        // never restores pixel tracking — the customer opts back in
+        // explicitly, one click per checkbox, no bundled toggle and no
+        // "accept all" side effect.
+        //
+        // Gated on the country flag as well: out of scope no pixel rule was
+        // ever built, so there is no field component listening and nothing to
+        // ask for.
+        if (this.isPixelTrackingAvailable && !value) {
+          this.$scope.$broadcast(PIXEL_TRACKING_RESET_EVENT);
+        }
       }
 
       if (rule.fieldName === FIELD_NAME_LIST.phoneType) {
@@ -699,6 +921,32 @@ export default class NewAccountFormController {
         });
       }
 
+      // Reached by a real click on the pixel checkbox AND by the cascade
+      // above: the reset listener clears the box through the field's
+      // onChange(), which routes back into this very method, so revoking
+      // marketing email consent reports a `product-pixel-consent::disable`
+      // the customer never clicked, and the `return this.updateRules()` below
+      // fires a second, overlapping rules refresh for the one click.
+      //
+      // Left as is, deliberately: it is what the identical smsConsent cascade
+      // does today (a phoneType change reports an sms-consent hit the same
+      // way), the reported opt-out is a state change that genuinely happened,
+      // and suppressing it means either a payload threaded through onChange()
+      // or writing the model behind the field component's back — both worse
+      // than the duplicate hit. Do not read the broadcast as a way of keeping
+      // one click to one hit; it is not.
+      if (rule.fieldName === FIELD_NAME_LIST.pixelTrackingConsent) {
+        this.atInternet.trackClick({
+          name: `${TRACKING_PREFIX}::product-pixel-consent::${
+            value ? 'enable' : 'disable'
+          }`,
+          type: 'action',
+          chapter1: 'account',
+          chapter2: 'myaccount',
+          chapter3: 'consent',
+        });
+      }
+
       if (
         rule.fieldName === FIELD_NAME_LIST.legalform ||
         rule.fieldName === FIELD_NAME_LIST.country
@@ -715,6 +963,57 @@ export default class NewAccountFormController {
   // compare original model to edited model
   hasChanges() {
     return !angular.equals(this.originalModel, this.model);
+  }
+
+  /**
+   * Country scope of the pixel-tracking checkbox: France (all of its
+   * territory) and Italy, never anywhere else. Out of scope the rule is never
+   * built at all — no unchecked box, no disabled box, nothing.
+   *
+   * Re-read from the LIVE model on every access, so it tracks the country
+   * select as the customer edits it: an Italian account that switches to
+   * Germany loses the checkbox on that change, and switching back to Italy
+   * brings it in again. onFieldChange() already refreshes the rules on a
+   * country change (the FR_COUNTRIES gates further down work the same way),
+   * so nothing else has to be wired for this to repaint.
+   *
+   * A getter, not a method, so all six read sites — the rule injection, the
+   * two submit guards, the payload builder, the 400 recovery and the email
+   * cascade — read the current country with no call site left to go stale.
+   *
+   * Fails closed, in isPixelTrackingCountry: a model with no country, or with
+   * the 'UNKNOWN' placeholder, is not offered the checkbox.
+   *
+   * Permanent business scope, not a rollout: no feature flag guards it.
+   */
+  get isPixelTrackingAvailable() {
+    return isPixelTrackingCountry(this.model?.country);
+  }
+
+  /**
+   * A consent checkbox's loaded state lives in the field component's local
+   * value (from rule.initialValue), never in the model, so
+   * this.model.commercialCommunicationsApproval stays undefined until the
+   * customer actually clicks it: an account that already consented reads as
+   * undefined here while the box renders CHECKED. Falling back to the decision
+   * the GET returned is what keeps the pixel checkbox enabled on load for
+   * exactly the customers who are eligible for it.
+   *
+   * This is the fallback the submit-time tracking block used to carry inline;
+   * it now uses this method, so the expression exists once.
+   */
+  isEmailConsentGranted() {
+    return typeof this.model.commercialCommunicationsApproval !== 'undefined'
+      ? !!this.model.commercialCommunicationsApproval
+      : !!this.consentDecision;
+  }
+
+  // same undefined-until-clicked story as above
+  isPixelConsentGranted() {
+    return typeof this.model[FIELD_NAME_LIST.pixelTrackingConsent] !==
+      'undefined'
+      ? !!this.model[FIELD_NAME_LIST.pixelTrackingConsent]
+      : !!this.pixelConsentDecision;
   }
 
   // The SIRET search assistant detected a legal form from the selected company;
