@@ -7,6 +7,7 @@ import AccountTypePage from './AccountType.page';
 import { Rule } from '@/types/rule';
 
 let legalForm: string | undefined;
+let country = 'FR';
 const setLegalForm = vi.fn((form: string) => {
   legalForm = form;
 });
@@ -17,7 +18,7 @@ const language = 'fr-FR';
 vi.spyOn(RulesHooks, 'useLegalFormRules').mockReturnValue({
   data: {
     fieldName: 'legalform',
-    in: ['corporation', 'individual', 'association'],
+    in: ['corporation', 'individual', 'association', 'administration'],
     defaultValue: null,
     examples: null,
     mandatory: true,
@@ -41,7 +42,7 @@ vi.mock('react-router-dom', () => ({
 
 vi.mock('@/context/user/useUser', () => ({
   useUserContext: () => ({
-    country: 'FR',
+    country,
     ovhSubsidiary,
     legalForm,
     setLegalForm,
@@ -84,6 +85,8 @@ vi.mock('@/context/tracking/useTracking', () => ({
 describe('AccountTypePage', () => {
   beforeEach(() => {
     legalForm = undefined;
+    country = 'FR';
+    navigate.mockClear();
     setLegalForm.mockClear();
   });
 
@@ -164,6 +167,34 @@ describe('AccountTypePage', () => {
     );
     expect(navigate).toHaveBeenCalledWith(
       '/details?onsuccess=https%3A%2F%2Fwww.ovh.com%2Fmanager',
+    );
+  });
+
+  it('should display the administration radio button outside France', () => {
+    country = 'DE';
+    render(<AccountTypePage />);
+
+    expect(screen.getByTestId('legal_form_administration')).toBeInTheDocument();
+  });
+
+  it('should navigate straight to info page for non-FR administration', async () => {
+    country = 'DE';
+    legalForm = 'administration';
+    render(<AccountTypePage />);
+
+    await act(() => screen.getByText('validate').click());
+    expect(navigate).toHaveBeenCalledWith(
+      '/details?onsuccess=https%3A%2F%2Fwww.ovh.com%2Fmanager',
+    );
+  });
+
+  it('should navigate to company page for FR administration', async () => {
+    legalForm = 'administration';
+    render(<AccountTypePage />);
+
+    await act(() => screen.getByText('validate').click());
+    expect(navigate).toHaveBeenCalledWith(
+      '/company?onsuccess=https%3A%2F%2Fwww.ovh.com%2Fmanager',
     );
   });
 });
