@@ -7,11 +7,13 @@ import { Trans, useTranslation } from "react-i18next";
 import {
   ELECTRONIC_BILLING_REGULATION_LINK,
   LEGALFORM_FIELD_TO_FOCUS,
-  OTHER_CATEGORY_FEATURE,
   TRACKING_CONTEXT,
   TRACKING_PREFIX,
 } from "./otherCategoryModal.constants";
-import { isUserCategoryOther } from "./otherCategoryModal.helpers";
+import {
+  getOtherCategoryDescriptionKey,
+  isUserCategoryOther,
+} from "./otherCategoryModal.helpers";
 import { useCheckModalDisplay } from "@/hooks/modal/useModal";
 import { useSuggestionTargetUrl } from "@/data/hooks/suggestion/useSuggestion";
 import { useApplication } from "@/context";
@@ -21,16 +23,21 @@ const OtherCategoryModal: FC = () => {
   const ux = shell.getPlugin('ux');
   const tracking = shell.getPlugin('tracking');
   const { t } = useTranslation('other-category-modal');
+  const { country } = shell
+    .getPlugin('environment')
+    .getEnvironment()
+    .getUser();
 
   const accountEditionLink = useSuggestionTargetUrl();
 
   // No preference/interval throttling: the modal is displayed at every login as
-  // long as the category remains "Autre" (RG1). It is skipped on the account
-  // edition page itself so it does not overlap the form the CTA leads to.
+  // long as the category remains "Autre" (RG1), in every country. It is skipped
+  // on the account edition page itself so it does not overlap the form the CTA
+  // leads to.
   const shouldDisplayModal = useCheckModalDisplay(
     undefined,
     undefined,
-    [OTHER_CATEGORY_FEATURE],
+    undefined,
     undefined,
     undefined,
     isUserCategoryOther,
@@ -88,7 +95,7 @@ const OtherCategoryModal: FC = () => {
           size={ODS_THEME_TYPOGRAPHY_SIZE._400}
         >
           <Trans
-            i18nKey="other_category_modal_description"
+            i18nKey={getOtherCategoryDescriptionKey(country)}
             t={t}
             components={{
               anchor: (

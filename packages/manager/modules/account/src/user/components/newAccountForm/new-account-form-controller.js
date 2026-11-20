@@ -96,21 +96,13 @@ export default class NewAccountFormController {
     this.$scope.$on(COMPANY_SELECTED_EVENT, () => this.clearApiErrors());
 
     return this.ovhFeatureFlipping
-      .checkFeatureAvailability([
-        FEATURES.emailConsent,
-        FEATURES.smsConsent,
-        FEATURES.otherCategory,
-      ])
+      .checkFeatureAvailability([FEATURES.emailConsent, FEATURES.smsConsent])
       .then((result) => {
         this.isEmailConsentAvailable = result.isFeatureAvailable(
           FEATURES.emailConsent,
         );
         this.isSmsConsentAvailable = result.isFeatureAvailable(
           FEATURES.smsConsent,
-        );
-        // Gates the FR e-invoicing "Autre" category controls (RG2/RG3/RG4)
-        this.isOtherCategoryControlEnabled = result.isFeatureAvailable(
-          FEATURES.otherCategory,
         );
       })
       .then(() => this.fetchRules(this.model))
@@ -766,28 +758,16 @@ export default class NewAccountFormController {
     );
   }
 
-  // The FR e-invoicing "Autre" category controls (RG2/RG3/RG4) are gated by a
-  // feature flag and restricted to French customers.
-  isOtherCategoryControlActive() {
-    return (
-      this.isOtherCategoryControlEnabled &&
-      FR_COUNTRIES.includes(this.model?.country)
-    );
-  }
-
-  // RG2/RG3: the currently selected category is the invalid "Autre" value.
+  // RG2/RG3: the currently selected category is "Autre", which can no longer
+  // be saved, in any country.
   isOtherCategorySelected() {
-    return (
-      this.isOtherCategoryControlActive() &&
-      this.model?.legalform === USER_TYPE_OTHER
-    );
+    return this.model?.legalform === USER_TYPE_OTHER;
   }
 
   // RG4: the saved category was "Autre" and the customer switched to a category
   // holding company data (B2B/B2G/association). B2C (individual) is excluded (RG5).
   shouldShowCategorySwitchWarning() {
     return (
-      this.isOtherCategoryControlActive() &&
       this.originalModel?.legalform === USER_TYPE_OTHER &&
       [
         USER_TYPE_ENTERPRISE,
