@@ -1,5 +1,5 @@
-import { debug } from './utils';
-import { TMS_SCRIPT_URL } from './constants';
+import { debug } from './utils';
+import { TMS_SCRIPT_URL } from './constants';
 
 // parse visitor id from cookie and return its value
 function getVisitorId() {
