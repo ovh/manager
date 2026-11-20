@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { Controller, SubmitHandler, useForm, useWatch } from 'react-hook-form';
 import { useSearchParams } from 'react-router-dom';
@@ -93,9 +93,14 @@ import {
 } from '@/components/formSkeleton';
 import ExitGuard from '@/components/exitGuard/ExitGuard.component';
 import InvalidationRedirectGuard from '@/components/invalidationRedirectGuard/InvalidationRedirectGuard.component';
+import * as germany from '@/helpers/germany/germanyHelper';
+import { useGermanRegisterCourts } from '@/data/hooks/useGermanRegisterCourts';
 import VatSelect from './vatSelect/VatSelect.component';
 import TurkeyIdentifierFields from './turkeyIdentifiers/TurkeyIdentifierFields.component';
 import EinvoicingAddressSelect from './einvoicingAddressSelect/EinvoicingAddressSelect.component';
+import GermanRegisterId, {
+  GermanRegisterIdValue,
+} from './germanRegisterId/GermanRegisterId.component';
 
 type AccountDetailsFormProps = {
   rules: Record<RuleField, Rule>;
@@ -148,9 +153,19 @@ function AccountDetailsForm({
     currentUser.country,
   );
   const turkishCompany = isTurkishCompany(formCountry, legalForm);
+  // Germany, spec §3: « no USt-IdNr. », unticked on creation. Ticked, no
+  // USt-IdNr. is asked: its rule is not checked and the VAT is sent empty.
+  const [noVat, setNoVat] = useState(false);
+  const noVatSwitched = useRef(false);
 
   const zodSchema = useMemo(() => {
-    const baseSchema = getZodSchemaFromRule(rules);
+    const baseSchema = getZodSchemaFromRule(
+      noVat
+        ? (Object.fromEntries(
+            Object.entries(rules).filter(([field]) => field !== 'vat'),
+          ) as typeof rules)
+        : rules,
+    );
     return baseSchema.extend({
       confirmSend: z.literal(true),
       smsConsent: z.boolean().optional(),
@@ -158,7 +173,7 @@ function AccountDetailsForm({
       einvoicingBillingAddress: z.string().optional(),
       ...turkeySchemaFields(rules, { country: formCountry, legalForm }),
     });
-  }, [rules, formCountry, legalForm]);
+  }, [rules, noVat, formCountry, legalForm]);
 
   function renderTranslatedZodError(message: string | undefined, rule: Rule) {
     if (!message) return undefined;
@@ -173,7 +188,8 @@ function AccountDetailsForm({
     handleSubmit,
     watch,
     setValue,
-    formState: { errors, isValid, isDirty },
+    trigger,
+    formState: { errors, isValid, isDirty, touchedFields },
   } = useForm<FormValues>({
     defaultValues: {
       country: currentUser.country || 'GB',
@@ -267,6 +283,57 @@ function AccountDetailsForm({
     (einvoicingRule?.in?.filter(Boolean).length ?? 0) > 1 &&
     !einvoicingAddressValue;
 
+  // Germany (spec « 06 Germany Customer Master Data: Front End »): the rules
+  // decide which identifiers show, their formats (the register id as its EUID)
+  // and whether they are mandatory; `germany` adds what they cannot say.
+  const germanScope = germany.isScope(country, legalForm);
+  // The box switched the VAT rule on or off: check the VAT again with it
+  // (never on mount, an untouched field shows no error).
+  useEffect(() => {
+    if (noVatSwitched.current) trigger('vat');
+  }, [noVat]);
+  const [registerId, setRegisterId] = useState<GermanRegisterIdValue>({
+    court: '',
+    number: '',
+  });
+  const registerIdShown =
+    germanScope && Boolean(rules?.companyNationalIdentificationNumber);
+  const {
+    data: germanCourts,
+    isError: isGermanCourtsError,
+  } = useGermanRegisterCourts(registerIdShown);
+  const germanRegisterIdIssue = registerIdShown
+    ? germany.registerIdIssue(registerId.court, registerId.number)
+    : null;
+  const vatValue = watch('vat');
+  const ninValue = watch('nationalIdentificationNumber');
+  /** Spec §3: a USt-IdNr., or the « no USt-IdNr. » box ticked. */
+  const germanVatMissing =
+    germanScope &&
+    Boolean(rules?.vat) &&
+    !noVat &&
+    !germany.cleanIdentifier(vatValue);
+  /** Spec §1: a Company gives at least one identifier. */
+  const germanIdentifierMissing =
+    germanScope &&
+    germany.isIdentifierMissing(
+      legalForm,
+      {
+        nationalIdentificationNumber: ninValue,
+        companyNationalIdentificationNumber: corporationIdValue,
+        vat: vatValue,
+      },
+      rules,
+    );
+  const germanSaveBlocked =
+    Boolean(germanRegisterIdIssue) ||
+    germanVatMissing ||
+    germanIdentifierMissing;
+  /** As in account edition: a German identifier loses its spaces, its format is the rules'. */
+  const toIdentifier = (onChange: (value: string) => void) => (event: {
+    detail?: { value?: unknown };
+  }) => onChange(germany.cleanIdentifier(String(event.detail?.value ?? '')));
+
   // VAT field, rendered in the "Facturation" (FR B2B/B2G) or legal section
   const vatField = (
     <Controller
@@ -300,7 +367,7 @@ function AccountDetailsForm({
                 id={name}
                 value={value}
                 hasError={!!errors[name]}
-                onOdsChange={onChange}
+                onOdsChange={germanScope ? toIdentifier(onChange) : onChange}
                 onOdsBlur={onBlur}
               />
               {errors.vat && rules?.vat && (
@@ -309,6 +376,14 @@ function AccountDetailsForm({
                   preset="caption"
                 >
                   {renderTranslatedZodError(errors.vat.message, rules?.vat)}
+                </OdsText>
+              )}
+              {!errors.vat && germanVatMissing && touchedFields.vat && (
+                <OdsText
+                  className="text-critical leading-[0.8]"
+                  preset="caption"
+                >
+                  {t('account_details_de_error_vat_required_or_tick')}
                 </OdsText>
               )}
             </>
@@ -355,6 +430,8 @@ function AccountDetailsForm({
     if (country) {
       setFormCountry(country);
       updateRulesParams('country', country);
+      // Another head office, another « no USt-IdNr. » answer.
+      setNoVat(false);
       if (country !== currentUser.country) {
         setValue('language', '');
       }
@@ -448,8 +525,60 @@ function AccountDetailsForm({
         goalType: TRACKING_GOAL_TYPE,
       });
     }
-    addAccountDetails((formData as unknown) as FormData);
+    addAccountDetails(({
+      // Spec §7: the identifiers the rules of the legal form do not describe
+      // while /me holds them, sent empty (individual: all three).
+      ...(germany.isGermany(country)
+        ? germany.droppedIdentifiers(rules, currentUser)
+        : {}),
+      ...formData,
+      // Spec §3: the box ticked, the VAT (out of the schema) is sent empty.
+      ...(germanScope && noVat && { vat: '' }),
+    } as unknown) as FormData);
   };
+
+  // National identification number: in the personal section, or the German
+  // W-IdNr., first of the German identifiers (spec §2).
+  const ninLabel = germanScope
+    ? t('account_details_de_nin_label')
+    : t('account_details_field_nationalIdentificationNumber');
+  const ninField = (
+    <Controller
+      control={control}
+      name="nationalIdentificationNumber"
+      render={({ field: { name, value, onChange, onBlur } }) => (
+        <OdsFormField>
+          <label htmlFor={name} slot="label" aria-label={ninLabel}>
+            <OdsText preset="caption">
+              {ninLabel}
+              {rules?.nationalIdentificationNumber?.mandatory && ' *'}
+            </OdsText>
+          </label>
+          <OdsInput
+            isReadonly={!rules}
+            name={name}
+            id={name}
+            value={value}
+            maxlength={
+              rules?.nationalIdentificationNumber?.maxLength || undefined
+            }
+            hasError={!!errors[name]}
+            onOdsChange={germanScope ? toIdentifier(onChange) : onChange}
+            onBlur={onBlur}
+          />
+          {errors.nationalIdentificationNumber &&
+            rules?.nationalIdentificationNumber && (
+              <OdsText className="text-critical leading-[0.8]" preset="caption">
+                {renderTranslatedZodError(
+                  errors.nationalIdentificationNumber.message,
+                  rules?.nationalIdentificationNumber,
+                )}
+              </OdsText>
+            )}
+        </OdsFormField>
+      )}
+    />
+  );
 
   return (
     <>
@@ -592,57 +721,9 @@ function AccountDetailsForm({
           {/* Türkiye — the VKN is rendered at the top of the legal block. */}
           {rules?.nationalIdentificationNumber &&
             !separateSIRENAndSIRET &&
-            !turkishCompany && (
-              <>
-                <Controller
-                  control={control}
-                  name="nationalIdentificationNumber"
-                  render={({ field: { name, value, onChange, onBlur } }) => (
-                    <OdsFormField>
-                      <label
-                        htmlFor={name}
-                        slot="label"
-                        aria-label={t(
-                          'account_details_field_nationalIdentificationNumber',
-                        )}
-                      >
-                        <OdsText preset="caption">
-                          {t(
-                            'account_details_field_nationalIdentificationNumber',
-                          )}
-                          {rules?.firstname?.mandatory && ' *'}
-                        </OdsText>
-                      </label>
-                      <OdsInput
-                        isReadonly={!rules}
-                        name={name}
-                        id={name}
-                        value={value}
-                        maxlength={
-                          rules?.nationalIdentificationNumber?.maxLength ||
-                          undefined
-                        }
-                        hasError={!!errors[name]}
-                        onOdsChange={onChange}
-                        onBlur={onBlur}
-                      />
-                      {errors.nationalIdentificationNumber &&
-                        rules?.nationalIdentificationNumber && (
-                          <OdsText
-                            className="text-critical leading-[0.8]"
-                            preset="caption"
-                          >
-                            {renderTranslatedZodError(
-                              errors.nationalIdentificationNumber.message,
-                              rules?.nationalIdentificationNumber,
-                            )}
-                          </OdsText>
-                        )}
-                    </OdsFormField>
-                  )}
-                />
-              </>
-            )}
+            !turkishCompany &&
+            !germanScope &&
+            ninField}
           {rules?.sex?.mandatory && (
             <Controller
               control={control}
@@ -849,7 +930,96 @@ function AccountDetailsForm({
                 )}
               />
             )}
-            {rules?.companyNationalIdentificationNumber && !turkishCompany && (
+            {germanScope && (
+              // Spec §2: W-IdNr., register id, « no USt-IdNr. », USt-IdNr. —
+              // each one only when the rules describe it.
+              <>
+                {germany.requiresIdentifier(legalForm) && (
+                  <OdsMessage
+                    color={
+                      germanIdentifierMissing && noVat
+                        ? 'critical'
+                        : 'information'
+                    }
+                    isDismissible={false}
+                    className="my-2"
+                  >
+                    <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                      {t('account_details_de_info')}
+                    </OdsText>
+                  </OdsMessage>
+                )}
+                {rules?.nationalIdentificationNumber && ninField}
+                {registerIdShown && (
+                  <Controller
+                    control={control}
+                    name="companyNationalIdentificationNumber"
+                    render={({ field: { onChange, onBlur } }) => (
+                      <GermanRegisterId
+                        court={registerId.court}
+                        number={registerId.number}
+                        courts={germanCourts}
+                        courtsError={isGermanCourtsError}
+                        issue={germanRegisterIdIssue}
+                        error={renderTranslatedZodError(
+                          errors.companyNationalIdentificationNumber?.message,
+                          rules.companyNationalIdentificationNumber,
+                        )}
+                        mandatory={
+                          rules.companyNationalIdentificationNumber.mandatory
+                        }
+                        onChange={(next) => {
+                          setRegisterId(next);
+                          // Spec §4: sent as one EUID, checked by the rules.
+                          onChange(
+                            germany.toEuid(
+                              next.court,
+                              next.number,
+                              germany.REGISTER_TYPES,
+                            ),
+                          );
+                        }}
+                        onBlur={onBlur}
+                      />
+                    )}
+                  />
+                )}
+                {rules?.vat && (
+                  <>
+                    <OdsFormField>
+                      <div className="w-full flex flex-row gap-4 items-center cursor-pointer">
+                        <OdsCheckbox
+                          inputId="noVat"
+                          id="noVat"
+                          name="noVat"
+                          isChecked={noVat}
+                          onClick={() => {
+                            // Spec §3: ticked, the USt-IdNr. is hidden and
+                            // emptied; unticked, it is asked again.
+                            noVatSwitched.current = true;
+                            setValue('vat', '', {
+                              shouldDirty: true,
+                              shouldTouch: noVat,
+                            });
+                            setNoVat(!noVat);
+                          }}
+                          class="flex-[0]"
+                        ></OdsCheckbox>
+                        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                          <label htmlFor="noVat">
+                            {t(`account_details_de_no_vat_${legalForm}`)}
+                          </label>
+                        </OdsText>
+                      </div>
+                    </OdsFormField>
+                    {!noVat && vatField}
+                  </>
+                )}
+              </>
+            )}
+            {rules?.companyNationalIdentificationNumber &&
+              !turkishCompany &&
+              !germanScope && (
               <Controller
                 control={control}
                 name="companyNationalIdentificationNumber"
@@ -959,7 +1129,10 @@ function AccountDetailsForm({
               />
             )}
             {/* Türkiye — the KDV is the read-only field of the Turkish block. */}
-            {!showEinvoicingSection && !turkishCompany && vatField}
+            {!showEinvoicingSection &&
+              !turkishCompany &&
+              !germanScope &&
+              vatField}
             {rules?.purposeOfPurchase && (
               <Controller
                 control={control}
@@ -1492,7 +1665,12 @@ function AccountDetailsForm({
           type="submit"
           slot="actions"
           className="w-full"
-          isDisabled={!isValid || !isDirty || isEinvoicingSelectionMissing}
+          isDisabled={
+            !isValid ||
+            !isDirty ||
+            isEinvoicingSelectionMissing ||
+            germanSaveBlocked
+          }
           color={ODS_BUTTON_COLOR.primary}
           variant={ODS_BUTTON_VARIANT.default}
           isLoading={
