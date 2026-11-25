@@ -33,6 +33,17 @@ export const isAccountWriteRequest = ({ method, url }) =>
     pattern.test((url || '').split('?')[0]),
   );
 
+// Removes the "information is correct" checkbox from the SIRET component
+// template (shared with sign-up), without touching the rest of it.
+export const removeConfirmationCheckbox = (template) => {
+  const container = document.createElement('template');
+  container.innerHTML = template;
+  container.content
+    .querySelectorAll('oui-checkbox[data-name="isCorrectCheckbox"]')
+    .forEach((checkbox) => checkbox.remove());
+  return container.innerHTML;
+};
+
 // Safety net behind the disabled UI: any write sent from the account section
 // is rejected before reaching the API, as a 403-like response so the existing
 // error handlers display it.
