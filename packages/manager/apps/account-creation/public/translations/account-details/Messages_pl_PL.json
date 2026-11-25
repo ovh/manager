@@ -108,5 +108,20 @@
   "account_details_error_detsis": "Numer DETSİS musi składać się dokładnie z 8 cyfr, bez separatorów.",
   "account_details_error_identical_digits": "Ten numer nie może składać się z jednej powtarzającej się cyfry.",
   "account_details_error_sequential_digits": "Ten numer nie może być ciągiem kolejnych cyfr.",
-  "account_details_error_kdv_choice": "Wskaż, czy Twoja organizacja posiada numer KDV."
+  "account_details_error_kdv_choice": "Wskaż, czy Twoja organizacja posiada numer KDV.",
+  "account_details_de_info": "Wymagany jest co najmniej jeden z tych identyfikatorów: W-IdNr., numer rejestru lub USt-IdNr.",
+  "account_details_de_nin_label": "Gospodarczy numer identyfikacyjny (W-IdNr.)",
+  "account_details_de_court_label": "Sąd rejestrowy (Registergericht)",
+  "account_details_de_court_placeholder": "Wybierz sąd rejestrowy",
+  "account_details_de_court_unavailable": "{{name}} (jest niedostępna)",
+  "account_details_de_court_list_error": "Nie udało się załadować listy sądów rejestrowych. Spróbuj ponownie później.",
+  "account_details_de_cnin_label": "Numer rejestru",
+  "account_details_de_cnin_hint": "Na przykład HRB 12345 lub VR 1234",
+  "account_details_de_no_vat_corporation": "Moja firma nie posiada numeru identyfikacyjnego VAT (USt-IdNr.).",
+  "account_details_de_no_vat_personalcorporation": "Moja jednoosobowa działalność gospodarcza nie posiada numeru identyfikacyjnego VAT (USt-IdNr.).",
+  "account_details_de_no_vat_association": "Moje stowarzyszenie nie posiada numeru identyfikacyjnego VAT (USt-IdNr.).",
+  "account_details_de_no_vat_administration": "Ta administracja nie posiada numeru identyfikacyjnego VAT (USt-IdNr.).",
+  "account_details_de_error_court_required": "Wybierz sąd rejestrowy dla tego numeru.",
+  "account_details_de_error_cnin_required": "Wpisz numer rejestru odpowiadający wybranemu sądowi.",
+  "account_details_de_error_vat_required_or_tick": "Wpisz swój USt-IdNr. lub zaznacz powyższe pole."
 }

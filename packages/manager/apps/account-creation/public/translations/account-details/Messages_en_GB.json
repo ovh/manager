@@ -108,5 +108,20 @@
   "account_details_error_detsis": "The DETSİS No must consist of exactly 8 digits, without separators.",
   "account_details_error_identical_digits": "This number cannot consist of a single repeated digit.",
   "account_details_error_sequential_digits": "This number cannot be a sequence of consecutive digits.",
-  "account_details_error_kdv_choice": "Indicate whether your organisation has a KDV number."
+  "account_details_error_kdv_choice": "Indicate whether your organisation has a KDV number.",
+  "account_details_de_info": "At least one of these identifiers is mandatory: W-IdNr., register number or USt-IdNr.",
+  "account_details_de_nin_label": "Economic identification number (W-IdNr.)",
+  "account_details_de_court_label": "Register court (Registergericht)",
+  "account_details_de_court_placeholder": "Select a register court",
+  "account_details_de_court_unavailable": "{{name}} (unavailable)",
+  "account_details_de_court_list_error": "The list of register courts could not be loaded. Please try again later.",
+  "account_details_de_cnin_label": "Register number",
+  "account_details_de_cnin_hint": "For example HRB 12345 or VR 1234",
+  "account_details_de_no_vat_corporation": "My company does not have a VAT identification number (USt-IdNr.).",
+  "account_details_de_no_vat_personalcorporation": "My sole proprietorship does not have a VAT identification number (USt-IdNr.).",
+  "account_details_de_no_vat_association": "My association does not have a VAT identification number (USt-IdNr.).",
+  "account_details_de_no_vat_administration": "This administration does not have a VAT identification number (USt-IdNr.).",
+  "account_details_de_error_court_required": "Select the register court for this number.",
+  "account_details_de_error_cnin_required": "Enter the register number corresponding to the selected court.",
+  "account_details_de_error_vat_required_or_tick": "Enter your USt-IdNr. or tick the box above."
 }

@@ -108,5 +108,20 @@
   "account_details_error_detsis": "O N.º DETSİS deve conter exatamente 8 dígitos, sem separador.",
   "account_details_error_identical_digits": "Este número não pode ser composto por um único dígito repetido.",
   "account_details_error_sequential_digits": "Este número não pode ser uma sequência de dígitos consecutivos.",
-  "account_details_error_kdv_choice": "Indique se a sua organização possui um número de KDV."
+  "account_details_error_kdv_choice": "Indique se a sua organização possui um número de KDV.",
+  "account_details_de_info": "Pelo menos um destes identificadores é obrigatório: W-IdNr., número de registo ou USt-IdNr.",
+  "account_details_de_nin_label": "Número de identificação económica (W-IdNr.)",
+  "account_details_de_court_label": "Tribunal de registo (Registergericht)",
+  "account_details_de_court_placeholder": "Selecione um tribunal de registo",
+  "account_details_de_court_unavailable": "{{name}} (indisponível)",
+  "account_details_de_court_list_error": "A lista de tribunais de registo não pôde ser carregada. Tentar novamente mais tarde.",
+  "account_details_de_cnin_label": "Número de registo",
+  "account_details_de_cnin_hint": "Por exemplo, HRB 12345 ou VR 1234",
+  "account_details_de_no_vat_corporation": "A minha empresa não tem número de identificação fiscal (USt-IdNr.).",
+  "account_details_de_no_vat_personalcorporation": "A minha empresa individual não tem número de identificação fiscal (USt-IdNr.).",
+  "account_details_de_no_vat_association": "A minha associação não tem número de identificação fiscal (USt-IdNr.).",
+  "account_details_de_no_vat_administration": "Esta administração não tem número de identificação fiscal (USt-IdNr.).",
+  "account_details_de_error_court_required": "Selecione o tribunal de registo para este número.",
+  "account_details_de_error_cnin_required": "Introduza o número de registo correspondente ao tribunal selecionado.",
+  "account_details_de_error_vat_required_or_tick": "Introduza o seu USt-IdNr. ou selecione a caixa acima."
 }
