@@ -305,16 +305,23 @@ describe('useVoucher', () => {
       });
     });
 
-    it('should set error on eligibility check failure', () => {
+    it.each([
+      ['VOUCHER_INVALID', 'pci_projects_new_voucher_form_field_error_voucher_invalid'],
+      ['VOUCHER_EXPIRED', 'pci_projects_new_voucher_form_field_error_voucher_expired'],
+      [
+        'VOUCHER_ALREADY_USED_2',
+        'pci_projects_new_voucher_form_field_error_voucher_already_used_2',
+      ],
+      [
+        'Voucher rejected: VOUCHER_COUNTRY',
+        'pci_projects_new_voucher_form_field_error_voucher_country',
+      ],
+      ['Internal error', 'pci_projects_new_voucher_form_field_error_voucher_invalid'],
+    ])('should map eligibility error "%s" to translation key %s', (message, expectedKey) => {
       (useCheckVoucherEligibility as ReturnType<typeof vi.fn>).mockImplementation(
         (hookOptions: { onError?: (error: ApiError) => void }) => ({
           ...mockCheckEligibilityMutationResult(),
-          mutate: vi.fn(() => {
-            if (hookOptions && typeof hookOptions.onError === 'function') {
-              const error = { message: 'VOUCHER_INVALID' } as ApiError;
-              hookOptions.onError(error);
-            }
-          }),
+          mutate: vi.fn(() => hookOptions.onError?.({ message } as ApiError)),
         }),
       );
 
@@ -323,43 +330,10 @@ describe('useVoucher', () => {
       });
 
       act(() => {
-        result.current.checkEligibility('INVALID_CODE');
+        result.current.checkEligibility('ANY_CODE');
       });
 
-      // The hook should have set an error
-      expect(result.current.error).toBeDefined();
-      expect(result.current.error).toContain('voucher_invalid');
-    });
-
-    it('should handle specific voucher error codes', () => {
-      (useCheckVoucherEligibility as ReturnType<typeof vi.fn>).mockImplementation(
-        (options: { onError?: (error: ApiError) => void }) => ({
-          ...mockCheckEligibilityMutationResult(),
-          mutate: vi.fn(
-            (_voucher: string, mutationOptions?: { onError?: (error: ApiError) => void }) => {
-              const error = { message: 'VOUCHER_EXPIRED' } as ApiError;
-              if (mutationOptions?.onError) mutationOptions.onError(error);
-              else if (options?.onError) options.onError(error);
-            },
-          ),
-        }),
-      );
-
-      const { result } = renderHook(() => useVoucher({ cartId, itemId, setVoucherConfiguration }), {
-        wrapper: createWrapper(),
-      });
-
-      // Simulate the error by directly calling the error handler
-      const errorCodeMatch = 'VOUCHER_EXPIRED'.match(/(VOUCHER_\w+)/i);
-      const errorCode = errorCodeMatch?.[1] ? errorCodeMatch[1].toLowerCase() : 'invalid';
-      const setErrorFn = result.current.setError as (error: string | undefined) => void;
-      act(() => {
-        setErrorFn(`pci_projects_new_voucher_form_field_error_voucher_${errorCode}`);
-      });
-
-      expect(result.current.error).toBe(
-        'pci_projects_new_voucher_form_field_error_voucher_voucher_expired',
-      );
+      expect(result.current.error).toBe(expectedKey);
     });
   });
 

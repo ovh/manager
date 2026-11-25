@@ -89,7 +89,7 @@ export function useVoucher({
         },
       });
 
-      const errorCodeMatch = err.message?.match(/(VOUCHER_\w+)/i);
+      const errorCodeMatch = err.message?.match(/VOUCHER_(\w+)/i);
       const errorCode = errorCodeMatch?.[1] ? errorCodeMatch[1].toLowerCase() : 'invalid';
       setError(`pci_projects_new_voucher_form_field_error_voucher_${errorCode}`);
     },
