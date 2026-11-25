@@ -80,5 +80,20 @@
   "account_details_einvoicing_single_b2g": "L'adresse {{address}} sera utilisée comme adresse de facturation électronique par défaut. Si votre SIREN de facturation est différent du SIREN de votre entité, vous pouvez contacter le support pour en renseigner une autre.",
   "account_details_einvoicing_multi_b2b": "Veuillez sélectionner votre adresse de facturation électronique par défaut.",
   "account_details_einvoicing_multi_b2g": "Veuillez sélectionner votre adresse de facturation électronique par défaut. Si votre SIREN de facturation est différent du SIREN de votre entité, vous pouvez contacter le support pour en renseigner une autre.",
-  "account_details_einvoicing_stale_address": "L'adresse sélectionnée n'est plus active. Veuillez en sélectionner une nouvelle."
+  "account_details_einvoicing_stale_address": "L'adresse sélectionnée n'est plus active. Veuillez en sélectionner une nouvelle.",
+  "account_details_de_info": "Au moins un de ces identifiants est obligatoire : W-IdNr., numéro de registre ou USt-IdNr.",
+  "account_details_de_nin_label": "Numéro d'identification économique (W-IdNr.)",
+  "account_details_de_court_label": "Tribunal du registre (Registergericht)",
+  "account_details_de_court_placeholder": "Sélectionnez un tribunal du registre",
+  "account_details_de_court_unavailable": "{{name}} (indisponible)",
+  "account_details_de_court_list_error": "La liste des tribunaux du registre n'a pas pu être chargée. Réessayez plus tard.",
+  "account_details_de_cnin_label": "Numéro de registre",
+  "account_details_de_cnin_hint": "Par exemple HRB 12345 ou VR 1234",
+  "account_details_de_no_vat_corporation": "Mon entreprise n'a pas de numéro d'identification TVA (USt-IdNr.).",
+  "account_details_de_no_vat_personalcorporation": "Mon entreprise individuelle n'a pas de numéro d'identification TVA (USt-IdNr.).",
+  "account_details_de_no_vat_association": "Mon association n'a pas de numéro d'identification TVA (USt-IdNr.).",
+  "account_details_de_no_vat_administration": "Cette administration n'a pas de numéro d'identification TVA (USt-IdNr.).",
+  "account_details_de_error_court_required": "Sélectionnez le tribunal du registre pour ce numéro.",
+  "account_details_de_error_cnin_required": "Saisissez le numéro de registre correspondant au tribunal sélectionné.",
+  "account_details_de_error_vat_required_or_tick": "Saisissez votre USt-IdNr. ou cochez la case ci-dessus."
 }
