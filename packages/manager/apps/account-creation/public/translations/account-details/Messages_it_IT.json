@@ -91,5 +91,20 @@
   "account_details_einvoicing_single_b2g": "L'indirizzo {{address}} sarà utilizzato come indirizzo di fatturazione elettronica predefinito. Se il Suo SIREN di fatturazione è diverso dal SIREN della Sua entità, può contattare l'assistenza per indicarne un altro.",
   "account_details_einvoicing_multi_b2g_hint": "Potrà inoltre configurarne un altro dal Suo spazio di fatturazione.",
   "account_details_einvoicing_multi_b2b": "La preghiamo di selezionare il Suo indirizzo di fatturazione elettronica predefinito.",
-  "account_details_einvoicing_multi_b2g": "La preghiamo di selezionare il Suo indirizzo di fatturazione elettronica predefinito. Se il Suo SIREN di fatturazione è diverso dal SIREN della Sua entità, può contattare l'assistenza per indicarne un altro."
+  "account_details_einvoicing_multi_b2g": "La preghiamo di selezionare il Suo indirizzo di fatturazione elettronica predefinito. Se il Suo SIREN di fatturazione è diverso dal SIREN della Sua entità, può contattare l'assistenza per indicarne un altro.",
+  "account_details_de_info": "È obbligatorio almeno uno di questi identificativi: W-IdNr., numero di registro o USt-IdNr.",
+  "account_details_de_nin_label": "Numero di identificazione economica (W-IdNr.)",
+  "account_details_de_court_label": "Tribunale del registro (Registergericht)",
+  "account_details_de_court_placeholder": "Selezionare un tribunale del registro",
+  "account_details_de_court_unavailable": "{{name}} (non disponibile)",
+  "account_details_de_court_list_error": "L'elenco dei tribunali del registro non è stato caricato. Riprovare più tardi.",
+  "account_details_de_cnin_label": "Numero di registro",
+  "account_details_de_cnin_hint": "Ad esempio HRB 12345 o VR 1234",
+  "account_details_de_no_vat_corporation": "La mia azienda non ha un numero di identificazione IVA (USt-IdNr.).",
+  "account_details_de_no_vat_personalcorporation": "La mia ditta individuale non ha un numero di identificazione IVA (USt-IdNr.).",
+  "account_details_de_no_vat_association": "La mia associazione non ha un numero di identificazione IVA (USt-IdNr.).",
+  "account_details_de_no_vat_administration": "Questa amministrazione non ha un numero di identificazione IVA (USt-IdNr.).",
+  "account_details_de_error_court_required": "Selezionare il tribunale del registro per questo numero.",
+  "account_details_de_error_cnin_required": "Inserire il numero di registro corrispondente al tribunale selezionato.",
+  "account_details_de_error_vat_required_or_tick": "Inserire il proprio USt-IdNr. o spuntare la casella qui sopra."
 }

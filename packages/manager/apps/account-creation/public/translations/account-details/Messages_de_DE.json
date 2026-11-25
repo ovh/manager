@@ -91,5 +91,20 @@
   "account_details_einvoicing_single_b2g": "Die Adresse {{address}} wird als Standardadresse für die elektronische Rechnungsstellung verwendet. Falls Ihre SIREN für die Rechnungsstellung von der SIREN Ihrer Einheit abweicht, können Sie den Support kontaktieren, um eine andere anzugeben.",
   "account_details_einvoicing_multi_b2g_hint": "Sie können auch eine andere in Ihrem Rechnungsbereich konfigurieren.",
   "account_details_einvoicing_multi_b2b": "Bitte wählen Sie Ihre Standardadresse für die elektronische Rechnungsstellung aus.",
-  "account_details_einvoicing_multi_b2g": "Bitte wählen Sie Ihre Standardadresse für die elektronische Rechnungsstellung aus. Falls Ihre SIREN für die Rechnungsstellung von der SIREN Ihrer Einheit abweicht, können Sie den Support kontaktieren, um eine andere anzugeben."
+  "account_details_einvoicing_multi_b2g": "Bitte wählen Sie Ihre Standardadresse für die elektronische Rechnungsstellung aus. Falls Ihre SIREN für die Rechnungsstellung von der SIREN Ihrer Einheit abweicht, können Sie den Support kontaktieren, um eine andere anzugeben.",
+  "account_details_de_info": "Mindestens eine dieser Identifikationsnummern ist erforderlich: W-IdNr., Registernummer oder USt-IdNr.",
+  "account_details_de_nin_label": "Wirtschafts-Identifikationsnummer (W-IdNr.)",
+  "account_details_de_court_label": "Registergericht",
+  "account_details_de_court_placeholder": "Wählen Sie ein Registergericht aus",
+  "account_details_de_court_unavailable": "{{name}} (nicht verfügbar)",
+  "account_details_de_court_list_error": "Die Liste der Registergerichte konnte nicht geladen werden. Versuchen Sie es später noch einmal.",
+  "account_details_de_cnin_label": "Registernummer",
+  "account_details_de_cnin_hint": "Zum Beispiel HRB 12345 oder VR 1234",
+  "account_details_de_no_vat_corporation": "Mein Unternehmen hat keine Umsatzsteuer-Identifikationsnummer (USt-IdNr.).",
+  "account_details_de_no_vat_personalcorporation": "Mein Einzelunternehmen hat keine Umsatzsteuer-Identifikationsnummer (USt-IdNr.).",
+  "account_details_de_no_vat_association": "Mein Verein hat keine Umsatzsteuer-Identifikationsnummer (USt-IdNr.).",
+  "account_details_de_no_vat_administration": "Diese Behörde hat keine Umsatzsteuer-Identifikationsnummer (USt-IdNr.).",
+  "account_details_de_error_court_required": "Wählen Sie das Registergericht für diese Nummer aus.",
+  "account_details_de_error_cnin_required": "Geben Sie die zum ausgewählten Gericht passende Registernummer ein.",
+  "account_details_de_error_vat_required_or_tick": "Geben Sie Ihre USt-IdNr. ein oder aktivieren Sie das oben stehende Kontrollkästchen."
 }

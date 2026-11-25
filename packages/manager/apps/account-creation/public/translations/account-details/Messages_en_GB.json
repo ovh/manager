@@ -91,5 +91,20 @@
   "account_details_einvoicing_single_b2g": "The address {{address}} will be used as the default electronic invoicing address. If your invoicing SIREN is different from your entity's SIREN, you can contact support to provide another one.",
   "account_details_einvoicing_multi_b2g_hint": "You will also be able to configure another one from your invoicing area.",
   "account_details_einvoicing_multi_b2b": "Please select your default electronic invoicing address.",
-  "account_details_einvoicing_multi_b2g": "Please select your default electronic invoicing address. If your invoicing SIREN is different from your entity's SIREN, you can contact support to provide another one."
+  "account_details_einvoicing_multi_b2g": "Please select your default electronic invoicing address. If your invoicing SIREN is different from your entity's SIREN, you can contact support to provide another one.",
+  "account_details_de_info": "At least one of these identifiers is mandatory: W-IdNr., register number or USt-IdNr.",
+  "account_details_de_nin_label": "Economic identification number (W-IdNr.)",
+  "account_details_de_court_label": "Register court (Registergericht)",
+  "account_details_de_court_placeholder": "Select a register court",
+  "account_details_de_court_unavailable": "{{name}} (unavailable)",
+  "account_details_de_court_list_error": "The list of register courts could not be loaded. Please try again later.",
+  "account_details_de_cnin_label": "Register number",
+  "account_details_de_cnin_hint": "For example HRB 12345 or VR 1234",
+  "account_details_de_no_vat_corporation": "My company does not have a VAT identification number (USt-IdNr.).",
+  "account_details_de_no_vat_personalcorporation": "My sole proprietorship does not have a VAT identification number (USt-IdNr.).",
+  "account_details_de_no_vat_association": "My association does not have a VAT identification number (USt-IdNr.).",
+  "account_details_de_no_vat_administration": "This administration does not have a VAT identification number (USt-IdNr.).",
+  "account_details_de_error_court_required": "Select the register court for this number.",
+  "account_details_de_error_cnin_required": "Enter the register number corresponding to the selected court.",
+  "account_details_de_error_vat_required_or_tick": "Enter your USt-IdNr. or tick the box above."
 }

@@ -91,5 +91,20 @@
   "account_details_einvoicing_single_b2g": "Adres {{address}} będzie używany jako domyślny adres faktur elektronicznych. Jeśli Państwa numer SIREN do faktur różni się od numeru SIREN Państwa podmiotu, mogą Państwo skontaktować się z działem wsparcia, aby podać inny.",
   "account_details_einvoicing_multi_b2g_hint": "Będziesz mógł również skonfigurować inny adres w swoim panelu fakturowania.",
   "account_details_einvoicing_multi_b2b": "Proszę wybrać domyślny adres faktur elektronicznych.",
-  "account_details_einvoicing_multi_b2g": "Proszę wybrać domyślny adres faktur elektronicznych. Jeśli Państwa numer SIREN do faktur różni się od numeru SIREN Państwa podmiotu, mogą Państwo skontaktować się z działem wsparcia, aby podać inny."
+  "account_details_einvoicing_multi_b2g": "Proszę wybrać domyślny adres faktur elektronicznych. Jeśli Państwa numer SIREN do faktur różni się od numeru SIREN Państwa podmiotu, mogą Państwo skontaktować się z działem wsparcia, aby podać inny.",
+  "account_details_de_info": "Wymagany jest co najmniej jeden z tych identyfikatorów: W-IdNr., numer rejestru lub USt-IdNr.",
+  "account_details_de_nin_label": "Gospodarczy numer identyfikacyjny (W-IdNr.)",
+  "account_details_de_court_label": "Sąd rejestrowy (Registergericht)",
+  "account_details_de_court_placeholder": "Wybierz sąd rejestrowy",
+  "account_details_de_court_unavailable": "{{name}} (jest niedostępna)",
+  "account_details_de_court_list_error": "Nie udało się załadować listy sądów rejestrowych. Spróbuj ponownie później.",
+  "account_details_de_cnin_label": "Numer rejestru",
+  "account_details_de_cnin_hint": "Na przykład HRB 12345 lub VR 1234",
+  "account_details_de_no_vat_corporation": "Moja firma nie posiada numeru identyfikacyjnego VAT (USt-IdNr.).",
+  "account_details_de_no_vat_personalcorporation": "Moja jednoosobowa działalność gospodarcza nie posiada numeru identyfikacyjnego VAT (USt-IdNr.).",
+  "account_details_de_no_vat_association": "Moje stowarzyszenie nie posiada numeru identyfikacyjnego VAT (USt-IdNr.).",
+  "account_details_de_no_vat_administration": "Ta administracja nie posiada numeru identyfikacyjnego VAT (USt-IdNr.).",
+  "account_details_de_error_court_required": "Wybierz sąd rejestrowy dla tego numeru.",
+  "account_details_de_error_cnin_required": "Wpisz numer rejestru odpowiadający wybranemu sądowi.",
+  "account_details_de_error_vat_required_or_tick": "Wpisz swój USt-IdNr. lub zaznacz powyższe pole."
 }
