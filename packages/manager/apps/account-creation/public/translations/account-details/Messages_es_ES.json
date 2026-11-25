@@ -108,5 +108,20 @@
   "account_details_error_detsis": "El N.º DETSİS debe contener exactamente 8 dígitos, sin separadores.",
   "account_details_error_identical_digits": "Este número no puede estar compuesto por un solo dígito repetido.",
   "account_details_error_sequential_digits": "Este número no puede ser una secuencia de dígitos consecutivos.",
-  "account_details_error_kdv_choice": "Indique si su organización dispone de un número de KDV."
+  "account_details_error_kdv_choice": "Indique si su organización dispone de un número de KDV.",
+  "account_details_de_info": "Al menos uno de estos identificadores es obligatorio: W-IdNr., número de registro o USt-IdNr.",
+  "account_details_de_nin_label": "Número de identificación económica (W-IdNr.)",
+  "account_details_de_court_label": "Tribunal de registro (Registergericht)",
+  "account_details_de_court_placeholder": "Seleccione un tribunal de registro",
+  "account_details_de_court_unavailable": "{{name}} (no disponible)",
+  "account_details_de_court_list_error": "La lista de tribunales de registro no se ha podido cargar. Inténtelo más tarde.",
+  "account_details_de_cnin_label": "Número de registro",
+  "account_details_de_cnin_hint": "Por ejemplo HRB 12345 o VR 1234",
+  "account_details_de_no_vat_corporation": "Mi empresa no tiene número de identificación fiscal (USt-IdNr.).",
+  "account_details_de_no_vat_personalcorporation": "Mi empresa individual no tiene número de identificación fiscal (USt-IdNr.).",
+  "account_details_de_no_vat_association": "Mi asociación no tiene número de identificación fiscal (USt-IdNr.).",
+  "account_details_de_no_vat_administration": "Esta administración no tiene número de identificación fiscal (USt-IdNr.).",
+  "account_details_de_error_court_required": "Seleccione el tribunal de registro para este número.",
+  "account_details_de_error_cnin_required": "Introduzca el número de registro correspondiente al tribunal seleccionado.",
+  "account_details_de_error_vat_required_or_tick": "Introduzca su USt-IdNr. o marque la casilla de arriba."
 }
