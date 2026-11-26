@@ -291,7 +291,7 @@ function AccountDetailsForm({
   // (never on mount, an untouched field shows no error).
   useEffect(() => {
     if (noVatSwitched.current) trigger('vat');
-  }, [noVat]);
+  }, [noVat, trigger]);
   const [registerId, setRegisterId] = useState<GermanRegisterIdValue>({
     court: '',
     number: '',
@@ -564,7 +564,7 @@ function AccountDetailsForm({
             }
             hasError={!!errors[name]}
             onOdsChange={germanScope ? toIdentifier(onChange) : onChange}
-            onBlur={onBlur}
+            onOdsBlur={onBlur}
           />
           {errors.nationalIdentificationNumber &&
             rules?.nationalIdentificationNumber && (
@@ -619,7 +619,7 @@ function AccountDetailsForm({
                     maxlength={rules?.firstname?.maxLength || undefined}
                     hasError={!!errors[name]}
                     onOdsChange={onChange}
-                    onBlur={onBlur}
+                    onOdsBlur={onBlur}
                   />
                   {errors.firstname && rules?.firstname && (
                     <OdsText
@@ -1003,7 +1003,7 @@ function AccountDetailsForm({
                             });
                             setNoVat(!noVat);
                           }}
-                          class="flex-[0]"
+                          className="flex-[0]"
                         ></OdsCheckbox>
                         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
                           <label htmlFor="noVat">
@@ -1020,74 +1020,78 @@ function AccountDetailsForm({
             {rules?.companyNationalIdentificationNumber &&
               !turkishCompany &&
               !germanScope && (
-              <Controller
-                control={control}
-                name="companyNationalIdentificationNumber"
-                render={({ field: { name, value, onChange, onBlur } }) => (
-                  <>
-                    <OdsFormField>
-                      <label htmlFor={name} slot="label" aria-label={cninLabel}>
-                        <OdsText preset="caption">
-                          {cninLabel}
-                          {rules?.companyNationalIdentificationNumber
-                            ?.mandatory && ' *'}
-                        </OdsText>
-                      </label>
-                      <OdsInput
-                        isReadonly={Boolean(companyDetails?.secondaryCNIN)}
-                        name="companyNationalIdentificationNumber"
-                        id={name}
-                        value={value}
-                        maxlength={
-                          rules?.companyNationalIdentificationNumber
-                            ?.maxLength || undefined
-                        }
-                        hasError={!!errors[name]}
-                        onOdsChange={(event) => {
-                          const nextValue = String(
-                            event.detail?.value ?? '',
-                          ).replace(/\s+/g, '');
-                          onChange(nextValue);
-                        }}
-                        onOdsBlur={onBlur}
-                      />
-                      {errors.companyNationalIdentificationNumber &&
-                        rules?.companyNationalIdentificationNumber && (
-                          <OdsText
-                            className="text-critical leading-[0.8]"
-                            preset="caption"
-                          >
-                            {renderTranslatedZodError(
-                              errors.companyNationalIdentificationNumber
-                                .message,
-                              rules?.companyNationalIdentificationNumber,
-                            )}
-                          </OdsText>
-                        )}
-                    </OdsFormField>
-                    {shouldDisplaySIREN && (
+                <Controller
+                  control={control}
+                  name="companyNationalIdentificationNumber"
+                  render={({ field: { name, value, onChange, onBlur } }) => (
+                    <>
                       <OdsFormField>
                         <label
-                          htmlFor="nationalIdentificationNumber"
+                          htmlFor={name}
                           slot="label"
-                          aria-label={t('account_details_field_siren')}
+                          aria-label={cninLabel}
                         >
                           <OdsText preset="caption">
-                            {t('account_details_field_siren')}
+                            {cninLabel}
+                            {rules?.companyNationalIdentificationNumber
+                              ?.mandatory && ' *'}
                           </OdsText>
                         </label>
                         <OdsInput
-                          isReadonly
-                          name="nationalIdentificationNumber"
-                          id="nationalIdentificationNumber"
-                          value={sirenValue}
+                          isReadonly={Boolean(companyDetails?.secondaryCNIN)}
+                          name="companyNationalIdentificationNumber"
+                          id={name}
+                          value={value}
+                          maxlength={
+                            rules?.companyNationalIdentificationNumber
+                              ?.maxLength || undefined
+                          }
+                          hasError={!!errors[name]}
+                          onOdsChange={(event) => {
+                            const nextValue = String(
+                              event.detail?.value ?? '',
+                            ).replace(/\s+/g, '');
+                            onChange(nextValue);
+                          }}
+                          onOdsBlur={onBlur}
                         />
+                        {errors.companyNationalIdentificationNumber &&
+                          rules?.companyNationalIdentificationNumber && (
+                            <OdsText
+                              className="text-critical leading-[0.8]"
+                              preset="caption"
+                            >
+                              {renderTranslatedZodError(
+                                errors.companyNationalIdentificationNumber
+                                  .message,
+                                rules?.companyNationalIdentificationNumber,
+                              )}
+                            </OdsText>
+                          )}
                       </OdsFormField>
-                    )}
-                  </>
-                )}
-              />
-            )}
+                      {shouldDisplaySIREN && (
+                        <OdsFormField>
+                          <label
+                            htmlFor="nationalIdentificationNumber"
+                            slot="label"
+                            aria-label={t('account_details_field_siren')}
+                          >
+                            <OdsText preset="caption">
+                              {t('account_details_field_siren')}
+                            </OdsText>
+                          </label>
+                          <OdsInput
+                            isReadonly
+                            name="nationalIdentificationNumber"
+                            id="nationalIdentificationNumber"
+                            value={sirenValue}
+                          />
+                        </OdsFormField>
+                      )}
+                    </>
+                  )}
+                />
+              )}
             {rules?.italianSDI && (
               <Controller
                 control={control}
@@ -1432,7 +1436,7 @@ function AccountDetailsForm({
               control={control}
               name="phoneType"
               render={({ field }) => (
-                <OdsFormField class="w-full mt-8 mb-4 flex flex-row gap-4">
+                <OdsFormField className="w-full mt-8 mb-4 flex flex-row gap-4">
                   {rules?.phoneType.in?.map((type: string) => (
                     <div key={type} className="flex leading-none gap-4">
                       <OdsRadio
@@ -1599,11 +1603,11 @@ function AccountDetailsForm({
                       hasError={!!errors[name]}
                       id={name}
                       name={name}
-                      onBlur={onBlur}
+                      onOdsBlur={onBlur}
                       isChecked={Boolean(value)}
                       value={(value as unknown) as string}
                       onClick={() => onChange(!value)}
-                      class="flex-[0]"
+                      className="flex-[0]"
                     ></OdsCheckbox>
                     <OdsText preset={ODS_TEXT_PRESET.paragraph}>
                       <label htmlFor={name}>
@@ -1637,11 +1641,11 @@ function AccountDetailsForm({
                     hasError={!!errors[name]}
                     id={name}
                     name={name}
-                    onBlur={onBlur}
+                    onOdsBlur={onBlur}
                     isChecked={Boolean(value)}
                     value={(value as unknown) as string}
                     onClick={() => onChange(!value)}
-                    class="flex-[0]"
+                    className="flex-[0]"
                   ></OdsCheckbox>
                   <OdsText preset={ODS_TEXT_PRESET.paragraph}>
                     <label htmlFor={name}>
