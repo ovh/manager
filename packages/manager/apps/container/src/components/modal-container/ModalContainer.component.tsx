@@ -15,6 +15,7 @@ import { IdentityDocumentsModal } from '@/components/identity-documents-modal/Id
 import { CommunicationAnnounceModal } from '../communication-announce-modal/CommunicationAnnounceModal.component';
 import CompanyInformationModal from '../company-information-modal/CompanyInformationModal.component';
 import OtherCategoryModal from '../other-category-modal/OtherCategoryModal.component';
+import NewConsoleModal from '../new-console-modal/NewConsoleModal.component';
 
 const MODALS: FC[] = [
   IdentityDocumentsModal,
@@ -24,6 +25,7 @@ const MODALS: FC[] = [
   OtherCategoryModal,
   SuggestionModal,
   CommunicationAnnounceModal,
+  NewConsoleModal,
 ];
 
 type ModalContainerProps = {
