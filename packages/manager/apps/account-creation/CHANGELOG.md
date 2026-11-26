@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.16.2...@ovh-ux/manager-account-creation-app@0.17.0) (2026-11-26)
+
+
+### Bug Fixes
+
+* **account-creation:** fix minor linting issues ([99c0737](https://github.com/ovh/manager/commit/99c07375e6f1f8a935703007597521eb3425ff70)), closes [#MANAGER-22518](https://github.com/ovh/manager/issues/MANAGER-22518)
+* **i18n:** add missing translations [CDS 1321] ([c11deba](https://github.com/ovh/manager/commit/c11deba51aba3d5b51bec6e4b2cba28968a1f648))
+* **i18n:** add missing translations [CDS 1323] ([2dc477e](https://github.com/ovh/manager/commit/2dc477e9c9acb92cfeb8e0246c39dc1b8743941e))
+
+
+### Features
+
+* **account-creation:** collect the turkish identifiers ([3f3bfa6](https://github.com/ovh/manager/commit/3f3bfa6e79af282bfe5106b91252394b2cd5c3f9))
+* **account:** handle german customer master data on account creation ([93e329d](https://github.com/ovh/manager/commit/93e329d41508683221e1c3d442be5ffd4f4b2b15)), closes [#MANAGER-23141](https://github.com/ovh/manager/issues/MANAGER-23141)
+
+
+
+
+
 ## [0.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.16.1...@ovh-ux/manager-account-creation-app@0.16.2) (2026-10-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-account-creation-app
