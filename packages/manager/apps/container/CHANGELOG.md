@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.209.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.208.1...@ovh-ux/manager-container-app@0.209.0) (2026-11-27)
+
+
+### Features
+
+* **container:** add new Console invitation modal on v6 navigation ([637e73d](https://github.com/ovh/manager/commit/637e73d9e8c4eaf4f9d09660b555dcd80b31bbf0)), closes [#MANAGER-23299](https://github.com/ovh/manager/issues/MANAGER-23299)
+* **container:** translate new Console invitation modal ([90f0374](https://github.com/ovh/manager/commit/90f037463c8be7c4061f71c94fe64e82fc436b95)), closes [#MANAGER-23299](https://github.com/ovh/manager/issues/MANAGER-23299)
+
+
+
+
+
 ## [0.208.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.208.0...@ovh-ux/manager-container-app@0.208.1) (2026-11-18)
 
 
