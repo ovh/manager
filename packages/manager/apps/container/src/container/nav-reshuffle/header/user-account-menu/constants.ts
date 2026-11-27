@@ -14,6 +14,7 @@ export const tracking = {
   contacts: 'topnav_v3::user_widget::contacts',
   contracts: 'topnav_v3::user_widget::contracts',
   logout: 'topnav_v3::user_widget::logout',
+  manageCookies: 'topnav_v3::user_widget::manage_cookies',
 };
 
 export const links: UserLink[] = [

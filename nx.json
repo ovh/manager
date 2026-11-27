@@ -45,7 +45,7 @@
   },
   "targetDefaults": {
     "build": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["^build", "@ovh-ux/manager-static-analysis-kit#build"],
       "outputs": [
         "{projectRoot}/dist/**",
         "{projectRoot}/types/**"
