@@ -20,6 +20,10 @@ vi.mock('@/data/api/database/service.api', () => ({
   deleteService: vi.fn(),
 }));
 
+vi.mock('@/data/api/database/capabilities.api', () => ({
+  getEnginesCapabilities: vi.fn(() => []),
+}));
+
 
 describe('Services List page', () => {
   beforeEach(() => {
