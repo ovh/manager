@@ -4,8 +4,11 @@
 export { ELECTRONIC_BILLING_REGULATION_LINK } from '../company-information-modal/companyInformationModal.constants';
 
 export const MODAL_NAME = 'OtherCategoryModal';
-// Feature flag gating the whole "Autre" category e-invoicing flow (FR only).
-export const OTHER_CATEGORY_FEATURE = 'account:fr-e-invoicing-other-category';
+// Mainland France and the overseas departments: the customers bound by the
+// French e-invoicing reform.
+export const FR_TERRITORIES = ['FR', 'GP', 'MQ', 'GF', 'RE', 'YT'];
+export const E_INVOICING_DESCRIPTION_KEY = 'other_category_modal_description';
+export const GENERIC_DESCRIPTION_KEY = 'other_category_modal_description_generic';
 // Field id of the legalform select in the account edition form, used so the CTA
 // lands directly on the category select.
 export const LEGALFORM_FIELD_TO_FOCUS = 'ovh_field_legalform';

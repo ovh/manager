@@ -211,3 +211,40 @@ describe('the API errors the form displays', () => {
     expect(alerter.resetMessage).toHaveBeenCalledWith('InfoErrors');
   });
 });
+
+describe('the "Autre" category, in every country', () => {
+  it.each(['FR', 'DE', 'TR', 'CA'])(
+    'blocks the save while it is selected (%s)',
+    (country) => {
+      const { ctrl } = build();
+      ctrl.model = { legalform: 'other', country };
+      expect(ctrl.isOtherCategorySelected()).toBe(true);
+    },
+  );
+
+  it('does not block another category', () => {
+    const { ctrl } = build();
+    ctrl.model = { legalform: 'individual', country: 'TR' };
+    expect(ctrl.isOtherCategorySelected()).toBe(false);
+  });
+
+  it.each(['corporation', 'association', 'administration'])(
+    'asks for the company data after a switch from "Autre" to %s',
+    (legalform) => {
+      const { ctrl } = build();
+      ctrl.originalModel = { legalform: 'other', country: 'DE' };
+      ctrl.model = { legalform, country: 'DE' };
+      expect(ctrl.shouldShowCategorySwitchWarning()).toBe(true);
+    },
+  );
+
+  it('does not for a switch to individual, nor from another category', () => {
+    const { ctrl } = build();
+    ctrl.originalModel = { legalform: 'other', country: 'DE' };
+    ctrl.model = { legalform: 'individual', country: 'DE' };
+    expect(ctrl.shouldShowCategorySwitchWarning()).toBe(false);
+    ctrl.originalModel = { legalform: 'individual', country: 'DE' };
+    ctrl.model = { legalform: 'corporation', country: 'DE' };
+    expect(ctrl.shouldShowCategorySwitchWarning()).toBe(false);
+  });
+});
