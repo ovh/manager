@@ -25,6 +25,7 @@
         <oui-button
             variant="primary"
             data-ng-click="$ctrl.onClick()"
+            data-disabled="$root.accountReadOnly"
             data-ng-if="$ctrl.kycStatus.status !== $ctrl.KYC_STATUS.OPEN && ($ctrl.isLoaded || (!$ctrl.isLoaded && !($ctrl.userTypeKey === $ctrl.USER_TYPE.individual && $ctrl.isValid)))"
         >
             <span

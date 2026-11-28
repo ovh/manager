@@ -1573,7 +1573,7 @@
                                     type="submit"
                                     class="btn btn-primary"
                                     data-ng-click="save();"
-                                    data-ng-disabled="accountForm.$invalid || loaders.update"
+                                    data-ng-disabled="$root.accountReadOnly || accountForm.$invalid || loaders.update"
                                     data-translate="useraccount_contacts_owner_ok"
                                 ></button>
                             </div>
@@ -1622,6 +1622,7 @@
                                 type="button"
                                 class="btn btn-default"
                                 data-ng-click="edit();"
+                                data-ng-disabled="$root.accountReadOnly"
                             >
                                 <span
                                     data-ng-bind=":: 'useraccount_contacts_owner_edit' | translate"

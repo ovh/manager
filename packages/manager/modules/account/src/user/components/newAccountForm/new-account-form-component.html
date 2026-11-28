@@ -50,6 +50,7 @@
     <!-- FORM SECTIONS -->
     <fieldset
         data-ng-form="{{:: 'form_part_' + section }}"
+        data-ng-disabled="$root.accountReadOnly"
         data-ng-repeat="section in ::$ctrl.getSections() track by $index"
         data-ng-if="$ctrl.getRulesBySection(section).length"
     >
@@ -143,6 +144,7 @@
         </oui-message>
         <button
             class="oui-button oui-button_primary"
+            data-ng-if="!$root.accountReadOnly"
             data-ng-disabled="ovhSignupForm.$invalid ||
                 (!$ctrl.hasChanges() && !$ctrl.submitError) ||
                 $ctrl.isSubmitting"

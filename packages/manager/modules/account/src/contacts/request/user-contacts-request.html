@@ -199,6 +199,7 @@
                                     type="button"
                                     class="btn btn-link"
                                     title="{{ 'useraccount_contacts_accept_request' | translate }}"
+                                    data-ng-disabled="$root.accountReadOnly"
                                     data-ng-click="setAction('contacts/request/change/user-contacts-request-change', {
                                             action: 'ACCEPT',
                                             method: 'RECEIVED',
@@ -211,6 +212,7 @@
                                 <button
                                     type="button"
                                     class="btn btn-link"
+                                    data-ng-disabled="$root.accountReadOnly"
                                     data-ng-click="setAction('contacts/request/change/user-contacts-request-change', { action: 'REFUSE', method: 'RECEIVED', task: task }, 'account/')"
                                     data-translate="useraccount_contacts_refuse_request"
                                     title="{{ 'useraccount_contacts_refuse_request' | translate }}"
@@ -220,6 +222,7 @@
                                 <button
                                     type="button"
                                     class="btn btn-link"
+                                    data-ng-disabled="$root.accountReadOnly"
                                     data-ng-click="setAction('contacts/request/change/user-contacts-request-change', { action: 'RESEND', method: 'RECEIVED', task: task }, 'account/')"
                                     data-translate="useraccount_contacts_resend_request"
                                     title="{{ 'useraccount_contacts_resend_request' | translate }}"

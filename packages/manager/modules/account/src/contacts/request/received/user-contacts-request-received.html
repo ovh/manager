@@ -125,6 +125,7 @@
                         <td class="center">
                             <button
                                 class="btn btn-icon btn-transparent"
+                                data-ng-disabled="$root.accountReadOnly"
                                 data-ng-click="setAction('contacts/request/change/user-contacts-request-change', {action: 'ACCEPT', method: 'RECEIVED',task: task})"
                                 data-ng-if="task.state === 'validatingByCustomers' && !task.hasPendingChange"
                                 data-oui-tooltip="{{:: 'useraccount_contacts_accept_request' | translate }}"
@@ -136,6 +137,7 @@
                         <td class="center">
                             <button
                                 class="btn btn-icon btn-transparent"
+                                data-ng-disabled="$root.accountReadOnly"
                                 data-ng-click="setAction('contacts/request/change/user-contacts-request-change', {action: 'REFUSE', method: 'RECEIVED', task: task})"
                                 data-ng-if="task.state === 'validatingByCustomers'  && !task.hasPendingChange"
                                 data-oui-tooltip="{{:: 'useraccount_contacts_refuse_request' | translate }}"
