@@ -153,9 +153,10 @@
             data-ng-pattern="$ctrl.inputValidator"
             data-ng-required="$ctrl.rule.mandatory"
             data-disabled="$ctrl.rule.disabled()"
+            data-description="{{ $ctrl.rule.descriptionKey ? ($ctrl.rule.descriptionKey | translate) : '' }}"
         >
             <span
-                data-translate="{{ 'signup_field_' + $ctrl.rule.displayFieldName | translate }} {{ !$ctrl.rule.mandatory ? 'signup_not_mandatory_field' : '' | translate }}"
+                data-translate="{{ 'signup_field_' + $ctrl.rule.displayFieldName | translate:$ctrl.rule.translateValues }} {{ !$ctrl.rule.mandatory ? 'signup_not_mandatory_field' : '' | translate }}"
             ></span>
         </oui-checkbox>
 
